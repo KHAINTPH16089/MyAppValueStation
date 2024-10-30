@@ -1,0 +1,218 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+#toast-container {
+    font-size: 14px;
+    color: #1d9b21;
+}
+
+.container {
+    height: 100%;
+    text-align: center;
+    background: #fff;
+    padding: 0 20px 0 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+}
+
+.container img {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+video {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #4caf50;
+}
+
+#homePage .header {
+    height: 50px;
+    background-color: #22abe3;
+}
+
+.app-bar {
+    background-color: #79ceed;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+#status {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+#thongKe {
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+}
+
+#Upload {
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+#ScanQRNext {
+    margin: 0;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+#lateTime {
+    width: 200px;
+    height: 30px;
+    border: solid 1px #333;
+    border-radius: 515px;
+    padding-top: 5px;
+}
+
+#boxValue {
+    width: 100px;
+    height: 80px;
+    background-color: #848484;
+    color: white;
+    border-radius: 25px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+#listValue {
+    --bs-gutter-x: 0;
+    margin: 0 15px 0 15px;
+}
+
+#acQuy {
+    margin: 15px;
+}
+
+.progress-vertical {
+    width: 30px;
+    height: 300px;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 20px;
+}
+
+.progress-vertical .progress-bar {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-align: center;
+}
+
+.drop {
+    position: relative;
+    width: 120px;
+    height: 180px;
+    background: linear-gradient(to bottom, #67d1fb, #0077b6);
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 50px auto;
+}
+
+.drop .shine {
+    position: absolute;
+    width: 50px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    top: 30px;
+    left: 35px;
+    transform: rotate(-30deg);
+}
+
+/* Thông tin lượng mưa bên trong giọt nước */
+.rain-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.button-list {
+    border: solid 1px rgb(0, 0, 0);
+    border-radius: 100px;
+    width: 80%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #313030;
+    float: right;
+    margin-right: 20px;
+}
+.btn-chart {
+    width: 25%;
+    height: 35px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 50px;
+    background-color: #313030;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-chart:hover {
+    background-color: #000000;
+}
+
+.btn-chart.active {
+    background-color: #181818;
+    color: #fff;
+}
+#switch-btn {
+    position: absolute;
+    top: 190px;
+    right: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+#switch-btn i {
+    font-size: 1.5em;
+}
+#switch-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
