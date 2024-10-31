@@ -46,8 +46,8 @@ async function getDataMonitoring() {
 
 function changeDataHomePage(data) {
     console.log(data);
-
-    document.getElementById("lateDateTime").textContent = data[0].LAST_VALUE_DATE;
+    const dateTime = formatDateTime(data[0].LAST_VALUE_DATE)
+    document.getElementById("lateDateTime").textContent = dateTime;
     for (let i = 0; i < data.length; i++) {
         if (data[i].PROPERTY_INDEX == "RT") {
             document.getElementById("RT").textContent = data[i].LAST_VALUE / 10 + "°C";
@@ -63,7 +63,7 @@ function changeDataHomePage(data) {
         } else if (data[i].PROPERTY_INDEX == "RA") {
             const color = getColor(data[i].LAST_VALUE / 10);
             changeColorAndText(color, color, data[i].LAST_VALUE / 10);
-            updateProgressBar("rain-bar", -10, 50, data[i].LAST_VALUE / 10, "mm");
+            updateProgressBar("rain-bar", -500, 500, (data[i].LAST_VALUE / 10), "mm");
         }
     }
 }
@@ -129,7 +129,7 @@ var user_id = "admin";
 // var session = '32085528-628c-449b-996f-a240ad606d1d';
 var session = "7b504acc-988a-437a-890f-389765305b47";
 
-if (maTram == "") {
+if (maTram == "" || maTram == null) {
     document.getElementById("ScanQR").classList.remove("hidden");
     document.getElementById("homePage").classList.add("hidden");
 } else {
@@ -137,50 +137,108 @@ if (maTram == "") {
     document.getElementById("ScanQR").classList.add("hidden");
     document.getElementById("homePage").classList.remove("hidden");
 }
+function formatDateTime(date) {
+    const now = new Date(date);
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const formattedDatetime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    return formattedDatetime
+}
+var checkCam = true;
 function startCam(){
-    let scanner = new Instascan.Scanner({
+    var scanner = new Instascan.Scanner({
         video: document.getElementById("preview"),
     });
-    let cameras = [];
-    let currentCameraIndex = 0;
-    // Lấy danh sách camera
+    if(checkCam == true){
+        // var scanner = new Instascan.Scanner({
+        //     video: document.getElementById("preview"),
+        // });
+        let cameras = [];
+        let currentCameraIndex = 0;
+        // Lấy danh sách camera
 
-    Instascan.Camera.getCameras().then(function (availableCameras) {
-        cameras = availableCameras;
-        if (cameras.length > 0) {
-            scanner.start(cameras[currentCameraIndex]);
-        } else {
-            console.error('No cameras found.');
-            document.getElementById('result').innerText = 'No cameras found.';
-        }
-    }).catch(function (e) {
-        console.error(e);
-        document.getElementById('result').innerText = 'Error accessing camera.';
-    });
-
-    // Nút chuyển camera
-    document.getElementById('switch-btn').addEventListener('click', function () {
-        if (cameras.length > 1) {
-            currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
-            scanner.start(cameras[currentCameraIndex]);
-        }
-    });
-    scanner.addListener("scan", async function (content) {
-        const data = await getDM(
-            "DM_WORKSTATION",
-            "WORKSTATION_ID='" + content + "'"
-        );
-        if (data.data != []) {
-            document.getElementById("truycap").disabled = false;
-            TRAM = content;
-            const value = data.data;
-            console.log(value);
-
-            document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME
-                }`;
-            toastr.success("Quét QR thành công");
-        }
-    });
+        Instascan.Camera.getCameras().then(function (availableCameras) {
+            cameras = availableCameras;
+            if (cameras.length > 0) {
+                scanner.start(cameras[currentCameraIndex]);
+            } else {
+                console.error('No cameras found.');
+                document.getElementById('result').innerText = 'No cameras found.';
+            }
+        }).catch(function (e) {
+            console.error(e);
+            document.getElementById('result').innerText = 'Error accessing camera.';
+        });
+        document.getElementById('switch-btn').classList.remove("d-none")
+        // Nút chuyển camera
+        document.getElementById('switch-btn').addEventListener('click', function () {
+            if (cameras.length > 1) {
+                currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
+                scanner.start(cameras[currentCameraIndex]);
+            }
+        });
+        scanner.addListener("scan", async function (content) {
+            const data = await getDM(
+                "DM_WORKSTATION",
+                "WORKSTATION_ID='" + content + "'"
+            );
+            console.log(data);
+            
+            if (data.data != []) {
+                document.getElementById("truycap").disabled = false;
+                TRAM = content;
+                const value = data.data;
+                document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
+                toastr.success("Quét QR thành công");
+                checkCam = true;
+                document.getElementById('switch-btn').classList.add("d-none")
+                scanner.stop().then(() => {
+                    console.log('Quét đã dừng.');
+                    //document.getElementById('result').innerText = 'Quét đã dừng.';
+                    
+                    // Dừng video và làm trống video
+                    let videoElement = document.getElementById('preview');
+                    videoElement.srcObject = null;
+                    isScanning = false; // Đánh dấu trạng thái dừng quét
+                }).catch(err => {
+                    console.error('Lỗi khi dừng quét:', err);
+                });
+                const button = document.getElementById("start");
+                button.textContent = "Bắt đầu quét";
+                button.style.background = "#0d6efd";
+                button.style.border = 'none'
+            }
+        });
+        checkCam = false
+        const button = document.getElementById("start");
+        button.textContent = "Dừng Quét";
+        button.style.background = "#ef5a2a";
+        button.style.border = 'none'
+    } else {
+        checkCam = true;
+        document.getElementById('switch-btn').classList.add("d-none")
+        scanner.stop().then(() => {
+            console.log('Quét đã dừng.');
+            //document.getElementById('result').innerText = 'Quét đã dừng.';
+            
+            // Dừng video và làm trống video
+            let videoElement = document.getElementById('preview');
+            videoElement.srcObject = null;
+            isScanning = false; // Đánh dấu trạng thái dừng quét
+        }).catch(err => {
+            console.error('Lỗi khi dừng quét:', err);
+        });
+        const button = document.getElementById("start");
+        button.textContent = "Bắt đầu quét";
+        button.style.background = "#0d6efd";
+        button.style.border = 'none'
+    }
 }
 
 function getDM(table_name, c) {
@@ -205,6 +263,8 @@ function getDM(table_name, c) {
             success: function (msg) {
                 try {
                     let state = JSON.parse(msg);
+                    console.log(state);
+                    
                     resolve(state); // Trả về dữ liệu khi thành công
                 } catch (error) {
                     reject(error); // Bắt lỗi nếu JSON parse thất bại
