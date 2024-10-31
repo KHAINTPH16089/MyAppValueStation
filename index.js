@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
             6;
             // Xóa class 'active' khỏi tất cả các nút
             buttons.forEach((btn) => btn.classList.remove("active"));
-            console.log(1);
+            console.log(button);
 
             // Thêm class 'active' vào nút được nhấn
             this.classList.add("active");
@@ -34,6 +34,11 @@ async function getDataMonitoring() {
         "LOG_ZONE_MONITORING",
         "WORKSTATION_ID='" + maTram + "'"
     );
+    const dataChart = await getDataChart('NGAY','','', 'RA-RT-RH-RP', '091850');
+    if(dataChart != []){
+        createChartData(dataChart, 'RA')
+    }
+    
     changeDataHomePage(data.data);
     setInterval(async () => {
         const data = await getDM(
@@ -195,7 +200,6 @@ function startCam(){
                 TRAM = content;
                 const value = data.data;
                 document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
-                toastr.success("Quét QR thành công");
                 checkCam = true;
                 document.getElementById('switch-btn').classList.add("d-none")
                 scanner.stop().then(() => {
@@ -213,6 +217,7 @@ function startCam(){
                 button.textContent = "Bắt đầu quét";
                 button.style.background = "#0d6efd";
                 button.style.border = 'none'
+                toastr.success("Quét QR thành công");
             }
         });
         checkCam = false
@@ -281,6 +286,62 @@ function getDM(table_name, c) {
         });
     });
 }
+
+async function clickGetData(type){
+    if(type == 'NGAY'){
+        const dataChart = await getDataChart('NGAY','','', 'RA---', maTram);
+        if(dataChart != []){
+            createChartData(dataChart, 'RA')
+        }
+    } else if(type == 'TUAN'){
+        const dataChart = await getDataChart('TUAN','','', 'RA---', maTram);
+        if(dataChart != []){
+            createChartData(dataChart, 'RA')
+        }
+    } else if(type == 'THANG'){
+        const dataChart = await getDataChart('THANG','','', 'RA---', maTram);
+        if(dataChart != []){
+            createChartData(dataChart, 'RA')
+        }
+    } else if(type == 'NAM'){
+        const dataChart = await getDataChart('NAM','2024-01-01 16$50$08','2024-12-30 16$50$08', 'RA---', maTram);
+        if(dataChart != []){
+            createChartData(dataChart, 'RA')
+        }
+    }
+    
+}
+
+function getDataChart(typeTime, start, end, type, zone) {
+
+    const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: "https://namdinh.homeos.vn/Service/Service.svc/ApiServicePublic/" + "GetDataFilterLogzone" + "/" + "TYPE_TIME='"+typeTime+"',START_DATE='"+start+"',END_DATE='"+end+"',TYPE_VALUE='"+type+"',ZONE_ADDRESS='"+zone+"'",
+            type: "GET",
+            dataType: "jsonp",
+            contentType: "application/json; charset=utf-8",
+            success: function (msg) {
+                try {
+                    let state = JSON.parse(msg);
+                    resolve(state); // Trả về dữ liệu khi thành công
+                } catch (error) {
+                    reject(error); // Bắt lỗi nếu JSON parse thất bại
+                }
+            },
+            complete: function (data) {
+                // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+            },
+            error: function (e, t, x) {
+                HomeOS.Service.SetActionControl(true);
+                HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                reject(e); // Trả về lỗi nếu thất bại
+            },
+        });
+    });
+}
+
 function changeColorAndText(fillColor, strokeColor, newText) {
     const path = document.querySelector("#mySvg path");
     const text = document.querySelector("#mySvg text");
@@ -292,9 +353,10 @@ function changeColorAndText(fillColor, strokeColor, newText) {
     // Update the text content
     text.textContent = newText + "mm";
 }
-var ctx = document.getElementById("lineBarChart").getContext("2d");
+var ctx = document.getElementById("lineBarChart");
 
 // Tạo biểu đồ
+ctx.getContext("2d");
 var lineBarChart = new Chart(ctx, {
     type: "bar", // Chọn loại biểu đồ chính là bar
     data: {
@@ -329,3 +391,69 @@ var lineBarChart = new Chart(ctx, {
         },
     },
 });
+
+createChartData = function(data, type){
+    if(lineBarChart != null && type == "RA"){
+        lineBarChart.destroy();
+    }
+    var RA = ctx.getContext('2d');
+    let newDataRA = [];
+    let newlabelRA = [];
+    $.each(data, function (i, item) {
+        if(item.AverageValue != 0){
+            if(item.ZONE_PROPERTY == 'RA'){
+                newlabelRA.push(item.Label);
+                newDataRA.push(item.AverageValue)
+            }
+            
+        }
+    })
+    
+    
+    var dataSetRA = [{
+        type: "bar", // Chọn kiểu bar cho dataset này
+        label: "Lượng mưa",
+        data: newDataRA,
+        backgroundColor: "rgba(75, 192, 192, 0.5)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+    }]
+    lineBarChart = new Chart(RA, createChart("bar", newlabelRA, newDataRA, "mm", "Lượng mưa", dataSetRA));
+}
+
+createChart = function(type, Label, Data, Unit, LabelData, dataSet){
+    return {
+        type: type, // Loại biểu đồ
+        data: {
+            labels: Label,
+            datasets: dataSet
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true, // Không giữ tỷ lệ khung hình
+            responsive: true,
+            scales: {
+                y: {  // Sử dụng 'y' thay vì 'yAxes'
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            return value + ' '+Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
+                        }
+                    }
+                }
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        label += tooltipItem.yLabel + ' '+Unit;  // Thêm đơn vị Volts vào tooltip
+                        return label;
+                    }
+                }
+            }
+        }
+    }
+}
