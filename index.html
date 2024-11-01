@@ -742,11 +742,11 @@ function changeColorAndText(fillColor, strokeColor, newText) {
     text.textContent = newText + "mm";
 }
 var ctx = document.getElementById("lineBarChart");
-
+var lineBarChart;
 // Tạo biểu đồ
 ctx.getContext("2d");
 function createNewChart(){
-    var lineBarChart = new Chart(ctx, {
+    lineBarChart = new Chart(ctx, {
         type: "bar", // Chọn loại biểu đồ chính là bar
         data: {
             labels: ["January", "February", "March", "April", "May", "June", "July"],
