@@ -418,6 +418,7 @@ function truyCap() {
 }
 
 async function getDataMonitoring() {
+    createNewChart()
     const data = await getDM(
         "LOG_ZONE_MONITORING",
         "WORKSTATION_ID='" + maTram + "'"
@@ -426,7 +427,7 @@ async function getDataMonitoring() {
     if(dataChart != []){
         createChartData(dataChart, 'RA')
     }
-    createNewChart()
+    
     changeDataHomePage(data.data);
     setInterval(async () => {
         const data = await getDM(
