@@ -426,7 +426,7 @@ async function getDataMonitoring() {
     if(dataChart != []){
         createChartData(dataChart, 'RA')
     }
-    
+    createNewChart()
     changeDataHomePage(data.data);
     setInterval(async () => {
         const data = await getDM(
@@ -745,40 +745,42 @@ var ctx = document.getElementById("lineBarChart");
 
 // Tạo biểu đồ
 ctx.getContext("2d");
-var lineBarChart = new Chart(ctx, {
-    type: "bar", // Chọn loại biểu đồ chính là bar
-    data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                type: "bar", // Chọn kiểu bar cho dataset này
-                label: "Lượng bán hàng",
-                data: [30, 50, 40, 60, 70, 45, 80],
-                backgroundColor: "rgba(75, 192, 192, 0.5)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
-            },
-            {
-                type: "line", // Chọn kiểu line cho dataset này
-                label: "Doanh thu",
-                data: [300, 400, 350, 450, 500, 400, 550],
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                borderColor: "rgba(255, 99, 132, 1)",
-                fill: false, // Không tô nền dưới đường
-                tension: 0.3, // Tạo độ cong cho đường
-                borderWidth: 2,
-            },
-        ],
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true, // Đảm bảo trục Y bắt đầu từ 0
+function createNewChart(){
+    var lineBarChart = new Chart(ctx, {
+        type: "bar", // Chọn loại biểu đồ chính là bar
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+                {
+                    type: "bar", // Chọn kiểu bar cho dataset này
+                    label: "Lượng bán hàng",
+                    data: [30, 50, 40, 60, 70, 45, 80],
+                    backgroundColor: "rgba(75, 192, 192, 0.5)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                },
+                {
+                    type: "line", // Chọn kiểu line cho dataset này
+                    label: "Doanh thu",
+                    data: [300, 400, 350, 450, 500, 400, 550],
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    fill: false, // Không tô nền dưới đường
+                    tension: 0.3, // Tạo độ cong cho đường
+                    borderWidth: 2,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true, // Đảm bảo trục Y bắt đầu từ 0
+                },
             },
         },
-    },
-});
+    });
+}
 
 createChartData = function(data, type){
     if(lineBarChart != null && type == "RA"){
