@@ -58,6 +58,7 @@ h1 {
 }
 
 video {
+    max-height: 60vh;
     width: 100%;
     border-radius: 10px;
     border: 2px solid #ddd;
@@ -247,7 +248,7 @@ video {
 
 #switch-btn {
     position: absolute;
-    top: 190px;
+    top: 160px;
     right: 30px;
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
@@ -271,7 +272,6 @@ video {
         <div id="ScanQR" class="hidden h-100">
             <div class="container">
                 <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200">
-                <h1>QR Code Scanner</h1>
                 <div id="result">Vui lòng quét QR...</div>
                 <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
                 <video id="preview"></video>
