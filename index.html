@@ -552,15 +552,19 @@
                 // Lấy danh sách camera
 
                 Instascan.Camera.getCameras().then(function (availableCameras) {
-
                     cameras = availableCameras;
                     if (cameras.length > 0) {
-                        // Tìm camera sau (facing: environment)
+                        // Tìm camera sau (facing: environment) nếu có
                         currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
+                        console.log(camera.name.toLowerCase().includes('back'));
                         
-                        // Khởi động quét với camera sau
-                        scanner.start(cameras[currentCameraIndex]);
-                        startScanning();
+                        // Khởi động quét với camera tìm thấy
+                        scanner.start(cameras[currentCameraIndex]).then(() => {
+                            startScanning();
+                        }).catch(err => {
+                            console.error('Lỗi khi khởi động camera:', err);
+                            document.getElementById('result').innerText = 'Không thể truy cập camera.';
+                        });
                     } else {
                         console.error('No cameras found.');
                         document.getElementById('result').innerText = 'No cameras found.';
