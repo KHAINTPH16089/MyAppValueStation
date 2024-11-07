@@ -556,7 +556,6 @@
                     if (cameras.length > 0) {
                         // Tìm camera sau (facing: environment) nếu có
                         currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
-                        console.log(camera.name.toLowerCase().includes('back'));
                         
                         // Khởi động quét với camera tìm thấy
                         scanner.start(cameras[currentCameraIndex]).then(() => {
@@ -579,7 +578,7 @@
                     // }
                 }).catch(function (e) {
                     console.error(e);
-                    document.getElementById('result').innerText = 'Error accessing camera.';
+                    // document.getElementById('result').innerText = 'Error accessing camera.';
                 });
                 document.getElementById('switch-btn').classList.remove("d-none")
                 // Nút chuyển camera
