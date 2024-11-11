@@ -91,7 +91,10 @@
                     {
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                        aspectRatio: 1.7777778 // Đặt tỉ lệ khung hình
+                        aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
+                        videoConstraints:{
+                            facingMode: {exact: "environment"},
+                        }
                     },
                     onScanSuccess,
                     onScanFailure
