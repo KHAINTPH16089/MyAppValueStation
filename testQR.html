@@ -66,6 +66,23 @@
             cursor: pointer;
             z-index: 1001; /* Đảm bảo nút ở trên cùng */
         }
+        /* Nút upload hình ảnh */
+        #upload-qr {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+        }
+
+        /* Input file ẩn */
+        #file-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +93,8 @@
         <div id="qr-reader"></div>
         <button id="close-scanner">Đóng</button>
         <button id="toggle-camera">Chuyển đổi Camera</button>
+        <button id="upload-qr">Upload Hình Ảnh QR</button>
+        <input type="file" id="file-input" accept="image/*">
     </div>
 
     <div id="result">Kết quả quét: </div>
@@ -163,6 +182,31 @@
             function onScanFailure(error) {
                 // Xử lý lỗi (nếu cần)
             }
+            $("#upload-qr").click(function() {
+                $("#file-input").click();  // Mở hộp thoại chọn file
+            });
+
+            // Khi chọn file hình ảnh từ input
+            $("#file-input").change(function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var img = new Image();
+                        img.onload = function() {
+                            // Quét QR từ hình ảnh đã tải lên
+                            html5QrCode.scanFile(e.target.result).then(decodedText => {
+                                $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                            }).catch(err => {
+                                $("#result").text("Không thể quét QR từ hình ảnh.");
+                                console.error("Lỗi khi quét hình ảnh QR: ", err);
+                            });
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
         });
     </script>
 </body>
