@@ -18,6 +18,7 @@
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.9); /* Màu nền tối khi mở popup */
             padding: 0;
+            margin: 0;
         }
 
         /* Phần tử quét QR full màn hình */
@@ -98,9 +99,9 @@
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                        // videoConstraints:{
-                        //     facingMode: {exact: "environment"},
-                        // }
+                        videoConstraints:{
+                            facingMode: {exact: "environment"},
+                        }
                     },
                     onScanSuccess,
                     onScanFailure
