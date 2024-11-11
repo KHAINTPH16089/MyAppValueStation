@@ -28,6 +28,12 @@
             align-items: center;
         }
 
+        
+        #qr-reader video {
+            width: 100%;
+            height: 100%;
+        }
+        
         #result {
             color: white;
             text-align: center;
@@ -46,6 +52,19 @@
             cursor: pointer;
             z-index: 1001; /* Đảm bảo nút ở trên cùng */
         }
+
+        /* Nút chuyển đổi camera */
+        #toggle-camera {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+        }
     </style>
 </head>
 <body>
@@ -55,6 +74,7 @@
     <div id="qr-popup" class="modal">
         <div id="qr-reader"></div>
         <button id="close-scanner">Đóng</button>
+        <button id="toggle-camera">Chuyển đổi Camera</button>
     </div>
 
     <div id="result">Kết quả quét: </div>
@@ -66,8 +86,25 @@
 
     <script>
         $(document).ready(function() {
-            // Khởi tạo đối tượng Html5Qrcode với ID của phần tử quét QR
             var html5QrCode = new Html5Qrcode("qr-reader");
+            var currentCameraIndex = 0;  // Index camera hiện tại
+            var devices = [];  // Danh sách các camera
+
+            // Hàm khởi tạo quét QR
+            function startScan(cameraId) {
+                html5QrCode.start(
+                    cameraId, 
+                    {
+                        fps: 10,    // Số khung hình trên giây
+                        qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                        aspectRatio: 1.7777778 // Đặt tỉ lệ khung hình
+                    },
+                    onScanSuccess,
+                    onScanFailure
+                ).catch(err => {
+                    console.error("Lỗi khi khởi động camera: ", err);
+                });
+            }
 
             // Khi nhấn nút mở popup quét QR
             $("#open-scanner").click(function() {
@@ -79,27 +116,22 @@
                 });
 
                 // Lấy danh sách camera và bắt đầu quét
-                Html5Qrcode.getCameras().then(devices => {
+                Html5Qrcode.getCameras().then(_devices => {
+                    devices = _devices; // Lưu lại danh sách camera
                     if (devices && devices.length) {
-                        var cameraId = devices[0].id; // Sử dụng camera đầu tiên
-                        html5QrCode.start(
-                            cameraId, 
-                            {
-                                fps: 10,    // Số khung hình trên giây
-                                qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                                aspectRatio: 1.7777778 // Đặt tỉ lệ khung hình
-                            },
-                            onScanSuccess,
-                            onScanFailure
-                        ).catch(err => {
-                            console.error("Lỗi khi khởi động camera: ", err);
-                        });
+                        startScan(devices[currentCameraIndex].id);  // Bắt đầu quét với camera đầu tiên
                     } else {
                         console.error("Không tìm thấy thiết bị camera nào.");
                     }
                 }).catch(err => {
                     console.error("Lỗi khi lấy danh sách camera: ", err);
                 });
+            });
+
+            // Chuyển đổi camera
+            $("#toggle-camera").click(function() {
+                currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
+                startScan(devices[currentCameraIndex].id); // Bắt đầu quét với camera mới
             });
 
             // Khi nhấn nút đóng popup
