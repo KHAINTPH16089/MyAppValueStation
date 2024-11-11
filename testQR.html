@@ -36,7 +36,7 @@
         }
 
         #result {
-            color: white;
+            color: black;
             text-align: center;
             margin-top: 20px;
         }
@@ -197,6 +197,7 @@
                             // Quét QR từ hình ảnh đã tải lên
                             html5QrCode.scanFile(e.target.result).then(decodedText => {
                                 $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                $("#close-scanner").click();
                             }).catch(err => {
                                 $("#result").text("Không thể quét QR từ hình ảnh.");
                                 console.error("Lỗi khi quét hình ảnh QR: ", err);
