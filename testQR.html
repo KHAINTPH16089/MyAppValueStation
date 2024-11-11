@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner Fullscreen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <style>
+        /* Popup full màn hình */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9); /* Màu nền tối khi mở popup */
+        }
+
+        /* Phần tử quét QR full màn hình */
+        #qr-reader {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #result {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Nút đóng nằm ở góc trên bên phải */
+        #close-scanner {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+        }
+    </style>
+</head>
+<body>
+    <button id="open-scanner">Quét QR</button>
+
+    <!-- Popup quét QR full màn hình -->
+    <div id="qr-popup" class="modal">
+        <div id="qr-reader"></div>
+        <button id="close-scanner">Đóng</button>
+    </div>
+
+    <div id="result">Kết quả quét: </div>
+
+    <!-- Nạp thư viện jQuery và Html5Qrcode -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Khởi tạo đối tượng Html5Qrcode với ID của phần tử quét QR
+            var html5QrCode = new Html5Qrcode("qr-reader");
+
+            // Khi nhấn nút mở popup quét QR
+            $("#open-scanner").click(function() {
+                $("#qr-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
+
+                // Lấy danh sách camera và bắt đầu quét
+                Html5Qrcode.getCameras().then(devices => {
+                    if (devices && devices.length) {
+                        var cameraId = devices[0].id; // Sử dụng camera đầu tiên
+                        html5QrCode.start(
+                            cameraId, 
+                            {
+                                fps: 10,    // Số khung hình trên giây
+                                qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                                aspectRatio: 1.7777778 // Đặt tỉ lệ khung hình
+                            },
+                            onScanSuccess,
+                            onScanFailure
+                        ).catch(err => {
+                            console.error("Lỗi khi khởi động camera: ", err);
+                        });
+                    } else {
+                        console.error("Không tìm thấy thiết bị camera nào.");
+                    }
+                }).catch(err => {
+                    console.error("Lỗi khi lấy danh sách camera: ", err);
+                });
+            });
+
+            // Khi nhấn nút đóng popup
+            $("#close-scanner").click(function() {
+                html5QrCode.stop().then(ignore => {
+                    $.modal.close(); // Đóng popup
+                }).catch(err => {
+                    console.error("Lỗi khi dừng quét QR: ", err);
+                });
+            });
+
+            // Hàm xử lý khi quét thành công
+            function onScanSuccess(decodedText, decodedResult) {
+                // Hiển thị kết quả trên trang chính
+                $("#result").text("Kết quả quét: " + decodedText);
+                // Dừng quét và đóng popup
+                html5QrCode.stop().then(ignore => {
+                    $.modal.close();
+                }).catch(err => {
+                    console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
+                });
+            }
+
+            // Hàm xử lý khi quét thất bại
+            function onScanFailure(error) {
+                // Xử lý lỗi (nếu cần)
+            }
+        });
+    </script>
+</body>
+</html>

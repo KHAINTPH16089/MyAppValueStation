@@ -38,13 +38,24 @@
         .container {
             height: 100vh;
             text-align: center;
-            background: #1e2833;
+            background: #343a40;
             padding: 0 20px 0 20px;
-            border-radius: 10px;
+            /* border-radius: 10px; */
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
             position: relative;
+        }
+
+        .ScanQR-header {
+            text-align: center;
+            padding: 0 10px 0 20px;
+            /* border-radius: 10px; */
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            background-color: #282d31;
+            height: 50px;
         }
 
         .container img {
@@ -251,7 +262,7 @@
 
         #switch-btn {
             position: absolute;
-            top: 160px;
+            top: 180px;
             right: 30px;
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
@@ -269,21 +280,201 @@
         #switch-btn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
+
+        .iconApp {
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            border-radius: .25rem;
+            background-color: #24282c;
+            display: -ms-flexbox;
+            display: flex;
+            /* margin-bottom: 0.5rem; */
+            min-height: 80px;
+            padding: .5rem;
+            position: relative;
+            width: 100%;
+            cursor: 'pointer';
+        }
+
+        .pickApp-title h4 {
+            display: flex;
+            justify-content: flex-start;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .icon {
+            border-radius: .25rem;
+            -ms-flex-align: center;
+            align-items: center;
+            display: -ms-flexbox;
+            display: flex;
+            font-size: 1.875rem;
+            -ms-flex-pack: center;
+            justify-content: center;
+            text-align: center;
+            width: 70px;
+            background-color: #17a2b8 !important;
+        }
+
+        .app-text {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #c2c7d0;
+            padding: 5px 10px;
+        }
+
+        /* tab chức năng */
+        .tab {
+            cursor: pointer;
+            border-bottom: 1px solid #535353;
+        }
+
+        .tab button {
+            flex: 1;
+            background-color: #343a40;
+            color: #c2c7d0;
+            border: none;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+            height: 40px;
+            width: 49%;
+        }
+        .tab button:hover {
+            border: 1px solid #626262;
+            border-bottom: none;
+        }
+
+        .tab button.active {
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #626262;
+            border-bottom: none;
+        }
+
+        .tab-content {
+            display: none;
+            border-top: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 
 <body>
     <div class="app h-100">
-        <div id="ScanQR" class="hidden h-100">
+        <div id="pickApp" class="hidden h-100">
             <div class="container">
-                <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200">
-                <div id="result">Vui lòng quét QR...</div>
-                <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
-                <video id="preview"></video>
-                <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"
-                    onclick="startCam()">Bắt đầu quét</button>
-                <button id="truycap" disabled class="btn btn-warning" style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;" onclick="truyCap()">Truy cập
-                    trạm</button>
+                <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"
+                    style="padding-bottom: 3rem;">
+                <div class="pickApp-title">
+                    <h4>Chọn chức năng cần sử dụng:</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="padding: 10px;">
+                        <div class="iconApp" onclick="pickApp('MUA')">
+                            <div class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                    style="color: #fff;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
+                                    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                                    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                                    <path
+                                        d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
+                                    <path d="M12 9h2V8h-2z" />
+                                </svg>
+                            </div>
+                            <span class="app-text">Theo dõi trạm mưa</span>
+                        </div>
+                    </div>
+                    <div class="col-12" style="padding: 10px;">
+                        <div class="iconApp">
+                            <div class="icon" style="background-color: #da4a58!important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                    style="color: #fff;" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
+                                    <path
+                                        d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5M12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0m2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0M1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25" />
+                                </svg>
+                            </div>
+                            <span class="app-text">Truy cập thiết bị</span>
+                        </div>
+                    </div>
+                    <div class="col-12" style="padding: 10px;">
+                        <div class="iconApp">
+                            <div class="icon" style="background-color: #28a745!important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                    style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+                                    <path
+                                        d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                </svg>
+                            </div>
+                            <span class="app-text">Khí tượng thuỷ văn</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="ScanQR" class=" h-100">
+            <div class="container" style="padding: 0;">
+                <div class="ScanQR-header">
+                    <div style="line-height: 50px; float: left;">
+                        <button onclick="pickApp('PICK')"
+                            style="height: 40px; border: none; background-color: #282d31;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>
+                        </button>
+
+                        <img style="padding: 0; margin: 0;"
+                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAA21BMVEVHcEzR7/mGqsR6pcHd8PaqzuCDrcdHfKMVYJEBWYw1cZz+///39fOMsMhUhqkeZZQ4cZwoaZYNXY9+psFThaphjq+b0Onu8O9kj7E8dJ1Crd/2+vv96eGN0u81r+QznMuw3/Isa5jb7/U7r+MfqeFOueecu9AsrOJuxOtXh6pKteVvw+mBzO1ZvOd8y+xcveit4PTw8e0VpeAyruP4rJT3p5D5vKjxWSnycEv2noX7w7H1k3j5wbD0gmLxXTD0hWb3qJH0iWr2lXnyb0vwUh/yZj7zc1DyZDn0gWEEvxu3AAAASXRSTlMAHXaZJxhRw/7/3gEJP6X3y/H/XZB8LQ+b2M0FGF7x6z7nMtv/zXP6lbLWdFOpgb5RPf/pX3Uo/9ZiNYtOm/iwSXdd0P/lve/Hl/YjrQAAAZ1JREFUeAFskAMSxAAMAFPbtnn2/192rptBsDGMBEExHNaFICmaYVGCWyJeECVaphSV0og5w3VWZQ3T0ihaEYUpIylVsgUegDMNR2X10WgOdxmKtH6OJ9i0Kmt+T4MwQrpEDryYYhKth2mWF6n327nU3kY5ghC7eVWbH2zZdCN44CPjbessbzfvCK/JamKYI2TGHGx3YV6/azlBT97ref22QbtHwAqKA/9xLbJR3Xi0beUGHpjHf/4pCoMeWsfwXO36y49FnqU9fBfsL+eqRj52fMjzw+hF19sd4t0lLwLC3Id5tud5a4CPV5vEkMBADJzitrnWto2Jsf7/i2o3HJuyUm2+GvVX0/5unAcu5DPao0JtLMnMBqPmYk7qjur9q/J1PwgjxWvF+TxD/Bi1OD6ZvAtHkYT0QM6wSsJU1t4Cis5kbhCjzSEJL4jkT6aMQio9kAEiapWHutHslaeMEQ2H0iFW0quftQP7PpWOIj1HUaoRazA5xwZvy+MqwtjVrx8j8LE8KJ1VdBxg9ErjnV/fU52ciwH/V13y0ht6AueMOFH8ctIWAAAAAElFTkSuQmCC"
+                            alt="">
+                        <span style="color: rgba(255, 255, 255, .75);;">HOMEOS VIỆT NAM</span>
+                    </div>
+                </div>
+                <div style="padding: 20px 20px 0 20px;">
+                    <div class="tab">
+                        <button class="tablinks" onclick="openTab(event, 'tab1')">Quét QR</button>
+                        <button class="tablinks" onclick="openTab(event, 'tab2')">Nhập thủ công</button>
+                    </div>
+                </div>
+                
+
+                <div id="tab1" class="tab-content">
+                    <div style="padding: 0 20px 0 20px;">
+                        <!-- <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"> -->
+                        <div id="result">Vui lòng quét QR...</div>
+                        <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
+                        <video id="preview"></video>
+                        <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"
+                            onclick="startCam()">Bắt đầu quét</button>
+                        <button id="truycap" disabled class="btn btn-warning"
+                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;"
+                            onclick="truyCap()">Truy cập trạm</button>
+                    </div>
+                </div>
+
+                <div id="tab2" class="tab-content">
+                    <div style="padding: 0 20px 0 20px; margin-top: 20px;">
+                        <div id="result">Nhập mã trạm thủ công.</div>
+                        <input type="text" style="width: 100%; margin: 20px 0; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                        <button id="start" class="btn btn-primary" style="width: 100%;" onclick="">Quét trạm mưa</button>
+                        <div id="result">Vui lòng nhập trạm để truy cập...</div>
+                        <button id="truycap" disabled class="btn btn-warning"
+                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
+                            onclick="truyCap()">Truy cập trạm</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div id="homePage" class="hidden">
@@ -396,19 +587,26 @@
             });
         });
 
-        var maTram = localStorage.getItem("TRAM");
+        var maTram = '';
         function changeQRcode() {
             document.getElementById("ScanQR").classList.remove("hidden");
             document.getElementById("homePage").classList.add("hidden");
-            localStorage.setItem("TRAM", "");
+            maTram = '';
         }
-        var TRAM = "";
         function truyCap() {
-            localStorage.setItem("TRAM", TRAM);
-            maTram = localStorage.getItem("TRAM");
             document.getElementById("ScanQR").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
             getDataMonitoring();
+        }
+
+        function pickApp(type) {
+            if (type == 'MUA') {
+                document.getElementById("pickApp").classList.add("hidden");
+                document.getElementById("ScanQR").classList.remove("hidden");
+            } else if ('PICK') {
+                document.getElementById("pickApp").classList.remove("hidden");
+                document.getElementById("ScanQR").classList.add("hidden");
+            }
         }
 
         async function getDataMonitoring() {
@@ -517,10 +715,7 @@
         // var session = '32085528-628c-449b-996f-a240ad606d1d';
         var session = "7b504acc-988a-437a-890f-389765305b47";
 
-        if (maTram == "" || maTram == null) {
-            document.getElementById("ScanQR").classList.remove("hidden");
-            document.getElementById("homePage").classList.add("hidden");
-        } else {
+        if (maTram != "") {
             getDataMonitoring();
             document.getElementById("ScanQR").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
@@ -542,6 +737,7 @@
         function startCam() {
             var scanner = new Instascan.Scanner({
                 video: document.getElementById("preview"),
+                scanPeriod: 4, mirror:false,
             });
             if (checkCam == true) {
                 // var scanner = new Instascan.Scanner({
@@ -552,30 +748,31 @@
                 // Lấy danh sách camera
 
                 Instascan.Camera.getCameras().then(function (availableCameras) {
-                    cameras = availableCameras;
-                    if (cameras.length > 0) {
-                        // Tìm camera sau (facing: environment) nếu có
-                        currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
-                        
-                        // Khởi động quét với camera tìm thấy
-                        scanner.start(cameras[currentCameraIndex]).then(() => {
-                            startScanning();
-                        }).catch(err => {
-                            console.error('Lỗi khi khởi động camera:', err);
-                            document.getElementById('result').innerText = 'Không thể truy cập camera.';
-                        });
-                    } else {
-                        console.error('No cameras found.');
-                        document.getElementById('result').innerText = 'No cameras found.';
-                    }
-
                     // cameras = availableCameras;
                     // if (cameras.length > 0) {
-                    //     scanner.start(cameras[currentCameraIndex]);
+                    //     // Tìm camera sau (facing: environment) nếu có
+                    //     currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
+
+                    //     // Khởi động quét với camera tìm thấy
+                    //     scanner.start(cameras[currentCameraIndex]).then(() => {
+                    //         startScanning();
+                    //     }).catch(err => {
+                    //         console.error('Lỗi khi khởi động camera:', err);
+                    //         document.getElementById('result').innerText = 'Không thể truy cập camera.';
+                    //     });
                     // } else {
                     //     console.error('No cameras found.');
                     //     document.getElementById('result').innerText = 'No cameras found.';
                     // }
+
+                    cameras = availableCameras;
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                        // scanner.start(cameras[currentCameraIndex]);
+                    } else {
+                        console.error('No cameras found.');
+                        document.getElementById('result').innerText = 'No cameras found.';
+                    }
                 }).catch(function (e) {
                     console.error(e);
                     // document.getElementById('result').innerText = 'Error accessing camera.';
@@ -597,7 +794,7 @@
 
                     if (data.data != []) {
                         document.getElementById("truycap").disabled = false;
-                        TRAM = content;
+                        matram = content;
                         const value = data.data;
                         document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
                         checkCam = true;
@@ -858,6 +1055,27 @@
                 }
             }
         }
+
+        function openTab(evt, tabName) {
+            // Ẩn tất cả nội dung tab
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Xóa class 'active' trên tất cả các nút
+            var tabLinks = document.getElementsByClassName("tablinks");
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Mặc định mở tab đầu tiên
+        document.querySelector(".tablinks").click();
     </script>
 </body>
 

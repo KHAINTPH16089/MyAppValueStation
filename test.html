@@ -56,6 +56,7 @@
 </head>
 
 <body>
+    <video id="scanner" class="video-back" playsinline></video>
     <div>
         <h1>
             test
@@ -129,7 +130,7 @@
 
         </g>
     </svg>
-
+    <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         var xmlns = "http://www.w3.org/2000/svg",
             xlinkns = "http://www.w3.org/1999/xlink",
@@ -245,6 +246,64 @@
             });
         }
         setRangeValue(10)
+
+        testQrCode("scanner", 250)
+        var self;
+        isQRScannerInitialised = false;
+        function testQrCode(textBoxId,DivWidth){
+            self = initialiseQRScanner(DivWidth);
+            
+            self.scanner.addListener('scan', function (content, image) {
+                if(textBoxId == $("#hiddenTextBox").val()){
+                        audio.play();
+                        var code = content;
+                        $("#"+textBoxId).val(code);
+                        isQRScannerInitialised = false;
+                        
+                    }
+                    
+            }, false);
+            
+        }
+
+        function initialiseQRScanner(DivWidth){
+            
+            self = this;
+            
+            if(isQRScannerInitialised == false){
+                
+                var tempVideo = document.getElementsByTagName("video")[0];
+                tempVideo.width=DivWidth;
+                tempVideo.height=480;
+                
+                self.scanner = new Instascan.Scanner({ video: document.getElementsByTagName("video")[0],mirror:false, scanPeriod: 1});
+                
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    self.cameras = cameras;
+                    if (self.cameras.length > 0) {
+                        if(cameras[0].name.match(/back/) || cameras[0].name.match(/Back/)){
+                            self.activeCameraId = cameras[0].id;
+                            self.scanner.start(cameras[0]);
+                        } else if(cameras[1].name.match(/back/) || cameras[1].name.match(/Back/)){
+                            self.activeCameraId = cameras[1].id;
+                            self.scanner.start(cameras[1]);
+                        }
+                        isQRScannerInitialised = true;
+                        
+                    } else {
+                        
+                        alert('No cameras found.');
+                        isQRScannerInitialised = false;
+                        return;
+                    }
+                }).catch(function (e) { 
+                        isQRScannerInitialised = false;
+                        alert("QR error name:-"+e.name + " & QR error message:-"+e.message); console.error(e); 
+                    });
+                
+            }
+            return self;
+        }
     </script>
 </body>
 
