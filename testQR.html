@@ -17,8 +17,6 @@
             height: 100%;
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.9); /* Màu nền tối khi mở popup */
-            padding: 0;
-            margin: 0;
         }
 
         /* Phần tử quét QR full màn hình */
@@ -29,6 +27,7 @@
             justify-content: center;
             align-items: center;
         }
+
         
         #qr-reader video {
             width: none !important;
@@ -66,6 +65,7 @@
             cursor: pointer;
             z-index: 1001; /* Đảm bảo nút ở trên cùng */
         }
+
         /* Nút upload hình ảnh */
         #upload-qr {
             position: absolute;
@@ -109,6 +109,7 @@
             var html5QrCode = new Html5Qrcode("qr-reader");
             var currentCameraIndex = 0;  // Index camera hiện tại
             var devices = [];  // Danh sách các camera
+            var isScannerRunning = false;  // Biến theo dõi trạng thái quét
 
             // Hàm khởi tạo quét QR
             function startScan(cameraId) {
@@ -118,13 +119,15 @@
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                        videoConstraints:{
-                            facingMode: {exact: "environment"},
-                        }
+                        // videoConstraints:{
+                        //     facingMode: {exact: "environment"},
+                        // }
                     },
                     onScanSuccess,
                     onScanFailure
-                ).catch(err => {
+                ).then(() => {
+                    isScannerRunning = true;  // Đánh dấu scanner đang chạy
+                }).catch(err => {
                     console.error("Lỗi khi khởi động camera: ", err);
                 });
             }
@@ -159,11 +162,16 @@
 
             // Khi nhấn nút đóng popup
             $("#close-scanner").click(function() {
-                html5QrCode.stop().then(ignore => {
-                    $.modal.close(); // Đóng popup
-                }).catch(err => {
-                    console.error("Lỗi khi dừng quét QR: ", err);
-                });
+                if (isScannerRunning) {
+                    html5QrCode.stop().then(ignore => {
+                        isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                        $.modal.close(); // Đóng popup
+                    }).catch(err => {
+                        console.error("Lỗi khi dừng quét QR: ", err);
+                    });
+                } else {
+                    $.modal.close(); // Nếu không có quét đang chạy, chỉ đóng popup
+                }
             });
 
             // Hàm xử lý khi quét thành công
@@ -172,6 +180,7 @@
                 $("#result").text("Kết quả quét: " + decodedText);
                 // Dừng quét và đóng popup
                 html5QrCode.stop().then(ignore => {
+                    isScannerRunning = false;  // Đánh dấu scanner đã dừng
                     $.modal.close();
                 }).catch(err => {
                     console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
@@ -182,30 +191,56 @@
             function onScanFailure(error) {
                 // Xử lý lỗi (nếu cần)
             }
+
+            // Khi nhấn nút upload QR từ hình ảnh
             $("#upload-qr").click(function() {
                 $("#file-input").click();  // Mở hộp thoại chọn file
             });
 
             // Khi chọn file hình ảnh từ input
             $("#file-input").change(function(event) {
-                var file = event.target.files[0];
+                var file = event.target.files[0];  // Đảm bảo lấy file đúng
                 if (file) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var img = new Image();
-                        img.onload = function() {
-                            // Quét QR từ hình ảnh đã tải lên
-                            html5QrCode.scanFile(e.target.result).then(decodedText => {
-                                $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
-                                $("#close-scanner").click();
-                            }).catch(err => {
-                                $("#result").text("Không thể quét QR từ hình ảnh.");
-                                console.error("Lỗi khi quét hình ảnh QR: ", err);
-                            });
+                    // Dừng quét camera trước khi quét file
+                    if (isScannerRunning) {
+                        html5QrCode.stop().then(function() {
+                            isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                var img = new Image();
+                                img.onload = function() {
+                                    // Quét QR từ hình ảnh đã tải lên
+                                    html5QrCode.scanFile(file).then(decodedText => {  // Sửa tại đây
+                                        $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                        $("#close-scanner").click();
+                                    }).catch(err => {
+                                        $("#result").text("Không thể quét QR từ hình ảnh.");
+                                        console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                    });
+                                };
+                                img.src = e.target.result;
+                            };
+                            reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                        }).catch(err => {
+                            console.error("Lỗi khi dừng camera: ", err);
+                        });
+                    } else {
+                        // Nếu không có scanner đang chạy, quét trực tiếp từ hình ảnh
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = new Image();
+                            img.onload = function() {
+                                html5QrCode.scanFile(file).then(decodedText => {
+                                    $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                }).catch(err => {
+                                    $("#result").text("Không thể quét QR từ hình ảnh.");
+                                    console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                });
+                            };
+                            img.src = e.target.result;
                         };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
+                        reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                    }
                 }
             });
         });
