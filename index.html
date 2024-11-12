@@ -1022,12 +1022,6 @@
             document.getElementById("ScanQR").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
             matram = localStorage.getItem("MATRAM");
-            html5QrCode.stop().then(ignore => {
-                isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                $('#qr-popup').modal('hide'); // Đóng popup
-            }).catch(err => {
-                console.error("Lỗi khi dừng quét QR: ", err);
-            });
             getDataMonitoring();
         }
         function scanAgain() {
