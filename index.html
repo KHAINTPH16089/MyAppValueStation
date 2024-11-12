@@ -1543,6 +1543,7 @@
                 document.getElementById("result-form-stationID").value = resultArray[1];
                 document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
                 checkCam = true;
+                localStorage.setItem("MATRAM", resultArray[1]);
                 toastr.success("Quét QR thành công");
             }
         }
