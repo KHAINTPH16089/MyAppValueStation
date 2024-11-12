@@ -481,8 +481,9 @@
             width: 95vh;
             height: 200px;
             position: absolute;
-            top: 60%;
+            top: 50%;
             padding: 20px;
+            z-index: 1005;
             /* left: 10%; */
         }
         #result-form #result-form-group{
@@ -945,7 +946,7 @@
                 <input id="result-form-stationName" type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                 <div class="d-flex justify-content-between pt-2" >
                     <button class="btn" style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                    <button class="btn" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    <button class="btn" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
                 </div>
             </div>
             
@@ -1541,7 +1542,6 @@
                 const value = data.data;
                 document.getElementById("result-form-stationID").value = resultArray[1];
                 document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                //document.getElementById("result").innerText = `Trạm: ${resultArray[1] + " " + value[0].WORKSTATION_NAME}`;
                 checkCam = true;
                 toastr.success("Quét QR thành công");
             }
