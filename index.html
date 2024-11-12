@@ -361,7 +361,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 1060;
             left: 0;
             top: 0;
             width: 100%;
@@ -798,7 +798,7 @@
     </div>
     <div id="qr-popup" class="modal">
         <div id="qr-reader"></div>
-        <button id="close-scanner">
+        <button id="close-scanner" onclick="test()">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
             </svg>
@@ -1274,9 +1274,9 @@
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                        videoConstraints:{
-                            facingMode: {exact: "environment"},
-                        }
+                        // videoConstraints:{
+                        //     facingMode: {exact: "environment"},
+                        // }
                     },
                     onScanSuccess,
                     onScanFailure
@@ -1315,17 +1315,23 @@
             startScan(devices[currentCameraIndex].id); // Bắt đầu quét với camera mới
         });
 
+        function test() {
+            console.log(123);
+            
+        }
         // Khi nhấn nút đóng popup
         $("#close-scanner").click(function() {
+            console.log(1);
+            
             if (isScannerRunning) {
                 html5QrCode.stop().then(ignore => {
                     isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                    $.modal.close(); // Đóng popup
+                    $('#qr-popup').modal('hide'); // Đóng popup
                 }).catch(err => {
                     console.error("Lỗi khi dừng quét QR: ", err);
                 });
             } else {
-                $.modal.close(); // Nếu không có quét đang chạy, chỉ đóng popup
+                $('#qr-popup').modal('hide'); // Nếu không có quét đang chạy, chỉ đóng popup
             }
         });
 
@@ -1336,7 +1342,7 @@
             
             html5QrCode.stop().then(ignore => {
                 isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                $.modal.close();
+                $('#qr-popup').modal('hide');
             }).catch(err => {
                 console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
             });
