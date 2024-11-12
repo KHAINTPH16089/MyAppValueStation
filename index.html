@@ -500,18 +500,83 @@
     background-color: #335476;
     border-color: #304e6d;
 }
+
+    .full-screen-img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+    }
+
+    #LogoLoadScreen {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+            text-align: center;
+        }
+        .dots-container {
+            position: absolute;
+            top: 8%;
+            left: 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      margin: 0 5px;
+      background-color: black;
+      border-radius: 50%;
+      opacity: 0;
+      animation: blink 1.5s infinite ease-in-out;
+    }
+
+    /* Animation delay for each dot */
+    .dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .dot:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .dot:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
     </style>
 </head>
 
 <body>
     <div class="app h-100">
+        <div id="LoadScreen">
+            <img id="LogoLoadScreen" src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
+            <img class="full-screen-img" src="./z6023747383932_2e8e45d4c05b5c2ce896dd8cf96bbaab copy (1).png" alt="Full Screen">
+            <div class="d-none dots-container">
+                <div class="dot">.</div>
+                <div class="dot">.</div>
+                <div class="dot">.</div>
+            </div>
+        </div>
         <div id="pickApp" class="hidden h-100">
             <div class="container">
                 <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"
                     style="padding-bottom: 3rem;">
-                <div class="pickApp-title">
-                    <h4>Chọn chức năng cần sử dụng:</h4>
-                </div>
                 <div class="row">
                     <div class="col-12" style="padding: 10px;">
                         <div class="iconApp" onclick="pickApp('MUA')">
@@ -561,7 +626,7 @@
 
             </div>
         </div>
-        <div id="ScanQR" class=" h-100">
+        <div id="ScanQR" class="hidden h-100">
             <div class="container" style="padding: 0;">
                 <div class="ScanQR-header">
                     <div style="line-height: 50px; float: left;">
@@ -608,10 +673,10 @@
                                 </div>
                             </div>
                             <div class="footer-form d-flex justify-content-between">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="getInputValue()">
                                     Quét mã
                                 </button>
-                                <button disabled class="btn btn-primary" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12">
+                                <button id="thuCong" disabled class="btn btn-primary" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12">
                                     Truy cập
                                 </button>
                             </div>
@@ -764,6 +829,10 @@
                 });
             });
         });
+        setTimeout(() => {
+            document.getElementById("LoadScreen").classList.add("hidden");
+            document.getElementById("pickApp").classList.remove("hidden");
+        }, 2000);
 
         var maTram = '';
         function changeQRcode() {
@@ -787,12 +856,32 @@
                 document.getElementById("ScanQR").classList.add("hidden");
             }
         }
-
+        async function testcall (workstationID){
+            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn"]
+            var domain;
+            var data;
+            for (let i = 0; i < listDomain.length; i++) {
+                data = await getDataStation(workstationID,listDomain[i])
+                if(data.length <= 1){
+                    domain = listDomain[i]
+                }
+            }
+            if(domain == ''){
+                toastr.error("mã trạm không tồn tại");
+            } else {
+                console.log(domain);
+                
+                localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
+                $("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
+                toastr.success("Quét QR thành công");
+            }
+        }
         async function getDataMonitoring() {
             createNewChart()
             const data = await getDM(
                 "LOG_ZONE_MONITORING",
-                "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'"
+                "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
+                localStorage.getItem("URL")
             );
             const dataChart = await getDataChart('NGAY', '', '', 'RA-RT-RH-RP', '091850');
             if (dataChart != []) {
@@ -803,7 +892,8 @@
             setInterval(async () => {
                 const data = await getDM(
                     "LOG_ZONE_MONITORING",
-                    "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'"
+                    "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
+                    localStorage.getItem("URL")
                 );
                 changeDataHomePage(data.data);
             }, 10000);
@@ -914,7 +1004,7 @@
         }
         var checkCam = true;
         
-        function getDM(table_name, c) {
+        function getDM(table_name, c, url) {
             const d = {
                 Uid: user_id,
                 Sid: session,
@@ -924,11 +1014,11 @@
                 cmd: "",
             };
 
-            const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
+            //const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
 
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: "https://namdinh.homeos.vn/Service/Service.svc/getDm?callback=?",
+                    url: url+"/getDm?callback=?",
                     type: "GET",
                     dataType: "jsonp",
                     data: d,
@@ -957,26 +1047,65 @@
 
         async function clickGetData(type) {
             if (type == 'NGAY') {
-                const dataChart = await getDataChart('NGAY', '', '', 'RA---', maTram);
+                const dataChart = await getDataChart('NGAY', '', '', 'RA---', localStorage.getItem("MATRAM"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RA')
                 }
             } else if (type == 'TUAN') {
-                const dataChart = await getDataChart('TUAN', '', '', 'RA---', maTram);
+                const dataChart = await getDataChart('TUAN', '', '', 'RA---', localStorage.getItem("MATRAM"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RA')
                 }
             } else if (type == 'THANG') {
-                const dataChart = await getDataChart('THANG', '', '', 'RA---', maTram);
+                const dataChart = await getDataChart('THANG', '', '', 'RA---', localStorage.getItem("MATRAM"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RA')
                 }
             } else if (type == 'NAM') {
-                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RA---', maTram);
+                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RA---', localStorage.getItem("MATRAM"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RA')
                 }
             }
+        }
+
+        function getDataStation(workstationID, domain) {
+            //var listDomain = ["namdinh.homeos.vn","ninhbinh.homeos.vn"]
+            //const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "https://"+domain+"/Service/Service.svc/ApiServicePublic/" + "GetDataWorkStation" + "/" + "WORKSTATION_ID='" + workstationID + "'",
+                    type: "GET",
+                    dataType: "jsonp",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (msg) {
+                        try {
+                            let state = JSON.parse(msg);
+                            resolve(state); // Trả về dữ liệu khi thành công
+                        } catch (error) {
+                            reject(error); // Bắt lỗi nếu JSON parse thất bại
+                        }
+                    },
+                    complete: function (data) {
+                        // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                    },
+                    error: function (e, t, x) {
+                        HomeOS.Service.SetActionControl(true);
+                        HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                        reject(e); // Trả về lỗi nếu thất bại
+                    },
+                });
+            });
+            // if(domain == ''){
+            //     toastr.error("mã trạm không tồn tại");
+            // } else {
+            //     console.log(state_station);
+                
+            //     localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
+            //     $("#result").text("Kết quả quét: " + workstationID +"- Trạm");
+            //     toastr.success("Quét QR thành công");
+            // }
+            
         }
 
         function getDataChart(typeTime, start, end, type, zone) {
@@ -1141,9 +1270,9 @@
                     fps: 10,    // Số khung hình trên giây
                     qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                     aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                    // videoConstraints:{
-                    //     facingMode: {exact: "environment"},
-                    // }
+                    videoConstraints:{
+                        facingMode: {exact: "environment"},
+                    }
                 },
                 onScanSuccess,
                 onScanFailure
@@ -1207,17 +1336,20 @@
             }).catch(err => {
                 console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
             });
+            const resultArray = decodedText.split("$");
+            localStorage.setItem("URL", resultArray[0]);
             const data = await getDM(
                 "DM_WORKSTATION",
-                "WORKSTATION_ID='" + decodedText + "'"
+                "WORKSTATION_ID='" + resultArray[1] + "'", 
+                resultArray[0]
             );
             console.log(data);
 
             if (data.data != []) {
                 document.getElementById("truycap").disabled = false;
-                matram = decodedText;
+                matram = resultArray[1];
                 const value = data.data;
-                document.getElementById("result").innerText = `Trạm: ${decodedText + " " + value[0].WORKSTATION_NAME}`;
+                document.getElementById("result").innerText = `Trạm: ${resultArray[1] + " " + value[0].WORKSTATION_NAME}`;
                 checkCam = true;
                 toastr.success("Quét QR thành công");
             }
@@ -1247,22 +1379,24 @@
                             img.onload = function() {
                                 // Quét QR từ hình ảnh đã tải lên
                                 html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
-                                    $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                    var resultArray = decodedText.split("$");
+                                    localStorage.setItem("URL", resultArray[0]);
+                                    $("#result").text("Kết quả quét: " + resultArray[1]); // Hiển thị kết quả
                                     $("#close-scanner").click();
                                     const data = await getDM(
                                         "DM_WORKSTATION",
-                                        "WORKSTATION_ID='" + decodedText + "'"
+                                        "WORKSTATION_ID='" + resultArray[1] + "'", 
+                                        resultArray[0]
                                     );
-                                    console.log(data);
-
+                                    
                                     if (data.data != []) {
                                         document.getElementById("truycap").disabled = false;
-                                        matram = decodedText;
+                                        matram = resultArray[1];
                                         const value = data.data;
-                                        document.getElementById("result").innerText = `Trạm: ${decodedText + " " + value[0].WORKSTATION_NAME}`;
+                                        document.getElementById("result").innerText = `Trạm: ${resultArray[1] + " " + value[0].WORKSTATION_NAME}`;
                                         checkCam = true;
                                         toastr.success("Quét QR thành công");
-                                        localStorage.setItem("MATRAM", decodedText);
+                                        localStorage.setItem("MATRAM", resultArray[1]);
                                     }
                                 }).catch(err => {
                                     //$("#result").text("Không thể quét QR từ hình ảnh.");
@@ -1294,6 +1428,30 @@
                 }
             }
         });
+
+        async function getInputValue() {
+            // Lấy giá trị của input với id là 'userInput'
+
+            var inputValue = document.getElementById("device_name").value;
+            testcall(inputValue)
+            // const data = await getDM(
+            //     "DM_WORKSTATION",
+            //     "WORKSTATION_ID='" + inputValue + "'",
+            //     localStorage.getItem("URL")
+            // );
+
+            // if (data.data == [] || data.data == '') {
+            //     toastr.error("Mã trạm không tồn tại.");
+            // } else {
+                // document.getElementById("thuCong").disabled = false;
+                // matram = inputValue;
+                // const value = data.data;
+                // document.getElementById("result").innerText = `Trạm: ${inputValue + " " + value[0].WORKSTATION_NAME}`;
+                // checkCam = true;
+                // toastr.success("Mã trạm có tồn tại.");
+                // localStorage.setItem("MATRAM", inputValue);
+            // }
+        }
     </script>
 </body>
 
