@@ -304,6 +304,115 @@
             }
             return self;
         }
+        function startCam() {
+            var scanner = new Instascan.Scanner({
+                video: document.getElementById("preview"),
+                scanPeriod: 4, mirror:false,
+            });
+            if (checkCam == true) {
+                // var scanner = new Instascan.Scanner({
+                //     video: document.getElementById("preview"),
+                // });
+                let cameras = [];
+                let currentCameraIndex = 0;
+                // Lấy danh sách camera
+
+                Instascan.Camera.getCameras().then(function (availableCameras) {
+                    // cameras = availableCameras;
+                    // if (cameras.length > 0) {
+                    //     // Tìm camera sau (facing: environment) nếu có
+                    //     currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
+
+                    //     // Khởi động quét với camera tìm thấy
+                    //     scanner.start(cameras[currentCameraIndex]).then(() => {
+                    //         startScanning();
+                    //     }).catch(err => {
+                    //         console.error('Lỗi khi khởi động camera:', err);
+                    //         document.getElementById('result').innerText = 'Không thể truy cập camera.';
+                    //     });
+                    // } else {
+                    //     console.error('No cameras found.');
+                    //     document.getElementById('result').innerText = 'No cameras found.';
+                    // }
+
+                    cameras = availableCameras;
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                        // scanner.start(cameras[currentCameraIndex]);
+                    } else {
+                        console.error('No cameras found.');
+                        document.getElementById('result').innerText = 'No cameras found.';
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                    // document.getElementById('result').innerText = 'Error accessing camera.';
+                });
+                document.getElementById('switch-btn').classList.remove("d-none")
+                // Nút chuyển camera
+                document.getElementById('switch-btn').addEventListener('click', function () {
+                    if (cameras.length > 1) {
+                        currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
+                        scanner.start(cameras[currentCameraIndex]);
+                    }
+                });
+                scanner.addListener("scan", async function (content) {
+                    const data = await getDM(
+                        "DM_WORKSTATION",
+                        "WORKSTATION_ID='" + content + "'"
+                    );
+                    console.log(data);
+
+                    if (data.data != []) {
+                        document.getElementById("truycap").disabled = false;
+                        matram = content;
+                        const value = data.data;
+                        document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
+                        checkCam = true;
+                        document.getElementById('switch-btn').classList.add("d-none")
+                        scanner.stop().then(() => {
+                            console.log('Quét đã dừng.');
+                            //document.getElementById('result').innerText = 'Quét đã dừng.';
+
+                            // Dừng video và làm trống video
+                            let videoElement = document.getElementById('preview');
+                            videoElement.srcObject = null;
+                            isScanning = false; // Đánh dấu trạng thái dừng quét
+                        }).catch(err => {
+                            console.error('Lỗi khi dừng quét:', err);
+                        });
+                        const button = document.getElementById("start");
+                        button.textContent = "Bắt đầu quét";
+                        button.style.background = "#0d6efd";
+                        button.style.border = 'none'
+                        toastr.success("Quét QR thành công");
+                    }
+                });
+                checkCam = false
+                const button = document.getElementById("start");
+                button.textContent = "Dừng Quét";
+                button.style.background = "#ef5a2a";
+                button.style.border = 'none'
+            } else {
+                checkCam = true;
+                document.getElementById('switch-btn').classList.add("d-none")
+                scanner.stop().then(() => {
+                    console.log('Quét đã dừng.');
+                    //document.getElementById('result').innerText = 'Quét đã dừng.';
+
+                    // Dừng video và làm trống video
+                    let videoElement = document.getElementById('preview');
+                    videoElement.srcObject = null;
+                    isScanning = false; // Đánh dấu trạng thái dừng quét
+                }).catch(err => {
+                    console.error('Lỗi khi dừng quét:', err);
+                });
+                const button = document.getElementById("start");
+                button.textContent = "Bắt đầu quét";
+                button.style.background = "#0d6efd";
+                button.style.border = 'none'
+            }
+        }
+
     </script>
 </body>
 

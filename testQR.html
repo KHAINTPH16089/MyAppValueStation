@@ -76,12 +76,13 @@
         /* Nút upload hình ảnh */
         #upload-qr {
             position: absolute;
-            top: 90%;
+            top: 87%;
             left: 10%;
             color: white;
             border: none;
             cursor: pointer;
             z-index: 1001; /* Đảm bảo nút ở trên cùng */
+            text-align: center;
         }
 
         #upload-qr button {
@@ -108,7 +109,18 @@
 </head>
 <body>
     <button id="open-scanner">Quét QR</button>
+    <div style="padding: 20px 20px 0 20px;">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'tab1')">Quét QR</button>
+            <button class="tablinks" onclick="openTab(event, 'tab2')">Nhập thủ công</button>
+        </div>
+    </div>
+    <div id="tab1" class="tab-content">
 
+    </div>
+    <div id="tab2" class="tab-content">
+
+    </div>
     <!-- Popup quét QR full màn hình -->
     <div id="qr-popup" class="modal">
         <div id="qr-reader"></div>
@@ -277,6 +289,27 @@
                     }
                 }
             });
+            // tab link
+        function openTab(evt, tabName) {
+            // Ẩn tất cả nội dung tab
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Xóa class 'active' trên tất cả các nút
+            var tabLinks = document.getElementsByClassName("tablinks");
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Mặc định mở tab đầu tiên
+        document.querySelector(".tablinks").click();
         });
     </script>
 </body>

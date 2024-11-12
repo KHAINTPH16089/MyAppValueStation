@@ -10,11 +10,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -361,6 +360,146 @@
         .tab-content.active {
             display: block;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+            /* background-color: white; */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Phần tử quét QR full màn hình */
+        #qr-reader {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        #qr-reader video {
+            width: auto !important;
+            height: 100%;
+        }
+        #close-scanner {
+            position: absolute;
+            top: 2%;
+            left: 20px;
+            height: 35px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+        }
+
+        /* Nút chuyển đổi camera */
+        #toggle-camera {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+        }
+
+        /* Nút upload hình ảnh */
+        #upload-qr {
+            position: absolute;
+            top: 87%;
+            left: 10%;
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 1001; /* Đảm bảo nút ở trên cùng */
+            text-align: center;
+        }
+
+        #upload-qr button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            color: white;
+        }
+
+        #upload-qr p {
+            color: white;
+            font-size: 12px;
+            margin: 5px 0;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input file ẩn */
+        #file-input {
+            display: none;
+        }
+
+        .form-total{
+    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+    margin-bottom: 1rem;
+}
+.header-form{
+    background-color: #3f6791;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+    border-radius: 4px 4px 0 0;
+    height: 46px;
+    padding: 12px 20px;
+}
+.header-form h3{
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: white;
+}
+.content-form {
+    padding: 1.5rem;
+    color: white; 
+    background-color: #343a40;
+}
+.content-form-help{
+    border-radius: 0 0 4px 4px;
+}
+.content-form .content-detail{
+    text-align: start;
+    margin-bottom: 1rem;
+}
+.content-form .content-detail .content-label{
+    font-weight: 500;
+}
+.content-form .content-detail .content-input{
+    background-color: #343a40;
+    border-color: #6c757d;
+    color: #fff;
+}
+.content-form .content-detail .content-input::placeholder {
+    color: #6c757d;
+}
+.footer-form{
+    padding: .75rem 1.25rem;
+    background-color: #282d31;
+    border-top: 0 solid rgba(0, 0, 0, .125);
+    border-radius: 0 0 4px 4px;
+}
+.footer-form button{
+    color: #fff;
+    background-color: #335476;
+    border-color: #304e6d;
+}
     </style>
 </head>
 
@@ -441,38 +580,74 @@
                         <span style="color: rgba(255, 255, 255, .75);;">HOMEOS VIỆT NAM</span>
                     </div>
                 </div>
-                <div style="padding: 20px 20px 0 20px;">
-                    <div class="tab">
-                        <button class="tablinks" onclick="openTab(event, 'tab1')">Quét QR</button>
-                        <button class="tablinks" onclick="openTab(event, 'tab2')">Nhập thủ công</button>
-                    </div>
-                </div>
+
                 
 
-                <div id="tab1" class="tab-content">
-                    <div style="padding: 0 20px 0 20px;">
-                        <!-- <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"> -->
-                        <div id="result">Vui lòng quét QR...</div>
-                        <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
-                        <video id="preview"></video>
-                        <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"
-                            onclick="startCam()">Bắt đầu quét</button>
-                        <button id="truycap" disabled class="btn btn-warning"
-                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;"
-                            onclick="truyCap()">Truy cập trạm</button>
-                    </div>
+                
+                <div style="padding: 0 20px 0 20px;">
+                    <!-- <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"> -->
+                    <div id="result">Vui lòng quét QR...</div>
+                    <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
+                    <!-- <video id="preview"></video> -->
+                    <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">Bắt đầu quét</button>
+                    <button id="truycap" disabled class="btn btn-warning"
+                        style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;"
+                        onclick="truyCap()">Truy cập trạm</button>
                 </div>
 
-                <div id="tab2" class="tab-content">
-                    <div style="padding: 0 20px 0 20px; margin-top: 20px;">
-                        <div id="result">Nhập mã trạm thủ công.</div>
-                        <input type="text" style="width: 100%; margin: 20px 0; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                        <button id="start" class="btn btn-primary" style="width: 100%;" onclick="">Quét trạm mưa</button>
-                        <div id="result">Vui lòng nhập trạm để truy cập...</div>
-                        <button id="truycap" disabled class="btn btn-warning"
-                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
-                            onclick="truyCap()">Truy cập trạm</button>
+                <div class="d-flex row justify-content-around" style="padding: 0 7.5px 0 7.5px;margin: 20px 7.5px 0 7.5px;">
+                    <div class="col-12 col-md-8" style="padding: 0 7.5px 0 7.5px;">
+                        <div class="form-total">
+                            <div class="header-form d-flex">
+                                <h3 style="margin: 0; padding-left: 2px;">Nhập mã trạm thủ công</h3>
+                            </div>
+                            <div class="content-form">
+                                <div class="form-group content-detail">
+                                    <label class="form-label content-label" for="device_name">Kiểm tra:</label>
+                                    <input type="text" id="device_name" style="color: white;" class="form-control content-input" placeholder="Nhập mã trạm...">
+                                </div>
+                            </div>
+                            <div class="footer-form d-flex justify-content-between">
+                                <button class="btn btn-primary">
+                                    Quét mã
+                                </button>
+                                <button disabled class="btn btn-primary" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12">
+                                    Truy cập
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                    
+                </div>
+                <div class="hidden" style="padding: 0 20px 0 20px; margin-top: 20px;">
+                    <div id="result">Nhập mã trạm thủ công.</div>
+                    <input type="text" style="width: 100%; margin: 20px 0; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                    <button id="start" class="btn btn-primary" style="width: 100%;" onclick="">Quét trạm mưa</button>
+                    <div id="result">Vui lòng nhập trạm để truy cập...</div>
+                    <button id="truycap" disabled class="btn btn-warning"
+                        style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
+                        onclick="truyCap()">Truy cập trạm</button>
+                </div>
+
+                <div id="qr-popup" class="modal">
+                    <div id="qr-reader"></div>
+                    <button id="close-scanner">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                    </button>
+                    <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
+                    <div id="upload-qr">
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>
+                                <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                            </svg>
+                        </button>
+                        <p>Ảnh có sẵn</p>
+                    </div>
+                    
+                    <input type="file" id="file-input" accept="image/*">
                 </div>
                 
             </div>
@@ -574,7 +749,10 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const buttons = document.querySelectorAll(".btn-chart");
@@ -596,6 +774,7 @@
         function truyCap() {
             document.getElementById("ScanQR").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
+            matram = localStorage.getItem("MATRAM");
             getDataMonitoring();
         }
 
@@ -613,7 +792,7 @@
             createNewChart()
             const data = await getDM(
                 "LOG_ZONE_MONITORING",
-                "WORKSTATION_ID='" + maTram + "'"
+                "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'"
             );
             const dataChart = await getDataChart('NGAY', '', '', 'RA-RT-RH-RP', '091850');
             if (dataChart != []) {
@@ -624,7 +803,7 @@
             setInterval(async () => {
                 const data = await getDM(
                     "LOG_ZONE_MONITORING",
-                    "WORKSTATION_ID='" + maTram + "'"
+                    "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'"
                 );
                 changeDataHomePage(data.data);
             }, 10000);
@@ -734,115 +913,7 @@
             return formattedDatetime
         }
         var checkCam = true;
-        function startCam() {
-            var scanner = new Instascan.Scanner({
-                video: document.getElementById("preview"),
-                scanPeriod: 4, mirror:false,
-            });
-            if (checkCam == true) {
-                // var scanner = new Instascan.Scanner({
-                //     video: document.getElementById("preview"),
-                // });
-                let cameras = [];
-                let currentCameraIndex = 0;
-                // Lấy danh sách camera
-
-                Instascan.Camera.getCameras().then(function (availableCameras) {
-                    // cameras = availableCameras;
-                    // if (cameras.length > 0) {
-                    //     // Tìm camera sau (facing: environment) nếu có
-                    //     currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
-
-                    //     // Khởi động quét với camera tìm thấy
-                    //     scanner.start(cameras[currentCameraIndex]).then(() => {
-                    //         startScanning();
-                    //     }).catch(err => {
-                    //         console.error('Lỗi khi khởi động camera:', err);
-                    //         document.getElementById('result').innerText = 'Không thể truy cập camera.';
-                    //     });
-                    // } else {
-                    //     console.error('No cameras found.');
-                    //     document.getElementById('result').innerText = 'No cameras found.';
-                    // }
-
-                    cameras = availableCameras;
-                    if (cameras.length > 0) {
-                        scanner.start(cameras[0]);
-                        // scanner.start(cameras[currentCameraIndex]);
-                    } else {
-                        console.error('No cameras found.');
-                        document.getElementById('result').innerText = 'No cameras found.';
-                    }
-                }).catch(function (e) {
-                    console.error(e);
-                    // document.getElementById('result').innerText = 'Error accessing camera.';
-                });
-                document.getElementById('switch-btn').classList.remove("d-none")
-                // Nút chuyển camera
-                document.getElementById('switch-btn').addEventListener('click', function () {
-                    if (cameras.length > 1) {
-                        currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
-                        scanner.start(cameras[currentCameraIndex]);
-                    }
-                });
-                scanner.addListener("scan", async function (content) {
-                    const data = await getDM(
-                        "DM_WORKSTATION",
-                        "WORKSTATION_ID='" + content + "'"
-                    );
-                    console.log(data);
-
-                    if (data.data != []) {
-                        document.getElementById("truycap").disabled = false;
-                        matram = content;
-                        const value = data.data;
-                        document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
-                        checkCam = true;
-                        document.getElementById('switch-btn').classList.add("d-none")
-                        scanner.stop().then(() => {
-                            console.log('Quét đã dừng.');
-                            //document.getElementById('result').innerText = 'Quét đã dừng.';
-
-                            // Dừng video và làm trống video
-                            let videoElement = document.getElementById('preview');
-                            videoElement.srcObject = null;
-                            isScanning = false; // Đánh dấu trạng thái dừng quét
-                        }).catch(err => {
-                            console.error('Lỗi khi dừng quét:', err);
-                        });
-                        const button = document.getElementById("start");
-                        button.textContent = "Bắt đầu quét";
-                        button.style.background = "#0d6efd";
-                        button.style.border = 'none'
-                        toastr.success("Quét QR thành công");
-                    }
-                });
-                checkCam = false
-                const button = document.getElementById("start");
-                button.textContent = "Dừng Quét";
-                button.style.background = "#ef5a2a";
-                button.style.border = 'none'
-            } else {
-                checkCam = true;
-                document.getElementById('switch-btn').classList.add("d-none")
-                scanner.stop().then(() => {
-                    console.log('Quét đã dừng.');
-                    //document.getElementById('result').innerText = 'Quét đã dừng.';
-
-                    // Dừng video và làm trống video
-                    let videoElement = document.getElementById('preview');
-                    videoElement.srcObject = null;
-                    isScanning = false; // Đánh dấu trạng thái dừng quét
-                }).catch(err => {
-                    console.error('Lỗi khi dừng quét:', err);
-                });
-                const button = document.getElementById("start");
-                button.textContent = "Bắt đầu quét";
-                button.style.background = "#0d6efd";
-                button.style.border = 'none'
-            }
-        }
-
+        
         function getDM(table_name, c) {
             const d = {
                 Uid: user_id,
@@ -1056,26 +1127,173 @@
             }
         }
 
-        function openTab(evt, tabName) {
-            // Ẩn tất cả nội dung tab
-            var tabContent = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active");
-            }
+        //qrcode
+        var html5QrCode = new Html5Qrcode("qr-reader");
+        var currentCameraIndex = 0;  // Index camera hiện tại
+        var devices = [];  // Danh sách các camera
+        var isScannerRunning = false;  // Biến theo dõi trạng thái quét
 
-            // Xóa class 'active' trên tất cả các nút
-            var tabLinks = document.getElementsByClassName("tablinks");
-            for (var i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].classList.remove("active");
-            }
-
-            // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+        // Hàm khởi tạo quét QR
+        function startScan(cameraId) {
+            html5QrCode.start(
+                cameraId, 
+                {
+                    fps: 10,    // Số khung hình trên giây
+                    qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                    aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
+                    // videoConstraints:{
+                    //     facingMode: {exact: "environment"},
+                    // }
+                },
+                onScanSuccess,
+                onScanFailure
+            ).then(() => {
+                isScannerRunning = true;  // Đánh dấu scanner đang chạy
+            }).catch(err => {
+                console.error("Lỗi khi khởi động camera: ", err);
+            });
         }
 
-        // Mặc định mở tab đầu tiên
-        document.querySelector(".tablinks").click();
+        // Khi nhấn nút mở popup quét QR
+        $("#start").click(function() {
+            $("#qr-popup").modal({
+                fadeDuration: 250,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
+
+            // Lấy danh sách camera và bắt đầu quét
+            Html5Qrcode.getCameras().then(_devices => {
+                devices = _devices; // Lưu lại danh sách camera
+                if (devices && devices.length) {
+                    startScan(devices[currentCameraIndex].id);  // Bắt đầu quét với camera đầu tiên
+                } else {
+                    console.error("Không tìm thấy thiết bị camera nào.");
+                }
+            }).catch(err => {
+                console.error("Lỗi khi lấy danh sách camera: ", err);
+            });
+        });
+
+        // Chuyển đổi camera
+        $("#toggle-camera").click(function() {
+            currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
+            startScan(devices[currentCameraIndex].id); // Bắt đầu quét với camera mới
+        });
+
+        // Khi nhấn nút đóng popup
+        $("#close-scanner").click(function() {
+            if (isScannerRunning) {
+                html5QrCode.stop().then(ignore => {
+                    isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                    $.modal.close(); // Đóng popup
+                }).catch(err => {
+                    console.error("Lỗi khi dừng quét QR: ", err);
+                });
+            } else {
+                $.modal.close(); // Nếu không có quét đang chạy, chỉ đóng popup
+            }
+        });
+
+        // Hàm xử lý khi quét thành công
+        async function onScanSuccess(decodedText, decodedResult) {
+            // Hiển thị kết quả trên trang chính
+            $("#result").text("Kết quả quét: " + decodedText);
+            
+            html5QrCode.stop().then(ignore => {
+                isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                $.modal.close();
+            }).catch(err => {
+                console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
+            });
+            const data = await getDM(
+                "DM_WORKSTATION",
+                "WORKSTATION_ID='" + decodedText + "'"
+            );
+            console.log(data);
+
+            if (data.data != []) {
+                document.getElementById("truycap").disabled = false;
+                matram = decodedText;
+                const value = data.data;
+                document.getElementById("result").innerText = `Trạm: ${decodedText + " " + value[0].WORKSTATION_NAME}`;
+                checkCam = true;
+                toastr.success("Quét QR thành công");
+            }
+        }
+
+        // Hàm xử lý khi quét thất bại
+        function onScanFailure(error) {
+            // Xử lý lỗi (nếu cần)
+        }
+
+        // Khi nhấn nút upload QR từ hình ảnh
+        $("#upload-qr").click(function() {
+            $("#file-input").click();  // Mở hộp thoại chọn file
+        });
+
+        // Khi chọn file hình ảnh từ input
+        $("#file-input").change(function(event) {
+            var file = event.target.files[0];  // Đảm bảo lấy file đúng
+            if (file) {
+                // Dừng quét camera trước khi quét file
+                if (isScannerRunning) {
+                    html5QrCode.stop().then(function() {
+                        isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = new Image();
+                            img.onload = function() {
+                                // Quét QR từ hình ảnh đã tải lên
+                                html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
+                                    $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                    $("#close-scanner").click();
+                                    const data = await getDM(
+                                        "DM_WORKSTATION",
+                                        "WORKSTATION_ID='" + decodedText + "'"
+                                    );
+                                    console.log(data);
+
+                                    if (data.data != []) {
+                                        document.getElementById("truycap").disabled = false;
+                                        matram = decodedText;
+                                        const value = data.data;
+                                        document.getElementById("result").innerText = `Trạm: ${decodedText + " " + value[0].WORKSTATION_NAME}`;
+                                        checkCam = true;
+                                        toastr.success("Quét QR thành công");
+                                        localStorage.setItem("MATRAM", decodedText);
+                                    }
+                                }).catch(err => {
+                                    //$("#result").text("Không thể quét QR từ hình ảnh.");
+                                    console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                });
+                            };
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                    }).catch(err => {
+                        console.error("Lỗi khi dừng camera: ", err);
+                    });
+                } else {
+                    // Nếu không có scanner đang chạy, quét trực tiếp từ hình ảnh
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var img = new Image();
+                        img.onload = function() {
+                            html5QrCode.scanFile(file).then(decodedText => {
+                                $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                            }).catch(err => {
+                                $("#result").text("Không thể quét QR từ hình ảnh.");
+                                console.error("Lỗi khi quét hình ảnh QR: ", err);
+                            });
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                }
+            }
+        });
     </script>
 </body>
 
