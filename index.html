@@ -752,8 +752,6 @@
                         <span style="color: rgba(255, 255, 255, .75);;">HOMEOS VIỆT NAM</span> -->
                     </div>
                 </div>
-
-                
                 <div style="padding: 0 20px 0 20px;">
                     <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
                     <div style="padding: 20px 20px 0 20px;">
@@ -777,54 +775,13 @@
                         <div style="color: #fff; font-size: 1.5rem; padding: 50px 0 0 0;">Định danh thiết bị</div>
                         <div style="text-align: start; margin: 15px 0;">
                             <span style="color: #fff;">Mã trạm:</span>
-                            <input type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                            <input id="device_name" type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                         </div>
-                        <button id="truycap" disabled class="btn btn-warning"
+                        <button id="truycap" class="btn btn-warning"
                             style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
-                            onclick="truyCap()">Truy cập trạm</button>
+                            onclick="getInputValue()">Truy cập trạm</button>
                     </div>
-                
-                    <!-- <div id="result">Vui lòng quét QR...</div>
-                    <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
-                    <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">Bắt đầu quét</button>
-                    <button id="truycap" disabled class="btn btn-warning"
-                        style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;"
-                        onclick="truyCap()">Truy cập trạm</button> -->
                 </div>
-
-                <!-- <div class="d-flex row justify-content-around" style="padding: 0 7.5px 0 7.5px;margin: 20px 7.5px 0 7.5px;">
-                    <div class="col-12 col-md-8" style="padding: 0 7.5px 0 7.5px;">
-                        <div class="form-total">
-                            <div class="header-form d-flex">
-                                <h3 style="margin: 0; padding-left: 2px;">Nhập mã trạm thủ công</h3>
-                            </div>
-                            <div class="content-form">
-                                <div class="form-group content-detail">
-                                    <label class="form-label content-label" for="device_name">Kiểm tra:</label>
-                                    <input type="text" id="device_name" style="color: white;" class="form-control content-input" placeholder="Nhập mã trạm...">
-                                </div>
-                            </div>
-                            <div class="footer-form d-flex justify-content-between">
-                                <button class="btn btn-primary" onclick="getInputValue()">
-                                    Quét mã
-                                </button>
-                                <button id="thuCong" disabled class="btn btn-primary" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12">
-                                    Truy cập
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="hidden" style="padding: 0 20px 0 20px; margin-top: 20px;">
-                    <div id="result">Nhập mã trạm thủ công.</div>
-                    <input type="text" style="width: 100%; margin: 20px 0; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                    <button id="start" class="btn btn-primary" style="width: 100%;" onclick="">Quét trạm mưa</button>
-                    <div id="result">Vui lòng nhập trạm để truy cập...</div>
-                    <button id="truycap" disabled class="btn btn-warning"
-                        style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
-                        onclick="truyCap()">Truy cập trạm</button>
-                </div> -->
 
                 
                 <div class="footer-instruct">
@@ -1026,6 +983,7 @@
         }
         function scanAgain() {
             document.getElementById("result-form").classList.add("d-none");
+            document.getElementById("file-input").value = '';
             $("#start").click();
         }
 
@@ -1051,19 +1009,27 @@
             var domain;
             var data;
             for (let i = 0; i < listDomain.length; i++) {
-                data = await getDataStation(workstationID,listDomain[i])
-                if(data.length <= 1){
+                data = await getDataStation(workstationID,listDomain[i]);
+                console.log(data.length);
+                
+                if(data.length == 0 || data.length == undefined || data == null || data == '' || data == []){
+                    console.log(data);
+                    domain = ''; 
+                } else {
+                    console.log(data);
                     domain = listDomain[i]
+                    break;
                 }
             }
             if(domain == ''){
                 toastr.error("mã trạm không tồn tại");
             } else {
                 console.log(domain);
-                
                 localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
-                $("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
-                toastr.success("Quét QR thành công");
+                //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
+                localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
+                toastr.success("mã trạm tồn tại!");
+                truyCap()
             }
         }
         async function getDataMonitoring() {
@@ -1579,8 +1545,7 @@
                                 html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
                                     var resultArray = decodedText.split("$");
                                     localStorage.setItem("URL", resultArray[0]);
-                                    $("#result").text("Kết quả quét: " + resultArray[1]); // Hiển thị kết quả
-                                    $("#close-scanner").click();
+                                    document.getElementById("result-form").classList.remove("d-none");
                                     const data = await getDM(
                                         "DM_WORKSTATION",
                                         "WORKSTATION_ID='" + resultArray[1] + "'", 
@@ -1588,10 +1553,11 @@
                                     );
                                     
                                     if (data.data != []) {
-                                        document.getElementById("truycap").disabled = false;
+                                        //document.getElementById("truycap").disabled = false;
                                         matram = resultArray[1];
                                         const value = data.data;
-                                        document.getElementById("result").innerText = `Trạm: ${resultArray[1] + " " + value[0].WORKSTATION_NAME}`;
+                                        document.getElementById("result-form-stationID").value = resultArray[1];
+                                        document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
                                         checkCam = true;
                                         toastr.success("Quét QR thành công");
                                         localStorage.setItem("MATRAM", resultArray[1]);
@@ -1628,27 +1594,12 @@
         });
 
         async function getInputValue() {
-            // Lấy giá trị của input với id là 'userInput'
-
             var inputValue = document.getElementById("device_name").value;
-            testcall(inputValue)
-            // const data = await getDM(
-            //     "DM_WORKSTATION",
-            //     "WORKSTATION_ID='" + inputValue + "'",
-            //     localStorage.getItem("URL")
-            // );
-
-            // if (data.data == [] || data.data == '') {
-            //     toastr.error("Mã trạm không tồn tại.");
-            // } else {
-                // document.getElementById("thuCong").disabled = false;
-                // matram = inputValue;
-                // const value = data.data;
-                // document.getElementById("result").innerText = `Trạm: ${inputValue + " " + value[0].WORKSTATION_NAME}`;
-                // checkCam = true;
-                // toastr.success("Mã trạm có tồn tại.");
-                // localStorage.setItem("MATRAM", inputValue);
-            // }
+            if(inputValue == null || inputValue==""){
+                toastr.error("Vui lòng nhập mã trạm!");
+            } else {
+                testcall(inputValue)
+            }
         }
     </script>
 </body>
