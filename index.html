@@ -1031,7 +1031,8 @@
             getDataMonitoring();
         }
         function scanAgain() {
-            document.getElementById("result-form").classList.add("d-none");
+            document.getElementById("result-form").classList.remove("d-none");
+            $("#start").click();
         }
 
         function pickApp(type) {
