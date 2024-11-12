@@ -34,11 +34,11 @@
         .container {
             height: 100vh;
             text-align: center;
-            background: #343a40;
+            background: #1E2833;
             padding: 0 20px 0 20px;
             /* border-radius: 10px; */
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
             position: relative;
         }
@@ -47,10 +47,10 @@
             text-align: center;
             padding: 0 10px 0 20px;
             /* border-radius: 10px; */
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); */
             max-width: 400px;
             width: 100%;
-            background-color: #282d31;
+            background-color: #1E2833;
             height: 50px;
         }
 
@@ -280,7 +280,8 @@
         .iconApp {
             box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
             border-radius: .25rem;
-            background-color: #24282c;
+            background-color: #2E3A46;
+            /* background-color: #24282c; */
             display: -ms-flexbox;
             display: flex;
             /* margin-bottom: 0.5rem; */
@@ -312,13 +313,36 @@
             background-color: #17a2b8 !important;
         }
 
+        .info-box-content {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -ms-flex-pack: center;
+            justify-content: center;
+            line-height: 1.8;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 0 10px;
+            overflow: hidden;
+            text-align: start;
+        }
+
         .app-text {
             display: block;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             color: #c2c7d0;
-            padding: 5px 10px;
+            padding: 0 10px;
+        }
+
+        .app-text-number {
+            color: white;
+            display: block;
+            margin-top: .25rem;
+            font-weight: 500;
+            padding: 0 10px;
         }
 
         /* tab chức năng */
@@ -422,8 +446,8 @@
         /* Nút upload hình ảnh */
         #upload-qr {
             position: absolute;
-            top: 87%;
-            left: 10%;
+            top: 65%;
+            left: 20%;
             color: white;
             border: none;
             cursor: pointer;
@@ -432,8 +456,8 @@
         }
 
         #upload-qr button {
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             border: none;
             background-color: rgba(0, 0, 0, 0.4);
             border-radius: 50%;
@@ -452,6 +476,21 @@
             display: none;
         }
 
+        /* form result scan qr */
+        #result-form {
+            width: 95vh;
+            height: 200px;
+            position: absolute;
+            top: 60%;
+            padding: 20px;
+            /* left: 10%; */
+        }
+        #result-form #result-form-group{
+            background-color: #1E2833;
+            border-radius: 5px;
+            width: 350px;
+            padding: 20px;
+        }
         .form-total{
     box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
     margin-bottom: 1rem;
@@ -561,40 +600,99 @@
         opacity: 1;
       }
     }
+    .footer-instruct {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 1000;
+            color: #fff;
+            height: 120px;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .step::before, .step::after {
+            content: '';
+            height: 2px;
+            background-color: #ffffff;
+            position: absolute;
+            top: 50%;
+            width: 45%;
+        }
+        .step::before {
+            left: 0;
+        }
+        .step::after {
+            right: 0;
+        }
+        .circle {
+            background-color: #ffffff;
+            color: #2a2f38;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+        .clickScanQR {
+            width: 220px;
+            height: 220px;
+            margin-top: 8vh;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+        }
     </style>
 </head>
 
 <body>
     <div class="app h-100">
-        <div id="LoadScreen">
+        <div id="LoadScreen" style="background-color: #1E2833;">
             <img id="LogoLoadScreen" src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
-            <img class="full-screen-img" src="./z6023747383932_2e8e45d4c05b5c2ce896dd8cf96bbaab copy (1).png" alt="Full Screen">
-            <div class="d-none dots-container">
+            <img id="img-station" class="hidden full-screen-img" src="./z6023747383932_2e8e45d4c05b5c2ce896dd8cf96bbaab copy (1).png" alt="Full Screen">
+            <div id="" class=" dots-container">
                 <div class="dot">.</div>
                 <div class="dot">.</div>
                 <div class="dot">.</div>
             </div>
         </div>
-        <div id="pickApp" class="hidden h-100">
-            <div class="container">
-                <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"
+        <div id="pickApp" class="hidden h-100" >
+            <div class="container" style="padding-top: 10vh;">
+                <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
                     style="padding-bottom: 3rem;">
+                    <div style="text-align: start; color: white;">
+                        <h5>Thiết bị sử dụng:</h5>
+                    </div>
                 <div class="row">
                     <div class="col-12" style="padding: 10px;">
                         <div class="iconApp" onclick="pickApp('MUA')">
                             <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    style="color: #fff;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
-                                    <path
-                                        d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
-                                    <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
-                                    <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
-                                    <path
-                                        d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
-                                    <path d="M12 9h2V8h-2z" />
-                                </svg>
+                                <div class="icon" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                        style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+                                        <path
+                                            d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+                                        <path
+                                            d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                    </svg>
+                                </div>
                             </div>
-                            <span class="app-text">Theo dõi trạm mưa</span>
+                            <div class="info-box-content">
+                                <span class="app-text">Đo mưa</span>
+                                <span class="app-text-number">Khí tượng thuỷ văn</span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12" style="padding: 10px;">
@@ -606,26 +704,32 @@
                                         d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5M12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0m2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0M1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25" />
                                 </svg>
                             </div>
-                            <span class="app-text">Truy cập thiết bị</span>
+                            <div class="info-box-content">
+                                <span class="app-text">Thiết bị</span>
+                                <span class="app-text-number">IIoT</span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12" style="padding: 10px;">
                         <div class="iconApp">
                             <div class="icon" style="background-color: #28a745!important;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                    style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
-                                    <path
-                                        d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
-                                    <path
-                                        d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: white;" fill="currentColor" class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/>
                                 </svg>
                             </div>
-                            <span class="app-text">Khí tượng thuỷ văn</span>
+                            <div class="info-box-content">
+                                <span class="app-text">Đèn</span>
+                                <span class="app-text-number">Chiếu sáng thông minh</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
+                <div class="footer-instruct">
+                    <div class="step">
+                        <div class="circle">01</div>
+                    </div>
+                    <p>chọn thiết bị muốn xem</p>
+                </div>
             </div>
         </div>
         <div id="ScanQR" class="hidden h-100">
@@ -633,7 +737,7 @@
                 <div class="ScanQR-header">
                     <div style="line-height: 50px; float: left;">
                         <button onclick="pickApp('PICK')"
-                            style="height: 40px; border: none; background-color: #282d31;">
+                            style="height: 40px; border: none; background-color: #1E2833;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -641,28 +745,53 @@
                             </svg>
                         </button>
 
-                        <img style="padding: 0; margin: 0;"
+                        <!-- <img style="padding: 0; margin: 0;"
                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAA21BMVEVHcEzR7/mGqsR6pcHd8PaqzuCDrcdHfKMVYJEBWYw1cZz+///39fOMsMhUhqkeZZQ4cZwoaZYNXY9+psFThaphjq+b0Onu8O9kj7E8dJ1Crd/2+vv96eGN0u81r+QznMuw3/Isa5jb7/U7r+MfqeFOueecu9AsrOJuxOtXh6pKteVvw+mBzO1ZvOd8y+xcveit4PTw8e0VpeAyruP4rJT3p5D5vKjxWSnycEv2noX7w7H1k3j5wbD0gmLxXTD0hWb3qJH0iWr2lXnyb0vwUh/yZj7zc1DyZDn0gWEEvxu3AAAASXRSTlMAHXaZJxhRw/7/3gEJP6X3y/H/XZB8LQ+b2M0FGF7x6z7nMtv/zXP6lbLWdFOpgb5RPf/pX3Uo/9ZiNYtOm/iwSXdd0P/lve/Hl/YjrQAAAZ1JREFUeAFskAMSxAAMAFPbtnn2/192rptBsDGMBEExHNaFICmaYVGCWyJeECVaphSV0og5w3VWZQ3T0ihaEYUpIylVsgUegDMNR2X10WgOdxmKtH6OJ9i0Kmt+T4MwQrpEDryYYhKth2mWF6n327nU3kY5ghC7eVWbH2zZdCN44CPjbessbzfvCK/JamKYI2TGHGx3YV6/azlBT97ref22QbtHwAqKA/9xLbJR3Xi0beUGHpjHf/4pCoMeWsfwXO36y49FnqU9fBfsL+eqRj52fMjzw+hF19sd4t0lLwLC3Id5tud5a4CPV5vEkMBADJzitrnWto2Jsf7/i2o3HJuyUm2+GvVX0/5unAcu5DPao0JtLMnMBqPmYk7qjur9q/J1PwgjxWvF+TxD/Bi1OD6ZvAtHkYT0QM6wSsJU1t4Cis5kbhCjzSEJL4jkT6aMQio9kAEiapWHutHslaeMEQ2H0iFW0quftQP7PpWOIj1HUaoRazA5xwZvy+MqwtjVrx8j8LE8KJ1VdBxg9ErjnV/fU52ciwH/V13y0ht6AueMOFH8ctIWAAAAAElFTkSuQmCC"
                             alt="">
-                        <span style="color: rgba(255, 255, 255, .75);;">HOMEOS VIỆT NAM</span>
+                        <span style="color: rgba(255, 255, 255, .75);;">HOMEOS VIỆT NAM</span> -->
                     </div>
                 </div>
 
                 
-
-                
                 <div style="padding: 0 20px 0 20px;">
-                    <!-- <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200"> -->
-                    <div id="result">Vui lòng quét QR...</div>
+                    <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
+                    <div style="padding: 20px 20px 0 20px;">
+                        <div class="tab">
+                            <button class="tablinks" onclick="openTab(event, 'tab1')">Quét QR</button>
+                            <button class="tablinks" onclick="openTab(event, 'tab2')">Nhập thủ công</button>
+                        </div>
+                    </div>
+                    <div id="tab1" class="tab-content">
+                        <button id="start" class="clickScanQR">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                                <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z"/>
+                                <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z"/>
+                                <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
+                                <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
+                                <path d="M12 9h2V8h-2z"/>
+                              </svg>
+                        </button>
+                    </div>
+                    <div id="tab2" class="tab-content">
+                        <div style="color: #fff; font-size: 1.5rem; padding: 50px 0 0 0;">Định danh thiết bị</div>
+                        <div style="text-align: start; margin: 15px 0;">
+                            <span style="color: #fff;">Mã trạm:</span>
+                            <input type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                        </div>
+                        <button id="truycap" disabled class="btn btn-warning"
+                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
+                            onclick="truyCap()">Truy cập trạm</button>
+                    </div>
+                
+                    <!-- <div id="result">Vui lòng quét QR...</div>
                     <button id="switch-btn" class="d-none"><i class="fas fa-sync-alt"></i></button>
-                    <!-- <video id="preview"></video> -->
                     <button id="start" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;">Bắt đầu quét</button>
                     <button id="truycap" disabled class="btn btn-warning"
                         style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;"
-                        onclick="truyCap()">Truy cập trạm</button>
+                        onclick="truyCap()">Truy cập trạm</button> -->
                 </div>
 
-                <div class="d-flex row justify-content-around" style="padding: 0 7.5px 0 7.5px;margin: 20px 7.5px 0 7.5px;">
+                <!-- <div class="d-flex row justify-content-around" style="padding: 0 7.5px 0 7.5px;margin: 20px 7.5px 0 7.5px;">
                     <div class="col-12 col-md-8" style="padding: 0 7.5px 0 7.5px;">
                         <div class="form-total">
                             <div class="header-form d-flex">
@@ -694,10 +823,15 @@
                     <button id="truycap" disabled class="btn btn-warning"
                         style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
                         onclick="truyCap()">Truy cập trạm</button>
-                </div>
+                </div> -->
 
                 
-                
+                <div class="footer-instruct">
+                    <div class="step">
+                        <div class="circle">02</div>
+                    </div>
+                    <p>Nhấn nút quét hoặc nhập thông tin</p>
+                </div>
             </div>
         </div>
         <div id="homePage" class="hidden">
@@ -804,14 +938,30 @@
             </svg>
         </button>
         <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
+         
+        <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
+            <div id="result-form-group">
+                <input type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                <input type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                <div class="d-flex justify-content-between pt-2" >
+                    <button class="btn" style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                    <button class="btn" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                </div>
+            </div>
+            
+        </div>
         <div id="upload-qr">
-            <button>
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>
-                    <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-                </svg>
-            </button>
-            <p>Ảnh có sẵn</p>
+            <p>Di chuyển camera đến mã QR để quét hoặc</p>
+            <div class="d-flex justify-content-center">
+                <button style="margin-right: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>
+                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                    </svg>
+                </button> 
+                <p style="margin-top: 10px;">Tải hình ảnh lên</p>
+            </div>
+            
         </div>
         
         <input type="file" id="file-input" accept="image/*">
@@ -833,8 +983,29 @@
                 });
             });
         });
+        function openTab(evt, tabName) {
+            // Ẩn tất cả nội dung tab
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Xóa class 'active' trên tất cả các nút
+            var tabLinks = document.getElementsByClassName("tablinks");
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+            }
+
+            // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Mặc định mở tab đầu tiên
+        document.querySelector(".tablinks").click();
         setTimeout(() => {
             document.getElementById("LoadScreen").classList.add("hidden");
+            document.getElementById("LogoLoadScreen").classList.add("hidden");
             document.getElementById("pickApp").classList.remove("hidden");
         }, 2000);
 
@@ -853,8 +1024,16 @@
 
         function pickApp(type) {
             if (type == 'MUA') {
+                document.getElementById("LoadScreen").classList.remove("hidden");
+                document.getElementById("img-station").classList.remove("hidden");
                 document.getElementById("pickApp").classList.add("hidden");
-                document.getElementById("ScanQR").classList.remove("hidden");
+                setTimeout(() => {
+                    document.getElementById("LoadScreen").classList.add("hidden");
+                    document.getElementById("img-station").classList.add("hidden");
+                    document.getElementById("ScanQR").classList.remove("hidden");
+                }, 2000);
+                // document.getElementById("pickApp").classList.add("hidden");
+                // document.getElementById("ScanQR").classList.remove("hidden");
             } else if ('PICK') {
                 document.getElementById("pickApp").classList.remove("hidden");
                 document.getElementById("ScanQR").classList.add("hidden");
@@ -1274,9 +1453,9 @@
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                        videoConstraints:{
-                            facingMode: {exact: "environment"},
-                        }
+                        // videoConstraints:{
+                        //     facingMode: {exact: "environment"},
+                        // }
                     },
                     onScanSuccess,
                     onScanFailure
