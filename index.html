@@ -899,8 +899,8 @@
          
         <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
             <div id="result-form-group">
-                <input id="result-form-stationID" type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                <input id="result-form-stationName" type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                <input id="result-form-stationID" type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                <input id="result-form-stationName" type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                 <div class="d-flex justify-content-between pt-2" >
                     <button class="btn" onclick="scanAgain()" style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
                     <button class="btn" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
@@ -1601,6 +1601,23 @@
                 testcall(inputValue)
             }
         }
+
+        function adjustFooter() {
+            const footer = document.querySelector('.footer');
+            const windowHeight = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                if (window.innerHeight < windowHeight) {
+                    // Keyboard is visible, hide or adjust footer
+                    footer.style.display = 'none'; // You can also reposition it instead of hiding
+                } else {
+                    // Keyboard is hidden, show footer
+                    footer.style.display = 'block';
+                }
+            });
+        }
+
+        adjustFooter();
     </script>
 </body>
 
