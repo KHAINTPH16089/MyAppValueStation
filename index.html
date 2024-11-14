@@ -434,13 +434,15 @@
         /* Nút chuyển đổi camera */
         #toggle-camera {
             position: absolute;
-            top: 50px;
-            right: 20px;
-            background-color: #008CBA;
-            color: white;
+            top: 2%;
+            left: 88%;
+            height: 35px;
+            background-color: rgba(0, 0, 0, 0.4);
             border: none;
-            padding: 10px 20px;
+            color: white;
+            border-radius: 50%;
             cursor: pointer;
+            font-size: 20px;
             z-index: 1001; /* Đảm bảo nút ở trên cùng */
         }
 
@@ -1067,6 +1069,11 @@
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
             </svg>
         </button>
+        <button id="toggle-camera">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+            </svg>
+        </button>
         <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
          
         <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
@@ -1682,9 +1689,9 @@
         var currentCameraIndex = 0;  // Index camera hiện tại
         var devices = [];  // Danh sách các camera
         var isScannerRunning = false;  // Biến theo dõi trạng thái quét
-
+        var currentCamera;
         // Hàm khởi tạo quét QR
-        function startScan(cameraId) {
+        function startScan(cameraId, cam) {
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
                     cameraId, 
@@ -1693,7 +1700,7 @@
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         //aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
                         videoConstraints:{
-                            facingMode: {exact: "environment"},
+                            facingMode: {exact: cam},
                         }
                     },
                     onScanSuccess,
@@ -1717,8 +1724,15 @@
             // Lấy danh sách camera và bắt đầu quét
             Html5Qrcode.getCameras().then(_devices => {
                 devices = _devices; // Lưu lại danh sách camera
+                console.log(devices);
                 if (devices && devices.length) {
-                    startScan(devices[currentCameraIndex].id);  // Bắt đầu quét với camera đầu tiên
+                    if(devices.length == 1){
+                        currentCamera = "user";
+                        startScan(devices[currentCameraIndex].id, "user");  // Bắt đầu quét với camera đầu tiên
+                    } else {
+                        currentCamera = "environment";
+                        startScan(devices[currentCameraIndex].id, "environment");
+                    }
                 } else {
                     console.error("Không tìm thấy thiết bị camera nào.");
                 }
@@ -1730,7 +1744,11 @@
         // Chuyển đổi camera
         $("#toggle-camera").click(function() {
             currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
-            startScan(devices[currentCameraIndex].id); // Bắt đầu quét với camera mới
+            if(currentCamera == "user"){
+                startScan(devices[currentCameraIndex].id, 'environment'); // Bắt đầu quét với camera mới
+            } else {
+                startScan(devices[currentCameraIndex].id, 'user');
+            }
         });
 
         function test() {
