@@ -447,7 +447,7 @@
         /* Nút upload hình ảnh */
         #upload-qr {
             position: absolute;
-            top: 65%;
+            top: 68%;
             left: 20%;
             color: white;
             border: none;
@@ -1056,6 +1056,9 @@
                 </div>
             </div>
         </div>
+        <div id="">
+
+        </div>
     </div>
     <div id="qr-popup" class="modal">
         <div id="qr-reader"></div>
@@ -1263,7 +1266,8 @@
                 "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
                 localStorage.getItem("URL")
             );
-            const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+            // const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+            const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
             if (dataChart != []) {
                 createChartData(dataChart, 'RD')
             }
