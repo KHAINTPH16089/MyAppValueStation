@@ -1690,8 +1690,12 @@
         var devices = [];  // Danh sách các camera
         var isScannerRunning = false;  // Biến theo dõi trạng thái quét
         var currentCamera;
+        
         // Hàm khởi tạo quét QR
         function startScan(cameraId, cam) {
+            const width = window.innerWidth
+            const height = window.innerHeight
+            const aspectRatio = width / height
                 currentCamera = cam;
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
@@ -1699,7 +1703,7 @@
                     {
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                        aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
+                        aspectRatio: aspectRatio, // Đặt tỉ lệ khung hình
                         videoConstraints:{
                             facingMode: {exact: cam},
                         }
@@ -1777,7 +1781,7 @@
         // Hàm xử lý khi quét thành công
         async function onScanSuccess(decodedText, decodedResult) {
             // Hiển thị kết quả trên trang chính
-            $("#result").text("Kết quả quét: " + decodedText);
+            //$("#result").text("Kết quả quét: " + decodedText);
             
             html5QrCode.stop().then(ignore => {
                 isScannerRunning = false;  // Đánh dấu scanner đã dừng
@@ -1805,6 +1809,8 @@
                 checkCam = true;
                 localStorage.setItem("MATRAM", resultArray[1]);
                 toastr.success("Quét QR thành công");
+            } else {
+                toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
             }
         }
 
