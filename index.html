@@ -1692,6 +1692,7 @@
         var currentCamera;
         // Hàm khởi tạo quét QR
         function startScan(cameraId, cam) {
+                currentCamera = cam;
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
                     cameraId, 
@@ -1727,10 +1728,8 @@
                 console.log(devices);
                 if (devices && devices.length) {
                     if(devices.length == 1){
-                        currentCamera = "user";
                         startScan(devices[currentCameraIndex].id, "user");  // Bắt đầu quét với camera đầu tiên
                     } else {
-                        currentCamera = "environment";
                         startScan(devices[currentCameraIndex].id, "environment");
                     }
                 } else {
@@ -1743,7 +1742,11 @@
 
         // Chuyển đổi camera
         $("#toggle-camera").click(function() {
-            currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
+            if(currentCameraIndex == devices.length){
+                currentCamera = 0
+            } else {
+                currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
+            }
             if(currentCamera == "user"){
                 startScan(devices[currentCameraIndex].id, 'environment'); // Bắt đầu quét với camera mới
             } else {
