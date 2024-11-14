@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -242,7 +243,7 @@
             margin: 0;
             padding: 0;
             border-radius: 50px;
-            background-color: #313030;
+            background-color: #313030 ;
             cursor: pointer;
             transition: background-color 0.3s;
         }
@@ -252,7 +253,7 @@
         }
 
         .btn-chart.active {
-            background-color: #181818;
+            background-color: #181818 !important;
             color: #fff;
         }
 
@@ -552,7 +553,7 @@
 
     #LogoLoadScreen {
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 25%;
             color: white;
             border: none;
@@ -562,7 +563,7 @@
         }
         .dots-container {
             position: absolute;
-            top: 8%;
+            top: -2%;
             left: 40%;
       display: flex;
       justify-content: center;
@@ -574,7 +575,7 @@
       width: 10px;
       height: 10px;
       margin: 0 5px;
-      background-color: black;
+      background-color: #fff;
       border-radius: 50%;
       opacity: 0;
       animation: blink 1.5s infinite ease-in-out;
@@ -655,6 +656,74 @@
             border-radius: 10px;
             box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
         }
+
+        #temperature svg {
+
+            width: 100px;
+            height: 250px;
+
+        }
+
+        .dragger .label {
+            fill: #FFFCF9;
+            font-size: 1.8em;
+            font-family: "din-condensed-web", sans-serif;
+            text-anchor: middle;
+            letter-spacing: 1.2px;
+            font-size: 25px;
+        }
+
+        .tubeLabel {
+            fill: #FCEFD6;
+            font-size: 1.4em;
+            font-family: "din-condensed-web", sans-serif;
+            /* font-family: "filson-soft", sans-serif; */
+            text-anchor: middle;
+        }
+
+        .dragger {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .range-container {
+            position: relative;
+            width: 30px;
+            height: 220px;
+            border-radius: 10px;
+        }
+
+        /* Solid color sections for each temperature range */
+        .range-section {
+            position: absolute;
+            left: 0;
+            width: 100%;
+        }
+
+        .section-0-5 { background-color: #006600; top: 14%; height: 14%; }  /* Blue for 0-15°C */
+        .section-5-10 { background-color: #66cc00; top: 28%; height: 14%; }  /* Blue for 0-15°C */
+        .section-10-20 { background-color: #b2ff66; top: 42%; height: 14%; }  /* Blue for 0-15°C */
+        .section-20-50 { background-color: #0084ff; top: 56%; height: 14%; }  /* Blue for 0-15°C */
+        .section-50-100 { background-color: #bfe0ff; top: 70%; height: 14%; } /* Light blue for 15-20°C */
+        .section-100-150 { background-color: #ffffa6; top: 84%; height: 14%; } /* Green for 20-27°C */
+        .section-150-200 { background-color: #7fc1ff; top: 0; height: 14%; }   /* Red for 27-50°C */
+
+        /* Temperature Labels */
+        .label {
+            position: absolute;
+            left: 90%;
+            padding-left: 10px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .label-200 { top: 0; }
+        .label-150 { top: 10%; }
+        .label-100 { top: 23%; }
+        .label-50 { top: 35%; }
+        .label-20 { top: 50%; }
+        .label-10 { top: 65%; }
+        .label-5 { top: 80%; }
+        .label-below-0 { bottom: 0; }
     </style>
 </head>
 
@@ -662,7 +731,7 @@
     <div class="app h-100">
         <div id="LoadScreen" style="background-color: #1E2833;">
             <img id="LogoLoadScreen" src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
-            <img id="img-station" class="hidden full-screen-img" src="./z6023747383932_2e8e45d4c05b5c2ce896dd8cf96bbaab copy (1).png" alt="Full Screen">
+            <img id="img-station" class="hidden full-screen-img" src="https://central.homeos.vn/images/MiniAppLoadingScreen.png" alt="Full Screen">
             <div id="" class=" dots-container">
                 <div class="dot">.</div>
                 <div class="dot">.</div>
@@ -678,7 +747,7 @@
                     </div>
                 <div class="row">
                     <div class="col-12" style="padding: 10px;">
-                        <div class="iconApp" onclick="pickApp('MUA')">
+                        <div id="PickApp-button-mua" class="iconApp">
                             <div class="icon">
                                 <div class="icon" >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -737,7 +806,7 @@
             <div class="container" style="padding: 0;">
                 <div class="ScanQR-header">
                     <div style="line-height: 50px; float: left;">
-                        <button onclick="pickApp('PICK')"
+                        <button id="PickApp-button-pick"
                             style="height: 40px; border: none; background-color: #1E2833;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -753,11 +822,11 @@
                     </div>
                 </div>
                 <div style="padding: 0 20px 0 20px;">
-                    <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
                     <div style="padding: 20px 20px 0 20px;">
                         <div class="tab">
-                            <button class="tablinks" onclick="openTab(event, 'tab1')">Quét QR</button>
-                            <button class="tablinks" onclick="openTab(event, 'tab2')">Nhập thủ công</button>
+                            <button id="tab-scan-qr" class="tablinks" >Quét QR</button>
+                            <button id="tab-text" class="tablinks">Nhập thủ công</button>
                         </div>
                     </div>
                     <div id="tab1" class="tab-content">
@@ -775,11 +844,11 @@
                         <div style="color: #fff; font-size: 1.5rem; padding: 50px 0 0 0;">Định danh thiết bị</div>
                         <div style="text-align: start; margin: 15px 0;">
                             <span style="color: #fff;">Mã trạm:</span>
-                            <input id="device_name" type="text" style="width: 100%; height: 50px; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                            <input id="device_name" type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                         </div>
                         <button id="truycap" class="btn btn-warning"
                             style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;"
-                            onclick="getInputValue()">Truy cập trạm</button>
+                            >Truy cập trạm</button>
                     </div>
                 </div>
 
@@ -810,7 +879,7 @@
                 <div id="lateTime">
                     <p id="lateDateTime">29/10/2024 14:30:00</p>
                 </div>
-                <button id="ScanQRNext" class="btn btn-secondary" onclick="changeQRcode()">
+                <button id="ScanQRNext" class="btn btn-secondary" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-qr-code-scan" viewBox="0 0 16 16">
                         <path
@@ -827,70 +896,170 @@
                 <div id="listValue" class="row">
                     <div class="col-4 p-2">
                         <div id="boxValue">
-                            <h5 id="RT">26°C</h5>
-                            <p>Nhiệt độ</p>
+                            <h5 id="RT">-</h5>
+                            <p>Nhiệt độ (°C)</p>
                         </div>
                     </div>
                     <div class="col-4 p-2">
                         <div id="boxValue">
-                            <h5 id="RH">20 %</h5>
-                            <p>Độ ẩm</p>
+                            <h5 id="RH">-</h5>
+                            <p>Độ ẩm (%)</p>
                         </div>
                     </div>
                     <div class="col-4 p-2">
                         <div id="boxValue">
-                            <h5 id="RP">20 P</h5>
-                            <p>Áp xuất</p>
+                            <h5 id="RP">-</h5>
+                            <p>Áp suất (hPa)</p>
                         </div>
                     </div>
                 </div>
                 <div id="acQuy">
                     <div class="progress"
                         style="background-color: #242427; border: solid 1px #484848; height: 25px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100">25%</div>
+                        <div id="acQuy-bar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">25</div>
                     </div>
                 </div>
                 <div id="rainfall" class="d-flex justify-content-between">
-                    <div class="progress progress-vertical"
+                    <!-- <div class="progress progress-vertical"
                         style="border: solid 1px #484848; width: 30px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
                         <div id="temp-bar" class="progress-bar" role="progressbar" style="height: 25%;"
                             aria-valuenow="25" aria-valuemin="-10" aria-valuemax="50">25°C</div>
+                    </div> -->
+                    <div  id="temperature" style="pointer-events: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="250 200 200 200">
+                            <defs>
+                                <linearGradient id="liquidGrad" x1="557" y1="150" x2="557" y2="546" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#FF0909" />
+                                    <stop offset="0.2" stop-color="#F3481A" />
+                                    <stop offset="0.5" stop-color="#FABA2C" />
+                                    <stop offset="1" stop-color="#00BCF2" />
+                                </linearGradient>
+                                <rect id="tube" x="357" y="150" width="60" height="400" rx="43" ry="43" />
+                                <clipPath id="liquidMask">
+                                    <use xlink:href="#tube" class="liquidMask" />
+                                </clipPath>
+                                <clipPath id="tubeMask">
+                                    <use xlink:href="#tube" class="liquidMask" />
+                                </clipPath>
+                                <path id="liquid" d="M757,552v490H357V552c50,0,50,20,100,20s50-20,100-20,50,20,100,20S707,552,757,552Z" />
+                                <mask id="gradMask">
+                    
+                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#FCEFD6" />
+                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#EEE" opacity="0.7" />
+                    
+                                </mask>
+                            </defs>
+                    
+                    
+                            <g class="whole" transform="translate(0, -40)">
+                    
+                                <use xlink:href="#tube" class="tubeBg" fill="#C8D9D3" opacity="0.61" />
+                    
+                                <g class="dragger" transform="translate(-6, 0)">
+                                    <circle cx="294" cy="540" r="36" fill="#3A3335" />
+                                    <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#3A3335" />
+                                    <text class="label" x="294" y="551">100</text>
+                                    <!--  <path id="dragShine" d="M330,540c-26,2-18-44-72,0a36,36,0,0,1,72,0Z" fill="#E9E9E9" opacity="0.052"/>    -->
+                                </g>
+                    
+                    
+                                <g mask="url(#gradMask)">
+                                    <use xlink:href="#tube" fill="url(#liquidGrad)" />
+                                </g>
+                                <line class="tubeShine" x1="371" y1="200" x2="371" y2="443" fill="none" stroke="#FFF" stroke-linecap="round"
+                                    stroke-miterlimit="10" stroke-width="8" opacity="0.21" stroke-dasharray="153 30"
+                                    stroke-dashoffset="-20" />
+                                <!--        <text class="tubeLabel" x="400" y="180">100°</text>
+                                  <text class="tubeLabel" x="400" y="356">50°</text>
+                                  <text class="tubeLabel" x="400" y="540">0°</text> -->
+                                <g class="measurements" fill="none" stroke="#FCEFD6" stroke-width="3" stroke-linecap="round" opacity="1">
+                                    <line x1="358" y1="196" x2="370" y2="196" />
+                                    <line x1="358" y1="234" x2="370" y2="234" />
+                                    <line x1="358" y1="273" x2="370" y2="273" />
+                                    <line x1="358" y1="311" x2="370" y2="311" />
+                                    <line x1="358" y1="350" x2="370" y2="350" />
+                                    <line x1="358" y1="388" x2="370" y2="388" />
+                                    <line x1="358" y1="426" x2="370" y2="426" />
+                                    <line x1="358" y1="465" x2="370" y2="465" />
+                                    <line x1="358" y1="503" x2="370" y2="503" />
+                                </g>
+                    
+                                <!--  <rect class="tubeShine" x="372" y="162" width="56" height="364.02" rx="31.5" ry="31.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="8" stroke-linecap="round" stroke-dasharray="15 30" opacity="0.31"/> -->
+                                <circle class="follower" cx="400" cy="540" r="0" fill="#62B6CB" fill-opacity="1" stroke="#FCEFD6"
+                                    stroke-width="0" />
+                    
+                    
+                    
+                    
+                            </g>
+                        </svg>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" id="mySvg" width="50%" fill="currentColor"
+                    <svg xmlns="http://www.w3.org/2000/svg" id="mySvg" width="40%" fill="currentColor"
                         viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path
                             d="M96 320c-53 0-96-43-96-96c0-42.5 27.6-78.6 65.9-91.2C64.7 126.1 64 119.1 64 112C64 50.1 114.1 0 176 0c43.1 0 80.5 24.3 99.2 60c14.7-17.1 36.5-28 60.8-28c44.2 0 80 35.8 80 80c0 5.5-.6 10.8-1.6 16c.5 0 1.1 0 1.6 0c53 0 96 43 96 96s-43 96-96 96L96 320zm-6.8 52c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3L89.2 372zm160 0c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3L249.2 372zm124.9 64.6L409.2 372c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3z" />
-                        <text x="256" y="256" text-anchor="middle" font-size="80" fill="#e9ecef">70mm</text>
+                        <text x="256" y="256" text-anchor="middle" font-size="80" fill="#e9ecef" style="text-shadow: 1px 1px #373535;">-</text>
                     </svg>
-                    <div class="progress progress-vertical"
+                    <!-- <div class="progress progress-vertical"
                         style="border: solid 1px #484848; width: 30px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
                         <div id="rain-bar" class="progress-bar" role="progressbar" style="height: 70%;"
                             aria-valuenow="70" aria-valuemin="-500" aria-valuemax="500">70mm</div>
+                    </div> -->
+                    <div style="padding: 20px; margin-right: 30px;">
+                        <div class="range-container" id="range">
+                            <!-- Solid color sections for each temperature range -->
+                            <div class="range-section section-0-5"></div>
+                            <div class="range-section section-5-10"></div>
+                            <div class="range-section section-10-20"></div>
+                            <div class="range-section section-20-50"></div>
+                            <div class="range-section section-50-100"></div>
+                            <div class="range-section section-100-150"></div>
+                            <div class="range-section section-150-200"></div>
+                        
+                            <!-- Labels -->
+                            <div class="label label-200">200mm</div>
+                            <div class="label label-150">150mm</div>
+                            <div class="label label-100">100mm</div>
+                            <div class="label label-50">50mm</div>
+                            <div class="label label-20">20mm</div>
+                            <div class="label label-10">10mm</div>
+                            <div class="label label-5">5mm</div>
+                            <div class="label label-below-0">0mm</div>
+                        </div>
                     </div>
                 </div>
                 <div id="Chart">
-                    <div class="button-list">
-                        <button class="btn btn-primary btn-chart active" type="button"
-                            onclick="clickGetData('NGAY')">Ngày</button>
-                        <button class="btn btn-primary btn-chart" type="button"
-                            onclick="clickGetData('TUAN')">Tuần</button>
-                        <button class="btn btn-primary btn-chart" type="button"
-                            onclick="clickGetData('THANG')">Tháng</button>
-                        <button class="btn btn-primary btn-chart" type="button"
-                            onclick="clickGetData('NAM')">Năm</button>
+                    <div class="d-flex justify-content-between">
+                        <div  class="d-none d-flex justify-content-center align-items-center" style="height: 40px; padding-top: 10px; padding-left: 10px;">
+                            <div id="loading-spinner" class="d-none spinner-border text-light" role="status">
+                            </div>
+                        </div>
+                        <div class="button-list">
+                            <button id="button-list-ngay" class="btn btn-primary btn-chart active" type="button"
+                                >Ngày</button>
+                            <button id="button-list-tuan" class="btn btn-primary btn-chart" type="button"
+                                >Tuần</button>
+                            <button id="button-list-thang" class="btn btn-primary btn-chart" type="button"
+                                >Tháng</button>
+                            <button id="button-list-nam" class="btn btn-primary btn-chart" type="button"
+                                >Năm</button>
+                        </div>
                     </div>
                     <div>
                         <canvas id="lineBarChart" width="400" height="200"></canvas>
                     </div>
 
                 </div>
+                <div class="footer-instruct" style="height: 50px; background-color: #444;">
+                    <p id="footer-stationName" style="font-size: 20px;">text</p>
+                </div>
             </div>
         </div>
     </div>
     <div id="qr-popup" class="modal">
         <div id="qr-reader"></div>
-        <button id="close-scanner" onclick="test()">
+        <button id="close-scanner">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
             </svg>
@@ -902,8 +1071,8 @@
                 <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                 <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                 <div class="d-flex justify-content-between pt-2" >
-                    <button class="btn" onclick="scanAgain()" style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                    <button class="btn" onclick="truyCap()" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    <button id="result-scanagain" class="btn"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                    <button id="result-truycap" class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
                 </div>
             </div>
             
@@ -924,19 +1093,24 @@
             <div class="step">
                 <div class="circle">03</div>
             </div>
-            <p>Truy cập xem thông tin hoặc nhấn quét lại</p>h
+            <p>Truy cập xem thông tin hoặc nhấn quét lại</p>
         </div>
         <input type="file" id="file-input" accept="image/*">
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
+    <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        $( document ).ready(function() {
+
             const buttons = document.querySelectorAll(".btn-chart");
+            console.log(buttons);
+            
             buttons.forEach((button) => {
                 button.addEventListener("click", function () {
                     buttons.forEach((btn) => btn.classList.remove("active"));
@@ -944,7 +1118,6 @@
                     this.classList.add("active");
                 });
             });
-        });
         function openTab(evt, tabName) {
             // Ẩn tất cả nội dung tab
             var tabContent = document.getElementsByClassName("tab-content");
@@ -963,8 +1136,9 @@
             evt.currentTarget.classList.add("active");
         }
 
+
         // Mặc định mở tab đầu tiên
-        document.querySelector(".tablinks").click();
+        
         setTimeout(() => {
             document.getElementById("LoadScreen").classList.add("hidden");
             document.getElementById("LogoLoadScreen").classList.add("hidden");
@@ -992,7 +1166,46 @@
             document.getElementById("file-input").value = '';
             $("#start").click();
         }
+        $("#PickApp-button-mua").click(function() {
+            pickApp('MUA');
+        });
+        $("#PickApp-button-pick").click(function() {
+            pickApp('PICK')
+        });
+        $("#tab-scan-qr").click(function(event) {
+            openTab(event, 'tab1')
+        });
+        $("#tab-text").click(function(event) {
+            openTab(event, 'tab2')
+        });
+        $("#truycap").click(function() {
+            getInputValue()
+        });
+        $("#ScanQRNext").click(function() {
+            changeQRcode()
+        });
+        $("#button-list-ngay").click(function() {
+            clickGetData('NGAY')
+        });
+        $("#button-list-tuan").click(function() {
+            clickGetData('TUAN')
+        });
+        $("#button-list-thang").click(function() {
+            clickGetData('THANG')
+        });
+        $("#button-list-nam").click(function() {
+            clickGetData('NAM')
+        });
+        $("#close-scanner").click(function() {
+            test()
+        });
 
+        $("#result-scanagain").click(function() {
+            scanAgain()
+        });
+        $("#result-truycap").click(function() {
+            truyCap()
+        });
         function pickApp(type) {
             if (type == 'MUA') {
                 document.getElementById("LoadScreen").classList.remove("hidden");
@@ -1002,7 +1215,9 @@
                     document.getElementById("LoadScreen").classList.add("hidden");
                     document.getElementById("img-station").classList.add("hidden");
                     document.getElementById("ScanQR").classList.remove("hidden");
+                    document.querySelector(".tablinks").click();
                 }, 2000);
+               
                 // document.getElementById("pickApp").classList.add("hidden");
                 // document.getElementById("ScanQR").classList.remove("hidden");
             } else if ('PICK') {
@@ -1010,8 +1225,8 @@
                 document.getElementById("ScanQR").classList.add("hidden");
             }
         }
-        async function testcall (workstationID){
-            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn"]
+        async function CheckWorkStation (workstationID){
+            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
             var domain;
             var data;
             for (let i = 0; i < listDomain.length; i++) {
@@ -1027,14 +1242,17 @@
                     break;
                 }
             }
+            console.log(domain);
+            
             if(domain == ''){
-                toastr.error("mã trạm không tồn tại");
+                toastr.error("Mã trạm không tồn tại");
             } else {
                 console.log(domain);
                 localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
                 //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
+                document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_NAME+"["+data[0].WORKSTATION_ID+"]";
                 localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
-                toastr.success("mã trạm tồn tại!");
+                toastr.success("Truy cập thành công!");
                 truyCap()
             }
         }
@@ -1045,53 +1263,87 @@
                 "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
                 localStorage.getItem("URL")
             );
-            const dataChart = await getDataChart('NGAY', '', '', 'RA-RT-RH-RP', '091850');
+            const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
             if (dataChart != []) {
-                createChartData(dataChart, 'RA')
+                createChartData(dataChart, 'RD')
             }
 
-            changeDataHomePage(data.data);
+            changeDataHomePage(data.D);
             setInterval(async () => {
                 const data = await getDM(
                     "LOG_ZONE_MONITORING",
                     "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
                     localStorage.getItem("URL")
                 );
-                changeDataHomePage(data.data);
+                changeDataHomePage(data.D);
             }, 10000);
+        }
+
+        function getCurrentTime() {
+            // Tạo đối tượng Date mới để lấy thời gian hiện tại
+            const now = new Date();
+            
+            const ngay = now.getDate(); // Ngày (1-31)
+            const thang = now.getMonth() + 1; // Tháng (0-11) nên cần +1
+            const nam = now.getFullYear(); // Năm (4 chữ số)
+            // Lấy giờ, phút, giây
+            const hours = now.getHours();   // Giờ (0-23)
+            const minutes = now.getMinutes(); // Phút (0-59)
+            const seconds = now.getSeconds(); // Giây (0-59)
+
+            // Định dạng giờ thành dạng HH:MM:SS
+            const chuoiNgay = `${ngay.toString().padStart(2, '0')}/${thang.toString().padStart(2, '0')}/${nam}`;
+            const currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            // Hiển thị giờ hiện tại
+            document.getElementById("lateDateTime").textContent = chuoiNgay +" "+ currentTime;
         }
 
         function changeDataHomePage(data) {
             console.log(data);
-            const dateTime = formatDateTime(data[0].LAST_VALUE_DATE)
-            document.getElementById("lateDateTime").textContent = dateTime;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].PROPERTY_INDEX == "RT") {
-                    document.getElementById("RT").textContent = data[i].LAST_VALUE / 10 + "°C";
-                    updateProgressBar("temp-bar", -10, 50, data[i].LAST_VALUE / 10, "°C");
-                } else if (data[i].PROPERTY_INDEX == "RD") {
-                    if (data[i].LAST_VALUE == 2) {
-                        document.getElementById("status").style.background = "green";
+            if(data != [] && data != null && data != ''){
+                getCurrentTime()
+                //const dateTime = formatDateTime(data[0].LAST_VALUE_DATE)
+                //document.getElementById("lateDateTime").textContent = dateTime;
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i].ZONE_PROPERTY);
+                    document.getElementById("status").style.background = "green";
+                    if (data[i].ZONE_PROPERTY == "RT") {
+                        document.getElementById("RT").textContent = data[i].ZONE_VALUE / 10 ;
+                        //updateProgressBar("temp-bar", -10, 50, data[i].ZONE_VALUE / 10, "°C");
+                        setRangeValue(data[i].ZONE_VALUE / 10)
+                    } else if (data[i].ZONE_PROPERTY == "RH") {
+                        document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
+                    } else if (data[i].ZONE_PROPERTY == "RA") {
+                        updateProgressBar("acQuy-bar",0, 50, data[i].ZONE_VALUE / 10, "v")
+                        document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
+                    } else if (data[i].ZONE_PROPERTY == "RP") {
+                        document.getElementById("RP").textContent = data[i].ZONE_VALUE / 10 ;
+                    } else if (data[i].ZONE_PROPERTY == "RD") {
+                        const color = getColor(data[i].ZONE_VALUE / 10);
+                        changeColorAndText(color, color, data[i].ZONE_VALUE / 10);
+                        // updateProgressBar("rain-bar", -500, 500, (data[i].LAST_VALUE / 10), "mm");
                     }
-                } else if (data[i].PROPERTY_INDEX == "RH") {
-                    document.getElementById("RH").textContent = data[i].LAST_VALUE / 10 + "%";
-                } else if (data[i].PROPERTY_INDEX == "RP") {
-                    document.getElementById("RP").textContent = data[i].LAST_VALUE / 10 + "hPa";
-                } else if (data[i].PROPERTY_INDEX == "RA") {
-                    const color = getColor(data[i].LAST_VALUE / 10);
-                    changeColorAndText(color, color, data[i].LAST_VALUE / 10);
-                    updateProgressBar("rain-bar", -500, 500, (data[i].LAST_VALUE / 10), "mm");
+                    // else if (data[i].ZONE_PROPERTY == "") {
+                    //     if (data[i].ZONE_VALUE == 2) {
+                    //         document.getElementById("status").style.background = "green";
+                    //     }
+                    // }
                 }
+            } else {
+                const path = document.querySelector("#mySvg path");
+                path.setAttribute("fill", "#007bff");
             }
         }
 
         function updateProgressBar(id, min, max, temp, Unit) {
             var minTemp = min;
             var maxTemp = max;
-            var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
+            var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 50;
             var progressBar = document.getElementById(id);
             if (percentage >= 0 && percentage <= 100) {
                 progressBar.style.height = percentage + "%";
+                progressBar.style.height = "100%";
                 progressBar.setAttribute("aria-valuenow", percentage);
                 progressBar.innerHTML = temp + Unit;
             } else {
@@ -1118,9 +1370,9 @@
             } else if (value >= 10 && value < 20) {
                 return "#0084ff";
             } else if (value >= 5 && value < 10) {
-                return "#7fc1ff";
-            } else if (value >= 0 && value < 5) {
                 return "#bfe0ff";
+            } else if (value >= 0 && value < 5) {
+                return "#ffffa6";
             } else if (value >= -5 && value < 0) {
                 return "#ffffa6";
             } else if (value >= -10 && value < -5) {
@@ -1180,16 +1432,13 @@
 
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: url+"/getDm?callback=?",
+                    url: url+"/getNewData?w='"+localStorage.getItem("MATRAM")+"'",
                     type: "GET",
                     dataType: "jsonp",
-                    data: d,
                     contentType: "application/json; charset=utf-8",
                     success: function (msg) {
                         try {
                             let state = JSON.parse(msg);
-                            console.log(state);
-
                             resolve(state); // Trả về dữ liệu khi thành công
                         } catch (error) {
                             reject(error); // Bắt lỗi nếu JSON parse thất bại
@@ -1208,25 +1457,30 @@
         }
 
         async function clickGetData(type) {
+            if (lineBarChart != null) {
+                lineBarChart.destroy();
+                document.getElementById("loading-spinner").classList.remove("d-none");
+            }
             if (type == 'NGAY') {
-                const dataChart = await getDataChart('NGAY', '', '', 'RA---', localStorage.getItem("MATRAM"));
+                const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                
                 if (dataChart != []) {
-                    createChartData(dataChart, 'RA')
+                    createChartData(dataChart, 'RD')
                 }
             } else if (type == 'TUAN') {
-                const dataChart = await getDataChart('TUAN', '', '', 'RA---', localStorage.getItem("MATRAM"));
+                const dataChart = await getDataChart('TUAN', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
-                    createChartData(dataChart, 'RA')
+                    createChartData(dataChart, 'RD')
                 }
             } else if (type == 'THANG') {
-                const dataChart = await getDataChart('THANG', '', '', 'RA---', localStorage.getItem("MATRAM"));
+                const dataChart = await getDataChart('THANG', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
-                    createChartData(dataChart, 'RA')
+                    createChartData(dataChart, 'RD')
                 }
             } else if (type == 'NAM') {
-                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RA---', localStorage.getItem("MATRAM"));
+                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
-                    createChartData(dataChart, 'RA')
+                    createChartData(dataChart, 'RD')
                 }
             }
         }
@@ -1270,13 +1524,13 @@
             
         }
 
-        function getDataChart(typeTime, start, end, type, zone) {
+        function getDataChart(typeTime, start, end, type, zone, url) {
 
             const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
 
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: "https://namdinh.homeos.vn/Service/Service.svc/ApiServicePublic/" + "GetDataFilterLogzone" + "/" + "TYPE_TIME='" + typeTime + "',START_DATE='" + start + "',END_DATE='" + end + "',TYPE_VALUE='" + type + "',ZONE_ADDRESS='" + zone + "'",
+                    url: url+"/ApiServicePublic/" + "GetDataFilterLogzone" + "/" + "TYPE_TIME='" + typeTime + "',START_DATE='" + start + "',END_DATE='" + end + "',TYPE_VALUE='" + type + "',ZONE_ADDRESS='" + zone + "'",
                     type: "GET",
                     dataType: "jsonp",
                     contentType: "application/json; charset=utf-8",
@@ -1353,7 +1607,7 @@
         }
 
         createChartData = function (data, type) {
-            if (lineBarChart != null && type == "RA") {
+            if (lineBarChart != null && type == "RD") {
                 lineBarChart.destroy();
             }
             var RA = ctx.getContext('2d');
@@ -1361,9 +1615,9 @@
             let newlabelRA = [];
             $.each(data, function (i, item) {
                 if (item.AverageValue != 0) {
-                    if (item.ZONE_PROPERTY == 'RA') {
+                    if (item.ZONE_PROPERTY == 'RD') {
                         newlabelRA.push(item.Label);
-                        newDataRA.push(item.AverageValue)
+                        newDataRA.push(item.AverageValue/10)
                     }
 
                 }
@@ -1379,6 +1633,7 @@
                 borderWidth: 1,
             }]
             lineBarChart = new Chart(RA, createChart("bar", newlabelRA, newDataRA, "mm", "Lượng mưa", dataSetRA));
+            document.getElementById("loading-spinner").classList.add("d-none");
         }
 
         createChart = function (type, Label, Data, Unit, LabelData, dataSet) {
@@ -1419,13 +1674,14 @@
         }
 
         //qrcode
-        var html5QrCode = new Html5Qrcode("qr-reader");
+        var html5QrCode;
         var currentCameraIndex = 0;  // Index camera hiện tại
         var devices = [];  // Danh sách các camera
         var isScannerRunning = false;  // Biến theo dõi trạng thái quét
 
         // Hàm khởi tạo quét QR
         function startScan(cameraId) {
+                html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
                     cameraId, 
                     {
@@ -1520,6 +1776,7 @@
                 const value = data.data;
                 document.getElementById("result-form-stationID").value = resultArray[1];
                 document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+resultArray[1]+"]";
                 checkCam = true;
                 localStorage.setItem("MATRAM", resultArray[1]);
                 toastr.success("Quét QR thành công");
@@ -1606,7 +1863,7 @@
             if(inputValue == null || inputValue==""){
                 toastr.error("Vui lòng nhập mã trạm!");
             } else {
-                testcall(inputValue)
+                CheckWorkStation(inputValue)
             }
         }
 
@@ -1625,7 +1882,124 @@
             });
         }
 
+        
+
+        var xmlns = "http://www.w3.org/2000/svg",
+            xlinkns = "http://www.w3.org/1999/xlink",
+            select = function (s) {
+                return document.querySelector(s);
+            },
+            selectAll = function (s) {
+                return document.querySelectorAll(s);
+            },
+            liquid = selectAll('.liquid'),
+            tubeShine = select('.tubeShine'),
+            label = select('.label'),
+            follower = select('.follower'),
+            dragger = select('.dragger'),
+            dragTip = select('.dragTip'),
+            minDragY = -380,
+            liquidId = 0,
+            step = Math.abs(minDragY / 50),
+            snap = Math.abs(minDragY / 10),
+            followerVY = 0;
+
+        gsap.set('svg', { visibility: 'visible' });
+        gsap.set(dragTip, { transformOrigin: '20% 50%' });
+
+        var tl = gsap.timeline();
+        tl.to(liquid, { x: '-=200', ease: 'none', repeat: -1, stagger: 0.9 });
+
+        tl.time(100);
+
+        document.addEventListener('touchmove', function (event) {
+            event.preventDefault();
+        });
+
+        Draggable.create(dragger, {
+            type: 'y',
+            bounds: { minY: minDragY, maxY: 0 },
+            onDrag: onUpdate,
+            throwProps: true,
+            throwResistance: 2300,
+            onThrowUpdate: onUpdate,
+            overshootTolerance: 0,
+            snap: function (value) {
+                // Optional: snap to steps of 10
+                // return Math.round(value / snap) * snap;
+            }
+        });
+
+        function onUpdate() {
+            // Get the current y position of the dragger using gsap.getProperty
+            var draggerY = gsap.getProperty(dragger, 'y');
+            liquidId = Math.abs(Math.round(draggerY / step));
+            label.textContent = liquidId + '°C';
+
+            gsap.to(liquid, {
+                y: draggerY * 1.12,
+                ease: 'elastic.out(1, 0.4)',
+                duration: 1.3
+            });
+        }
+
+        gsap.to(follower, {
+            y: '+=0',
+            repeat: -1,
+            duration: 1,
+            modifiers: {
+                y: function (y) {
+                    var draggerY = gsap.getProperty(dragger, 'y');
+                    followerVY += (draggerY - gsap.getProperty(follower, 'y')) * 0.23;
+                    followerVY *= 0.69;
+                    return gsap.getProperty(follower, 'y') + followerVY;
+                }
+            }
+        });
+
+        gsap.to(dragTip, {
+            rotation: '+=0',
+            repeat: -1,
+            duration: 1,
+            modifiers: {
+                rotation: function (rotation) {
+                    return rotation - followerVY;
+                }
+            }
+        });
+
+        gsap.to(label, {
+            y: '+=0',
+            repeat: -1,
+            duration: 1,
+            modifiers: {
+                y: function (y) {
+                    return y - followerVY * 0.5;
+                }
+            }
+        });
+
+        gsap.to(dragger, {
+            y: minDragY / 2,
+            onUpdate: onUpdate,
+            ease: 'expo.inOut',
+            duration: 1.4
+        });
+        function setRangeValue(value) {
+            // Chuyển đổi giá trị value từ 0-100 thành vị trí y tương ứng
+            var newY = value * (minDragY / 50);
+
+            // Cập nhật vị trí của dragger và các phần liên quan
+            gsap.to(dragger, {
+                y: newY,
+                onUpdate: onUpdate, // Gọi lại onUpdate để cập nhật các phần khác
+                ease: "expo.inOut",
+                duration: 1.0 // Tốc độ di chuyển
+            });
+        }
+        
         adjustFooter();
+        });
     </script>
 </body>
 

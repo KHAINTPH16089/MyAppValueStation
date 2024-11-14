@@ -148,7 +148,7 @@
             dragTip = select('.dragTip'),
             minDragY = -380,
             liquidId = 0,
-            step = Math.abs(minDragY / 100),
+            step = Math.abs(minDragY / 50),
             snap = Math.abs(minDragY / 10),
             followerVY = 0;
 
@@ -246,6 +246,7 @@
             });
         }
         setRangeValue(10)
+
 
         testQrCode("scanner", 250)
         var self;
