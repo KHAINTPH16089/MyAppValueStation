@@ -1151,7 +1151,6 @@
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         $( document ).ready(function() {
-
             const buttons = document.querySelectorAll(".btn-chart");
             console.log(buttons);
             
@@ -1203,12 +1202,6 @@
             document.getElementById("homePage").classList.remove("hidden");
             matram = localStorage.getItem("MATRAM");
             $("button-modal-loading").click();
-            $("#loading-popup").modal({
-                fadeDuration: 250,
-                escapeClose: false,
-                clickClose: false,
-                showClose: false
-            });
             
             getDataMonitoring();
         }
@@ -1231,6 +1224,12 @@
             openTab(event, 'tab2')
         });
         $("#truycap").click(function() {
+            $("#loading-popup").modal({
+                fadeDuration: 250,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
             getInputValue()
         });
         $("#ScanQRNext").click(function() {
@@ -1257,6 +1256,12 @@
         });
         $("#result-truycap").click(function() {
             document.getElementById("result-truycap").disabled = true;
+            $("#loading-popup").modal({
+                fadeDuration: 250,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
             truyCap()
         });
         function pickApp(type) {
@@ -1312,7 +1317,7 @@
 
         async function getDomain (workstationID, type){
             return new Promise( async (resolve, reject)  => {
-                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
+                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn","ninhbinh.homeos.vn"]
                 var domain;
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
@@ -1344,8 +1349,8 @@
                 "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
                 localStorage.getItem("URL")
             );
-            // const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-            const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+            const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+            // const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
             if (dataChart != []) {
                 createChartData(dataChart, 'RD')
             }
@@ -1386,15 +1391,6 @@
             if(data != [] && data != null && data != ''){
                 let checkRD = false;
                 let checkRT = false;
-                const now = new Date();
-                const providedTime = new Date(data[0].DATE_CREATE);
-                const differenceInMilliseconds = now.getTime() - providedTime.getTime();
-                const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
-                console.log(differenceInMilliseconds / (1000 * 60));
-                if(checkTimeOnline < 10){
-                    document.getElementById("status").style.background = "green";
-                }
-                getCurrentTime(data[0].DATE_CREATE);
                 for (let i = 0; i < data.length; i++) {
                     
                     if (data[i].ZONE_PROPERTY == "RT") {
@@ -1405,7 +1401,16 @@
                         document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
                     } else if (data[i].ZONE_PROPERTY == "RA") {
                         updateProgressBar("acQuy-bar",0, 50, data[i].ZONE_VALUE / 10, "v")
-                        document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
+                        getCurrentTime(data[i].DATE_CREATE);
+                        const now = new Date();
+                        const providedTime = new Date(data[i].DATE_CREATE);
+                        const differenceInMilliseconds = now.getTime() - providedTime.getTime();
+                        const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
+                        console.log(differenceInMilliseconds / (1000 * 60));
+                        if(checkTimeOnline < 5){
+                            document.getElementById("status").style.background = "green";
+                        }
+                        // document.getElementById("RA").textContent = data[i].ZONE_VALUE / 10 ;
                     } else if (data[i].ZONE_PROPERTY == "RP") {
                         document.getElementById("RP").textContent = data[i].ZONE_VALUE / 10 ;
                     } else if (data[i].ZONE_PROPERTY == "RD") {
@@ -1555,23 +1560,23 @@
                 document.getElementById("loading-spinner").classList.remove("d-none");
             }
             if (type == 'NGAY') {
-                const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 
                 if (dataChart != []) {
                     createChartData(dataChart, 'RD')
                 }
             } else if (type == 'TUAN') {
-                const dataChart = await getDataChart('TUAN', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                const dataChart = await getDataChart('TUAN', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RD')
                 }
             } else if (type == 'THANG') {
-                const dataChart = await getDataChart('THANG', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                const dataChart = await getDataChart('THANG', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RD')
                 }
             } else if (type == 'NAM') {
-                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
                     createChartData(dataChart, 'RD')
                 }
@@ -1705,26 +1710,69 @@
             var RA = ctx.getContext('2d');
             let newDataRA = [];
             let newlabelRA = [];
+            let newDataRT = [];
+            let newlabelRT= [];
+            let newDataRH = [];
+            let newlabelRH= [];
+            let newDataRP = [];
+            let newlabelRP= [];
             $.each(data, function (i, item) {
                 if (item.AverageValue != 0) {
                     if (item.ZONE_PROPERTY == 'RD') {
                         newlabelRA.push(item.Label);
                         newDataRA.push(item.AverageValue/10)
+                    } else if (item.ZONE_PROPERTY == 'RT') {
+                        newlabelRT.push(item.Label);
+                        newDataRT.push(item.AverageValue/10)
+                    } else if (item.ZONE_PROPERTY == 'RH') {
+                        newlabelRH.push(item.Label);
+                        newDataRH.push(item.AverageValue/10)
+                    } else if (item.ZONE_PROPERTY == 'RP') {
+                        newlabelRP.push(item.Label);
+                        newDataRP.push(item.AverageValue/10)
                     }
 
                 }
             })
+            console.log(newDataRT);
+            
+            var dataSetRA = [
+                {
+                    type: "line", // Chọn kiểu bar cho dataset này
+                    label: "Nhiệt độ (°C)",
+                    data: newDataRT,
+                    backgroundColor: "rgb(255,98,1)",
+                    borderColor: "rgb(255,98,1)",
+                    borderWidth: 1,
+                },
+                {
+                    type: "line", // Chọn kiểu bar cho dataset này
+                    label: "Độ ẩm (%)",
+                    data: newDataRH,
+                    backgroundColor: "rgb(0,95,95)",
+                    borderColor: "rgb(0,95,95)",
+                    borderWidth: 1,
+                },
+                {
+                    type: "line", // Chọn kiểu bar cho dataset này
+                    label: "Áp suất (hPa)",
+                    data: newDataRP,
+                    backgroundColor: "rgb(13,154,154)",
+                    borderColor: "rgb(13,154,154)",
+                    borderWidth: 1,
+                },
+                {
+                    type: "bar", // Chọn kiểu bar cho dataset này
+                    label: "Lượng mưa (mm)",
+                    data: newDataRA,
+                    backgroundColor: "rgba(75, 192, 192, 0.5)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                }
+            ]
 
 
-            var dataSetRA = [{
-                type: "bar", // Chọn kiểu bar cho dataset này
-                label: "Lượng mưa",
-                data: newDataRA,
-                backgroundColor: "rgba(75, 192, 192, 0.5)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1,
-            }]
-            lineBarChart = new Chart(RA, createChart("bar", newlabelRA, newDataRA, "mm", "Lượng mưa", dataSetRA));
+            lineBarChart = new Chart(RA, createChart("bar", newlabelRT, [], "", "", dataSetRA));
             document.getElementById("loading-spinner").classList.add("d-none");
         }
 
