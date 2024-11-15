@@ -354,7 +354,7 @@
 
         .tab button {
             flex: 1;
-            background-color: #343a40;
+            background-color: #1E2833;
             color: #c2c7d0;
             border: none;
             text-align: center;
@@ -363,7 +363,7 @@
             width: 49%;
         }
         .tab button:hover {
-            border: 1px solid #626262;
+            /* border: 1px solid #626262; */
             border-bottom: none;
         }
 
@@ -705,9 +705,9 @@
         .section-5-10 { background-color: #66cc00; top: 28%; height: 14%; }  /* Blue for 0-15°C */
         .section-10-20 { background-color: #b2ff66; top: 42%; height: 14%; }  /* Blue for 0-15°C */
         .section-20-50 { background-color: #0084ff; top: 56%; height: 14%; }  /* Blue for 0-15°C */
-        .section-50-100 { background-color: #bfe0ff; top: 70%; height: 14%; } /* Light blue for 15-20°C */
-        .section-100-150 { background-color: #ffffa6; top: 84%; height: 14%; } /* Green for 20-27°C */
-        .section-150-200 { background-color: #7fc1ff; top: 0; height: 14%; }   /* Red for 27-50°C */
+        .section-50-100 { background-color: #7fc1ff; top: 70%; height: 14%; } /* Light blue for 15-20°C */
+        .section-100-150 { background-color: #bfe0ff; top: 84%; height: 14%; } /* Green for 20-27°C */
+        .section-150-200 { background-color: #00ffff; top: 0; height: 14%; }   /* Red for 27-50°C */
 
         /* Temperature Labels */
         .label {
@@ -718,10 +718,10 @@
             color: #fff;
         }
 
-        .label-200 { top: 0; }
+        .label-200 { top: -6px; }
         .label-150 { top: 10%; }
-        .label-100 { top: 23%; }
-        .label-50 { top: 35%; }
+        .label-100 { top: 24%; }
+        .label-50 { top: 37%; }
         .label-20 { top: 50%; }
         .label-10 { top: 65%; }
         .label-5 { top: 80%; }
@@ -839,7 +839,7 @@
                                 <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z"/>
                                 <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z"/>
                                 <path d="M12 9h2V8h-2z"/>
-                              </svg>
+                            </svg>
                         </button>
                     </div>
                     <div id="tab2" class="tab-content">
@@ -919,7 +919,7 @@
                     <div class="progress"
                         style="background-color: #242427; border: solid 1px #484848; height: 25px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
                         <div id="acQuy-bar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100">25</div>
+                            aria-valuemin="0" aria-valuemax="100">-</div>
                     </div>
                 </div>
                 <div id="rainfall" class="d-flex justify-content-between">
@@ -928,7 +928,7 @@
                         <div id="temp-bar" class="progress-bar" role="progressbar" style="height: 25%;"
                             aria-valuenow="25" aria-valuemin="-10" aria-valuemax="50">25°C</div>
                     </div> -->
-                    <div  id="temperature" style="pointer-events: none;">
+                    <div id="temperature" style="pointer-events: none; margin-left: 5px;">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="250 200 200 200">
                             <defs>
                                 <linearGradient id="liquidGrad" x1="557" y1="150" x2="557" y2="546" gradientUnits="userSpaceOnUse">
@@ -946,10 +946,8 @@
                                 </clipPath>
                                 <path id="liquid" d="M757,552v490H357V552c50,0,50,20,100,20s50-20,100-20,50,20,100,20S707,552,757,552Z" />
                                 <mask id="gradMask">
-                    
                                     <use xlink:href="#liquid" class="liquid" x="0" fill="#FCEFD6" />
                                     <use xlink:href="#liquid" class="liquid" x="0" fill="#EEE" opacity="0.7" />
-                    
                                 </mask>
                             </defs>
                     
@@ -959,9 +957,9 @@
                                 <use xlink:href="#tube" class="tubeBg" fill="#C8D9D3" opacity="0.61" />
                     
                                 <g class="dragger" transform="translate(-6, 0)">
-                                    <circle cx="294" cy="540" r="36" fill="#3A3335" />
-                                    <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#3A3335" />
-                                    <text class="label" x="294" y="551">100</text>
+                                    <circle cx="294" cy="540" r="36" fill="#FABA2C" />
+                                    <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#FABA2C" />
+                                    <text class="label" x="294" y="551" style="font-weight: 700;">100</text>
                                     <!--  <path id="dragShine" d="M330,540c-26,2-18-44-72,0a36,36,0,0,1,72,0Z" fill="#E9E9E9" opacity="0.052"/>    -->
                                 </g>
                     
@@ -1082,7 +1080,7 @@
                 <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
                 <div class="d-flex justify-content-between pt-2" >
                     <button id="result-scanagain" class="btn"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                    <button id="result-truycap" class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    <button id="result-truycap" disabled class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
                 </div>
             </div>
             
@@ -1107,6 +1105,28 @@
         </div>
         <input type="file" id="file-input" accept="image/*">
     </div>
+    <button id="button-modal-loading" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
@@ -1262,10 +1282,38 @@
                 //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
                 document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_NAME+"["+data[0].WORKSTATION_ID+"]";
                 localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
-                toastr.success("Truy cập thành công!");
-                truyCap()
+                // toastr.success("Truy cập thành công!");
+                // truyCap()
             }
         }
+
+        async function getDomain (workstationID, type){
+            return new Promise( async (resolve, reject)  => {
+                var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
+                var domain;
+                var data;
+                for (let i = 0; i < listDomain.length; i++) {
+                    data = await getDataStation(workstationID,listDomain[i]);
+                    console.log(data.length);
+                    
+                    if(data.length == 0 || data.length == undefined || data == null || data == '' || data == []){
+                        console.log(data);
+                        domain = ''; 
+                    } else {
+                        console.log(data);
+                        domain = listDomain[i]
+                        break;
+                    }
+                }
+                if(type == "domain"){
+                    resolve(domain);
+                } else {
+                    resolve(data);
+                }
+                
+            });
+        }
+
         async function getDataMonitoring() {
             createNewChart()
             const data = await getDM(
@@ -1290,9 +1338,9 @@
             }, 10000);
         }
 
-        function getCurrentTime() {
+        function getCurrentTime(time) {
             // Tạo đối tượng Date mới để lấy thời gian hiện tại
-            const now = new Date();
+            const now = new Date(time);
             
             const ngay = now.getDate(); // Ngày (1-31)
             const thang = now.getMonth() + 1; // Tháng (0-11) nên cần +1
@@ -1313,16 +1361,23 @@
         function changeDataHomePage(data) {
             console.log(data);
             if(data != [] && data != null && data != ''){
-                getCurrentTime()
-                //const dateTime = formatDateTime(data[0].LAST_VALUE_DATE)
-                //document.getElementById("lateDateTime").textContent = dateTime;
-                for (let i = 0; i < data.length; i++) {
-                    console.log(data[i].ZONE_PROPERTY);
+                let checkRD = false;
+                let checkRT = false;
+                const now = new Date();
+                const providedTime = new Date(data[0].DATE_CREATE);
+                const differenceInMilliseconds = now.getTime() - providedTime.getTime();
+                const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
+                console.log(differenceInMilliseconds / (1000 * 60));
+                if(checkTimeOnline < 10){
                     document.getElementById("status").style.background = "green";
+                }
+                getCurrentTime(data[0].DATE_CREATE);
+                for (let i = 0; i < data.length; i++) {
+                    
                     if (data[i].ZONE_PROPERTY == "RT") {
+                        checkRT = true;
                         document.getElementById("RT").textContent = data[i].ZONE_VALUE / 10 ;
-                        //updateProgressBar("temp-bar", -10, 50, data[i].ZONE_VALUE / 10, "°C");
-                        setRangeValue(data[i].ZONE_VALUE / 10)
+                        setRangeValue(data[i].ZONE_VALUE / 10, "success")
                     } else if (data[i].ZONE_PROPERTY == "RH") {
                         document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
                     } else if (data[i].ZONE_PROPERTY == "RA") {
@@ -1331,15 +1386,18 @@
                     } else if (data[i].ZONE_PROPERTY == "RP") {
                         document.getElementById("RP").textContent = data[i].ZONE_VALUE / 10 ;
                     } else if (data[i].ZONE_PROPERTY == "RD") {
+                        checkRD = true;
                         const color = getColor(data[i].ZONE_VALUE / 10);
                         changeColorAndText(color, color, data[i].ZONE_VALUE / 10);
                         // updateProgressBar("rain-bar", -500, 500, (data[i].LAST_VALUE / 10), "mm");
                     }
-                    // else if (data[i].ZONE_PROPERTY == "") {
-                    //     if (data[i].ZONE_VALUE == 2) {
-                    //         document.getElementById("status").style.background = "green";
-                    //     }
-                    // }
+                    if(checkRD == false){
+                        const color = getColor(0);
+                        changeColorAndText(color, color, 0);
+                    }
+                    if(checkRT == false){
+                        setRangeValue(0)
+                    }
                 }
             } else {
                 const path = document.querySelector("#mySvg path");
@@ -1350,10 +1408,10 @@
         function updateProgressBar(id, min, max, temp, Unit) {
             var minTemp = min;
             var maxTemp = max;
-            var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 50;
+            var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
             var progressBar = document.getElementById(id);
             if (percentage >= 0 && percentage <= 100) {
-                progressBar.style.height = percentage + "%";
+                progressBar.style.width = percentage + "%";
                 progressBar.style.height = "100%";
                 progressBar.setAttribute("aria-valuenow", percentage);
                 progressBar.innerHTML = temp + Unit;
@@ -1381,9 +1439,9 @@
             } else if (value >= 10 && value < 20) {
                 return "#0084ff";
             } else if (value >= 5 && value < 10) {
-                return "#bfe0ff";
+                return "#7fc1ff";
             } else if (value >= 0 && value < 5) {
-                return "#ffffa6";
+                return "#bfe0ff";
             } else if (value >= -5 && value < 0) {
                 return "#ffffa6";
             } else if (value >= -10 && value < -5) {
@@ -1443,7 +1501,7 @@
 
             return new Promise((resolve, reject) => {
                 $.ajax({
-                    url: url+"/getNewData?w='"+localStorage.getItem("MATRAM")+"'",
+                    url: url+"/GetNewData?w="+localStorage.getItem("MATRAM"),
                     type: "GET",
                     dataType: "jsonp",
                     contentType: "application/json; charset=utf-8",
@@ -1692,12 +1750,6 @@
         var currentCamera;
         // Hàm khởi tạo quét QR
         function startScan(cameraId, cam) {
-            const formatsToSupport = [
-                Html5QrcodeSupportedFormats.QR_CODE,
-                Html5QrcodeSupportedFormats.UPC_A,
-                Html5QrcodeSupportedFormats.UPC_E,
-                Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
-            ];
                 currentCamera = cam;
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
@@ -1706,7 +1758,6 @@
                         fps: 10,    // Số khung hình trên giây
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7777778, // Đặt tỉ lệ khung hình
-                        formatsToSupport: formatsToSupport,
                         videoConstraints:{
                             facingMode: {exact: cam},
                         }
@@ -1793,24 +1844,47 @@
             }).catch(err => {
                 console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
             });
-            const resultArray = decodedText.split("$");
-            localStorage.setItem("URL", resultArray[0]);
-            const data = await getDM(
-                "DM_WORKSTATION",
-                "WORKSTATION_ID='" + resultArray[1] + "'", 
-                resultArray[0]
-            );
+            console.log(decodedText);
+            let data;
+            let domain;
+            let workstation;
+            if(decodedText.length < 6){
+                var resultArray = decodedText.split("$");
+                localStorage.setItem("URL", resultArray[0]);
+                data = await getDM(
+                    "DM_WORKSTATION",
+                    "WORKSTATION_ID='" + resultArray[1] + "'", 
+                    resultArray[0]
+                );
+                workstation = resultArray[1];
+                document.getElementById("result-form").classList.remove("d-none");
+                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+            } else if(decodedText.length == 6) {
+                domain = await getDomain(decodedText,'domain');
+                const url = "https://"+domain+"/service/service.svc/"
+                localStorage.setItem("URL", url);
+                data = await getDM(
+                    "DM_WORKSTATION",
+                    "WORKSTATION_ID='" + decodedText + "'", 
+                    url
+                );
+                workstation = decodedText;
+                document.getElementById("result-form").classList.remove("d-none");
+                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+            } else {
+                toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+            }
             console.log(data);
-
+            
             if (data.data != []) {
-                document.getElementById("truycap").disabled = false;
-                matram = resultArray[1];
-                const value = data.data;
-                document.getElementById("result-form-stationID").value = resultArray[1];
+                document.getElementById("result-truycap").disabled = false;
+                matram = workstation;
+                const value = await getDomain(decodedText);
+                document.getElementById("result-form-stationID").value = workstation;
                 document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+resultArray[1]+"]";
+                document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+workstation+"]";
                 checkCam = true;
-                localStorage.setItem("MATRAM", resultArray[1]);
+                localStorage.setItem("MATRAM", workstation);
                 toastr.success("Quét QR thành công");
             } else {
                 toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
@@ -1841,25 +1915,50 @@
                             img.onload = function() {
                                 // Quét QR từ hình ảnh đã tải lên
                                 html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
-                                    var resultArray = decodedText.split("$");
-                                    localStorage.setItem("URL", resultArray[0]);
-                                    document.getElementById("result-form").classList.remove("d-none");
-                                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                    const data = await getDM(
-                                        "DM_WORKSTATION",
-                                        "WORKSTATION_ID='" + resultArray[1] + "'", 
-                                        resultArray[0]
-                                    );
+                                    
+                                    let data;
+                                    let domain;
+                                    let workstation;
+                                    if(decodedText.length < 6){
+                                        var resultArray = decodedText.split("$");
+                                        localStorage.setItem("URL", resultArray[0]);
+                                        data = await getDM(
+                                            "DM_WORKSTATION",
+                                            "WORKSTATION_ID='" + resultArray[1] + "'", 
+                                            resultArray[0]
+                                        );
+                                        workstation = resultArray[1];
+                                        document.getElementById("result-form").classList.remove("d-none");
+                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                    } else if(decodedText.length == 6) {
+                                        domain = await getDomain(decodedText,'domain');
+                                        const url = "https://"+domain+"/service/service.svc/"
+                                        localStorage.setItem("URL", url);
+                                        data = await getDM(
+                                            "DM_WORKSTATION",
+                                            "WORKSTATION_ID='" + decodedText + "'", 
+                                            url
+                                        );
+                                        workstation = decodedText;
+                                        document.getElementById("result-form").classList.remove("d-none");
+                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                    } else {
+                                        toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                                    }
+                                    console.log(decodedText.length, data);
+                                    
                                     
                                     if (data.data != []) {
-                                        //document.getElementById("truycap").disabled = false;
-                                        matram = resultArray[1];
-                                        const value = data.data;
-                                        document.getElementById("result-form-stationID").value = resultArray[1];
+
+                                        document.getElementById("result-truycap").disabled = false;
+                                        matram = workstation
+                                        const value = await getDomain(decodedText);
+                                        // const value = data.data;
+                                        document.getElementById("result-form-stationID").value = workstation;
                                         document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
                                         checkCam = true;
                                         toastr.success("Quét QR thành công");
-                                        localStorage.setItem("MATRAM", resultArray[1]);
+                                        localStorage.setItem("MATRAM", workstation);
                                     }
                                 }).catch(err => {
                                     //$("#result").text("Không thể quét QR từ hình ảnh.");
@@ -1968,7 +2067,7 @@
             // Get the current y position of the dragger using gsap.getProperty
             var draggerY = gsap.getProperty(dragger, 'y');
             liquidId = Math.abs(Math.round(draggerY / step));
-            label.textContent = liquidId + '°C';
+            label.textContent = liquidId + '°C';;
 
             gsap.to(liquid, {
                 y: draggerY * 1.12,
@@ -2019,9 +2118,15 @@
             ease: 'expo.inOut',
             duration: 1.4
         });
-        function setRangeValue(value) {
+        function setRangeValue(value, type) {
             // Chuyển đổi giá trị value từ 0-100 thành vị trí y tương ứng
-            var newY = value * (minDragY / 50);
+            var newY
+            if(type == 'success'){
+                newY = value * (minDragY / 50);
+            } else {
+                newY = 1 * (minDragY / 50);
+            }
+            
 
             // Cập nhật vị trí của dragger và các phần liên quan
             gsap.to(dragger, {
