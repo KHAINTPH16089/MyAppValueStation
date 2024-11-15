@@ -2024,11 +2024,13 @@
         }
 
         function adjustFooter() {
-            const footer = document.querySelector('.footer');
+            const footer = document.querySelector('.footer-instruct');
             const windowHeight = window.innerHeight;
 
             window.addEventListener('resize', () => {
                 if (window.innerHeight < windowHeight) {
+                    console.log(window.innerHeight, windowHeight);
+                    
                     // Keyboard is visible, hide or adjust footer
                     footer.style.display = 'none'; // You can also reposition it instead of hiding
                 } else {
