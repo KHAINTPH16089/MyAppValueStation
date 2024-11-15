@@ -1052,7 +1052,7 @@
 
                 </div>
                 <div class="footer-instruct" style="height: 50px; background-color: #444;">
-                    <p id="footer-stationName" style="font-size: 20px;">text</p>
+                    <p id="footer-stationName" style="font-size: 20px;"></p>
                 </div>
             </div>
         </div>
@@ -1105,28 +1105,21 @@
         </div>
         <input type="file" id="file-input" accept="image/*">
     </div>
-    <button id="button-modal-loading" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-      
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
+
+    <div id="loading-popup" class="modal">
+        <div class="modal-content" style="width: 80%; margin-top: 50px; margin-left: 10%;">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title" id="exampleModalLabel">Đang tải dữ liệu...</h5>
+              <button id="button-modal-close" type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
           </div>
-        </div>
-      </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
@@ -1188,6 +1181,14 @@
             document.getElementById("ScanQR").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
             matram = localStorage.getItem("MATRAM");
+            $("button-modal-loading").click();
+            $("#loading-popup").modal({
+                fadeDuration: 250,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
+            
             getDataMonitoring();
         }
         function scanAgain() {
@@ -1234,6 +1235,7 @@
             scanAgain()
         });
         $("#result-truycap").click(function() {
+            document.getElementById("result-truycap").disabled = true;
             truyCap()
         });
         function pickApp(type) {
@@ -1282,14 +1284,14 @@
                 //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
                 document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_NAME+"["+data[0].WORKSTATION_ID+"]";
                 localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
-                // toastr.success("Truy cập thành công!");
-                // truyCap()
+                toastr.success("Truy cập thành công!");
+                truyCap()
             }
         }
 
         async function getDomain (workstationID, type){
             return new Promise( async (resolve, reject)  => {
-                var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
+                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
                 var domain;
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
@@ -1403,6 +1405,7 @@
                 const path = document.querySelector("#mySvg path");
                 path.setAttribute("fill", "#007bff");
             }
+            $('#loading-popup').modal('hide');
         }
 
         function updateProgressBar(id, min, max, temp, Unit) {
@@ -1555,8 +1558,7 @@
         }
 
         function getDataStation(workstationID, domain) {
-            //var listDomain = ["namdinh.homeos.vn","ninhbinh.homeos.vn"]
-            //const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
+            
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: "https://"+domain+"/Service/Service.svc/ApiServicePublic/" + "GetDataWorkStation" + "/" + "WORKSTATION_ID='" + workstationID + "'",
@@ -1575,9 +1577,9 @@
                         // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
                     },
                     error: function (e, t, x) {
-                        HomeOS.Service.SetActionControl(true);
-                        HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                        reject(e); // Trả về lỗi nếu thất bại
+                        // HomeOS.Service.SetActionControl(true);
+                        // HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                        //reject(e); // Trả về lỗi nếu thất bại
                     },
                 });
             });
@@ -1848,7 +1850,7 @@
             let data;
             let domain;
             let workstation;
-            if(decodedText.length < 6){
+            if(decodedText.length > 6){
                 var resultArray = decodedText.split("$");
                 localStorage.setItem("URL", resultArray[0]);
                 data = await getDM(
@@ -1879,7 +1881,7 @@
             if (data.data != []) {
                 document.getElementById("result-truycap").disabled = false;
                 matram = workstation;
-                const value = await getDomain(decodedText);
+                const value = await getDomain(workstation);
                 document.getElementById("result-form-stationID").value = workstation;
                 document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
                 document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+workstation+"]";
@@ -1919,7 +1921,7 @@
                                     let data;
                                     let domain;
                                     let workstation;
-                                    if(decodedText.length < 6){
+                                    if(decodedText.length > 6){
                                         var resultArray = decodedText.split("$");
                                         localStorage.setItem("URL", resultArray[0]);
                                         data = await getDM(
@@ -1948,14 +1950,14 @@
                                     console.log(decodedText.length, data);
                                     
                                     
-                                    if (data.data != []) {
+                                    if (data != []) {
 
                                         document.getElementById("result-truycap").disabled = false;
                                         matram = workstation
-                                        const value = await getDomain(decodedText);
-                                        // const value = data.data;
+                                        const value = await getDomain(workstation);
                                         document.getElementById("result-form-stationID").value = workstation;
                                         document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                                        document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+workstation+"]";
                                         checkCam = true;
                                         toastr.success("Quét QR thành công");
                                         localStorage.setItem("MATRAM", workstation);
