@@ -1,420 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
-
+    <title>Custom Waves</title>
     <style>
-        body {
-            background-color: #FCEFD6;
-            overflow: hidden;
-            text-align: center;
+        @import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+        :root {
+            --wave-height: 40vh; /* Thay đổi giá trị này để điều chỉnh chiều cao */
         }
 
-        body,
-        html {
-            height: 100%;
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-size: 48px;
+        }
+
+        p {
+            font-family: 'Lato', sans-serif;
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .header {
+            position: relative;
+            text-align: center;
+            background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+            color: white;
+        }
+
+        .logo {
+            width: 50px;
+            fill: white;
+            padding-right: 15px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .inner-header {
+            height: 65vh;
             width: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
         }
 
-        svg {
-
-            width: 100px;
-            height: 250px;
-
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .label {
-            fill: #FFFCF9;
-            font-size: 1.8em;
-            font-family: "din-condensed-web", sans-serif;
-            /* font-family: "filson-soft", sans-serif; */
-            text-anchor: middle;
-            letter-spacing: 1.2px;
+        .waves {
+            position: relative;
+            width: 100%;
+            height: var(--wave-height); /* Sử dụng biến CSS */
+            margin-bottom: -7px;
+            min-height: 100px;
+            max-height: 300px;
         }
 
-
-        .tubeLabel {
-            fill: #FCEFD6;
-            font-size: 1.4em;
-            font-family: "din-condensed-web", sans-serif;
-            /* font-family: "filson-soft", sans-serif; */
-            text-anchor: middle;
+        .content {
+            position: relative;
+            height: 20vh;
+            text-align: center;
+            background-color: white;
         }
 
-        .dragger {
-            -webkit-tap-highlight-color: transparent;
+        /* Animation */
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+
+        .parallax > use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+
+        .parallax > use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+
+        .parallax > use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+
+        .parallax > use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        @keyframes move-forever {
+            0% {
+                transform: translate3d(-90px, 0, 0);
+            }
+            100% {
+                transform: translate3d(85px, 0, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .waves {
+                height: calc(var(--wave-height) / 2);
+            }
+
+            .content {
+                height: 30vh;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
-
 <body>
-    <video id="scanner" class="video-back" playsinline></video>
-    <div>
-        <h1>
-            test
-        </h1>
-        <button onclick="setRangeValue(20)">click</button>
+    <div class="header">
+        <div class="inner-header flex">
+            <svg version="1.1" class="logo" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" xml:space="preserve">
+                <path fill="#FFFFFF" stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M57,283" />
+                <g>
+                    <path fill="#fff"
+                        d="M250.4,0.8C112.7,0.8,1,112.4,1,250.2c0,137.7,111.7,249.4,249.4,249.4c137.7,0,249.4-111.7,249.4-249.4
+                        C499.8,112.4,388.1,0.8,250.4,0.8z M383.8,326.3c-62,0-101.4-14.1-117.6-46.3c-17.1-34.1-2.3-75.4,13.2-104.1
+                        c-22.4,3-38.4,9.2-47.8,18.3c-11.2,10.9-13.6,26.7-16.3,45c-3.1,20.8-6.6,44.4-25.3,62.4c-19.8,19.1-51.6,26.9-100.2,24.6l1.8-39.7		c35.9,1.6,59.7-2.9,70.8-13.6c8.9-8.6,11.1-22.9,13.5-39.6c6.3-42,14.8-99.4,141.4-99.4h41L333,166c-12.6,16-45.4,68.2-31.2,96.2	c9.2,18.3,41.5,25.6,91.2,24.2l1.1,39.8C390.5,326.2,387.1,326.3,383.8,326.3z" />
+                </g>
+            </svg>
+            <h1>Custom Waves</h1>
+        </div>
+
+        <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="70" y="0" fill="rgba(255,255,255,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+            </svg>
+        </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="250 200 200 200">
-        <defs>
-            <linearGradient id="liquidGrad" x1="557" y1="150" x2="557" y2="546" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#FF0909" />
-                <stop offset="0.2" stop-color="#F3481A" />
-                <stop offset="0.5" stop-color="#FABA2C" />
-                <stop offset="1" stop-color="#00BCF2" />
-            </linearGradient>
-            <rect id="tube" x="357" y="150" width="60" height="400" rx="43" ry="43" />
-            <clipPath id="liquidMask">
-                <use xlink:href="#tube" class="liquidMask" />
-            </clipPath>
-            <clipPath id="tubeMask">
-                <use xlink:href="#tube" class="liquidMask" />
-            </clipPath>
-            <path id="liquid" d="M757,552v490H357V552c50,0,50,20,100,20s50-20,100-20,50,20,100,20S707,552,757,552Z" />
-            <mask id="gradMask">
 
-                <use xlink:href="#liquid" class="liquid" x="0" fill="#FCEFD6" />
-                <use xlink:href="#liquid" class="liquid" x="0" fill="#EEE" opacity="0.7" />
-
-            </mask>
-        </defs>
-
-
-        <g class="whole" transform="translate(0, -40)">
-
-            <use xlink:href="#tube" class="tubeBg" fill="#C8D9D3" opacity="0.61" />
-
-            <g class="dragger" transform="translate(-6, 0)">
-                <circle cx="294" cy="540" r="36" fill="#3A3335" />
-                <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#3A3335" />
-                <text class="label" x="294" y="551">100</text>
-                <!--  <path id="dragShine" d="M330,540c-26,2-18-44-72,0a36,36,0,0,1,72,0Z" fill="#E9E9E9" opacity="0.052"/>    -->
-            </g>
-
-
-            <g mask="url(#gradMask)">
-                <use xlink:href="#tube" fill="url(#liquidGrad)" />
-            </g>
-            <line class="tubeShine" x1="371" y1="200" x2="371" y2="443" fill="none" stroke="#FFF" stroke-linecap="round"
-                stroke-miterlimit="10" stroke-width="8" opacity="0.21" stroke-dasharray="153 30"
-                stroke-dashoffset="-20" />
-            <!--        <text class="tubeLabel" x="400" y="180">100°</text>
-              <text class="tubeLabel" x="400" y="356">50°</text>
-              <text class="tubeLabel" x="400" y="540">0°</text> -->
-            <g class="measurements" fill="none" stroke="#FCEFD6" stroke-width="3" stroke-linecap="round" opacity="1">
-                <line x1="358" y1="196" x2="370" y2="196" />
-                <line x1="358" y1="234" x2="370" y2="234" />
-                <line x1="358" y1="273" x2="370" y2="273" />
-                <line x1="358" y1="311" x2="370" y2="311" />
-                <line x1="358" y1="350" x2="370" y2="350" />
-                <line x1="358" y1="388" x2="370" y2="388" />
-                <line x1="358" y1="426" x2="370" y2="426" />
-                <line x1="358" y1="465" x2="370" y2="465" />
-                <line x1="358" y1="503" x2="370" y2="503" />
-            </g>
-
-            <!--  <rect class="tubeShine" x="372" y="162" width="56" height="364.02" rx="31.5" ry="31.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="8" stroke-linecap="round" stroke-dasharray="15 30" opacity="0.31"/> -->
-            <circle class="follower" cx="400" cy="540" r="0" fill="#62B6CB" fill-opacity="1" stroke="#FCEFD6"
-                stroke-width="0" />
-
-
-
-
-        </g>
-    </svg>
-    <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script>
-        var xmlns = "http://www.w3.org/2000/svg",
-            xlinkns = "http://www.w3.org/1999/xlink",
-            select = function (s) {
-                return document.querySelector(s);
-            },
-            selectAll = function (s) {
-                return document.querySelectorAll(s);
-            },
-            liquid = selectAll('.liquid'),
-            tubeShine = select('.tubeShine'),
-            label = select('.label'),
-            follower = select('.follower'),
-            dragger = select('.dragger'),
-            dragTip = select('.dragTip'),
-            minDragY = -380,
-            liquidId = 0,
-            step = Math.abs(minDragY / 50),
-            snap = Math.abs(minDragY / 10),
-            followerVY = 0;
-
-        gsap.set('svg', { visibility: 'visible' });
-        gsap.set(dragTip, { transformOrigin: '20% 50%' });
-
-        var tl = gsap.timeline();
-        tl.to(liquid, { x: '-=200', ease: 'none', repeat: -1, stagger: 0.9 });
-
-        tl.time(100);
-
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-        });
-
-        Draggable.create(dragger, {
-            type: 'y',
-            bounds: { minY: minDragY, maxY: 0 },
-            onDrag: onUpdate,
-            throwProps: true,
-            throwResistance: 2300,
-            onThrowUpdate: onUpdate,
-            overshootTolerance: 0,
-            snap: function (value) {
-                // Optional: snap to steps of 10
-                // return Math.round(value / snap) * snap;
-            }
-        });
-
-        function onUpdate() {
-            // Get the current y position of the dragger using gsap.getProperty
-            var draggerY = gsap.getProperty(dragger, 'y');
-            liquidId = Math.abs(Math.round(draggerY / step));
-            label.textContent = liquidId + '°';
-
-            gsap.to(liquid, {
-                y: draggerY * 1.12,
-                ease: 'elastic.out(1, 0.4)',
-                duration: 1.3
-            });
-        }
-
-        gsap.to(follower, {
-            y: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                y: function (y) {
-                    var draggerY = gsap.getProperty(dragger, 'y');
-                    followerVY += (draggerY - gsap.getProperty(follower, 'y')) * 0.23;
-                    followerVY *= 0.69;
-                    return gsap.getProperty(follower, 'y') + followerVY;
-                }
-            }
-        });
-
-        gsap.to(dragTip, {
-            rotation: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                rotation: function (rotation) {
-                    return rotation - followerVY;
-                }
-            }
-        });
-
-        gsap.to(label, {
-            y: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                y: function (y) {
-                    return y - followerVY * 0.5;
-                }
-            }
-        });
-
-        gsap.to(dragger, {
-            y: minDragY / 2,
-            onUpdate: onUpdate,
-            ease: 'expo.inOut',
-            duration: 1.4
-        });
-        function setRangeValue(value) {
-            // Chuyển đổi giá trị value từ 0-100 thành vị trí y tương ứng
-            var newY = value * (minDragY / 100);
-
-            // Cập nhật vị trí của dragger và các phần liên quan
-            gsap.to(dragger, {
-                y: newY,
-                onUpdate: onUpdate, // Gọi lại onUpdate để cập nhật các phần khác
-                ease: "expo.inOut",
-                duration: 1.0 // Tốc độ di chuyển
-            });
-        }
-        setRangeValue(10)
-
-
-        testQrCode("scanner", 250)
-        var self;
-        isQRScannerInitialised = false;
-        function testQrCode(textBoxId,DivWidth){
-            self = initialiseQRScanner(DivWidth);
-            
-            self.scanner.addListener('scan', function (content, image) {
-                if(textBoxId == $("#hiddenTextBox").val()){
-                        audio.play();
-                        var code = content;
-                        $("#"+textBoxId).val(code);
-                        isQRScannerInitialised = false;
-                        
-                    }
-                    
-            }, false);
-            
-        }
-
-        function initialiseQRScanner(DivWidth){
-            
-            self = this;
-            
-            if(isQRScannerInitialised == false){
-                
-                var tempVideo = document.getElementsByTagName("video")[0];
-                tempVideo.width=DivWidth;
-                tempVideo.height=480;
-                
-                self.scanner = new Instascan.Scanner({ video: document.getElementsByTagName("video")[0],mirror:false, scanPeriod: 1});
-                
-                Instascan.Camera.getCameras().then(function (cameras) {
-                    self.cameras = cameras;
-                    if (self.cameras.length > 0) {
-                        if(cameras[0].name.match(/back/) || cameras[0].name.match(/Back/)){
-                            self.activeCameraId = cameras[0].id;
-                            self.scanner.start(cameras[0]);
-                        } else if(cameras[1].name.match(/back/) || cameras[1].name.match(/Back/)){
-                            self.activeCameraId = cameras[1].id;
-                            self.scanner.start(cameras[1]);
-                        }
-                        isQRScannerInitialised = true;
-                        
-                    } else {
-                        
-                        alert('No cameras found.');
-                        isQRScannerInitialised = false;
-                        return;
-                    }
-                }).catch(function (e) { 
-                        isQRScannerInitialised = false;
-                        alert("QR error name:-"+e.name + " & QR error message:-"+e.message); console.error(e); 
-                    });
-                
-            }
-            return self;
-        }
-        function startCam() {
-            var scanner = new Instascan.Scanner({
-                video: document.getElementById("preview"),
-                scanPeriod: 4, mirror:false,
-            });
-            if (checkCam == true) {
-                // var scanner = new Instascan.Scanner({
-                //     video: document.getElementById("preview"),
-                // });
-                let cameras = [];
-                let currentCameraIndex = 0;
-                // Lấy danh sách camera
-
-                Instascan.Camera.getCameras().then(function (availableCameras) {
-                    // cameras = availableCameras;
-                    // if (cameras.length > 0) {
-                    //     // Tìm camera sau (facing: environment) nếu có
-                    //     currentCameraIndex = cameras.findIndex(camera => camera.name.toLowerCase().includes('back')) || 0;
-
-                    //     // Khởi động quét với camera tìm thấy
-                    //     scanner.start(cameras[currentCameraIndex]).then(() => {
-                    //         startScanning();
-                    //     }).catch(err => {
-                    //         console.error('Lỗi khi khởi động camera:', err);
-                    //         document.getElementById('result').innerText = 'Không thể truy cập camera.';
-                    //     });
-                    // } else {
-                    //     console.error('No cameras found.');
-                    //     document.getElementById('result').innerText = 'No cameras found.';
-                    // }
-
-                    cameras = availableCameras;
-                    if (cameras.length > 0) {
-                        scanner.start(cameras[0]);
-                        // scanner.start(cameras[currentCameraIndex]);
-                    } else {
-                        console.error('No cameras found.');
-                        document.getElementById('result').innerText = 'No cameras found.';
-                    }
-                }).catch(function (e) {
-                    console.error(e);
-                    // document.getElementById('result').innerText = 'Error accessing camera.';
-                });
-                document.getElementById('switch-btn').classList.remove("d-none")
-                // Nút chuyển camera
-                document.getElementById('switch-btn').addEventListener('click', function () {
-                    if (cameras.length > 1) {
-                        currentCameraIndex = (currentCameraIndex + 1) % cameras.length;
-                        scanner.start(cameras[currentCameraIndex]);
-                    }
-                });
-                scanner.addListener("scan", async function (content) {
-                    const data = await getDM(
-                        "DM_WORKSTATION",
-                        "WORKSTATION_ID='" + content + "'"
-                    );
-                    console.log(data);
-
-                    if (data.data != []) {
-                        document.getElementById("truycap").disabled = false;
-                        matram = content;
-                        const value = data.data;
-                        document.getElementById("result").innerText = `Trạm: ${content + " " + value[0].WORKSTATION_NAME}`;
-                        checkCam = true;
-                        document.getElementById('switch-btn').classList.add("d-none")
-                        scanner.stop().then(() => {
-                            console.log('Quét đã dừng.');
-                            //document.getElementById('result').innerText = 'Quét đã dừng.';
-
-                            // Dừng video và làm trống video
-                            let videoElement = document.getElementById('preview');
-                            videoElement.srcObject = null;
-                            isScanning = false; // Đánh dấu trạng thái dừng quét
-                        }).catch(err => {
-                            console.error('Lỗi khi dừng quét:', err);
-                        });
-                        const button = document.getElementById("start");
-                        button.textContent = "Bắt đầu quét";
-                        button.style.background = "#0d6efd";
-                        button.style.border = 'none'
-                        toastr.success("Quét QR thành công");
-                    }
-                });
-                checkCam = false
-                const button = document.getElementById("start");
-                button.textContent = "Dừng Quét";
-                button.style.background = "#ef5a2a";
-                button.style.border = 'none'
-            } else {
-                checkCam = true;
-                document.getElementById('switch-btn').classList.add("d-none")
-                scanner.stop().then(() => {
-                    console.log('Quét đã dừng.');
-                    //document.getElementById('result').innerText = 'Quét đã dừng.';
-
-                    // Dừng video và làm trống video
-                    let videoElement = document.getElementById('preview');
-                    videoElement.srcObject = null;
-                    isScanning = false; // Đánh dấu trạng thái dừng quét
-                }).catch(err => {
-                    console.error('Lỗi khi dừng quét:', err);
-                });
-                const button = document.getElementById("start");
-                button.textContent = "Bắt đầu quét";
-                button.style.background = "#0d6efd";
-                button.style.border = 'none'
-            }
-        }
-
-    </script>
+    <div class="content flex">
+        <p>By Goodkatz | Free to use </p>
+    </div>
+<script>
+    document.documentElement.style.setProperty('--wave-height', '20vh');
+</script>
 </body>
-
 </html>

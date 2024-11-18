@@ -3,19 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Centered Modal</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Modal toàn màn hình */
+        .modal {
+            display: none; /* Ẩn modal mặc định */
+            position: fixed;
+            z-index: 1060;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+            display: flex;
+            justify-content: center; /* Căn giữa ngang */
+            align-items: center; /* Căn giữa dọc */
+        }
+        
+
+        /* Nội dung modal */
+        .modal-content {
+            width: 500px; /* Chiều rộng cố định */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Responsive: Chiều rộng giảm trên màn hình nhỏ */
+        @media (max-width: 520px) {
+            .modal-content {
+                width: 90%; /* Chiếm 90% chiều rộng màn hình */
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <div id="loading-popup" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Đang tải dữ liệu...</h5>
+                    <button id="button-modal-close" type="button" aria-label="Close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        const script = document.createElement("script");
-        script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
-        script.onload = function() {
-            $.ajaxSetup({ cache: false });
-            // $("#app").load("https://central.homeos.vn/singlepage/workstation/index.html");
-            $("#app").load("https://my-app-value-station.vercel.app/");
+        // Hiển thị modal
+        const showModal = () => {
+            document.getElementById('loading-popup').style.display = 'flex';
         };
-        document.head.appendChild(script);
+
+        // Ẩn modal
+        const hideModal = () => {
+            document.getElementById('loading-popup').style.display = 'none';
+        };
+
+        // Event listener để đóng modal
+        document.getElementById('button-modal-close').addEventListener('click', hideModal);
+
+        // Test hiển thị modal
+        showModal();
     </script>
 </body>
 </html>

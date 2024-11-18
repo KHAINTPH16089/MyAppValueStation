@@ -290,7 +290,7 @@
             padding: .5rem;
             position: relative;
             width: 100%;
-            cursor: 'pointer';
+            cursor: pointer;
         }
 
         .pickApp-title h4 {
@@ -571,24 +571,22 @@
         position: fixed;
     }
 
+    #LoadScreen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Xếp logo và chấm động theo chiều dọc */
+    }
+
     #LogoLoadScreen {
-            position: absolute;
-            top: 40%;
-            left: 25%;
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 1001; /* Đảm bảo nút ở trên cùng */
-            text-align: center;
+            width: 200px;
         }
         .dots-container {
-            position: absolute;
-            top: -2%;
-            left: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+            display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
     }
 
     .dot {
@@ -752,8 +750,8 @@
 
 <body>
     <div class="app h-100">
-        <div id="LoadScreen" style="background-color: #1E2833;">
-            <img id="LogoLoadScreen" src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
+        <div id="LoadScreen">
+            <img id="LogoLoadScreen" src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200">
             <img id="img-station" class="hidden full-screen-img" src="https://central.homeos.vn/images/MiniAppLoadingScreen.png" alt="Full Screen">
             <div id="" class=" dots-container">
                 <div class="dot">.</div>
@@ -789,7 +787,7 @@
                         </div>
                     </div>
                     <div class="col-12" style="padding: 10px;">
-                        <div class="iconApp">
+                        <div id="PickApp-button-IOT" class="iconApp">
                             <div class="icon" style="background-color: #da4a58!important;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                                     style="color: #fff;" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
@@ -1080,66 +1078,67 @@
         <div id="">
 
         </div>
-    </div>
-    <div id="qr-popup" class="modal">
-        <div id="qr-reader"></div>
-        <button id="close-scanner">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-            </svg>
-        </button>
-        <button id="toggle-camera">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
-            </svg>
-        </button>
-        <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
-         
-        <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
-            <div id="result-form-group">
-                <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                <div class="d-flex justify-content-between pt-2" >
-                    <button id="result-scanagain" class="btn"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                    <button id="result-truycap" disabled class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+        <div id="qr-popup" class="modal">
+            <div id="qr-reader"></div>
+            <button id="close-scanner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+            </button>
+            <button id="toggle-camera">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+            </button>
+            <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
+             
+            <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
+                <div id="result-form-group">
+                    <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                    <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
+                    <div class="d-flex justify-content-between pt-2" >
+                        <button id="result-scanagain" class="btn"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                        <button id="result-truycap" disabled class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="upload-qr">
+                <p>Di chuyển camera đến mã QR để quét hoặc</p>
+                <div class="d-flex justify-content-center">
+                    <button style="margin-right: 5px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>
+                            <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
+                        </svg>
+                    </button> 
+                    <p style="margin-top: 10px;">Tải hình ảnh lên</p>
                 </div>
             </div>
-            
-        </div>
-        <div id="upload-qr">
-            <p>Di chuyển camera đến mã QR để quét hoặc</p>
-            <div class="d-flex justify-content-center">
-                <button style="margin-right: 5px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>
-                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-                    </svg>
-                </button> 
-                <p style="margin-top: 10px;">Tải hình ảnh lên</p>
-            </div>
-        </div>
-        <div id="footer-instruct-scanQR" class="d-none footer-instruct">
-            <div class="step">
-                <div class="circle">03</div>
-            </div>
-            <p>Truy cập xem thông tin hoặc nhấn quét lại</p>
-        </div>
-        <input type="file" id="file-input" accept="image/*">
-    </div>
-
-    <div id="loading-popup" class="modal">
-        <div class="modal-content" style="width: 80%; margin-top: 50px; margin-left: 10%;">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Đang tải dữ liệu...</h5>
-              <button id="button-modal-close" type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            <div id="footer-instruct-scanQR" class="d-none footer-instruct">
+                <div class="step">
+                    <div class="circle">03</div>
                 </div>
+                <p>Truy cập xem thông tin hoặc nhấn quét lại</p>
             </div>
-          </div>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+    
+        <div id="loading-popup" class="modal">
+            <div class="modal-content" style="width: 80%; margin-top: 50px; margin-left: 10%;">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Đang tải dữ liệu...</h5>
+                  <button id="button-modal-close" type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+              </div>
+        </div>
     </div>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -1183,7 +1182,7 @@
         // Mặc định mở tab đầu tiên
         
         setTimeout(() => {
-            document.getElementById("LoadScreen").classList.add("hidden");
+            document.getElementById("LoadScreen").classList.add("d-none");
             document.getElementById("LogoLoadScreen").classList.add("hidden");
             document.getElementById("pickApp").classList.remove("hidden");
         }, 2000);
@@ -1214,6 +1213,9 @@
         $("#PickApp-button-mua").click(function() {
             pickApp('MUA');
         });
+        $("#PickApp-button-IOT").click(function() {
+            pickApp('IOT');
+        });
         $("#PickApp-button-pick").click(function() {
             pickApp('PICK')
         });
@@ -1224,12 +1226,6 @@
             openTab(event, 'tab2')
         });
         $("#truycap").click(function() {
-            $("#loading-popup").modal({
-                fadeDuration: 250,
-                escapeClose: false,
-                clickClose: false,
-                showClose: false
-            });
             getInputValue()
         });
         $("#ScanQRNext").click(function() {
@@ -1266,25 +1262,27 @@
         });
         function pickApp(type) {
             if (type == 'MUA') {
-                document.getElementById("LoadScreen").classList.remove("hidden");
+                document.getElementById("LoadScreen").classList.remove("d-none");
                 document.getElementById("img-station").classList.remove("hidden");
                 document.getElementById("pickApp").classList.add("hidden");
                 setTimeout(() => {
-                    document.getElementById("LoadScreen").classList.add("hidden");
+                    document.getElementById("LoadScreen").classList.add("d-none");
                     document.getElementById("img-station").classList.add("hidden");
                     document.getElementById("ScanQR").classList.remove("hidden");
                     document.querySelector(".tablinks").click();
                 }, 2000);
                
-                // document.getElementById("pickApp").classList.add("hidden");
-                // document.getElementById("ScanQR").classList.remove("hidden");
+            } else if (type == 'IOT'){
+                console.log(1);
+                
+                window.location.href="http://devices-ag.homeos.vn/Device.html";
             } else if ('PICK') {
                 document.getElementById("pickApp").classList.remove("hidden");
                 document.getElementById("ScanQR").classList.add("hidden");
             }
         }
         async function CheckWorkStation (workstationID){
-            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn"]
+            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn", "cctl-dongthap.homeos.vn"]
             var domain;
             var data;
             for (let i = 0; i < listDomain.length; i++) {
@@ -1300,10 +1298,9 @@
                     break;
                 }
             }
-            console.log(domain);
-            
             if(domain == ''){
                 toastr.error("Mã trạm không tồn tại");
+                $('#loading-popup').modal('hide');
             } else {
                 console.log(domain);
                 localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
@@ -1317,7 +1314,7 @@
 
         async function getDomain (workstationID, type){
             return new Promise( async (resolve, reject)  => {
-                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn","ninhbinh.homeos.vn"]
+                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn","ninhbinh.homeos.vn","cctl-dongthap.homeos.vn"]
                 var domain;
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
@@ -2067,6 +2064,12 @@
             if(inputValue == null || inputValue==""){
                 toastr.error("Vui lòng nhập mã trạm!");
             } else {
+                $("#loading-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
                 CheckWorkStation(inputValue)
             }
         }
