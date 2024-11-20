@@ -745,6 +745,31 @@
         #qr-shaded-region {
             border-width: 35vh 10vh !important;
         }
+
+        /* history */
+        .history-header {
+            text-align: center;
+            padding: 0 10px 0 20px;
+            max-width: 400px;
+            width: 100%;
+            background-color: #1E2833;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #history-avt {
+            line-height: 50px;
+        }
+        #history-avt img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+        #history-avt p {
+            margin-left: 10px;
+            color: white;
+        }
     </style>
 </head>
 
@@ -764,7 +789,7 @@
                 <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
                     style="padding-bottom: 3rem;">
                     <div style="text-align: start; color: white;">
-                        <h5>Thiết bị sử dụng:</h5>
+                        <h5>Ứng dụng:</h5>
                     </div>
                 <div class="row">
                     <div class="col-12" style="padding: 10px;">
@@ -781,7 +806,10 @@
                                 </div>
                             </div>
                             <div class="info-box-content">
-                                <span class="app-text">Đo mưa</span>
+                                <div class="d-flex justify-content-between">
+                                    <span class="app-text">Môi trường</span>
+                                    <span class="app-text">Phiên bản: 1.0.5</span>
+                                </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
                         </div>
@@ -796,7 +824,10 @@
                                 </svg>
                             </div>
                             <div class="info-box-content">
-                                <span class="app-text">Thiết bị</span>
+                                <div class="d-flex justify-content-between">
+                                <span class="app-text">Web OS</span>
+                                    <span class="app-text">Phiên bản: 4.56 Pro</span>
+                                </div>
                                 <span class="app-text-number">IIoT</span>
                             </div>
                         </div>
@@ -809,7 +840,10 @@
                                 </svg>
                             </div>
                             <div class="info-box-content">
-                                <span class="app-text">Đèn</span>
+                                <div class="d-flex justify-content-between">
+                                    <span class="app-text">Đèn</span>
+                                    <span class="app-text">Phiên bản: 6.10.24</span>
+                                </div>
                                 <span class="app-text-number">Chiếu sáng thông minh</span>
                             </div>
                         </div>
@@ -820,6 +854,49 @@
                         <div class="circle">01</div>
                     </div>
                     <p>chọn thiết bị muốn xem</p>
+                </div>
+            </div>
+        </div>
+        <div id="history" class="hidden h-100">
+            <div class="container" style="padding: 0;">
+                <div class="history-header">
+                    <div id="history-avt" class="d-flex">
+                        <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
+                        <p>User name</p>
+                    </div>
+                    <div>
+                        <div style="line-height: 50px; float: left;">
+                            <button id="PickApp-button-scanQR"
+                                style="height: 40px; border: none; background-color: #1E2833;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div style="line-height: 50px; float: left;">
+                            <button id="Pre-pickApp"
+                                style="height: 40px; border: none; background-color: #1E2833;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-body" style="padding: 0 20px 0 20px;">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
+                    <div class="d-flex" style="color: #fff;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pc-horizontal" viewBox="0 0 16 16">
+                            <path d="M1 6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zm11.5 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1M1 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5M1.25 9h5.5a.25.25 0 0 1 0 .5h-5.5a.25.25 0 0 1 0-.5"/>
+                        </svg>
+                        <h5 style="padding-left: 10px;">Quan trắc:</h5>
+                    </div>
+                    <!-- <div style="width: 100%;">
+                        <p style="color: #fff; float: left;">Trạm đo mưa</p>    
+                    </div> -->
+                    <div id="history-detail" style="margin-top: 10px;">
+                        <p style="color: #fff; margin-top: 30px;">Lịch sử truy cập trống</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1150,6 +1227,12 @@
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         $( document ).ready(function() {
+            var historyItems = [];
+            var historyListDetail = $('#history-detail');
+            var NameWorkStation;
+            // var user_id = "admin";
+            // var session = "7b504acc-988a-437a-890f-389765305b47";
+
             const buttons = document.querySelectorAll(".btn-chart");
             console.log(buttons);
             
@@ -1185,12 +1268,20 @@
             document.getElementById("LoadScreen").classList.add("d-none");
             document.getElementById("LogoLoadScreen").classList.add("hidden");
             document.getElementById("pickApp").classList.remove("hidden");
+            // document.getElementById("history").classList.remove("hidden");
         }, 2000);
 
         var maTram = '';
+        function changeHistory() {
+            document.getElementById("history").classList.remove("hidden");
+            document.getElementById("homePage").classList.add("hidden");
+            maTram = '';
+        }
         function changeQRcode() {
             document.getElementById("ScanQR").classList.remove("hidden");
             document.getElementById("homePage").classList.add("hidden");
+            document.getElementById("history").classList.add("hidden");
+            document.querySelector(".tablinks").click();
             maTram = '';
         }
         function truyCap() {
@@ -1198,10 +1289,11 @@
             document.getElementById("result-form").classList.add("d-none");
             $('#qr-popup').modal('hide');
             document.getElementById("ScanQR").classList.add("hidden");
+            document.getElementById("history").classList.add("hidden");
             document.getElementById("homePage").classList.remove("hidden");
             matram = localStorage.getItem("MATRAM");
             $("button-modal-loading").click();
-            
+            saveHistory(localStorage.getItem('MATRAM'));
             getDataMonitoring();
         }
         function scanAgain() {
@@ -1211,13 +1303,18 @@
             $("#start").click();
         }
         $("#PickApp-button-mua").click(function() {
+            showHistory();
             pickApp('MUA');
         });
         $("#PickApp-button-IOT").click(function() {
             pickApp('IOT');
         });
         $("#PickApp-button-pick").click(function() {
-            pickApp('PICK')
+            showHistory();
+            pickApp('PICK');
+        });
+        $("#Pre-pickApp").click(function() {
+            pickApp('PRE');
         });
         $("#tab-scan-qr").click(function(event) {
             openTab(event, 'tab1')
@@ -1229,7 +1326,7 @@
             getInputValue()
         });
         $("#ScanQRNext").click(function() {
-            changeQRcode()
+            pickApp('HISTORY')
         });
         $("#button-list-ngay").click(function() {
             clickGetData('NGAY')
@@ -1243,12 +1340,11 @@
         $("#button-list-nam").click(function() {
             clickGetData('NAM')
         });
-        $("#close-scanner").click(function() {
-            test()
-        });
-
         $("#result-scanagain").click(function() {
             scanAgain()
+        });
+        $("#PickApp-button-scanQR").click(function() {
+            changeQRcode()
         });
         $("#result-truycap").click(function() {
             document.getElementById("result-truycap").disabled = true;
@@ -1268,21 +1364,25 @@
                 setTimeout(() => {
                     document.getElementById("LoadScreen").classList.add("d-none");
                     document.getElementById("img-station").classList.add("hidden");
-                    document.getElementById("ScanQR").classList.remove("hidden");
-                    document.querySelector(".tablinks").click();
+                    document.getElementById("history").classList.remove("hidden");
                 }, 2000);
                
             } else if (type == 'IOT'){
-                console.log(1);
-                
                 window.location.href="http://devices-ag.homeos.vn/Device.html";
-            } else if ('PICK') {
-                document.getElementById("pickApp").classList.remove("hidden");
+            } else if (type == 'PICK') {
+                document.getElementById("history").classList.remove("hidden");
                 document.getElementById("ScanQR").classList.add("hidden");
+            } else if (type == 'PRE'){
+                document.getElementById("history").classList.add("hidden");
+                document.getElementById("pickApp").classList.remove("hidden");
+            } else if (type == 'HISTORY'){
+                showHistory()
+                document.getElementById("history").classList.remove("hidden");
+                document.getElementById("homePage").classList.add("hidden");
             }
         }
         async function CheckWorkStation (workstationID){
-            var listDomain = ["ninhbinh.homeos.vn","namdinh.homeos.vn", "thoitiet.ifee.edu.vn", "cctl-dongthap.homeos.vn"]
+            var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "ninhbinh.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn"]
             var domain;
             var data;
             for (let i = 0; i < listDomain.length; i++) {
@@ -1294,7 +1394,7 @@
                     domain = ''; 
                 } else {
                     console.log(data);
-                    domain = listDomain[i]
+                    domain = listDomain[i];
                     break;
                 }
             }
@@ -1314,7 +1414,7 @@
 
         async function getDomain (workstationID, type){
             return new Promise( async (resolve, reject)  => {
-                var listDomain = ["namdinh.homeos.vn", "thoitiet.ifee.edu.vn","ninhbinh.homeos.vn","cctl-dongthap.homeos.vn"]
+                var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "ninhbinh.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn"]
                 var domain;
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
@@ -1335,7 +1435,6 @@
                 } else {
                     resolve(data);
                 }
-                
             });
         }
 
@@ -1365,7 +1464,12 @@
 
         function getCurrentTime(time) {
             // Tạo đối tượng Date mới để lấy thời gian hiện tại
-            const now = new Date(time);
+            let now ;
+            if(time){
+                now = new Date(time);
+            } else {
+                now = new Date();
+            }
             
             const ngay = now.getDate(); // Ngày (1-31)
             const thang = now.getMonth() + 1; // Tháng (0-11) nên cần +1
@@ -1381,10 +1485,84 @@
 
             // Hiển thị giờ hiện tại
             document.getElementById("lateDateTime").textContent = chuoiNgay +" "+ currentTime;
+            return chuoiNgay +" "+ currentTime;
         }
 
+        function addItemHistory(item) {
+            const element = $(
+                '<div style="padding-bottom: 10px;" class="history-item" data-code="' + item.CodeWorkStation + '">' +
+                    '<div class="iconApp">' +
+                        '<div class="icon" style="background-color: #28a745 !important;">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: #fff;" fill="currentColor" class="bi bi-cloud-drizzle" viewBox="0 0 16 16">' +
+                                '<path d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m-3.5 1.5a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m.747-8.498a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973M8.5 2a4 4 0 0 1 3.976 3.555.5.5 0 0 0 .5.445H13a2 2 0 0 1 0 4H3.5a2.5 2.5 0 1 1 .605-4.926.5.5 0 0 0 .596-.329A4 4 0 0 1 8.5 2"/>' +
+                            '</svg>' +
+                        '</div>' +
+                        '<div class="info-box-content" style="padding-right: 0">' +
+                            '<div class="d-flex justify-content-between">' +
+                                '<span class="app-text">' + item.CodeWorkStation + '</span>' +
+                                '<span class="app-text" style="padding-right: 0">'+ item.date+'</span>' +
+                            '</div>' +
+                            '<span class="app-text-number">' + item.NameWorkStation + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>'
+            );
+
+            // Gắn sự kiện click cho phần tử
+            element.on('click', function () {
+                handleItemClick(item);
+            });
+
+            historyListDetail.append(element);
+        }
+
+        function handleItemClick(item) {
+            localStorage.setItem("URL", "https://"+item.domain+"/Service/Service.svc");
+            document.getElementById("footer-stationName").textContent = item.NameWorkStation+"["+item.CodeWorkStation+"]";
+            localStorage.setItem("MATRAM", item.CodeWorkStation);
+            const itemHistory = {'CodeWorkStation': item.CodeWorkStation, 'NameWorkStation': item.NameWorkStation, 'domain': item.domain, 'date': getCurrentTime()}
+            localStorage.setItem('itemHistory', JSON.stringify(itemHistory));
+            $("#loading-popup").modal({
+                fadeDuration: 250,
+                escapeClose: false,
+                clickClose: false,
+                showClose: false
+            });
+            truyCap()
+        }
+
+        function showHistory() {
+            historyItems = JSON.parse(localStorage.getItem('dataHistory'));
+            if(historyItems){
+                historyListDetail.empty();
+                console.log(22, historyItems.length);
+                for (let i = historyItems.length - 1; i >= 0; i--) {
+                    console.log(1);
+                    addItemHistory(historyItems[i]);
+                }
+            }
+        }
+
+        function saveHistory(code) {
+            historyItems = JSON.parse(localStorage.getItem('dataHistory'));
+            if(historyItems){
+                historyItems = historyItems.filter(item => item.CodeWorkStation !== code);
+                const item = JSON.parse(localStorage.getItem('itemHistory'));
+                console.log(item);
+                historyItems.push(item);
+                if (historyItems.length > 10) {
+                    historyItems.shift();
+                }
+            } else {
+                historyItems = [];
+                const item = JSON.parse(localStorage.getItem('itemHistory'));
+                historyItems.push(item);
+            }
+            
+            localStorage.setItem('dataHistory', JSON.stringify(historyItems));
+        }
+        
         function changeDataHomePage(data) {
-            console.log(data);
             if(data != [] && data != null && data != ''){
                 let checkRD = false;
                 let checkRT = false;
@@ -1489,9 +1667,6 @@
             }
         }
 
-        var user_id = "admin";
-        // var session = '32085528-628c-449b-996f-a240ad606d1d';
-        var session = "7b504acc-988a-437a-890f-389765305b47";
 
         if (maTram != "") {
             getDataMonitoring();
@@ -1514,14 +1689,14 @@
         var checkCam = true;
         
         function getDM(table_name, c, url) {
-            const d = {
-                Uid: user_id,
-                Sid: session,
-                tablename: table_name,
-                c: c,
-                other: "",
-                cmd: "",
-            };
+            // const d = {
+            //     Uid: user_id,
+            //     Sid: session,
+            //     tablename: table_name,
+            //     c: c,
+            //     other: "",
+            //     cmd: "",
+            // };
 
             //const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
 
@@ -1591,6 +1766,11 @@
                     success: function (msg) {
                         try {
                             let state = JSON.parse(msg);
+                            console.log(state);
+                            if(state != [] && state != "" && state != null && state.length != 0){
+                                const item = {'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime()}
+                                localStorage.setItem('itemHistory', JSON.stringify(item));
+                            }
                             resolve(state); // Trả về dữ liệu khi thành công
                         } catch (error) {
                             reject(error); // Bắt lỗi nếu JSON parse thất bại
@@ -1606,15 +1786,6 @@
                     },
                 });
             });
-            // if(domain == ''){
-            //     toastr.error("mã trạm không tồn tại");
-            // } else {
-            //     console.log(state_station);
-                
-            //     localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
-            //     $("#result").text("Kết quả quét: " + workstationID +"- Trạm");
-            //     toastr.success("Quét QR thành công");
-            // }
             
         }
 
@@ -1664,6 +1835,9 @@
         // Tạo biểu đồ
         ctx.getContext("2d");
         function createNewChart() {
+            if (lineBarChart != null) {
+                lineBarChart.destroy();
+            }
             lineBarChart = new Chart(ctx, {
                 type: "bar", // Chọn loại biểu đồ chính là bar
                 data: {
@@ -1880,10 +2054,6 @@
             }
         });
 
-        function test() {
-            console.log(123);
-            
-        }
         // Khi nhấn nút đóng popup
         $("#close-scanner").click(function() {
             console.log(1);
