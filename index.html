@@ -808,7 +808,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Môi trường</span>
-                                    <span class="app-text">Phiên bản: 1.0.5</span>
+                                    <span class="app-text">v1.0.5</span>
                                 </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
@@ -826,7 +826,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                 <span class="app-text">Web OS</span>
-                                    <span class="app-text">Phiên bản: 4.56 Pro</span>
+                                    <span class="app-text">v4.56 Pro</span>
                                 </div>
                                 <span class="app-text-number">IIoT</span>
                             </div>
@@ -842,7 +842,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Đèn</span>
-                                    <span class="app-text">Phiên bản: 6.10.24</span>
+                                    <span class="app-text">v6.10.24</span>
                                 </div>
                                 <span class="app-text-number">Chiếu sáng thông minh</span>
                             </div>
@@ -891,11 +891,18 @@
                         </svg>
                         <h5 style="padding-left: 10px;">Quan trắc:</h5>
                     </div>
-                    <!-- <div style="width: 100%;">
-                        <p style="color: #fff; float: left;">Trạm đo mưa</p>    
-                    </div> -->
+                    <div style="width: 100%;">
+                        <p style="color: #fff; text-align: left;">Lịch sử truy cập:</p>    
+                    </div>
                     <div id="history-detail" style="margin-top: 10px;">
-                        <p style="color: #fff; margin-top: 30px;">Lịch sử truy cập trống</p>
+                        <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
+                            <button id="addWorkStation" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                                </svg>
+                                Truy cập trạm quan trắc
+                            </button>
+                        </div>                 
                     </div>
                 </div>
             </div>
@@ -1344,6 +1351,9 @@
             scanAgain()
         });
         $("#PickApp-button-scanQR").click(function() {
+            changeQRcode()
+        });
+        $("#addWorkStation").click(function() {
             changeQRcode()
         });
         $("#result-truycap").click(function() {
