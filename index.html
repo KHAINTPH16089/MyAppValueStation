@@ -646,7 +646,7 @@
             padding: 10px 0;
             z-index: 1000;
             color: #fff;
-            height: 120px;
+            height: 100px;
         }
         .step {
             display: flex;
@@ -825,7 +825,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Môi trường</span>
-                                    <span class="app-text">v1.0.5</span>
+                                    <span class="app-text">v1.0.6</span>
                                 </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
@@ -900,18 +900,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="history-body" style="padding: 0 20px 0 20px;">
+                <div class="history-body" style="padding: 0 10px 0 10px;">
                     <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
-                    <div class="d-flex" style="color: #fff;">
+                    <div class="d-flex" style="color: #fff; padding-left: 10px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pc-horizontal" viewBox="0 0 16 16">
                             <path d="M1 6a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1zm11.5 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1m2 0a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1M1 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5M1.25 9h5.5a.25.25 0 0 1 0 .5h-5.5a.25.25 0 0 1 0-.5"/>
                         </svg>
-                        <h5 style="padding-left: 10px;">Quan trắc:</h5>
+                        <h5 style="padding-left: 10px; padding-left: 10px;">Quan trắc:</h5>
                     </div>
-                    <div style="width: 100%;">
+                    <div style="width: 100%; padding-left: 10px;">
                         <p style="color: #fff; text-align: left;">Lịch sử truy cập:</p>    
                     </div>
-                    <div id="history-detail" style="margin-top: 10px;">
+                    <div id="history-detail" style="overflow-y: auto; height: 450px; padding: 10px 10px 0 10px;">
                         <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
                             <button id="addWorkStation" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -921,6 +921,12 @@
                             </button>
                         </div>                 
                     </div>
+                </div>
+                <div id="footer-instruct" class="footer-instruct">
+                    <div class="step">
+                        <div class="circle">02</div>
+                    </div>
+                    <p>Thêm mới mã trạm hoặc chọn trạm đã lưu</p>
                 </div>
             </div>
         </div>
@@ -1284,7 +1290,17 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
-
+        function checkHeight() {
+            const viewportHeight = window.innerHeight;
+            const historyDetail = document.getElementById('history-detail');
+            historyDetail.style.height = (viewportHeight - 340) + 'px';
+        };
+        checkHeight();
+        window.addEventListener('resize', function() {
+            const viewportHeight = window.innerHeight;
+            const historyDetail = document.getElementById('history-detail');
+            historyDetail.style.height = (viewportHeight - 340) + 'px'; // 80% chiều cao của thiết bị
+        });
 
         // Mặc định mở tab đầu tiên
         
