@@ -32,6 +32,17 @@
             color: #1d9b21;
         }
 
+        .container-homePage{
+            text-align: center;
+            background: #1E2833;
+            padding: 0 20px 0 20px;
+            /* border-radius: 10px; */
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+        }
+
         .container {
             height: 100vh;
             text-align: center;
@@ -142,8 +153,8 @@
         }
 
         #boxValue {
-            width: 100px;
-            height: 80px;
+            width: 100%;
+            height: 150px;
             background-color: #242427;
             border: solid 1px #484848;
             box-shadow: 2px 2px #0c0c0c;
@@ -217,11 +228,7 @@
         }
 
         #Chart {
-            margin: 20px 20px 0 20px;
-            background-color: #242427;
-            border: solid 1px #484848;
-            box-shadow: 2px 2px #0c0c0c;
-            border-radius: 10px;
+            margin: 0 20px 0 20px;
         }
 
         .button-list {
@@ -328,7 +335,6 @@
             justify-content: center;
             text-align: center;
             width: 70px;
-            background-color: #17a2b8 !important;
         }
 
         .info-box-content {
@@ -531,113 +537,114 @@
             padding: 20px;
         }
         .form-total{
-    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
-    margin-bottom: 1rem;
-}
-.header-form{
-    background-color: #3f6791;
-    box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
-    border-radius: 4px 4px 0 0;
-    height: 46px;
-    padding: 12px 20px;
-}
-.header-form h3{
-    font-size: 1.1rem;
-    font-weight: 400;
-    color: white;
-}
-.content-form {
-    padding: 1.5rem;
-    color: white; 
-    background-color: #343a40;
-}
-.content-form-help{
-    border-radius: 0 0 4px 4px;
-}
-.content-form .content-detail{
-    text-align: start;
-    margin-bottom: 1rem;
-}
-.content-form .content-detail .content-label{
-    font-weight: 500;
-}
-.content-form .content-detail .content-input{
-    background-color: #343a40;
-    border-color: #6c757d;
-    color: #fff;
-}
-.content-form .content-detail .content-input::placeholder {
-    color: #6c757d;
-}
-.footer-form{
-    padding: .75rem 1.25rem;
-    background-color: #282d31;
-    border-top: 0 solid rgba(0, 0, 0, .125);
-    border-radius: 0 0 4px 4px;
-}
-.footer-form button{
-    color: #fff;
-    background-color: #335476;
-    border-color: #304e6d;
-}
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            margin-bottom: 1rem;
+        }
+        .header-form{
+            background-color: #3f6791;
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            border-radius: 4px 4px 0 0;
+            height: 46px;
+            padding: 12px 20px;
+        }
+        .header-form h3{
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: white;
+        }
+        .content-form {
+            padding: 1.5rem;
+            color: white; 
+            background-color: #242427;
+            border-radius: 0 0 4px 4px;
+        }
+        .content-form-help{
+            border-radius: 0 0 4px 4px;
+        }
+        .content-form .content-detail{
+            text-align: start;
+            margin-bottom: 1rem;
+        }
+        .content-form .content-detail .content-label{
+            font-weight: 500;
+        }
+        .content-form .content-detail .content-input{
+            background-color: #343a40;
+            border-color: #6c757d;
+            color: #fff;
+        }
+        .content-form .content-detail .content-input::placeholder {
+            color: #6c757d;
+        }
+        .footer-form{
+            padding: .75rem 1.25rem;
+            background-color: #282d31;
+            border-top: 0 solid rgba(0, 0, 0, .125);
+            border-radius: 0 0 4px 4px;
+        }
+        .footer-form button{
+            color: #fff;
+            background-color: #335476;
+            border-color: #304e6d;
+        }
 
-    .full-screen-img {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        position: fixed;
-    }
+        .full-screen-img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: fixed;
+        }
 
-    #LoadScreen {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column; /* Xếp logo và chấm động theo chiều dọc */
-    }
+        #LoadScreen {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Xếp logo và chấm động theo chiều dọc */
+        }
 
-    #LogoLoadScreen {
-            width: 200px;
+        #LogoLoadScreen {
+                width: 200px;
         }
         .dots-container {
             display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-    }
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      margin: 0 5px;
-      background-color: #fff;
-      border-radius: 50%;
-      opacity: 0;
-      animation: blink 1.5s infinite ease-in-out;
-    }
+        .dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: blink 1.5s infinite ease-in-out;
+        }
 
-    /* Animation delay for each dot */
-    .dot:nth-child(1) {
-      animation-delay: 0s;
-    }
+        /* Animation delay for each dot */
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
 
-    .dot:nth-child(2) {
-      animation-delay: 0.3s;
-    }
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
 
-    .dot:nth-child(3) {
-      animation-delay: 0.6s;
-    }
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
 
-    @keyframes blink {
-      0%, 100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-    .footer-instruct {
+        @keyframes blink {
+        0%, 100% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        }
+        .footer-instruct {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -694,8 +701,8 @@
 
         #temperature svg {
 
-            width: 100px;
-            height: 250px;
+            width: 50px;
+            height: 110px;
 
         }
 
@@ -767,7 +774,7 @@
         .history-header {
             text-align: center;
             padding: 0 10px 0 20px;
-            max-width: 400px;
+            max-width: 500px;
             width: 100%;
             background-color: #1E2833;
             height: 50px;
@@ -786,6 +793,45 @@
         #history-avt p {
             margin-left: 10px;
             color: white;
+        }
+
+        .box-value{
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            color: white;
+            background-color: #242427;
+            margin: 7.5px;
+            border-radius: 4px;
+        }
+
+        .header-form{
+            background-color: #3f6791;
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            border-radius: 4px 4px 0 0;
+            height: 46px;
+            padding: 12px 20px;
+        }
+        .header-form h3{
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: white;
+        }
+        .form-select {
+            display: block;
+            width: 100%;
+            height: 30px;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            box-shadow: inset 0 0 0 transparent;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
         }
     </style>
 </head>
@@ -811,21 +857,19 @@
                 <div class="row">
                     <div class="col-12" style="padding: 10px;">
                         <div id="PickApp-button-mua" class="iconApp">
-                            <div class="icon">
-                                <div class="icon" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                        style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
-                                        <path
-                                            d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
-                                        <path
-                                            d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
-                                    </svg>
-                                </div>
+                            <div class="icon" style="background-color: #17a2b8;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                    style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.5 3.5 0 0 1 7 8m4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z" />
+                                    <path
+                                        d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                                </svg>
                             </div>
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Môi trường</span>
-                                    <span class="app-text">v1.0.6</span>
+                                    <span class="app-text">v1.0.7</span>
                                 </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
@@ -908,16 +952,22 @@
                         </svg>
                         <h5 style="padding-left: 10px; padding-left: 10px;">Quan trắc:</h5>
                     </div>
-                    <div style="width: 100%; padding-left: 10px;">
+                    <div class="d-flex justify-content-between" style="width: 100%; padding-left: 10px;">
                         <p style="color: #fff; text-align: left;">Lịch sử truy cập:</p>    
+                        <div>
+                            <select id="historySelect" class="form-select bg-dark text-white border-secondary" style="font-size: 14px;" aria-label="Default select example">
+                                <option selected>Hiển thị tất cả...</option>
+                            </select>
+                        </div>
                     </div>
+
                     <div id="history-detail" style="overflow-y: auto; height: 450px; padding: 10px 10px 0 10px;">
                         <div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
                             <button id="addWorkStation" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                                 </svg>
-                                Truy cập trạm quan trắc
+                                Thêm trạm quan trắc
                             </button>
                         </div>                 
                     </div>
@@ -983,207 +1033,289 @@
                 
                 <div class="footer-instruct">
                     <div class="step">
-                        <div class="circle">02</div>
+                        <div class="circle">03</div>
                     </div>
                     <p>Nhấn nút quét hoặc nhập thông tin</p>
                 </div>
             </div>
         </div>
         <div id="homePage" class="hidden">
-            <div class="app-bar">
-                <div id="status"></div>
-                <button id="thongKe" class="btn btn-secondary">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <button id="Upload" class="btn btn-secondary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-camera" viewBox="0 0 16 16">
-                        <path
-                            d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z" />
-                        <path
-                            d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
-                    </svg>
-                </button>
-                <div id="lateTime">
-                    <p id="lateDateTime">29/10/2024 14:30:00</p>
-                </div>
-                <button id="ScanQRNext" class="btn btn-secondary" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-qr-code-scan" viewBox="0 0 16 16">
-                        <path
-                            d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
-                        <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
-                        <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
-                        <path
-                            d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
-                        <path d="M12 9h2V8h-2z" />
-                    </svg>
-                </button>
-            </div>
-            <div id="content">
-                <div id="listValue" class="row">
-                    <div class="col-4 p-2">
-                        <div id="boxValue">
-                            <h5 id="RT">-</h5>
-                            <p>Nhiệt độ (°C)</p>
-                        </div>
+            <div class="container-homePage" style="padding: 0; background-color: #313539; width: 100%;">
+                <div class="homePage-header history-header" style="background-color: #282d31;">
+                    <div style="line-height: 50px; justify-content: flex-start;" class="d-flex" >
+                        <button id="ScanQRNext"
+                            style="height: 40px; border: none; background-color: #282d31;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>
+                        </button>
+                        <p id="footer-stationName" style="width: 250px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">-</p>
                     </div>
-                    <div class="col-4 p-2">
-                        <div id="boxValue">
-                            <h5 id="RH">-</h5>
-                            <p>Độ ẩm (%)</p>
-                        </div>
-                    </div>
-                    <div class="col-4 p-2">
-                        <div id="boxValue">
-                            <h5 id="RP">-</h5>
-                            <p>Áp suất (hPa)</p>
-                        </div>
+                    <div style="line-height: 50px;">
+                        <button id="homepage-Pre-pickApp"
+                            style="height: 40px; border: none; background-color: #282d31;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div id="acQuy">
-                    <div class="progress"
-                        style="background-color: #242427; border: solid 1px #484848; height: 25px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
-                        <div id="acQuy-bar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100">-</div>
-                    </div>
-                </div>
-                <div id="rainfall" class="d-flex justify-content-between">
-                    <!-- <div class="progress progress-vertical"
-                        style="border: solid 1px #484848; width: 30px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
-                        <div id="temp-bar" class="progress-bar" role="progressbar" style="height: 25%;"
-                            aria-valuenow="25" aria-valuemin="-10" aria-valuemax="50">25°C</div>
-                    </div> -->
-                    <div id="temperature" style="pointer-events: none; margin-left: 5px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="250 200 200 200">
-                            <defs>
-                                <linearGradient id="liquidGrad" x1="557" y1="150" x2="557" y2="546" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0" stop-color="#FF0909" />
-                                    <stop offset="0.2" stop-color="#F3481A" />
-                                    <stop offset="0.5" stop-color="#FABA2C" />
-                                    <stop offset="1" stop-color="#00BCF2" />
-                                </linearGradient>
-                                <rect id="tube" x="357" y="150" width="60" height="400" rx="43" ry="43" />
-                                <clipPath id="liquidMask">
-                                    <use xlink:href="#tube" class="liquidMask" />
-                                </clipPath>
-                                <clipPath id="tubeMask">
-                                    <use xlink:href="#tube" class="liquidMask" />
-                                </clipPath>
-                                <path id="liquid" d="M757,552v490H357V552c50,0,50,20,100,20s50-20,100-20,50,20,100,20S707,552,757,552Z" />
-                                <mask id="gradMask">
-                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#FCEFD6" />
-                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#EEE" opacity="0.7" />
-                                </mask>
-                            </defs>
-                    
-                    
-                            <g class="whole" transform="translate(0, -40)">
-                    
-                                <use xlink:href="#tube" class="tubeBg" fill="#C8D9D3" opacity="0.61" />
-                    
-                                <g class="dragger" transform="translate(-6, 0)">
-                                    <circle cx="294" cy="540" r="36" fill="#FABA2C" />
-                                    <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#FABA2C" />
-                                    <text class="label" x="294" y="551" style="font-weight: 700;">100</text>
-                                    <!--  <path id="dragShine" d="M330,540c-26,2-18-44-72,0a36,36,0,0,1,72,0Z" fill="#E9E9E9" opacity="0.052"/>    -->
-                                </g>
-                    
-                    
-                                <g mask="url(#gradMask)">
-                                    <use xlink:href="#tube" fill="url(#liquidGrad)" />
-                                </g>
-                                <line class="tubeShine" x1="371" y1="200" x2="371" y2="443" fill="none" stroke="#FFF" stroke-linecap="round"
-                                    stroke-miterlimit="10" stroke-width="8" opacity="0.21" stroke-dasharray="153 30"
-                                    stroke-dashoffset="-20" />
-                                <!--        <text class="tubeLabel" x="400" y="180">100°</text>
-                                  <text class="tubeLabel" x="400" y="356">50°</text>
-                                  <text class="tubeLabel" x="400" y="540">0°</text> -->
-                                <g class="measurements" fill="none" stroke="#FCEFD6" stroke-width="3" stroke-linecap="round" opacity="1">
-                                    <line x1="358" y1="196" x2="370" y2="196" />
-                                    <line x1="358" y1="234" x2="370" y2="234" />
-                                    <line x1="358" y1="273" x2="370" y2="273" />
-                                    <line x1="358" y1="311" x2="370" y2="311" />
-                                    <line x1="358" y1="350" x2="370" y2="350" />
-                                    <line x1="358" y1="388" x2="370" y2="388" />
-                                    <line x1="358" y1="426" x2="370" y2="426" />
-                                    <line x1="358" y1="465" x2="370" y2="465" />
-                                    <line x1="358" y1="503" x2="370" y2="503" />
-                                </g>
-                    
-                                <!--  <rect class="tubeShine" x="372" y="162" width="56" height="364.02" rx="31.5" ry="31.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="8" stroke-linecap="round" stroke-dasharray="15 30" opacity="0.31"/> -->
-                                <circle class="follower" cx="400" cy="540" r="0" fill="#62B6CB" fill-opacity="1" stroke="#FCEFD6"
-                                    stroke-width="0" />
-                    
-                    
-                    
-                    
-                            </g>
-                        </svg>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" id="mySvg" width="40%" fill="currentColor"
-                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M96 320c-53 0-96-43-96-96c0-42.5 27.6-78.6 65.9-91.2C64.7 126.1 64 119.1 64 112C64 50.1 114.1 0 176 0c43.1 0 80.5 24.3 99.2 60c14.7-17.1 36.5-28 60.8-28c44.2 0 80 35.8 80 80c0 5.5-.6 10.8-1.6 16c.5 0 1.1 0 1.6 0c53 0 96 43 96 96s-43 96-96 96L96 320zm-6.8 52c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3L89.2 372zm160 0c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3L249.2 372zm124.9 64.6L409.2 372c1.3-2.5 3.9-4 6.8-4s5.4 1.5 6.8 4l35.1 64.6c4.1 7.5 6.2 15.8 6.2 24.3l0 3c0 26.5-21.5 48-48 48s-48-21.5-48-48l0-3c0-8.5 2.1-16.9 6.2-24.3z" />
-                        <text x="256" y="256" text-anchor="middle" font-size="80" fill="#e9ecef" style="text-shadow: 1px 1px #373535;">-</text>
-                    </svg>
-                    <!-- <div class="progress progress-vertical"
-                        style="border: solid 1px #484848; width: 30px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
-                        <div id="rain-bar" class="progress-bar" role="progressbar" style="height: 70%;"
-                            aria-valuenow="70" aria-valuemin="-500" aria-valuemax="500">70mm</div>
-                    </div> -->
-                    <div style="padding: 20px; margin-right: 30px;">
-                        <div class="range-container" id="range">
-                            <!-- Solid color sections for each temperature range -->
-                            <div class="range-section section-0-5"></div>
-                            <div class="range-section section-5-10"></div>
-                            <div class="range-section section-10-20"></div>
-                            <div class="range-section section-20-50"></div>
-                            <div class="range-section section-50-100"></div>
-                            <div class="range-section section-100-150"></div>
-                            <div class="range-section section-150-200"></div>
-                        
-                            <!-- Labels -->
-                            <div class="label label-200">200mm</div>
-                            <div class="label label-150">150mm</div>
-                            <div class="label label-100">100mm</div>
-                            <div class="label label-50">50mm</div>
-                            <div class="label label-20">20mm</div>
-                            <div class="label label-10">10mm</div>
-                            <div class="label label-5">5mm</div>
-                            <div class="label label-below-0">0mm</div>
-                        </div>
-                    </div>
-                </div>
-                <div id="Chart">
-                    <div class="d-flex justify-content-between">
-                        <div  class="d-none d-flex justify-content-center align-items-center" style="height: 40px; padding-top: 10px; padding-left: 10px;">
-                            <div id="loading-spinner" class="d-none spinner-border text-light" role="status">
+                <div id="homePage-body">
+                    <div id="box-status" class="row" style="margin: 15px; margin-bottom: 0;">
+                        <div class=" col-5" style="padding-left: 0; padding-right: 0; padding-bottom: 15px;">
+                            <div class="box-value" style="height: 100%; padding-left: 0; padding-right: 0; margin-right: 0; display: flex; align-items: center; justify-content: center;">
+                                <div>
+                                    <div class="d-flex" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right: 5px;" fill="currentColor" class="bi bi-battery-half" viewBox="0 0 16 16">
+                                            <path d="M2 6h5v4H2z"/>
+                                            <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8"/>
+                                        </svg>
+                                        <p style="margin: 0; font-size: 14px;">Năng lượng</p>
+                                    </div>
+                                    <div >
+                                        <p id="energy" style="font-size: 25px; margin: 0;">-</p>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
-                        <div class="button-list">
-                            <button id="button-list-ngay" class="btn btn-primary btn-chart active" type="button"
-                                >Ngày</button>
-                            <button id="button-list-tuan" class="btn btn-primary btn-chart" type="button"
-                                >Tuần</button>
-                            <button id="button-list-thang" class="btn btn-primary btn-chart" type="button"
-                                >Tháng</button>
-                            <button id="button-list-nam" class="btn btn-primary btn-chart" type="button"
-                                >Năm</button>
+                        <div class="col-7" style="padding-left: 0; padding-right: 0;">
+                            <div class="box-value" style="height: 80px;">
+                                <div class="d-flex" style="line-height: 20px;">
+                                    <div id="status"></div>
+                                    <p style="margin: 0; font-size: 14px; margin-left: 10px;">Trạng thái</p>
+                                </div>
+                                <div >
+                                    <p id="text-status" style="font-size: 16px; margin: 0;">mất kết nối</p>
+                                </div>
+                            </div>
+                            <div class="box-value" style="height: 80px;">
+                                <div class="d-flex" style="line-height: 20px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+                                    </svg>
+                                    <p style="margin: 0; font-size: 14px; margin-left: 10px;" >Cập nhật</p>
+                                </div>
+                                <div >
+                                    <p id="lateDateTime" style="font-size: 16px; margin: 0;">-</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <canvas id="lineBarChart" width="400" height="200"></canvas>
+                    <div id="listValue" class="row">
+                        <div id="box-RT" class="d-none col-6 p-2">
+                            <div class="box-value d-flex" style="height: 116px; margin: 0; padding-left: 0; padding-top: 0;">
+                                <div style="width: 60px;">
+                                    <div id="temperature" style="pointer-events: none; margin-left: 5px; width: 50px; height: 100px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="250 200 200 200">
+                                            <defs>
+                                                <linearGradient id="liquidGrad" x1="557" y1="150" x2="557" y2="546" gradientUnits="userSpaceOnUse">
+                                                    <stop offset="0" stop-color="#FF0909" />
+                                                    <stop offset="0.2" stop-color="#F3481A" />
+                                                    <stop offset="0.5" stop-color="#FABA2C" />
+                                                    <stop offset="1" stop-color="#00BCF2" />
+                                                </linearGradient>
+                                                <rect id="tube" x="357" y="150" width="60" height="400" rx="43" ry="43" />
+                                                <clipPath id="liquidMask">
+                                                    <use xlink:href="#tube" class="liquidMask" />
+                                                </clipPath>
+                                                <clipPath id="tubeMask">
+                                                    <use xlink:href="#tube" class="liquidMask" />
+                                                </clipPath>
+                                                <path id="liquid" d="M757,552v490H357V552c50,0,50,20,100,20s50-20,100-20,50,20,100,20S707,552,757,552Z" />
+                                                <mask id="gradMask">
+                                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#FCEFD6" />
+                                                    <use xlink:href="#liquid" class="liquid" x="0" fill="#EEE" opacity="0.7" />
+                                                </mask>
+                                            </defs>
+                                    
+                                    
+                                            <g class="whole" transform="translate(0, -40)">
+                                    
+                                                <use xlink:href="#tube" class="tubeBg" fill="#C8D9D3" opacity="0.61" />
+                                    
+                                                <g class="dragger d-none" transform="translate(-6, 0)">
+                                                    <circle cx="294" cy="540" r="36" fill="#FABA2C" />
+                                                    <path class="dragTip" d="M315.5,556.76,299.24,540.5l16.26-16.26,36.26,16.26Z" fill="#FABA2C" />
+                                                    <text class="label" x="294" y="551" style="font-weight: 700;">100</text>
+                                                    <!--  <path id="dragShine" d="M330,540c-26,2-18-44-72,0a36,36,0,0,1,72,0Z" fill="#E9E9E9" opacity="0.052"/>    -->
+                                                </g>
+                                    
+                                    
+                                                <g mask="url(#gradMask)">
+                                                    <use xlink:href="#tube" fill="url(#liquidGrad)" />
+                                                </g>
+                                                <line class="tubeShine" x1="371" y1="200" x2="371" y2="443" fill="none" stroke="#FFF" stroke-linecap="round"
+                                                    stroke-miterlimit="10" stroke-width="8" opacity="0.21" stroke-dasharray="153 30"
+                                                    stroke-dashoffset="-20" />
+                                                <!--        <text class="tubeLabel" x="400" y="180">100°</text>
+                                                  <text class="tubeLabel" x="400" y="356">50°</text>
+                                                  <text class="tubeLabel" x="400" y="540">0°</text> -->
+                                                <g class="measurements" fill="none" stroke="#FCEFD6" stroke-width="3" stroke-linecap="round" opacity="1">
+                                                    <line x1="358" y1="196" x2="370" y2="196" />
+                                                    <line x1="358" y1="234" x2="370" y2="234" />
+                                                    <line x1="358" y1="273" x2="370" y2="273" />
+                                                    <line x1="358" y1="311" x2="370" y2="311" />
+                                                    <line x1="358" y1="350" x2="370" y2="350" />
+                                                    <line x1="358" y1="388" x2="370" y2="388" />
+                                                    <line x1="358" y1="426" x2="370" y2="426" />
+                                                    <line x1="358" y1="465" x2="370" y2="465" />
+                                                    <line x1="358" y1="503" x2="370" y2="503" />
+                                                </g>
+                                    
+                                                <!--  <rect class="tubeShine" x="372" y="162" width="56" height="364.02" rx="31.5" ry="31.5" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="8" stroke-linecap="round" stroke-dasharray="15 30" opacity="0.31"/> -->
+                                                <circle class="follower" cx="400" cy="540" r="0" fill="#62B6CB" fill-opacity="1" stroke="#FCEFD6"
+                                                    stroke-width="0" />
+                                    
+                                    
+                                    
+                                    
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <div>
+                                        <p>Nhiệt độ</p>
+                                        <h5 id="RT">-</h5>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div id="box-RH" class="d-none col-6 p-2" style="padding-right: 0;">
+                            <div class="box-value" style="height: 116px; margin: 0;">
+                                <div class="d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="color: #00ffff;" fill="currentColor" class="bi bi-thermometer-snow" viewBox="0 0 16 16">
+                                        <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V9.5a.5.5 0 0 1 1 0v1.585A1.5 1.5 0 0 1 5 12.5"/>
+                                        <path d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1m5 1a.5.5 0 0 1 .5.5v1.293l.646-.647a.5.5 0 0 1 .708.708L9 5.207v1.927l1.669-.963.495-1.85a.5.5 0 1 1 .966.26l-.237.882 1.12-.646a.5.5 0 0 1 .5.866l-1.12.646.884.237a.5.5 0 1 1-.26.966l-1.848-.495L9.5 8l1.669.963 1.849-.495a.5.5 0 1 1 .258.966l-.883.237 1.12.646a.5.5 0 0 1-.5.866l-1.12-.646.237.883a.5.5 0 1 1-.966.258L10.67 9.83 9 8.866v1.927l1.354 1.353a.5.5 0 0 1-.708.708L9 12.207V13.5a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5"/>
+                                    </svg>
+                                    <p style="padding-left: 5px;">Độ ẩm</p>
+                                </div>
+                                <h5 id="RH">-</h5>
+                            </div>
+                        </div>
+                        <div id="box-RP" class="d-none col-6 p-2">
+                            <div class="box-value" style="height: 116px; margin: 0;">
+                                <div class="d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="color: #0084ff;" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
+                                        <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
+                                        <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3"/>
+                                    </svg>
+                                    <p style="padding-left: 5px;">Áp suất</p>
+                                </div>
+                                <h5 id="RP">-</h5>
+                            </div>
+                        </div>
+                        <div id="box-RD" class="d-none col-6 p-2">
+                            <div class="box-value" style="height: 116px; margin: 0;">
+                                <div class="d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="color: #d2d6db;" fill="currentColor" class="bi bi-cloud-lightning-rain-fill" viewBox="0 0 16 16">
+                                        <path d="M2.658 11.026a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.5 1.5a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.105-1.25A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973"/>
+                                      </svg>
+                                    <p style="padding-left: 5px;">Lượng mưa</p>
+                                </div>
+                                <h5 id="RD">0 mm</h5>
+                                <p>Trong 24 giờ</p>
+                            </div>
+                        </div>
+                        <div id="box-RN" class="d-none col-6 p-2">
+                            <div class="box-value" style="height: 116px; margin: 0;">
+                                <div class="d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
+                                        <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a29 29 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a29 29 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001zm0 0-.364-.343zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267"/>
+                                      </svg>
+                                    <p style="padding-left: 5px;">Mực nước</p>
+                                </div>
+                                <h5 id="RN">-</h5>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-                <div class="footer-instruct" style="height: 50px; background-color: #444;">
-                    <p id="footer-stationName" style="font-size: 20px;"></p>
+                    <div id="acQuy">
+                        <!-- <div class="progress"
+                            style="background-color: #242427; border: solid 1px #484848; height: 25px; border-radius: 15px; box-shadow: 2px 2px #0c0c0c;">
+                            <div id="acQuy-bar" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">-</div>
+                        </div> -->
+                    </div>
+                    <div id="Chart">
+                        <div class="d-flex justify-content-between">
+                            <div  class="d-none d-flex justify-content-center align-items-center" style="height: 40px; padding-top: 10px; padding-left: 10px;">
+                                <div id="loading-spinner" class="d-none spinner-border text-light" role="status">
+                                </div>
+                            </div>
+                            <div class="button-list">
+                                <button id="button-list-ngay" class="btn btn-primary btn-chart active" type="button"
+                                    >Ngày</button>
+                                <button id="button-list-tuan" class="btn btn-primary btn-chart" type="button"
+                                    >Tuần</button>
+                                <button id="button-list-thang" class="btn btn-primary btn-chart" type="button"
+                                    >Tháng</button>
+                                <button id="button-list-nam" class="btn btn-primary btn-chart" type="button"
+                                    >Năm</button>
+                            </div>
+                        </div>
+                        <div id="chart-RD" class="d-none form-total" >
+                            <div class="header-form d-flex">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: white; padding-top: 5px;" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg> -->
+                                <h3 style="margin: 0; padding-left: 2px;">Biểu đồ lượng mưa</h3>
+                            </div>
+                            <div class="content-form" >
+                                <canvas id="lineBarChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div id="chart-RT" class="d-none form-total" >
+                            <div class="header-form d-flex">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: white; padding-top: 5px;" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg> -->
+                                <h3 style="margin: 0; padding-left: 2px;">Biểu đồ nhiệt độ</h3>
+                            </div>
+                            <div class="content-form">
+                                <canvas id="ChartRT" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div id="chart-RH" class="d-none form-total" >
+                            <div class="header-form d-flex">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: white; padding-top: 5px;" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg> -->
+                                <h3 style="margin: 0; padding-left: 2px;">Biểu đồ độ ẩm</h3>
+                            </div>
+                            <div class="content-form">
+                                <canvas id="ChartRH" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div id="chart-RP" class="d-none form-total" >
+                            <div class="header-form d-flex">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: white; padding-top: 5px;" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg> -->
+                                <h3 style="margin: 0; padding-left: 2px;">Biểu đồ áp suất</h3>
+                            </div>
+                            <div class="content-form">
+                                <canvas id="ChartRP" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div id="chart-RN" class="d-none form-total" >
+                            <div class="header-form d-flex">
+                                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: white; padding-top: 5px;" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                                </svg> -->
+                                <h3 style="margin: 0; padding-left: 2px;">Biểu đồ mực nước</h3>
+                            </div>
+                            <div class="content-form">
+                                <canvas id="ChartRN" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                        <div style="color: #313539;">-</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="">
-
         </div>
         <div id="qr-popup" class="modal">
             <div id="qr-reader"></div>
@@ -1224,13 +1356,12 @@
             </div>
             <div id="footer-instruct-scanQR" class="d-none footer-instruct">
                 <div class="step">
-                    <div class="circle">03</div>
+                    <div class="circle">04</div>
                 </div>
                 <p>Truy cập xem thông tin hoặc nhấn quét lại</p>
             </div>
             <input type="file" id="file-input" accept="image/*">
         </div>
-    
         <div id="loading-popup" class="modal">
             <div class="modal-content" style="width: 80%; margin-top: 50px; margin-left: 10%;">
                 <div class="modal-header">
@@ -1260,207 +1391,192 @@
             var historyItems = [];
             var historyListDetail = $('#history-detail');
             var NameWorkStation;
+            var intervalId; // Lưu ID của setInterval
             // var user_id = "admin";
             // var session = "7b504acc-988a-437a-890f-389765305b47";
 
             const buttons = document.querySelectorAll(".btn-chart");
-            console.log(buttons);
-            
             buttons.forEach((button) => {
                 button.addEventListener("click", function () {
                     buttons.forEach((btn) => btn.classList.remove("active"));
-                    console.log(button);
                     this.classList.add("active");
                 });
             });
-        function openTab(evt, tabName) {
-            // Ẩn tất cả nội dung tab
-            var tabContent = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active");
+            function openTab(evt, tabName) {
+                // Ẩn tất cả nội dung tab
+                var tabContent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabContent.length; i++) {
+                    tabContent[i].classList.remove("active");
+                }
+
+                // Xóa class 'active' trên tất cả các nút
+                var tabLinks = document.getElementsByClassName("tablinks");
+                for (var i = 0; i < tabLinks.length; i++) {
+                    tabLinks[i].classList.remove("active");
+                }
+
+                // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
             }
-
-            // Xóa class 'active' trên tất cả các nút
-            var tabLinks = document.getElementsByClassName("tablinks");
-            for (var i = 0; i < tabLinks.length; i++) {
-                tabLinks[i].classList.remove("active");
-            }
-
-            // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-        function checkHeight() {
-            const viewportHeight = window.innerHeight;
-            const historyDetail = document.getElementById('history-detail');
-            historyDetail.style.height = (viewportHeight - 340) + 'px';
-        };
-        checkHeight();
-        window.addEventListener('resize', function() {
-            const viewportHeight = window.innerHeight;
-            const historyDetail = document.getElementById('history-detail');
-            historyDetail.style.height = (viewportHeight - 340) + 'px'; // 80% chiều cao của thiết bị
-        });
-
-        // Mặc định mở tab đầu tiên
-        
-        setTimeout(() => {
-            document.getElementById("LoadScreen").classList.add("d-none");
-            document.getElementById("LogoLoadScreen").classList.add("hidden");
-            document.getElementById("pickApp").classList.remove("hidden");
-            // document.getElementById("history").classList.remove("hidden");
-        }, 2000);
-
-        var maTram = '';
-        function changeHistory() {
-            document.getElementById("history").classList.remove("hidden");
-            document.getElementById("homePage").classList.add("hidden");
-            maTram = '';
-        }
-        function changeQRcode() {
-            document.getElementById("ScanQR").classList.remove("hidden");
-            document.getElementById("homePage").classList.add("hidden");
-            document.getElementById("history").classList.add("hidden");
-            document.querySelector(".tablinks").click();
-            maTram = '';
-        }
-        function truyCap() {
-            document.getElementById("footer-instruct-scanQR").classList.add("d-none");
-            document.getElementById("result-form").classList.add("d-none");
-            $('#qr-popup').modal('hide');
-            document.getElementById("ScanQR").classList.add("hidden");
-            document.getElementById("history").classList.add("hidden");
-            document.getElementById("homePage").classList.remove("hidden");
-            matram = localStorage.getItem("MATRAM");
-            $("button-modal-loading").click();
-            saveHistory(localStorage.getItem('MATRAM'));
-            getDataMonitoring();
-        }
-        function scanAgain() {
-            document.getElementById("footer-instruct-scanQR").classList.add("d-none");
-            document.getElementById("result-form").classList.add("d-none");
-            document.getElementById("file-input").value = '';
-            $("#start").click();
-        }
-        $("#PickApp-button-mua").click(function() {
-            showHistory();
-            pickApp('MUA');
-        });
-        $("#PickApp-button-IOT").click(function() {
-            pickApp('IOT');
-        });
-        $("#PickApp-button-pick").click(function() {
-            showHistory();
-            pickApp('PICK');
-        });
-        $("#Pre-pickApp").click(function() {
-            pickApp('PRE');
-        });
-        $("#tab-scan-qr").click(function(event) {
-            openTab(event, 'tab1')
-        });
-        $("#tab-text").click(function(event) {
-            openTab(event, 'tab2')
-        });
-        $("#truycap").click(function() {
-            getInputValue()
-        });
-        $("#ScanQRNext").click(function() {
-            pickApp('HISTORY')
-        });
-        $("#button-list-ngay").click(function() {
-            clickGetData('NGAY')
-        });
-        $("#button-list-tuan").click(function() {
-            clickGetData('TUAN')
-        });
-        $("#button-list-thang").click(function() {
-            clickGetData('THANG')
-        });
-        $("#delete-item-history").click(function() {
-            console.log(12345);
-            
-        });
-        $("#button-list-nam").click(function() {
-            clickGetData('NAM')
-        });
-        $("#result-scanagain").click(function() {
-            scanAgain()
-        });
-        $("#PickApp-button-scanQR").click(function() {
-            changeQRcode()
-        });
-        $("#addWorkStation").click(function() {
-            changeQRcode()
-        });
-        $("#result-truycap").click(function() {
-            document.getElementById("result-truycap").disabled = true;
-            $("#loading-popup").modal({
-                fadeDuration: 250,
-                escapeClose: false,
-                clickClose: false,
-                showClose: false
+            function checkHeight() {
+                const viewportHeight = window.innerHeight;
+                const historyDetail = document.getElementById('history-detail');
+                historyDetail.style.height = (viewportHeight - 340) + 'px';
+            };
+            checkHeight();
+            window.addEventListener('resize', function() {
+                const viewportHeight = window.innerHeight;
+                const historyDetail = document.getElementById('history-detail');
+                historyDetail.style.height = (viewportHeight - 340) + 'px'; // 80% chiều cao của thiết bị
             });
-            truyCap()
-        });
-        function pickApp(type) {
-            if (type == 'MUA') {
-                document.getElementById("LoadScreen").classList.remove("d-none");
-                document.getElementById("img-station").classList.remove("hidden");
-                document.getElementById("pickApp").classList.add("hidden");
-                setTimeout(() => {
-                    document.getElementById("LoadScreen").classList.add("d-none");
-                    document.getElementById("img-station").classList.add("hidden");
-                    document.getElementById("history").classList.remove("hidden");
-                }, 2000);
-               
-            } else if (type == 'IOT'){
-                window.location.href="http://devices-ag.homeos.vn/Device.html";
-            } else if (type == 'PICK') {
-                document.getElementById("history").classList.remove("hidden");
-                document.getElementById("ScanQR").classList.add("hidden");
-            } else if (type == 'PRE'){
-                document.getElementById("history").classList.add("hidden");
+
+            // Mặc định mở tab đầu tiên
+            
+            setTimeout(() => {
+                document.getElementById("LoadScreen").classList.add("d-none");
+                document.getElementById("LogoLoadScreen").classList.add("hidden");
                 document.getElementById("pickApp").classList.remove("hidden");
-            } else if (type == 'HISTORY'){
-                showHistory()
+                // document.getElementById("homePageFake").classList.remove("hidden");
+            }, 2000);
+
+            var maTram = '';
+            function changeHistory() {
                 document.getElementById("history").classList.remove("hidden");
                 document.getElementById("homePage").classList.add("hidden");
+                maTram = '';
             }
-        }
-        async function CheckWorkStation (workstationID){
-            var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "ninhbinh.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn"]
-            var domain;
-            var data;
-            for (let i = 0; i < listDomain.length; i++) {
-                data = await getDataStation(workstationID,listDomain[i]);
-                console.log(data.length);
+            function changeQRcode() {
+                document.getElementById("ScanQR").classList.remove("hidden");
+                document.getElementById("homePage").classList.add("hidden");
+                document.getElementById("history").classList.add("hidden");
+                document.querySelector(".tablinks").click();
+                maTram = '';
+            }
+            function truyCap() {
+                document.getElementById("footer-instruct-scanQR").classList.add("d-none");
+                document.getElementById("result-form").classList.add("d-none");
+                $('#qr-popup').modal('hide');
+                document.getElementById("ScanQR").classList.add("hidden");
+                document.getElementById("history").classList.add("hidden");
+                document.getElementById("homePage").classList.remove("hidden");
+                matram = localStorage.getItem("MATRAM");
+                $("button-modal-loading").click();
+                saveHistory(localStorage.getItem('MATRAM'));
+                checkTypeWorkstation()
+                getDataMonitoring();
+            }
+            function scanAgain() {
+                document.getElementById("footer-instruct-scanQR").classList.add("d-none");
+                document.getElementById("result-form").classList.add("d-none");
+                document.getElementById("file-input").value = '';
+                $("#start").click();
+            }
+            $("#PickApp-button-mua").click(function() {
+                showHistory();
+                pickApp('MUA');
+            });
+            $("#PickApp-button-IOT").click(function() {
+                pickApp('IOT');
+            });
+            $("#PickApp-button-pick").click(function() {
+                showHistory();
+                pickApp('PICK');
+            });
+            $("#Pre-pickApp").click(function() {
+                stopInterval()
+                pickApp('PRE');
+            });
+            $("#homepage-Pre-pickApp").click(function() {
+                stopInterval();
+                pickApp('PRE');
+            });
+            $("#tab-scan-qr").click(function(event) {
+                openTab(event, 'tab1')
+            });
+            $("#tab-text").click(function(event) {
+                openTab(event, 'tab2')
+            });
+            $("#truycap").click(function() {
+                getInputValue()
+            });
+            $("#ScanQRNext").click(function() {
+                document.getElementById("RT").textContent = '-';
+                document.getElementById("RH").textContent = '-';
+                document.getElementById("energy").textContent = '-' ;
+                document.getElementById("status").style.background = "red";
+                document.getElementById("text-status").textContent = "Mất kết nối";
+                document.getElementById("RP").textContent = '-';
+                document.getElementById("RD").textContent = '0 mm';
+                document.getElementById("lateDateTime").textContent = "-";
+                pickApp('HISTORY')
+            });
+            $("#button-list-ngay").click(function() {
+                clickGetData('NGAY')
+            });
+            $("#button-list-tuan").click(function() {
+                clickGetData('TUAN')
+            });
+            $("#button-list-thang").click(function() {
+                clickGetData('THANG')
+            });
+            $("#delete-item-history").click(function() {
+                console.log(12345);
                 
-                if(data.length == 0 || data.length == undefined || data == null || data == '' || data == []){
-                    console.log(data);
-                    domain = ''; 
-                } else {
-                    console.log(data);
-                    domain = listDomain[i];
-                    break;
+            });
+            $("#button-list-nam").click(function() {
+                clickGetData('NAM')
+            });
+            $("#result-scanagain").click(function() {
+                scanAgain()
+            });
+            $("#PickApp-button-scanQR").click(function() {
+                stopInterval()
+                changeQRcode()
+            });
+            $("#addWorkStation").click(function() {
+                changeQRcode()
+            });
+            $("#result-truycap").click(function() {
+                document.getElementById("result-truycap").disabled = true;
+                $("#loading-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
+                truyCap()
+            });
+            document.getElementById("historySelect").addEventListener("change", function () {
+                const selectedValue = this.value; // Lấy giá trị đã chọn
+                const selectedText = this.options[this.selectedIndex].text; // Lấy văn bản đã chọn
+                showHistory(selectedValue);
+            });
+            function pickApp(type) {
+                if (type == 'MUA') {
+                    document.getElementById("LoadScreen").classList.remove("d-none");
+                    document.getElementById("img-station").classList.remove("hidden");
+                    document.getElementById("pickApp").classList.add("hidden");
+                    setTimeout(() => {
+                        document.getElementById("LoadScreen").classList.add("d-none");
+                        document.getElementById("img-station").classList.add("hidden");
+                        document.getElementById("history").classList.remove("hidden");
+                    }, 2000);
+                } else if (type == 'IOT'){
+                    window.location.href="http://devices.homeos.vn/";
+                } else if (type == 'PICK') {
+                    document.getElementById("history").classList.remove("hidden");
+                    document.getElementById("ScanQR").classList.add("hidden");
+                } else if (type == 'PRE'){
+                    document.getElementById("history").classList.add("hidden");
+                    document.getElementById("pickApp").classList.remove("hidden");
+                } else if (type == 'HISTORY'){
+                    showHistory()
+                    document.getElementById("history").classList.remove("hidden");
+                    document.getElementById("homePage").classList.add("hidden");
                 }
             }
-            if(domain == ''){
-                toastr.error("Mã trạm không tồn tại");
-                $('#loading-popup').modal('hide');
-            } else {
-                console.log(domain);
-                localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
-                //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
-                document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_NAME+"["+data[0].WORKSTATION_ID+"]";
-                localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
-                toastr.success("Truy cập thành công!");
-                truyCap()
-            }
-        }
-
-        async function getDomain (workstationID, type){
-            return new Promise( async (resolve, reject)  => {
+            async function CheckWorkStation (workstationID){
                 var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "ninhbinh.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn"]
                 var domain;
                 var data;
@@ -1473,1001 +1589,1272 @@
                         domain = ''; 
                     } else {
                         console.log(data);
-                        domain = listDomain[i]
+                        domain = listDomain[i];
                         break;
                     }
                 }
-                if(type == "domain"){
-                    resolve(domain);
+                if(domain == ''){
+                    toastr.error("Mã trạm không tồn tại");
+                    $('#loading-popup').modal('hide');
                 } else {
-                    resolve(data);
+                    console.log(domain);
+                    localStorage.setItem("URL", "https://"+domain+"/Service/Service.svc");
+                    //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
+                    document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_ID +" - "+data[0].WORKSTATION_NAME;
+                    localStorage.setItem("MATRAM", data[0].WORKSTATION_ID);
+                    toastr.success("Truy cập thành công!");
+                    truyCap()
                 }
-            });
-        }
-
-        async function getDataMonitoring() {
-            createNewChart()
-            const data = await getDM(
-                "LOG_ZONE_MONITORING",
-                "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
-                localStorage.getItem("URL")
-            );
-            const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-            // const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-            if (dataChart != []) {
-                createChartData(dataChart, 'RD')
             }
-
-            changeDataHomePage(data.D);
-            setInterval(async () => {
-                const data = await getDM(
-                    "LOG_ZONE_MONITORING",
+            // kiểm tra xem trạm nhập chạy ở service nào
+            async function getDomain (workstationID, type){
+                return new Promise( async (resolve, reject)  => {
+                    var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "ninhbinh.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn"]
+                    var domain;
+                    var data;
+                    for (let i = 0; i < listDomain.length; i++) {
+                        data = await getDataStation(workstationID,listDomain[i]);
+                        console.log(data.length);
+                        
+                        if(data.length == 0 || data.length == undefined || data == null || data == '' || data == []){
+                            console.log(data);
+                            domain = ''; 
+                        } else {
+                            console.log(data);
+                            domain = listDomain[i]
+                            break;
+                        }
+                    }
+                    if(type == "domain"){
+                        resolve(domain);
+                    } else {
+                        resolve(data);
+                    }
+                });
+            }
+            
+            async function getDataMonitoring() {
+                createNewChart()
+                const data = await getNewData(
+                    localStorage.getItem("MATRAM"),
                     "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
                     localStorage.getItem("URL")
                 );
+                const item = JSON.parse(localStorage.getItem('itemHistory'));
+                const TypeWorkstation = getDayMessage(item.workstationType);
+                const dataChart = await getDataChart('NGAY', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                // const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                if (dataChart != []) {
+                    createChartData(dataChart, 'RD')
+                }
+
                 changeDataHomePage(data.D);
-            }, 10000);
-        }
-
-        function getCurrentTime(time) {
-            // Tạo đối tượng Date mới để lấy thời gian hiện tại
-            let now ;
-            if(time){
-                now = new Date(time);
-            } else {
-                now = new Date();
+                setInterval(async () => {
+                    const data = await getNewData(
+                        localStorage.getItem("MATRAM"),
+                        "WORKSTATION_ID='" + localStorage.getItem("MATRAM") + "'",
+                        localStorage.getItem("URL")
+                    );
+                    changeDataHomePage(data.D);
+                }, 10000);
             }
-            
-            const ngay = now.getDate(); // Ngày (1-31)
-            const thang = now.getMonth() + 1; // Tháng (0-11) nên cần +1
-            const nam = now.getFullYear(); // Năm (4 chữ số)
-            // Lấy giờ, phút, giây
-            const hours = now.getHours();   // Giờ (0-23)
-            const minutes = now.getMinutes(); // Phút (0-59)
-            const seconds = now.getSeconds(); // Giây (0-59)
 
-            // Định dạng giờ thành dạng HH:MM:SS
-            const chuoiNgay = `${ngay.toString().padStart(2, '0')}/${thang.toString().padStart(2, '0')}/${nam}`;
-            const currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            // Hiển thị giờ hiện tại
-            document.getElementById("lateDateTime").textContent = chuoiNgay +" "+ currentTime;
-            return chuoiNgay +" "+ currentTime;
-        }
-
-        function addItemHistory(item) {
-            // Tạo phần tử nội dung chính
-            const element = $(
-                '<div class="iconApp">' +
-                    '<div class="icon" style="background-color: #28a745 !important;">' +
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: #fff;" fill="currentColor" class="bi bi-cloud-drizzle" viewBox="0 0 16 16">' +
-                            '<path d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m-3.5 1.5a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m.747-8.498a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973M8.5 2a4 4 0 0 1 3.976 3.555.5.5 0 0 0 .5.445H13a2 2 0 0 1 0 4H3.5a2.5 2.5 0 1 1 .605-4.926.5.5 0 0 0 .596-.329A4 4 0 0 1 8.5 2"/>' +
-                        '</svg>' +
-                    '</div>' +
-                    '<div class="info-box-content" style="padding-right: 0">' +
-                        '<div class="d-flex justify-content-between">' +
-                            '<span class="app-text">' + item.CodeWorkStation + '</span>' +
-                            '<span class="app-text" style="padding-right: 0">' + item.date + '</span>' +
-                        '</div>' +
-                        '<span class="app-text-number" style="padding-right: 0">' + item.NameWorkStation + '</span>' +
-                    '</div>' +
-                '</div>'
-            );
-
-            // Tạo phần tử bao bọc với nút X
-            const totalElement = $(
-                '<div style="padding-bottom: 13px; position: relative;" class="history-item" data-code="' + item.CodeWorkStation + '">' +
-                    '<div id="delete-item-history" class="close-icon">' +
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">' +
-                            '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>' +
-                        '</svg>' +
-                    '</div>' +
-                '</div>'
-            );
-
-            // Thêm phần tử chính vào phần tử bao bọc
-            totalElement.append(element);
-
-            // Gắn sự kiện click cho nút X
-            totalElement.find('.close-icon').on('click', function (e) {
-                e.stopPropagation(); // Ngăn chặn sự kiện click lan đến phần tử chính
-
-                // Hiển thị popup xác nhận
-                const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa trạm "${item.NameWorkStation} [${item.CodeWorkStation}]" không?`);
-                if (confirmDelete) {
-                    totalElement.remove(); // Xóa phần tử nếu người dùng chọn "Có"
-                    historyItems = historyItems.filter(i => i.CodeWorkStation !== item.CodeWorkStation);
-                    localStorage.setItem('dataHistory', JSON.stringify(historyItems));
-                    toastr.success(`Trạm "${item.CodeWorkStation}" đã bị xóa!`);
-                    if (historyItems.length == 0) {
-                        showAddWorkStationButton(); // Ẩn nút nếu có ít nhất 1 phần tử
-                    }
+            function getCurrentTime(time) {
+                // Tạo đối tượng Date mới để lấy thời gian hiện tại
+                let now ;
+                if(time){
+                    now = new Date(time);
+                } else {
+                    now = new Date();
                 }
-            });
-
-            // Gắn sự kiện click cho phần tử chính
-            element.on('click', function () {
-                handleItemClick(item);
-            });
-
-            // Thêm phần tử vào danh sách lịch sử
-            historyListDetail.append(totalElement);
-        }
-
-        function showAddWorkStationButton() {
-            const buttonHTML = $(
-                '<div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">'+
-                    '<button id="addWorkStation" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">'+
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">'+
-                            '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>'+
-                        '</svg>'+
-                        'Truy cập trạm quan trắc'+
-                    '</button>'+
-                '</div>'
-            );
-            buttonHTML.on('click', function () {
-                changeQRcode()
-            });
-            historyListDetail.append(buttonHTML); // Giả sử bạn có một div với id "addWorkStationContainer" để chứa nút này
-        }
-
-
-        function handleItemClick(item) {
-            localStorage.setItem("URL", "https://"+item.domain+"/Service/Service.svc");
-            document.getElementById("footer-stationName").textContent = item.NameWorkStation+"["+item.CodeWorkStation+"]";
-            localStorage.setItem("MATRAM", item.CodeWorkStation);
-            const itemHistory = {'CodeWorkStation': item.CodeWorkStation, 'NameWorkStation': item.NameWorkStation, 'domain': item.domain, 'date': getCurrentTime()}
-            localStorage.setItem('itemHistory', JSON.stringify(itemHistory));
-            $("#loading-popup").modal({
-                fadeDuration: 250,
-                escapeClose: false,
-                clickClose: false,
-                showClose: false
-            });
-            truyCap()
-        }
-
-        function showHistory() {
-            historyItems = JSON.parse(localStorage.getItem('dataHistory'));
-            console.log(historyItems);
-            if(historyItems && historyItems.length > 0){
-                historyListDetail.empty();
-                for (let i = historyItems.length - 1; i >= 0; i--) {
-                    console.log(1);
-                    addItemHistory(historyItems[i]);
-                }
-            }
-        }
-
-        function saveHistory(code) {
-            historyItems = JSON.parse(localStorage.getItem('dataHistory'));
-            if(historyItems){
-                historyItems = historyItems.filter(item => item.CodeWorkStation !== code);
-                const item = JSON.parse(localStorage.getItem('itemHistory'));
-                console.log(item);
-                historyItems.push(item);
-                if (historyItems.length > 10) {
-                    historyItems.shift();
-                }
-            } else {
-                historyItems = [];
-                const item = JSON.parse(localStorage.getItem('itemHistory'));
-                historyItems.push(item);
-            }
-            
-            localStorage.setItem('dataHistory', JSON.stringify(historyItems));
-        }
-        
-        function changeDataHomePage(data) {
-            if(data != [] && data != null && data != ''){
-                let checkRD = false;
-                let checkRT = false;
-                for (let i = 0; i < data.length; i++) {
-                    
-                    if (data[i].ZONE_PROPERTY == "RT") {
-                        checkRT = true;
-                        document.getElementById("RT").textContent = data[i].ZONE_VALUE / 10 ;
-                        setRangeValue(data[i].ZONE_VALUE / 10, "success")
-                    } else if (data[i].ZONE_PROPERTY == "RH") {
-                        document.getElementById("RH").textContent = data[i].ZONE_VALUE / 10 ;
-                    } else if (data[i].ZONE_PROPERTY == "RA") {
-                        updateProgressBar("acQuy-bar",0, 50, data[i].ZONE_VALUE / 10, "v")
-                        getCurrentTime(data[i].DATE_CREATE);
-                        const now = new Date();
-                        const providedTime = new Date(data[i].DATE_CREATE);
-                        const differenceInMilliseconds = now.getTime() - providedTime.getTime();
-                        const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
-                        console.log(differenceInMilliseconds / (1000 * 60));
-                        if(checkTimeOnline < 5){
-                            document.getElementById("status").style.background = "green";
-                        }
-                        // document.getElementById("RA").textContent = data[i].ZONE_VALUE / 10 ;
-                    } else if (data[i].ZONE_PROPERTY == "RP") {
-                        document.getElementById("RP").textContent = data[i].ZONE_VALUE / 10 ;
-                    } else if (data[i].ZONE_PROPERTY == "RD") {
-                        checkRD = true;
-                        const color = getColor(data[i].ZONE_VALUE / 10);
-                        changeColorAndText(color, color, data[i].ZONE_VALUE / 10);
-                        // updateProgressBar("rain-bar", -500, 500, (data[i].LAST_VALUE / 10), "mm");
-                    }
-                    if(checkRD == false){
-                        const color = getColor(0);
-                        changeColorAndText(color, color, 0);
-                    }
-                    if(checkRT == false){
-                        setRangeValue(0)
-                    }
-                }
-            } else {
-                const path = document.querySelector("#mySvg path");
-                path.setAttribute("fill", "#007bff");
-            }
-            $('#loading-popup').modal('hide');
-        }
-
-        function updateProgressBar(id, min, max, temp, Unit) {
-            var minTemp = min;
-            var maxTemp = max;
-            var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
-            var progressBar = document.getElementById(id);
-            if (percentage >= 0 && percentage <= 100) {
-                progressBar.style.width = percentage + "%";
-                progressBar.style.height = "100%";
-                progressBar.setAttribute("aria-valuenow", percentage);
-                progressBar.innerHTML = temp + Unit;
-            } else {
-                console.log("Temperature out of range");
-            }
-        }
-
-
-        function getColor(value) {
-            if (value > 400) {
-                return "#a00ba0";
-            } else if (value >= 300 && value <= 400) {
-                return "#9f55e4";
-            } else if (value >= 200 && value < 300) {
-                return "#009999";
-            } else if (value >= 150 && value < 200) {
-                return "#00ffff";
-            } else if (value >= 100 && value < 150) {
-                return "#006600";
-            } else if (value >= 50 && value < 100) {
-                return "#66cc00";
-            } else if (value >= 20 && value < 50) {
-                return "#b2ff66";
-            } else if (value >= 10 && value < 20) {
-                return "#0084ff";
-            } else if (value >= 5 && value < 10) {
-                return "#7fc1ff";
-            } else if (value >= 0 && value < 5) {
-                return "#bfe0ff";
-            } else if (value >= -5 && value < 0) {
-                return "#ffffa6";
-            } else if (value >= -10 && value < -5) {
-                return "#ffff00";
-            } else if (value >= -20 && value < -10) {
-                return "#ffb266";
-            } else if (value >= -50 && value < -20) {
-                return "#ff8000";
-            } else if (value >= -100 && value < -50) {
-                return "#994c00";
-            } else if (value >= -150 && value < -100) {
-                return "#ff9999";
-            } else if (value >= -200 && value < -150) {
-                return "#ff3333";
-            } else if (value < -200) {
-                return "#660000";
-            } else {
-                return "value out of range";
-            }
-        }
-
-
-        if (maTram != "") {
-            getDataMonitoring();
-            document.getElementById("ScanQR").classList.add("hidden");
-            document.getElementById("homePage").classList.remove("hidden");
-        }
-        function formatDateTime(date) {
-            const now = new Date(date);
-
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-
-            const formattedDatetime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-            return formattedDatetime
-        }
-        var checkCam = true;
-        
-        function getDM(table_name, c, url) {
-
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: url+"/GetNewData?w="+localStorage.getItem("MATRAM"),
-                    type: "GET",
-                    dataType: "jsonp",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        try {
-                            let state = JSON.parse(msg);
-                            resolve(state); // Trả về dữ liệu khi thành công
-                        } catch (error) {
-                            reject(error); // Bắt lỗi nếu JSON parse thất bại
-                        }
-                    },
-                    complete: function (data) {
-                        // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
-                    },
-                    error: function (e, t, x) {
-                        HomeOS.Service.SetActionControl(true);
-                        HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                        reject(e); // Trả về lỗi nếu thất bại
-                    },
-                });
-            });
-        }
-
-        async function clickGetData(type) {
-            if (lineBarChart != null) {
-                lineBarChart.destroy();
-                document.getElementById("loading-spinner").classList.remove("d-none");
-            }
-            if (type == 'NGAY') {
-                const dataChart = await getDataChart('NGAY', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 
-                if (dataChart != []) {
-                    createChartData(dataChart, 'RD')
+                const ngay = now.getDate(); // Ngày (1-31)
+                const thang = now.getMonth() + 1; // Tháng (0-11) nên cần +1
+                const nam = now.getFullYear(); // Năm (4 chữ số)
+                // Lấy giờ, phút, giây
+                const hours = now.getHours();   // Giờ (0-23)
+                const minutes = now.getMinutes(); // Phút (0-59)
+                const seconds = now.getSeconds(); // Giây (0-59)
+
+                // Định dạng giờ thành dạng HH:MM:SS
+                const chuoiNgay = `${ngay.toString().padStart(2, '0')}/${thang.toString().padStart(2, '0')}/${nam}`;
+                const currentTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                // Hiển thị giờ hiện tại
+                if(time){
+                    document.getElementById("lateDateTime").textContent = chuoiNgay +" "+ currentTime;
                 }
-            } else if (type == 'TUAN') {
-                const dataChart = await getDataChart('TUAN', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-                if (dataChart != []) {
-                    createChartData(dataChart, 'RD')
-                }
-            } else if (type == 'THANG') {
-                const dataChart = await getDataChart('THANG', '', '', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-                if (dataChart != []) {
-                    createChartData(dataChart, 'RD')
-                }
-            } else if (type == 'NAM') {
-                const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', 'RD-RT-RH-RP', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
-                if (dataChart != []) {
-                    createChartData(dataChart, 'RD')
-                }
-            }
-        }
-
-        function getDataStation(workstationID, domain) {
-            
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: "https://"+domain+"/Service/Service.svc/ApiServicePublic/" + "GetDataWorkStation" + "/" + "WORKSTATION_ID='" + workstationID + "'",
-                    type: "GET",
-                    dataType: "jsonp",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        try {
-                            let state = JSON.parse(msg);
-                            console.log(state);
-                            if(state != [] && state != "" && state != null && state.length != 0){
-                                const item = {'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime()}
-                                localStorage.setItem('itemHistory', JSON.stringify(item));
-                            }
-                            resolve(state); // Trả về dữ liệu khi thành công
-                        } catch (error) {
-                            reject(error); // Bắt lỗi nếu JSON parse thất bại
-                        }
-                    },
-                    complete: function (data) {
-                        // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
-                    },
-                    error: function (e, t, x) {
-                        // HomeOS.Service.SetActionControl(true);
-                        // HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                        //reject(e); // Trả về lỗi nếu thất bại
-                    },
-                });
-            });
-            
-        }
-
-        function getDataChart(typeTime, start, end, type, zone, url) {
-
-            const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
-
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: url+"/ApiServicePublic/" + "GetDataFilterLogzone" + "/" + "TYPE_TIME='" + typeTime + "',START_DATE='" + start + "',END_DATE='" + end + "',TYPE_VALUE='" + type + "',ZONE_ADDRESS='" + zone + "'",
-                    type: "GET",
-                    dataType: "jsonp",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (msg) {
-                        try {
-                            let state = JSON.parse(msg);
-                            resolve(state); // Trả về dữ liệu khi thành công
-                        } catch (error) {
-                            reject(error); // Bắt lỗi nếu JSON parse thất bại
-                        }
-                    },
-                    complete: function (data) {
-                        // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
-                    },
-                    error: function (e, t, x) {
-                        HomeOS.Service.SetActionControl(true);
-                        HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                        reject(e); // Trả về lỗi nếu thất bại
-                    },
-                });
-            });
-        }
-
-        function changeColorAndText(fillColor, strokeColor, newText) {
-            const path = document.querySelector("#mySvg path");
-            const text = document.querySelector("#mySvg text");
-
-            // Change the path colors
-            path.setAttribute("fill", fillColor);
-            path.setAttribute("stroke", strokeColor);
-
-            // Update the text content
-            text.textContent = newText + "mm";
-        }
-        var ctx = document.getElementById("lineBarChart");
-        var lineBarChart;
-        // Tạo biểu đồ
-        ctx.getContext("2d");
-        function createNewChart() {
-            if (lineBarChart != null) {
-                lineBarChart.destroy();
-            }
-            lineBarChart = new Chart(ctx, {
-                type: "bar", // Chọn loại biểu đồ chính là bar
-                data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July"],
-                    datasets: [
-                        {
-                            type: "bar", // Chọn kiểu bar cho dataset này
-                            label: "Lượng bán hàng",
-                            data: [30, 50, 40, 60, 70, 45, 80],
-                            backgroundColor: "rgba(75, 192, 192, 0.5)",
-                            borderColor: "rgba(75, 192, 192, 1)",
-                            borderWidth: 1,
-                        },
-                        {
-                            type: "line", // Chọn kiểu line cho dataset này
-                            label: "Doanh thu",
-                            data: [300, 400, 350, 450, 500, 400, 550],
-                            backgroundColor: "rgba(255, 99, 132, 0.2)",
-                            borderColor: "rgba(255, 99, 132, 1)",
-                            fill: false, // Không tô nền dưới đường
-                            tension: 0.3, // Tạo độ cong cho đường
-                            borderWidth: 2,
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true, // Đảm bảo trục Y bắt đầu từ 0
-                        },
-                    },
-                },
-            });
-        }
-
-        createChartData = function (data, type) {
-            if (lineBarChart != null && type == "RD") {
-                lineBarChart.destroy();
-            }
-            var RA = ctx.getContext('2d');
-            let newDataRA = [];
-            let newlabelRA = [];
-            let newDataRT = [];
-            let newlabelRT= [];
-            let newDataRH = [];
-            let newlabelRH= [];
-            let newDataRP = [];
-            let newlabelRP= [];
-            $.each(data, function (i, item) {
-                if (item.AverageValue != 0) {
-                    if (item.ZONE_PROPERTY == 'RD') {
-                        newlabelRA.push(item.Label);
-                        newDataRA.push(item.AverageValue/10)
-                    } else if (item.ZONE_PROPERTY == 'RT') {
-                        newlabelRT.push(item.Label);
-                        newDataRT.push(item.AverageValue/10)
-                    } else if (item.ZONE_PROPERTY == 'RH') {
-                        newlabelRH.push(item.Label);
-                        newDataRH.push(item.AverageValue/10)
-                    } else if (item.ZONE_PROPERTY == 'RP') {
-                        newlabelRP.push(item.Label);
-                        newDataRP.push(item.AverageValue/10)
-                    }
-
-                }
-            })
-            console.log(newDataRT);
-            
-            var dataSetRA = [
-                {
-                    type: "line", // Chọn kiểu bar cho dataset này
-                    label: "Nhiệt độ (°C)",
-                    data: newDataRT,
-                    backgroundColor: "rgb(255,98,1)",
-                    borderColor: "rgb(255,98,1)",
-                    borderWidth: 1,
-                },
-                {
-                    type: "line", // Chọn kiểu bar cho dataset này
-                    label: "Độ ẩm (%)",
-                    data: newDataRH,
-                    backgroundColor: "rgb(0,95,95)",
-                    borderColor: "rgb(0,95,95)",
-                    borderWidth: 1,
-                },
-                {
-                    type: "line", // Chọn kiểu bar cho dataset này
-                    label: "Áp suất (hPa)",
-                    data: newDataRP,
-                    backgroundColor: "rgb(13,154,154)",
-                    borderColor: "rgb(13,154,154)",
-                    borderWidth: 1,
-                },
-                {
-                    type: "bar", // Chọn kiểu bar cho dataset này
-                    label: "Lượng mưa (mm)",
-                    data: newDataRA,
-                    backgroundColor: "rgba(75, 192, 192, 0.5)",
-                    borderColor: "rgba(75, 192, 192, 1)",
-                    borderWidth: 1,
-                }
-            ]
-
-
-            lineBarChart = new Chart(RA, createChart("bar", newlabelRT, [], "", "", dataSetRA));
-            document.getElementById("loading-spinner").classList.add("d-none");
-        }
-
-        createChart = function (type, Label, Data, Unit, LabelData, dataSet) {
-            return {
-                type: type, // Loại biểu đồ
-                data: {
-                    labels: Label,
-                    datasets: dataSet
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true, // Không giữ tỷ lệ khung hình
-                    responsive: true,
-                    scales: {
-                        y: {  // Sử dụng 'y' thay vì 'yAxes'
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value, index, values) {
-                                    return value + ' ' + Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
-                                }
-                            }
-                        }
-                    },
-                    tooltips: {
-                        callbacks: {
-                            label: function (tooltipItem, data) {
-                                let label = data.datasets[tooltipItem.datasetIndex].label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += tooltipItem.yLabel + ' ' + Unit;  // Thêm đơn vị Volts vào tooltip
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        //qrcode
-        var html5QrCode;
-        var currentCameraIndex = 0;  // Index camera hiện tại
-        var devices = [];  // Danh sách các camera
-        var isScannerRunning = false;  // Biến theo dõi trạng thái quét
-        var currentCamera;
-        // Hàm khởi tạo quét QR
-        function startScan(cameraId, cam) {
-                currentCamera = cam;
-                html5QrCode = new Html5Qrcode("qr-reader");
-                html5QrCode.start(
-                    cameraId, 
-                    {
-                        fps: 10,    // Số khung hình trên giây
-                        qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                        aspectRatio: 1.7, // Đặt tỉ lệ khung hình
-                        videoConstraints:{
-                            facingMode: {exact: cam},
-                        }
-                    },
-                    onScanSuccess,
-                    onScanFailure
-                ).then(() => {
-                    isScannerRunning = true;  // Đánh dấu scanner đang chạy
-                }).catch(err => {
-                    console.error("Lỗi khi khởi động camera: ", err);
-                });
+                return chuoiNgay +" "+ currentTime;
             }
 
-        // Khi nhấn nút mở popup quét QR
-        $("#start").click(function() {
-            $("#qr-popup").modal({
-                fadeDuration: 250,
-                escapeClose: false,
-                clickClose: false,
-                showClose: false
-            });
-
-            // Lấy danh sách camera và bắt đầu quét
-            Html5Qrcode.getCameras().then(_devices => {
-                devices = _devices; // Lưu lại danh sách camera
-                console.log(devices);
-                if (devices && devices.length) {
-                    if(devices.length == 1){
-                        startScan(devices[currentCameraIndex].id, "user");  // Bắt đầu quét với camera đầu tiên
-                    } else {
-                        startScan(devices[currentCameraIndex].id, "environment");
-                    }
-                } else {
-                    console.error("Không tìm thấy thiết bị camera nào.");
-                }
-            }).catch(err => {
-                console.error("Lỗi khi lấy danh sách camera: ", err);
-            });
-        });
-
-        // Chuyển đổi camera
-        $("#toggle-camera").click(function() {
-            if(currentCameraIndex == devices.length){
-                currentCamera = 0
-            } else {
-                currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
-            }
-            if(currentCamera == "user"){
-                startScan(devices[currentCameraIndex].id, 'environment'); // Bắt đầu quét với camera mới
-            } else {
-                startScan(devices[currentCameraIndex].id, 'user');
-            }
-        });
-
-        // Khi nhấn nút đóng popup
-        $("#close-scanner").click(function() {
-            console.log(1);
-            
-            if (isScannerRunning) {
-                html5QrCode.stop().then(ignore => {
-                    isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                    $('#qr-popup').modal('hide'); // Đóng popup
-                }).catch(err => {
-                    console.error("Lỗi khi dừng quét QR: ", err);
-                });
-            } else {
-                $('#qr-popup').modal('hide'); // Nếu không có quét đang chạy, chỉ đóng popup
-            }
-        });
-
-        // Hàm xử lý khi quét thành công
-        async function onScanSuccess(decodedText, decodedResult) {
-            // Hiển thị kết quả trên trang chính
-            //$("#result").text("Kết quả quét: " + decodedText);
-            
-            html5QrCode.stop().then(ignore => {
-                isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                document.getElementById("result-form").classList.remove("d-none");
-                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-            }).catch(err => {
-                console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
-            });
-            console.log(decodedText);
-            let data;
-            let domain;
-            let workstation;
-            if(decodedText.length > 6){
-                var resultArray = decodedText.split("$");
-                localStorage.setItem("URL", resultArray[0]);
-                data = await getDM(
-                    "DM_WORKSTATION",
-                    "WORKSTATION_ID='" + resultArray[1] + "'", 
-                    resultArray[0]
+            function addItemHistory(item) {
+                // Tạo phần tử nội dung chính
+                const element = $(
+                    '<div class="iconApp">' +
+                        '<div id="App'+item.CodeWorkStation+'" class="icon" style="background-color: #28a745 !important;">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: #fff;" fill="currentColor" class="bi bi-cloud-drizzle" viewBox="0 0 16 16">' +
+                                '<path d="M4.158 12.025a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m-3.5 1.5a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m6 0a.5.5 0 0 1 .316.633l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.317m.747-8.498a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 11H13a3 3 0 0 0 .405-5.973M8.5 2a4 4 0 0 1 3.976 3.555.5.5 0 0 0 .5.445H13a2 2 0 0 1 0 4H3.5a2.5 2.5 0 1 1 .605-4.926.5.5 0 0 0 .596-.329A4 4 0 0 1 8.5 2"/>' +
+                            '</svg>' +
+                        '</div>' +
+                        '<div class="info-box-content" style="padding-right: 0">' +
+                            '<div class="d-flex justify-content-between">' +
+                                '<span class="app-text">' + item.CodeWorkStation + '</span>' +
+                                '<span class="app-text" style="padding-right: 0">' + item.date + '</span>' +
+                            '</div>' +
+                            '<span class="app-text-number" style="padding-right: 0">' + item.NameWorkStation + '</span>' +
+                        '</div>' +
+                    '</div>'
                 );
-                workstation = resultArray[1];
-                document.getElementById("result-form").classList.remove("d-none");
-                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-            } else if(decodedText.length == 6) {
-                domain = await getDomain(decodedText,'domain');
-                const url = "https://"+domain+"/service/service.svc/"
-                localStorage.setItem("URL", url);
-                data = await getDM(
-                    "DM_WORKSTATION",
-                    "WORKSTATION_ID='" + decodedText + "'", 
-                    url
+
+                // Tạo phần tử bao bọc với nút X
+                const totalElement = $(
+                    '<div style="padding-bottom: 13px; position: relative;" class="history-item" data-code="' + item.CodeWorkStation + '">' +
+                        '<div id="delete-item-history" class="close-icon">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">' +
+                                '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>' +
+                            '</svg>' +
+                        '</div>' +
+                    '</div>'
                 );
-                workstation = decodedText;
-                document.getElementById("result-form").classList.remove("d-none");
-                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-            } else {
-                toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+
+                // Thêm phần tử chính vào phần tử bao bọc
+                totalElement.append(element);
+
+                // Gắn sự kiện click cho nút X
+                totalElement.find('.close-icon').on('click', function (e) {
+                    e.stopPropagation(); // Ngăn chặn sự kiện click lan đến phần tử chính
+
+                    // Hiển thị popup xác nhận
+                    const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa trạm "${item.NameWorkStation} [${item.CodeWorkStation}]" không?`);
+                    if (confirmDelete) {
+                        totalElement.remove(); // Xóa phần tử nếu người dùng chọn "Có"
+                        historyItems = historyItems.filter(i => i.CodeWorkStation !== item.CodeWorkStation);
+                        localStorage.setItem('dataHistory', JSON.stringify(historyItems));
+                        toastr.success(`Trạm "${item.CodeWorkStation}" đã bị xóa!`);
+                        if (historyItems.length == 0) {
+                            showAddWorkStationButton(); // Ẩn nút nếu có ít nhất 1 phần tử
+                        }
+                    }
+                });
+
+                // Gắn sự kiện click cho phần tử chính
+                element.on('click', function () {
+                    handleItemClick(item);
+                });
+
+                // Thêm phần tử vào danh sách lịch sử
+                historyListDetail.append(totalElement);
             }
-            console.log(data);
-            
-            if (data.data != []) {
-                document.getElementById("result-truycap").disabled = false;
-                matram = workstation;
-                const value = await getDomain(workstation);
-                document.getElementById("result-form-stationID").value = workstation;
-                document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+workstation+"]";
-                checkCam = true;
-                localStorage.setItem("MATRAM", workstation);
-                toastr.success("Quét QR thành công");
-            } else {
-                toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+
+            function showAddWorkStationButton() {
+                const buttonHTML = $(
+                    '<div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">'+
+                        '<button id="addWorkStation" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">'+
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">'+
+                                '<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>'+
+                            '</svg>'+
+                            'Thêm trạm quan trắc'+
+                        '</button>'+
+                    '</div>'
+                );
+                buttonHTML.on('click', function () {
+                    changeQRcode()
+                });
+                historyListDetail.append(buttonHTML); // Giả sử bạn có một div với id "addWorkStationContainer" để chứa nút này
             }
-        }
 
-        // Hàm xử lý khi quét thất bại
-        function onScanFailure(error) {
-            // Xử lý lỗi (nếu cần)
-        }
-
-        // Khi nhấn nút upload QR từ hình ảnh
-        $("#upload-qr").click(function() {
-            $("#file-input").click();  // Mở hộp thoại chọn file
-        });
-
-        // Khi chọn file hình ảnh từ input
-        $("#file-input").change(function(event) {
-            var file = event.target.files[0];  // Đảm bảo lấy file đúng
-            if (file) {
-                // Dừng quét camera trước khi quét file
-                if (isScannerRunning) {
-                    html5QrCode.stop().then(function() {
-                        isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            var img = new Image();
-                            img.onload = function() {
-                                // Quét QR từ hình ảnh đã tải lên
-                                html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
-                                    
-                                    let data;
-                                    let domain;
-                                    let workstation;
-                                    if(decodedText.length > 6){
-                                        var resultArray = decodedText.split("$");
-                                        localStorage.setItem("URL", resultArray[0]);
-                                        data = await getDM(
-                                            "DM_WORKSTATION",
-                                            "WORKSTATION_ID='" + resultArray[1] + "'", 
-                                            resultArray[0]
-                                        );
-                                        workstation = resultArray[1];
-                                        document.getElementById("result-form").classList.remove("d-none");
-                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                    } else if(decodedText.length == 6) {
-                                        domain = await getDomain(decodedText,'domain');
-                                        const url = "https://"+domain+"/service/service.svc/"
-                                        localStorage.setItem("URL", url);
-                                        data = await getDM(
-                                            "DM_WORKSTATION",
-                                            "WORKSTATION_ID='" + decodedText + "'", 
-                                            url
-                                        );
-                                        workstation = decodedText;
-                                        document.getElementById("result-form").classList.remove("d-none");
-                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                    } else {
-                                        toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
-                                    }
-                                    console.log(decodedText.length, data);
-                                    
-                                    
-                                    if (data != []) {
-
-                                        document.getElementById("result-truycap").disabled = false;
-                                        matram = workstation
-                                        const value = await getDomain(workstation);
-                                        document.getElementById("result-form-stationID").value = workstation;
-                                        document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                                        document.getElementById("footer-stationName").textContent = value[0].WORKSTATION_NAME+"["+workstation+"]";
-                                        checkCam = true;
-                                        toastr.success("Quét QR thành công");
-                                        localStorage.setItem("MATRAM", workstation);
-                                    }
-                                }).catch(err => {
-                                    //$("#result").text("Không thể quét QR từ hình ảnh.");
-                                    console.error("Lỗi khi quét hình ảnh QR: ", err);
-                                });
-                            };
-                            img.src = e.target.result;
-                        };
-                        reader.readAsDataURL(file);  // Đọc hình ảnh từ file
-                    }).catch(err => {
-                        console.error("Lỗi khi dừng camera: ", err);
-                    });
-                } else {
-                    // Nếu không có scanner đang chạy, quét trực tiếp từ hình ảnh
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        var img = new Image();
-                        img.onload = function() {
-                            html5QrCode.scanFile(file).then(decodedText => {
-                                $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
-                            }).catch(err => {
-                                $("#result").text("Không thể quét QR từ hình ảnh.");
-                                console.error("Lỗi khi quét hình ảnh QR: ", err);
-                            });
-                        };
-                        img.src = e.target.result;
-                    };
-                    reader.readAsDataURL(file);  // Đọc hình ảnh từ file
-                }
-            }
-        });
-
-        async function getInputValue() {
-            var inputValue = document.getElementById("device_name").value;
-            if(inputValue == null || inputValue==""){
-                toastr.error("Vui lòng nhập mã trạm!");
-            } else {
+            // click ở trang lịch sử để truy cập
+            function handleItemClick(item) {
+                stopInterval()
+                localStorage.setItem("URL", "https://"+item.domain+"/Service/Service.svc");
+                document.getElementById("footer-stationName").textContent = item.CodeWorkStation +" - "+item.NameWorkStation;
+                localStorage.setItem("MATRAM", item.CodeWorkStation);
+                const itemHistory = {'CodeWorkStation': item.CodeWorkStation, 'NameWorkStation': item.NameWorkStation, 'domain': item.domain, 'date': getCurrentTime(), 'workstationType': item.workstationType}
+                localStorage.setItem('itemHistory', JSON.stringify(itemHistory));
                 $("#loading-popup").modal({
                     fadeDuration: 250,
                     escapeClose: false,
                     clickClose: false,
                     showClose: false
                 });
-                CheckWorkStation(inputValue)
+                truyCap()
             }
-        }
 
-        function adjustFooter() {
-            const footer = document.querySelector('.footer-instruct');
-            const windowHeight = window.innerHeight;
+            // chạy Interval để check trạng thái hoạt động
+            async function startInterval() {
+                // Chạy setInterval nếu chưa chạy
+                if (!intervalId) {
+                    for (let i = historyItems.length - 1; i >= 0; i--) {
+                        const data = await getNewData(
+                            historyItems[i].CodeWorkStation,
+                            "WORKSTATION_ID='" + historyItems[i].CodeWorkStation + "'",
+                            "https://"+ historyItems[i].domain +"/Service/Service.svc"
+                        );
+                        let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
+                        console.log(historyItems[i].CodeWorkStation);
+                        
+                        if(filteredItems.length != 0){
+                            const now = new Date();
+                            const providedTime = new Date(filteredItems[0].DATE_CREATE);
+                            const differenceInMilliseconds = now.getTime() - providedTime.getTime();
+                            const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
+                            if(checkTimeOnline < 5){
+                                const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                                if (button) {
+                                    button.style.backgroundColor = "#28a745";
+                                }
+                            } else {
+                                const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                                if (button) {
+                                    button.style.backgroundColor = "#da4a58";
+                                }
+                            }
+                        } else {
+                            const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                            if (button) {
+                                button.style.backgroundColor = "#da4a58";
+                            }
+                        }
+                    }
+                    intervalId = setInterval( async () => {
+                        for (let i = historyItems.length - 1; i >= 0; i--) {
+                            const data = await getNewData(
+                                historyItems[i].CodeWorkStation,
+                                "WORKSTATION_ID='" + historyItems[i].CodeWorkStation + "'",
+                                "https://"+ historyItems[i].domain +"/Service/Service.svc"
+                            );
+                            let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
+                            console.log(filteredItems);
+                            if(filteredItems.length != 0){
+                                const now = new Date();
+                                const providedTime = new Date(filteredItems[0].DATE_CREATE);
+                                const differenceInMilliseconds = now.getTime() - providedTime.getTime();
+                                const checkTimeOnline = differenceInMilliseconds / (1000 * 60);
+                                if(checkTimeOnline < 5){
+                                    const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                                    if (button) {
+                                        button.style.backgroundColor = "#28a745";
+                                    }
+                                } else {
+                                    const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                                    if (button) {
+                                        button.style.backgroundColor = "#da4a58";
+                                    }
+                                }
+                            } else {
+                                const button = document.getElementById('App'+ historyItems[i].CodeWorkStation);
+                                if (button) {
+                                    button.style.backgroundColor = "#da4a58";
+                                }
+                            }
+                        }
+                    }, 10000);
+                }
+            }
 
-            window.addEventListener('resize', () => {
-                if (window.innerHeight < windowHeight) {
-                    // Keyboard is visible, hide or adjust footer
-                    footer.style.display = 'none'; // You can also reposition it instead of hiding
+            function stopInterval() {
+                // Xóa interval nếu đang chạy
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            }
+            // hiển thị dữ liệu lịch sử truy cập 
+            function showHistory(type) {
+                historyItems = JSON.parse(localStorage.getItem('dataHistory'));
+                if(type){
+                    if(type != "ALL"){
+                        historyItems = historyItems.filter(item => item.workstationType === type);
+                    }
+                }
+                console.log(historyItems);
+                let arrayCategory = [];
+                if(historyItems && historyItems.length > 0){
+                    historyListDetail.empty();
+                    for (let i = historyItems.length - 1; i >= 0; i--) {
+                        addItemHistory(historyItems[i]);
+                        if (!arrayCategory.includes(historyItems[i].workstationType)) { // Kiểm tra nếu phần tử chưa có trong mảng
+                            arrayCategory.push(historyItems[i].workstationType);
+                        }
+                    }
+                    arrayCategory.push("ALL");
+                    console.log(arrayCategory);
+                    if(!type){
+                        const selectElement = $('#historySelect');
+                        selectElement.empty();
+                        for (let i = arrayCategory.length - 1; i >= 0; i--) {
+                            console.log(arrayCategory[i]);
+                            const selectElement = document.getElementById("historySelect");
+                            const newOption = document.createElement("option");
+                            let value;
+                            let text;
+                            if(arrayCategory[i] == "NAAM"){
+                                value = arrayCategory[i]
+                                text = "Trạm Mưa, nhiệt, ẩm, áp"
+                            } else if(arrayCategory[i] == "N"){
+                                value = arrayCategory[i]
+                                text = "Trạm mực nước"
+                            } else if(arrayCategory[i] == "M"){
+                                value = arrayCategory[i]
+                                text = "Trạm Mưa"
+                            } else if(arrayCategory[i] == "ALL"){
+                                value = arrayCategory[i]
+                                text = "Tất cả trạm"
+                            }
+                            newOption.value = value; // Giá trị mới
+                            newOption.text = text; // Văn bản mới
+                            selectElement.appendChild(newOption); // Thêm vào danh sách select
+                        }
+                    }
+                    startInterval();
+                }
+            }
+            // lưu lịch sử
+            function saveHistory(code) {
+                historyItems = JSON.parse(localStorage.getItem('dataHistory'));
+                if(historyItems){
+                    historyItems = historyItems.filter(item => item.CodeWorkStation !== code);
+                    const item = JSON.parse(localStorage.getItem('itemHistory'));
+                    historyItems.push(item);
+                    if (historyItems.length > 10) {
+                        historyItems.shift();
+                    }
                 } else {
-                    // Keyboard is hidden, show footer
-                    footer.style.display = 'block';
+                    historyItems = [];
+                    const item = JSON.parse(localStorage.getItem('itemHistory'));
+                    historyItems.push(item);
                 }
-            });
-        }
-        adjustFooter();
-        
-
-        var xmlns = "http://www.w3.org/2000/svg",
-            xlinkns = "http://www.w3.org/1999/xlink",
-            select = function (s) {
-                return document.querySelector(s);
-            },
-            selectAll = function (s) {
-                return document.querySelectorAll(s);
-            },
-            liquid = selectAll('.liquid'),
-            tubeShine = select('.tubeShine'),
-            label = select('.label'),
-            follower = select('.follower'),
-            dragger = select('.dragger'),
-            dragTip = select('.dragTip'),
-            minDragY = -380,
-            liquidId = 0,
-            step = Math.abs(minDragY / 50),
-            snap = Math.abs(minDragY / 10),
-            followerVY = 0;
-
-        gsap.set('svg', { visibility: 'visible' });
-        gsap.set(dragTip, { transformOrigin: '20% 50%' });
-
-        var tl = gsap.timeline();
-        tl.to(liquid, { x: '-=200', ease: 'none', repeat: -1, stagger: 0.9 });
-
-        tl.time(100);
-
-        document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-        });
-
-        Draggable.create(dragger, {
-            type: 'y',
-            bounds: { minY: minDragY, maxY: 0 },
-            onDrag: onUpdate,
-            throwProps: true,
-            throwResistance: 2300,
-            onThrowUpdate: onUpdate,
-            overshootTolerance: 0,
-            snap: function (value) {
-                // Optional: snap to steps of 10
-                // return Math.round(value / snap) * snap;
-            }
-        });
-
-        function onUpdate() {
-            // Get the current y position of the dragger using gsap.getProperty
-            var draggerY = gsap.getProperty(dragger, 'y');
-            liquidId = Math.abs(Math.round(draggerY / step));
-            label.textContent = liquidId + '°C';;
-
-            gsap.to(liquid, {
-                y: draggerY * 1.12,
-                ease: 'elastic.out(1, 0.4)',
-                duration: 1.3
-            });
-        }
-
-        gsap.to(follower, {
-            y: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                y: function (y) {
-                    var draggerY = gsap.getProperty(dragger, 'y');
-                    followerVY += (draggerY - gsap.getProperty(follower, 'y')) * 0.23;
-                    followerVY *= 0.69;
-                    return gsap.getProperty(follower, 'y') + followerVY;
-                }
-            }
-        });
-
-        gsap.to(dragTip, {
-            rotation: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                rotation: function (rotation) {
-                    return rotation - followerVY;
-                }
-            }
-        });
-
-        gsap.to(label, {
-            y: '+=0',
-            repeat: -1,
-            duration: 1,
-            modifiers: {
-                y: function (y) {
-                    return y - followerVY * 0.5;
-                }
-            }
-        });
-
-        gsap.to(dragger, {
-            y: minDragY / 2,
-            onUpdate: onUpdate,
-            ease: 'expo.inOut',
-            duration: 1.4
-        });
-        function setRangeValue(value, type) {
-            // Chuyển đổi giá trị value từ 0-100 thành vị trí y tương ứng
-            var newY
-            if(type == 'success'){
-                newY = value * (minDragY / 50);
-            } else {
-                newY = 1 * (minDragY / 50);
+                
+                localStorage.setItem('dataHistory', JSON.stringify(historyItems));
             }
             
+            // update data của trang chính xem dữ liệu
+            function changeDataHomePage(data) {
+                if(data != [] && data != null && data != ''){
+                    let checkRD = false;
+                    let checkRT = false;
+                    let filteredItems = data.filter(item => item.ZONE_ADDRESS === localStorage.getItem('MATRAM'));
+                    console.log(filteredItems);
+                    for (let i = 0; i < filteredItems.length; i++) {
+                        
+                        if (filteredItems[i].ZONE_PROPERTY == "RT") {
+                            checkRT = true;
+                            document.getElementById("RT").textContent = filteredItems[i].ZONE_VALUE / 10 + " °C";
+                            setRangeValue(filteredItems[i].ZONE_VALUE / 10, "success")
+                        } else if (filteredItems[i].ZONE_PROPERTY == "RH") {
+                            document.getElementById("RH").textContent = filteredItems[i].ZONE_VALUE / 10 + " %";
+                        } else if (filteredItems[i].ZONE_PROPERTY == "RA") {
+                            document.getElementById("energy").textContent = filteredItems[i].ZONE_VALUE / 10+" V" ;
+                            // updateProgressBar("acQuy-bar",0, 50, filteredItems[i].ZONE_VALUE / 10, "v")
+                            getCurrentTime(filteredItems[i].DATE_CREATE);
+                            const now = new Date();
+                            const providedTime = new Date(filteredItems[i].DATE_CREATE);
+                            const differenceInMilliseconds = now.getTime() - providedTime.getTime();
+                            const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
+                            if(checkTimeOnline < 5){
+                                document.getElementById("status").style.background = "green";
+                                document.getElementById("text-status").textContent = "đang hoạt động";
+                            } else {
+                                document.getElementById("text-status").textContent = "Ngừng hoạt động";
+                            }
+                            // document.getElementById("RA").textContent = filteredItems[i].ZONE_VALUE / 10 ;
+                        } else if (filteredItems[i].ZONE_PROPERTY == "RP") {
+                            document.getElementById("RP").textContent = filteredItems[i].ZONE_VALUE / 10 + " hPa";
+                        } else if (filteredItems[i].ZONE_PROPERTY == "RD") {
+                            checkRD = true;
+                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE / 10 + " mm";
+                            // const color = getColor(filteredItems[i].ZONE_VALUE / 10);
+                            // changeColorAndText(color, color, filteredItems[i].ZONE_VALUE / 10);
+                            // updateProgressBar("rain-bar", -500, 500, (filteredItems[i].LAST_VALUE / 10), "mm");
+                        } else if (filteredItems[i].ZONE_PROPERTY == "RN") {
+                            checkRD = true;
+                            document.getElementById("RN").textContent = filteredItems[i].ZONE_VALUE + " cm";
+                        }
+                        if(checkRT == false){
+                            setRangeValue(0)
+                        }
+                    }
+                } else {
+                    const path = document.querySelector("#mySvg path");
+                    path.setAttribute("fill", "#007bff");
+                }
+                $('#loading-popup').modal('hide');
+            }
 
-            // Cập nhật vị trí của dragger và các phần liên quan
-            gsap.to(dragger, {
-                y: newY,
-                onUpdate: onUpdate, // Gọi lại onUpdate để cập nhật các phần khác
-                ease: "expo.inOut",
-                duration: 1.0 // Tốc độ di chuyển
+            // function updateProgressBar(id, min, max, temp, Unit) {
+            //     var minTemp = min;
+            //     var maxTemp = max;
+            //     var percentage = ((temp - minTemp) / (maxTemp - minTemp)) * 100;
+            //     var progressBar = document.getElementById(id);
+            //     if (percentage >= 0 && percentage <= 100) {
+            //         progressBar.style.width = percentage + "%";
+            //         progressBar.style.height = "100%";
+            //         progressBar.setAttribute("aria-valuenow", percentage);
+            //         progressBar.innerHTML = temp + Unit;
+            //     } else {
+            //         console.log("Temperature out of range");
+            //     }
+            // }
+
+
+            // function getColor(value) {
+            //     if (value > 400) {
+            //         return "#a00ba0";
+            //     } else if (value >= 300 && value <= 400) {
+            //         return "#9f55e4";
+            //     } else if (value >= 200 && value < 300) {
+            //         return "#009999";
+            //     } else if (value >= 150 && value < 200) {
+            //         return "#00ffff";
+            //     } else if (value >= 100 && value < 150) {
+            //         return "#006600";
+            //     } else if (value >= 50 && value < 100) {
+            //         return "#66cc00";
+            //     } else if (value >= 20 && value < 50) {
+            //         return "#b2ff66";
+            //     } else if (value >= 10 && value < 20) {
+            //         return "#0084ff";
+            //     } else if (value >= 5 && value < 10) {
+            //         return "#7fc1ff";
+            //     } else if (value >= 0 && value < 5) {
+            //         return "#bfe0ff";
+            //     } else if (value >= -5 && value < 0) {
+            //         return "#ffffa6";
+            //     } else if (value >= -10 && value < -5) {
+            //         return "#ffff00";
+            //     } else if (value >= -20 && value < -10) {
+            //         return "#ffb266";
+            //     } else if (value >= -50 && value < -20) {
+            //         return "#ff8000";
+            //     } else if (value >= -100 && value < -50) {
+            //         return "#994c00";
+            //     } else if (value >= -150 && value < -100) {
+            //         return "#ff9999";
+            //     } else if (value >= -200 && value < -150) {
+            //         return "#ff3333";
+            //     } else if (value < -200) {
+            //         return "#660000";
+            //     } else {
+            //         return "value out of range";
+            //     }
+            // }
+
+
+            if (maTram != "") {
+                getDataMonitoring();
+                document.getElementById("ScanQR").classList.add("hidden");
+                document.getElementById("homePage").classList.remove("hidden");
+            }
+
+            function formatDateTime(date) {
+                const now = new Date(date);
+
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                const formattedDatetime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                return formattedDatetime
+            }
+            var checkCam = true;
+            // call api getnewdata lấy data mới nhất
+            function getNewData(workstation, c, url) {
+
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: url+"/GetNewData?w="+workstation,
+                        type: "GET",
+                        dataType: "jsonp",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                resolve(state); // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error); // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                            // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                        },
+                        error: function (e, t, x) {
+                            HomeOS.Service.SetActionControl(true);
+                            HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                            reject(e); // Trả về lỗi nếu thất bại
+                        },
+                    });
+                });
+            }
+
+            function getDayMessage(type) {
+                switch (type) {
+                    case "NAAM":
+                        return 'RD-RT-RH-RP';
+                    case "N":
+                        return 'RN---';
+                    case "M":
+                        return 'RD---';
+                    default:
+                        return "";
+                }
+            }
+
+            // lọc theo ngày, tháng, năm
+            async function clickGetData(type) {
+                if (lineBarChart != null) {
+                    lineBarChart.destroy();
+                    document.getElementById("loading-spinner").classList.remove("d-none");
+                }
+                const item = JSON.parse(localStorage.getItem('itemHistory'));
+                const TypeWorkstation = getDayMessage(item.workstationType);
+                console.log(TypeWorkstation);
+                
+                if (type == 'NGAY') {
+                    const dataChart = await getDataChart('NGAY', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                    
+                    if (dataChart != []) {
+                        createChartData(dataChart, 'RD')
+                    }
+                } else if (type == 'TUAN') {
+                    const dataChart = await getDataChart('TUAN', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                    if (dataChart != []) {
+                        createChartData(dataChart, 'RD')
+                    }
+                } else if (type == 'THANG') {
+                    const dataChart = await getDataChart('THANG', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                    if (dataChart != []) {
+                        createChartData(dataChart, 'RD')
+                    }
+                } else if (type == 'NAM') {
+                    const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
+                    if (dataChart != []) {
+                        createChartData(dataChart, 'RD')
+                    }
+                }
+            }
+            //call api GetDataWorkStation lấy dữ liệu của WorkStation được chỉ định
+            function getDataStation(workstationID, domain) {
+                
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: "https://"+domain+"/Service/Service.svc/ApiServicePublic/" + "GetDataWorkStation" + "/" + "WORKSTATION_ID='" + workstationID + "'",
+                        type: "GET",
+                        dataType: "jsonp",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                console.log(state);
+                                if(state != [] && state != "" && state != null && state.length != 0){
+                                    const item = {'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime(), 'workstationType': state[0].TEMPLATE_TOOLTIP}
+                                    localStorage.setItem('itemHistory', JSON.stringify(item));
+                                }
+                                resolve(state); // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error); // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                            // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                        },
+                        error: function (e, t, x) {
+                            // HomeOS.Service.SetActionControl(true);
+                            // HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                            //reject(e); // Trả về lỗi nếu thất bại
+                        },
+                    });
+                });
+                
+            }
+
+            //call api GetDataFilterLogzone
+            function getDataChart(typeTime, start, end, type, zone, url) {
+
+                const Url = "https://DEV.HOMEOS.vn/service/service.svc/";
+
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: url+"/ApiServicePublic/" + "GetDataFilterLogzone" + "/" + "TYPE_TIME='" + typeTime + "',START_DATE='" + start + "',END_DATE='" + end + "',TYPE_VALUE='" + type + "',ZONE_ADDRESS='" + zone + "'",
+                        type: "GET",
+                        dataType: "jsonp",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                console.log(state);
+                                resolve(state); // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error); // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                            // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                        },
+                        error: function (e, t, x) {
+                            HomeOS.Service.SetActionControl(true);
+                            HomeOS.Service.ShowLabel("Lỗi dữ liệu");
+                            reject(e); // Trả về lỗi nếu thất bại
+                        },
+                    });
+                });
+            }
+
+            function checkTypeWorkstation() {
+                document.getElementById("box-RT").classList.add("d-none");
+                document.getElementById("box-RH").classList.add("d-none");
+                document.getElementById("box-RD").classList.add("d-none");
+                document.getElementById("box-RD").classList.add("col-6");
+                document.getElementById("box-RD").classList.remove("col-12");
+                document.getElementById("box-RP").classList.add("d-none");
+                document.getElementById("box-RN").classList.add("d-none");
+                document.getElementById("box-RN").classList.add("col-6");
+                document.getElementById("box-RN").classList.remove("col-12");
+                document.getElementById("chart-RT").classList.add("d-none");
+                document.getElementById("chart-RH").classList.add("d-none");
+                document.getElementById("chart-RD").classList.add("d-none");
+                document.getElementById("chart-RP").classList.add("d-none");
+                document.getElementById("chart-RN").classList.add("d-none");
+                const item = JSON.parse(localStorage.getItem('itemHistory'));
+                if(item.workstationType == "NAAM"){
+                    document.getElementById("box-RT").classList.remove("d-none");
+                    document.getElementById("box-RH").classList.remove("d-none");
+                    document.getElementById("box-RD").classList.remove("d-none");
+                    document.getElementById("box-RP").classList.remove("d-none");
+                    document.getElementById("chart-RT").classList.remove("d-none");
+                    document.getElementById("chart-RH").classList.remove("d-none");
+                    document.getElementById("chart-RD").classList.remove("d-none");
+                    document.getElementById("chart-RP").classList.remove("d-none");
+                } else if(item.workstationType == "N"){
+                    document.getElementById("box-RN").classList.remove("d-none");
+                    document.getElementById("chart-RN").classList.remove("d-none");
+                    document.getElementById("box-RN").classList.remove("col-6");
+                    document.getElementById("box-RN").classList.add("col-12");
+                } else if(item.workstationType == "M"){
+                    document.getElementById("box-RD").classList.remove("d-none");
+                    document.getElementById("chart-RD").classList.remove("d-none");
+                    document.getElementById("box-RD").classList.remove("col-6");
+                    document.getElementById("box-RD").classList.add("col-12");
+                }
+            }
+            // function changeColorAndText(fillColor, strokeColor, newText) {
+            //     const path = document.querySelector("#mySvg path");
+            //     const text = document.querySelector("#mySvg text");
+
+            //     // Change the path colors
+            //     path.setAttribute("fill", fillColor);
+            //     path.setAttribute("stroke", strokeColor);
+
+            //     // Update the text content
+            //     text.textContent = newText + "mm";
+            // }
+            var ctx = document.getElementById("lineBarChart");
+            var lineBarChart;
+            var ctx_RT = document.getElementById("ChartRT");
+            var ChartRT;
+            var ctx_RH = document.getElementById("ChartRH");
+            var ChartRH;
+            var ctx_RP = document.getElementById("ChartRP");
+            var ChartRP;
+            var ctx_RN = document.getElementById("ChartRN");
+            var ChartRN;
+            // khởi Tạo biểu đồ
+            ctx.getContext("2d");
+            function createNewChart() {
+                if (lineBarChart != null) {
+                    lineBarChart.destroy();
+                }
+                lineBarChart = new Chart(ctx, {
+                    type: "bar", // Chọn loại biểu đồ chính là bar
+                    data: {
+                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        datasets: [
+                            {
+                                type: "bar", // Chọn kiểu bar cho dataset này
+                                label: "Lượng bán hàng",
+                                data: [30, 50, 40, 60, 70, 45, 80],
+                                backgroundColor: "rgba(75, 192, 192, 0.5)",
+                                borderColor: "rgba(75, 192, 192, 1)",
+                                borderWidth: 1,
+                            },
+                            {
+                                type: "line", // Chọn kiểu line cho dataset này
+                                label: "Doanh thu",
+                                data: [300, 400, 350, 450, 500, 400, 550],
+                                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                                borderColor: "rgba(255, 99, 132, 1)",
+                                fill: false, // Không tô nền dưới đường
+                                tension: 0.3, // Tạo độ cong cho đường
+                                borderWidth: 2,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true, // Đảm bảo trục Y bắt đầu từ 0
+                            },
+                        },
+                    },
+                });
+            }
+
+            // lọc data để tạo chart
+            createChartData = function (data, type) {
+                if (lineBarChart != null) {
+                    lineBarChart.destroy();
+                }
+                if (ChartRT != null) {
+                    ChartRT.destroy();
+                }
+                if (ChartRH != null) {
+                    ChartRH.destroy();
+                }
+                if (ChartRP != null) {
+                    ChartRP.destroy();
+                }
+                if (ChartRN != null) {
+                    ChartRN.destroy();
+                }
+                var RA = ctx.getContext('2d');
+                var RT = ctx_RT.getContext('2d');
+                var RH = ctx_RH.getContext('2d');
+                var RP = ctx_RP.getContext('2d');
+                var RN = ctx_RN.getContext('2d');
+                let newDataRA = [];
+                let newlabelRA = [];
+                let newDataRT = [];
+                let newlabelRT= [];
+                let newDataRH = [];
+                let newlabelRH= [];
+                let newDataRP = [];
+                let newlabelRP= [];
+                let newDataRN = [];
+                let newlabelRN= [];
+                $.each(data, function (i, item) {
+                    if (item.AverageValue != 0) {
+                        if (item.ZONE_PROPERTY == 'RD') {
+                            newlabelRA.push(item.Label);
+                            newDataRA.push(item.AverageValue/10)
+                        } else if (item.ZONE_PROPERTY == 'RT') {
+                            newlabelRT.push(item.Label);
+                            newDataRT.push(item.AverageValue/10)
+                        } else if (item.ZONE_PROPERTY == 'RH') {
+                            newlabelRH.push(item.Label);
+                            newDataRH.push(item.AverageValue/10)
+                        } else if (item.ZONE_PROPERTY == 'RP') {
+                            newlabelRP.push(item.Label);
+                            newDataRP.push(item.AverageValue/10)
+                        } else if (item.ZONE_PROPERTY == 'RN') {
+                            newlabelRN.push(item.Label);
+                            newDataRN.push(item.AverageValue)
+                        }
+
+                    }
+                })
+                var dataSetRA = [
+                    {
+                        type: "bar", // Chọn kiểu bar cho dataset này
+                        label: "Lượng mưa (mm)",
+                        data: newDataRA,
+                        backgroundColor: "rgba(75, 192, 192, 0.5)",
+                        borderColor: "rgba(75, 192, 192, 1)",
+                        borderWidth: 1,
+                    }
+                ]
+                var dataSetRP = [
+                    {
+                        type: "line", // Chọn kiểu bar cho dataset này
+                        label: "Áp suất (hPa)",
+                        data: newDataRP,
+                        backgroundColor: "rgb(13,154,154)",
+                        borderColor: "rgb(13,154,154)",
+                        borderWidth: 1,
+                    }
+                ]
+                var dataSetRT = [
+                    {
+                        type: "line", // Chọn kiểu bar cho dataset này
+                        label: "Nhiệt độ (°C)",
+                        data: newDataRT,
+                        backgroundColor: "rgb(173 14 14)",
+                        borderColor: "rgb(173 14 14)",
+                        borderWidth: 1,
+                        // fill: 'start',
+                        tension: 0.4,
+                    }
+                ]
+                var dataSetRH = [
+                    {
+                        type: "line", // Chọn kiểu bar cho dataset này
+                        label: "Độ ẩm (%)",
+                        data: newDataRH,
+                        backgroundColor: "rgb(40, 167, 69, 0.5)",
+                        borderColor: "rgb(40, 167, 69)",
+                        borderWidth: 1,
+                        fill: 'start',
+                        tension: 0.4,
+                    }
+                ]
+                var dataSetRN = [
+                    {
+                        type: "line", // Chọn kiểu bar cho dataset này
+                        label: "Mực nước (cm)",
+                        data: newDataRN,
+                        backgroundColor: "rgb(0,95,95)",
+                        borderColor: "rgb(0,95,95)",
+                        borderWidth: 1,
+                    }
+                ]
+
+                lineBarChart = new Chart(RA, createChart("bar", newlabelRA, [], "", "", dataSetRA));
+                ChartRT = new Chart(RT, createChart("bar", newlabelRT, [], "", "", dataSetRT));
+                ChartRH = new Chart(RH, createChart("bar", newlabelRH, [], "", "", dataSetRH));
+                ChartRP = new Chart(RP, createChart("bar", newlabelRP, [], "", "", dataSetRP));
+                ChartRN = new Chart(RN, createChart("bar", newlabelRN, [], "", "", dataSetRN));
+                document.getElementById("loading-spinner").classList.add("d-none");
+            }
+            
+            // hàm để tạo chart
+            createChart = function (type, Label, Data, Unit, LabelData, dataSet) {
+                return {
+                    type: type, // Loại biểu đồ
+                    data: {
+                        labels: Label,
+                        datasets: dataSet
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true, // Không giữ tỷ lệ khung hình
+                        responsive: true,
+                        scales: {
+                            y: {  // Sử dụng 'y' thay vì 'yAxes'
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function (value, index, values) {
+                                        return value + ' ' + Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
+                                    }
+                                }
+                            }
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, data) {
+                                    let label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += tooltipItem.yLabel + ' ' + Unit;  // Thêm đơn vị Volts vào tooltip
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //qrcode
+            var html5QrCode;
+            var currentCameraIndex = 0;  // Index camera hiện tại
+            var devices = [];  // Danh sách các camera
+            var isScannerRunning = false;  // Biến theo dõi trạng thái quét
+            var currentCamera;
+            // Hàm khởi tạo quét QR
+            function startScan(cameraId, cam) {
+                    currentCamera = cam;
+                    html5QrCode = new Html5Qrcode("qr-reader");
+                    html5QrCode.start(
+                        cameraId, 
+                        {
+                            fps: 10,    // Số khung hình trên giây
+                            qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                            aspectRatio: 1.7, // Đặt tỉ lệ khung hình
+                            videoConstraints:{
+                                facingMode: {exact: cam},
+                            }
+                        },
+                        onScanSuccess,
+                        onScanFailure
+                    ).then(() => {
+                        isScannerRunning = true;  // Đánh dấu scanner đang chạy
+                    }).catch(err => {
+                        console.error("Lỗi khi khởi động camera: ", err);
+                    });
+                }
+
+            // Khi nhấn nút mở popup quét QR
+            $("#start").click(function() {
+                $("#qr-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
+
+                // Lấy danh sách camera và bắt đầu quét
+                Html5Qrcode.getCameras().then(_devices => {
+                    devices = _devices; // Lưu lại danh sách camera
+                    console.log(devices);
+                    if (devices && devices.length) {
+                        if(devices.length == 1){
+                            startScan(devices[currentCameraIndex].id, "user");  // Bắt đầu quét với camera đầu tiên
+                        } else {
+                            startScan(devices[currentCameraIndex].id, "environment");
+                        }
+                    } else {
+                        console.error("Không tìm thấy thiết bị camera nào.");
+                    }
+                }).catch(err => {
+                    console.error("Lỗi khi lấy danh sách camera: ", err);
+                });
             });
-        }
-        
-        adjustFooter();
+
+            // Chuyển đổi camera
+            $("#toggle-camera").click(function() {
+                if(currentCameraIndex == devices.length){
+                    currentCamera = 0
+                } else {
+                    currentCameraIndex = (currentCameraIndex + 1) % devices.length; // Chuyển qua camera tiếp theo
+                }
+                if(currentCamera == "user"){
+                    startScan(devices[currentCameraIndex].id, 'environment'); // Bắt đầu quét với camera mới
+                } else {
+                    startScan(devices[currentCameraIndex].id, 'user');
+                }
+            });
+
+            // Khi nhấn nút đóng popup
+            $("#close-scanner").click(function() {
+                console.log(1);
+                
+                if (isScannerRunning) {
+                    html5QrCode.stop().then(ignore => {
+                        isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                        $('#qr-popup').modal('hide'); // Đóng popup
+                    }).catch(err => {
+                        console.error("Lỗi khi dừng quét QR: ", err);
+                    });
+                } else {
+                    $('#qr-popup').modal('hide'); // Nếu không có quét đang chạy, chỉ đóng popup
+                }
+            });
+
+            // Hàm xử lý khi quét thành công
+            async function onScanSuccess(decodedText, decodedResult) {
+                // Hiển thị kết quả trên trang chính
+                //$("#result").text("Kết quả quét: " + decodedText);
+                
+                html5QrCode.stop().then(ignore => {
+                    isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                    document.getElementById("result-form").classList.remove("d-none");
+                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                }).catch(err => {
+                    console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
+                });
+                console.log(decodedText);
+                let data;
+                let domain;
+                let workstation;
+                if(decodedText.length > 6){
+                    var resultArray = decodedText.split("$");
+                    localStorage.setItem("URL", resultArray[0]);
+                    data = await getNewData(
+                        localStorage.getItem("MATRAM"),
+                        "WORKSTATION_ID='" + resultArray[1] + "'", 
+                        resultArray[0]
+                    );
+                    workstation = resultArray[1];
+                    document.getElementById("result-form").classList.remove("d-none");
+                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                } else if(decodedText.length == 6) {
+                    domain = await getDomain(decodedText,'domain');
+                    const url = "https://"+domain+"/service/service.svc/"
+                    localStorage.setItem("URL", url);
+                    data = await getNewData(
+                        localStorage.getItem("MATRAM"),
+                        "WORKSTATION_ID='" + decodedText + "'", 
+                        url
+                    );
+                    workstation = decodedText;
+                    document.getElementById("result-form").classList.remove("d-none");
+                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                } else {
+                    toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                }
+                console.log(data);
+                
+                if (data.data != []) {
+                    document.getElementById("result-truycap").disabled = false;
+                    matram = workstation;
+                    const value = await getDomain(workstation);
+                    document.getElementById("result-form-stationID").value = workstation;
+                    document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                    document.getElementById("footer-stationName").textContent = workstation +" - "+value[0].WORKSTATION_NAME;
+                    checkCam = true;
+                    localStorage.setItem("MATRAM", workstation);
+                    toastr.success("Quét QR thành công");
+                } else {
+                    toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                }
+            }
+
+            // Hàm xử lý khi quét thất bại
+            function onScanFailure(error) {
+                // Xử lý lỗi (nếu cần)
+            }
+
+            // Khi nhấn nút upload QR từ hình ảnh
+            $("#upload-qr").click(function() {
+                $("#file-input").click();  // Mở hộp thoại chọn file
+            });
+
+            // Khi chọn file hình ảnh từ input
+            $("#file-input").change(function(event) {
+                var file = event.target.files[0];  // Đảm bảo lấy file đúng
+                if (file) {
+                    // Dừng quét camera trước khi quét file
+                    if (isScannerRunning) {
+                        html5QrCode.stop().then(function() {
+                            isScannerRunning = false;  // Đánh dấu scanner đã dừng
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                var img = new Image();
+                                img.onload = function() {
+                                    // Quét QR từ hình ảnh đã tải lên
+                                    html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
+                                        
+                                        let data;
+                                        let domain;
+                                        let workstation;
+                                        if(decodedText.length > 6){
+                                            var resultArray = decodedText.split("$");
+                                            localStorage.setItem("URL", resultArray[0]);
+                                            data = await getNewData(
+                                                localStorage.getItem("MATRAM"),
+                                                "WORKSTATION_ID='" + resultArray[1] + "'", 
+                                                resultArray[0]
+                                            );
+                                            workstation = resultArray[1];
+                                            document.getElementById("result-form").classList.remove("d-none");
+                                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                        } else if(decodedText.length == 6) {
+                                            domain = await getDomain(decodedText,'domain');
+                                            const url = "https://"+domain+"/service/service.svc/"
+                                            localStorage.setItem("URL", url);
+                                            data = await getNewData(
+                                                localStorage.getItem("MATRAM"),
+                                                "WORKSTATION_ID='" + decodedText + "'", 
+                                                url
+                                            );
+                                            workstation = decodedText;
+                                            document.getElementById("result-form").classList.remove("d-none");
+                                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                        } else {
+                                            toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                                        }
+                                        console.log(decodedText.length, data);
+                                        
+                                        
+                                        if (data != []) {
+
+                                            document.getElementById("result-truycap").disabled = false;
+                                            matram = workstation
+                                            const value = await getDomain(workstation);
+                                            document.getElementById("result-form-stationID").value = workstation;
+                                            document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                                            document.getElementById("footer-stationName").textContent = workstation +" - "+value[0].WORKSTATION_NAME;
+                                            checkCam = true;
+                                            toastr.success("Quét QR thành công");
+                                            localStorage.setItem("MATRAM", workstation);
+                                        }
+                                    }).catch(err => {
+                                        //$("#result").text("Không thể quét QR từ hình ảnh.");
+                                        console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                    });
+                                };
+                                img.src = e.target.result;
+                            };
+                            reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                        }).catch(err => {
+                            console.error("Lỗi khi dừng camera: ", err);
+                        });
+                    } else {
+                        // Nếu không có scanner đang chạy, quét trực tiếp từ hình ảnh
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            var img = new Image();
+                            img.onload = function() {
+                                html5QrCode.scanFile(file).then(decodedText => {
+                                    $("#result").text("Kết quả quét: " + decodedText); // Hiển thị kết quả
+                                }).catch(err => {
+                                    $("#result").text("Không thể quét QR từ hình ảnh.");
+                                    console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                });
+                            };
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);  // Đọc hình ảnh từ file
+                    }
+                }
+            });
+
+
+            //lấy value khi nhập mã trạm thủ công.
+            async function getInputValue() {
+                var inputValue = document.getElementById("device_name").value;
+                if(inputValue == null || inputValue==""){
+                    toastr.error("Vui lòng nhập mã trạm!");
+                } else {
+                    $("#loading-popup").modal({
+                        fadeDuration: 250,
+                        escapeClose: false,
+                        clickClose: false,
+                        showClose: false
+                    });
+                    CheckWorkStation(inputValue)
+                }
+            }
+
+            // ẩn phần bước khi bật bàn phí trên mobile
+            function adjustFooter() {
+                const footer = document.querySelector('.footer-instruct');
+                const windowHeight = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    if (window.innerHeight < windowHeight) {
+                        // Keyboard is visible, hide or adjust footer
+                        footer.style.display = 'none'; // You can also reposition it instead of hiding
+                    } else {
+                        // Keyboard is hidden, show footer
+                        footer.style.display = 'block';
+                    }
+                });
+            }
+            adjustFooter();
+
+            // code gauge nhiệt độ
+            var xmlns = "http://www.w3.org/2000/svg",
+                xlinkns = "http://www.w3.org/1999/xlink",
+                select = function (s) {
+                    return document.querySelector(s);
+                },
+                selectAll = function (s) {
+                    return document.querySelectorAll(s);
+                },
+                liquid = selectAll('.liquid'),
+                tubeShine = select('.tubeShine'),
+                label = select('.label'),
+                follower = select('.follower'),
+                dragger = select('.dragger'),
+                dragTip = select('.dragTip'),
+                minDragY = -380,
+                liquidId = 0,
+                step = Math.abs(minDragY / 50),
+                snap = Math.abs(minDragY / 10),
+                followerVY = 0;
+
+            gsap.set('svg', { visibility: 'visible' });
+            gsap.set(dragTip, { transformOrigin: '20% 50%' });
+
+            var tl = gsap.timeline();
+            tl.to(liquid, { x: '-=200', ease: 'none', repeat: -1, stagger: 0.9 });
+
+            tl.time(100);
+
+            document.addEventListener('touchmove', function (event) {
+                event.preventDefault();
+            });
+
+            Draggable.create(dragger, {
+                type: 'y',
+                bounds: { minY: minDragY, maxY: 0 },
+                onDrag: onUpdate,
+                throwProps: true,
+                throwResistance: 2300,
+                onThrowUpdate: onUpdate,
+                overshootTolerance: 0,
+                snap: function (value) {
+                    // Optional: snap to steps of 10
+                    // return Math.round(value / snap) * snap;
+                }
+            });
+
+            function onUpdate() {
+                // Get the current y position of the dragger using gsap.getProperty
+                var draggerY = gsap.getProperty(dragger, 'y');
+                liquidId = Math.abs(Math.round(draggerY / step));
+                label.textContent = liquidId + '°C';;
+
+                gsap.to(liquid, {
+                    y: draggerY * 1.12,
+                    ease: 'elastic.out(1, 0.4)',
+                    duration: 1.3
+                });
+            }
+
+            gsap.to(follower, {
+                y: '+=0',
+                repeat: -1,
+                duration: 1,
+                modifiers: {
+                    y: function (y) {
+                        var draggerY = gsap.getProperty(dragger, 'y');
+                        followerVY += (draggerY - gsap.getProperty(follower, 'y')) * 0.23;
+                        followerVY *= 0.69;
+                        return gsap.getProperty(follower, 'y') + followerVY;
+                    }
+                }
+            });
+
+            gsap.to(dragTip, {
+                rotation: '+=0',
+                repeat: -1,
+                duration: 1,
+                modifiers: {
+                    rotation: function (rotation) {
+                        return rotation - followerVY;
+                    }
+                }
+            });
+
+            gsap.to(label, {
+                y: '+=0',
+                repeat: -1,
+                duration: 1,
+                modifiers: {
+                    y: function (y) {
+                        return y - followerVY * 0.5;
+                    }
+                }
+            });
+
+            gsap.to(dragger, {
+                y: minDragY / 2,
+                onUpdate: onUpdate,
+                ease: 'expo.inOut',
+                duration: 1.4
+            });
+            function setRangeValue(value, type) {
+                // Chuyển đổi giá trị value từ 0-100 thành vị trí y tương ứng
+                var newY
+                if(type == 'success'){
+                    newY = value * (minDragY / 50);
+                } else {
+                    newY = 1 * (minDragY / 50);
+                }
+                
+
+                // Cập nhật vị trí của dragger và các phần liên quan
+                gsap.to(dragger, {
+                    y: newY,
+                    onUpdate: onUpdate, // Gọi lại onUpdate để cập nhật các phần khác
+                    ease: "expo.inOut",
+                    duration: 1.0 // Tốc độ di chuyển
+                });
+            }
         });
     </script>
 </body>
