@@ -2729,8 +2729,9 @@
                                             localStorage.setItem("MATRAM", workstation);
                                         }
                                     }).catch(err => {
-                                        //$("#result").text("Không thể quét QR từ hình ảnh.");
-                                        console.error("Lỗi khi quét hình ảnh QR: ", err);
+                                        document.getElementById("result-form-total").classList.remove("d-none");
+                                        document.getElementById("result-form-loading").classList.add("d-none");
+                                        toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
                                     });
                                 };
                                 img.src = e.target.result;
