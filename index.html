@@ -870,7 +870,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Môi trường</span>
-                                    <span class="app-text">v1.0.7</span>
+                                    <span class="app-text">v1.0.8</span>
                                 </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
@@ -2729,6 +2729,8 @@
                                             localStorage.setItem("MATRAM", workstation);
                                         }
                                     }).catch(err => {
+                                        document.getElementById("result-form").classList.remove("d-none");
+                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                         document.getElementById("result-form-total").classList.remove("d-none");
                                         document.getElementById("result-form-loading").classList.add("d-none");
                                         toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
