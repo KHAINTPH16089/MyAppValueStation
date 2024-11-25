@@ -1539,6 +1539,8 @@
                 clickGetData('NAM')
             });
             $("#result-scanagain").click(function() {
+                document.getElementById("result-form-total").classList.add("d-none");
+                document.getElementById("result-form-loading").classList.remove("d-none");
                 document.getElementById("result-form-title").classList.add("d-none");
                 document.getElementById("result-form-stationID").classList.remove("d-none");
                 document.getElementById("result-form-stationName").classList.remove("d-none");
@@ -2598,7 +2600,6 @@
                         resultArray[0]
                     );
                     workstation = resultArray[1];
-
                     document.getElementById("result-form-total").classList.remove("d-none");
                     document.getElementById("result-form-loading").classList.add("d-none");
                     document.getElementById("result-form").classList.remove("d-none");
