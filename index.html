@@ -1586,7 +1586,7 @@
                     document.getElementById("ScanQR").classList.add("hidden");
                 } else if (type == 'PRE'){
                     document.getElementById("history").classList.add("hidden");
-                    document.getElementById("homepage").classList.add("hidden");
+                    document.getElementById("homePage").classList.add("hidden");
                     document.getElementById("pickApp").classList.remove("hidden");
                 } else if (type == 'HISTORY'){
                     showHistory()
@@ -1972,7 +1972,7 @@
                             const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
                             if(checkTimeOnline < 5){
                                 document.getElementById("status").style.background = "green";
-                                document.getElementById("text-status").textContent = "đang hoạt động";
+                                document.getElementById("text-status").textContent = "Đang hoạt động";
                             } else {
                                 document.getElementById("text-status").textContent = "Ngừng hoạt động";
                             }
