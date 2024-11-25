@@ -1808,11 +1808,11 @@
                             "https://"+ historyItems[i].domain +"/Service/Service.svc"
                         );
                         let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
-                        console.log(historyItems[i].CodeWorkStation);
                         
                         if(filteredItems.length != 0){
                             const now = new Date();
-                            const providedTime = new Date(filteredItems[0].DATE_CREATE);
+                            const dataRA = filteredItems.filter(item => item.ZONE_PROPERTY === 'RA');
+                            const providedTime = new Date(dataRA[0].DATE_CREATE);
                             const differenceInMilliseconds = now.getTime() - providedTime.getTime();
                             const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
                             if(checkTimeOnline < 5){
@@ -1841,10 +1841,11 @@
                                 "https://"+ historyItems[i].domain +"/Service/Service.svc"
                             );
                             let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
-                            console.log(filteredItems);
+                            
                             if(filteredItems.length != 0){
                                 const now = new Date();
-                                const providedTime = new Date(filteredItems[0].DATE_CREATE);
+                                const dataRA = filteredItems.filter(item => item.ZONE_PROPERTY === 'RA');
+                                const providedTime = new Date(dataRA[0].DATE_CREATE);
                                 const differenceInMilliseconds = now.getTime() - providedTime.getTime();
                                 const checkTimeOnline = differenceInMilliseconds / (1000 * 60);
                                 if(checkTimeOnline < 5){
