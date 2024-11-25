@@ -1031,7 +1031,7 @@
                 </div>
 
                 
-                <div class="footer-instruct">
+                <div id="footer-instruct-text" class="footer-instruct">
                     <div class="step">
                         <div class="circle">03</div>
                     </div>
@@ -2727,9 +2727,11 @@
                     console.log(window.innerHeight, windowHeight);
                     if (window.innerHeight < windowHeight) {
                         // Keyboard is visible, hide or adjust footer
+                        document.getElementById("footer-instruct-text").classList.add("d-none");
                         footer.style.display = 'none'; // You can also reposition it instead of hiding
                     } else {
                         // Keyboard is hidden, show footer
+                        document.getElementById("footer-instruct-text").classList.remove("d-none");
                         footer.style.display = 'block';
                     }
                 });
