@@ -2733,6 +2733,10 @@
                                         document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                         document.getElementById("result-form-total").classList.remove("d-none");
                                         document.getElementById("result-form-loading").classList.add("d-none");
+                                        document.getElementById("result-form-title").classList.remove("d-none");
+                                        document.getElementById("result-form-stationID").classList.add("d-none");
+                                        document.getElementById("result-form-stationName").classList.add("d-none");
+                                        document.getElementById("result-truycap").classList.add("d-none");
                                         toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
                                     });
                                 };
