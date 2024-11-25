@@ -2595,12 +2595,12 @@
                 let workstation;
                 if(decodedText.length > 6){
                     var resultArray = decodedText.split("$");
-                    localStorage.setItem("URL", resultArray[0]);
                     data = await getNewData(
                         localStorage.getItem("MATRAM"),
                         "WORKSTATION_ID='" + resultArray[1] + "'",
                         resultArray[0]
                     );
+                    localStorage.setItem("URL", resultArray[0]);
                     workstation = resultArray[1];
                     document.getElementById("result-form-total").classList.remove("d-none");
                     document.getElementById("result-form-loading").classList.add("d-none");
@@ -2608,13 +2608,13 @@
                     document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                 } else if(decodedText.length == 6) {
                     domain = await getDomain(decodedText,'domain');
-                    const url = "https://"+domain+"/service/service.svc/"
                     localStorage.setItem("URL", url);
                     data = await getNewData(
                         localStorage.getItem("MATRAM"),
                         "WORKSTATION_ID='" + decodedText + "'", 
                         url
                     );
+                    const url = "https://"+domain+"/service/service.svc/"
                     workstation = decodedText;
                     document.getElementById("result-form-total").classList.remove("d-none");
                     document.getElementById("result-form-loading").classList.add("d-none");
