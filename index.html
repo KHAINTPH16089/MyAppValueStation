@@ -1330,18 +1330,18 @@
                     <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
                 </svg>
             </button>
-            <!-- <button id="toggle-camera">Chuyển đổi Camera</button> -->
-             
             <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
                 <div id="result-form-group">
-                    <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                    <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;" placeholder="Nhập mã trạm...">
-                    <div class="d-flex justify-content-between pt-2" >
-                        <button id="result-scanagain" class="btn"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                        <button id="result-truycap" disabled class="btn"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    <div id="result-form-title" class="d-none" style="width: 100%; text-align: center;">
+                        <p style="color: #fff;">Mã truy cập lỗi vui lòng thử lại.</p>
+                    </div>
+                    <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                    <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                    <div class="d-flex justify-content-center pt-2" >
+                        <button id="result-scanagain" class="btn mx-2"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                        <button id="result-truycap" disabled class="btn mx-2"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
                     </div>
                 </div>
-                
             </div>
             <div id="upload-qr">
                 <p>Di chuyển camera đến mã QR để quét hoặc</p>
@@ -1529,6 +1529,10 @@
                 clickGetData('NAM')
             });
             $("#result-scanagain").click(function() {
+                document.getElementById("result-form-title").classList.add("d-none");
+                document.getElementById("result-form-stationID").classList.remove("d-none");
+                document.getElementById("result-form-stationName").classList.remove("d-none");
+                document.getElementById("result-truycap").classList.remove("d-none");
                 scanAgain()
             });
             $("#PickApp-button-scanQR").click(function() {
@@ -2082,9 +2086,13 @@
                             // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
                         },
                         error: function (e, t, x) {
-                            HomeOS.Service.SetActionControl(true);
-                            HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                            reject(e); // Trả về lỗi nếu thất bại
+                            document.getElementById("result-form").classList.remove("d-none");
+                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                            document.getElementById("result-form-title").classList.remove("d-none");
+                            document.getElementById("result-form-stationID").classList.add("d-none");
+                            document.getElementById("result-form-stationName").classList.add("d-none");
+                            document.getElementById("result-truycap").classList.add("d-none");
+                            toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
                         },
                     });
                 });
@@ -2162,9 +2170,9 @@
                             // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
                         },
                         error: function (e, t, x) {
-                            // HomeOS.Service.SetActionControl(true);
-                            // HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                            //reject(e); // Trả về lỗi nếu thất bại
+                            // document.getElementById("result-form").classList.remove("d-none");
+                            // document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                            // toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
                         },
                     });
                 });
@@ -2195,9 +2203,7 @@
                             // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
                         },
                         error: function (e, t, x) {
-                            HomeOS.Service.SetActionControl(true);
-                            HomeOS.Service.ShowLabel("Lỗi dữ liệu");
-                            reject(e); // Trả về lỗi nếu thất bại
+                            toastr.error("Lấy dữ liệu bị lỗi vui lòng thử lại sau!");
                         },
                     });
                 });
