@@ -2473,7 +2473,7 @@
                                 callbacks: {
                                     title: function (tooltipItems) {
                                         const index = tooltipItems[0].dataIndex; // Lấy index của điểm dữ liệu
-                                        return label[index] + " " + labelNgay; // Thay "labelNgay" bằng array chứa thời gian
+                                        return Label[index] + "" + labelNgay; // Thay "labelNgay" bằng array chứa thời gian
                                     },
                                     label: function (tooltipItem) {
                                         let label = tooltipItem.dataset.label || ''; // Lấy label từ dataset
