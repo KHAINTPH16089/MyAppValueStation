@@ -1332,14 +1332,24 @@
             </button>
             <div id="result-form" class="d-none" style="width: 95vh; height: 200px;">
                 <div id="result-form-group">
-                    <div id="result-form-title" class="d-none" style="width: 100%; text-align: center;">
-                        <p style="color: #fff;">Mã truy cập lỗi vui lòng thử lại.</p>
+                    <div id="result-form-total" class="d-none">
+                        <div id="result-form-title" class="d-none" style="width: 100%; text-align: center;">
+                            <p style="color: #fff;">Mã truy cập lỗi, vui lòng thử lại.</p>
+                        </div>
+                        <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                        <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                        <div class="d-flex justify-content-center pt-2" >
+                            <button id="result-scanagain" class="btn mx-2"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                            <button id="result-truycap" disabled class="btn mx-2"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                        </div>
                     </div>
-                    <input id="result-form-stationID" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
-                    <input id="result-form-stationName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
-                    <div class="d-flex justify-content-center pt-2" >
-                        <button id="result-scanagain" class="btn mx-2"  style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
-                        <button id="result-truycap" disabled class="btn mx-2"  style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
+                    <div id="result-form-loading">
+                        <div style="width: 100%; text-align: center;">
+                            <p style="color: #fff;">Đang kiểm tra dữ liệu.</p>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2086,6 +2096,8 @@
                             // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
                         },
                         error: function (e, t, x) {
+                            document.getElementById("result-form-total").classList.remove("d-none");
+                            document.getElementById("result-form-loading").classList.add("d-none");
                             document.getElementById("result-form").classList.remove("d-none");
                             document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                             document.getElementById("result-form-title").classList.remove("d-none");
@@ -2582,10 +2594,13 @@
                     localStorage.setItem("URL", resultArray[0]);
                     data = await getNewData(
                         localStorage.getItem("MATRAM"),
-                        "WORKSTATION_ID='" + resultArray[1] + "'", 
+                        "WORKSTATION_ID='" + resultArray[1] + "'",
                         resultArray[0]
                     );
                     workstation = resultArray[1];
+
+                    document.getElementById("result-form-total").classList.remove("d-none");
+                    document.getElementById("result-form-loading").classList.add("d-none");
                     document.getElementById("result-form").classList.remove("d-none");
                     document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                 } else if(decodedText.length == 6) {
@@ -2598,9 +2613,13 @@
                         url
                     );
                     workstation = decodedText;
+                    document.getElementById("result-form-total").classList.remove("d-none");
+                    document.getElementById("result-form-loading").classList.add("d-none");
                     document.getElementById("result-form").classList.remove("d-none");
                     document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                 } else {
+                    document.getElementById("result-form-total").classList.remove("d-none");
+                    document.getElementById("result-form-loading").classList.add("d-none");
                     document.getElementById("result-form-title").classList.remove("d-none");
                     document.getElementById("result-form-stationID").classList.add("d-none");
                     document.getElementById("result-form-stationName").classList.add("d-none");
@@ -2620,6 +2639,8 @@
                     localStorage.setItem("MATRAM", workstation);
                     toastr.success("Quét QR thành công");
                 } else {
+                    document.getElementById("result-form-total").classList.remove("d-none");
+                    document.getElementById("result-form-loading").classList.add("d-none");
                     document.getElementById("result-form-title").classList.remove("d-none");
                     document.getElementById("result-form-stationID").classList.add("d-none");
                     document.getElementById("result-form-stationName").classList.add("d-none");
@@ -2652,7 +2673,8 @@
                                 img.onload = function() {
                                     // Quét QR từ hình ảnh đã tải lên
                                     html5QrCode.scanFile(file).then( async decodedText => {  // Sửa tại đây
-                                        
+                                        document.getElementById("result-form").classList.remove("d-none");
+                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                         let data;
                                         let domain;
                                         let workstation;
@@ -2665,6 +2687,8 @@
                                                 resultArray[0]
                                             );
                                             workstation = resultArray[1];
+                                            document.getElementById("result-form-total").classList.remove("d-none");
+                                            document.getElementById("result-form-loading").classList.add("d-none");
                                             document.getElementById("result-form").classList.remove("d-none");
                                             document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                         } else if(decodedText.length == 6) {
@@ -2677,9 +2701,13 @@
                                                 url
                                             );
                                             workstation = decodedText;
+                                            document.getElementById("result-form-total").classList.remove("d-none");
+                                            document.getElementById("result-form-loading").classList.add("d-none");
                                             document.getElementById("result-form").classList.remove("d-none");
                                             document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                         } else {
+                                            document.getElementById("result-form-total").classList.remove("d-none");
+                                            document.getElementById("result-form-loading").classList.add("d-none");
                                             toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
                                         }
                                         console.log(decodedText.length, data);
