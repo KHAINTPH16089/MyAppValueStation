@@ -241,11 +241,12 @@
             background-color: #313030;
             float: right;
             margin: 10px;
+            margin-right: 0;
         }
 
         .btn-chart {
             width: 25%;
-            height: 35px;
+            height: 30px;
             border: none;
             margin: 0;
             padding: 0;
@@ -1645,7 +1646,7 @@
                 const dataChart = await getDataChart('NGAY', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 // const dataChart = await getDataChart('NGAY', '', '', 'RD---', localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                 if (dataChart != []) {
-                    createChartData(dataChart, 'RD')
+                    createChartData(dataChart, 'RD', 'NGAY')
                 }
 
                 changeDataHomePage(data.D);
@@ -2116,22 +2117,22 @@
                     const dataChart = await getDataChart('NGAY', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                     
                     if (dataChart != []) {
-                        createChartData(dataChart, 'RD')
+                        createChartData(dataChart, 'RD', type)
                     }
                 } else if (type == 'TUAN') {
                     const dataChart = await getDataChart('TUAN', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                     if (dataChart != []) {
-                        createChartData(dataChart, 'RD')
+                        createChartData(dataChart, 'RD', type)
                     }
                 } else if (type == 'THANG') {
                     const dataChart = await getDataChart('THANG', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                     if (dataChart != []) {
-                        createChartData(dataChart, 'RD')
+                        createChartData(dataChart, 'RD', type)
                     }
                 } else if (type == 'NAM') {
                     const dataChart = await getDataChart('NAM', '2024-01-01 16$50$08', '2024-12-30 16$50$08', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
                     if (dataChart != []) {
-                        createChartData(dataChart, 'RD')
+                        createChartData(dataChart, 'RD', type)
                     }
                 }
             }
@@ -2147,8 +2148,8 @@
                         success: function (msg) {
                             try {
                                 let state = JSON.parse(msg);
-                                console.log(domain, state);
-                                if(state != [] && state != "" && state != null && state.length != 0){
+                                console.log(state, state.length);
+                                if(state != [] && state != "" && state != null && state.length != 0 && state.length != undefined){
                                     const item = {'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime(), 'workstationType': state[0].TEMPLATE_TOOLTIP}
                                     localStorage.setItem('itemHistory', JSON.stringify(item));
                                 }
@@ -2303,7 +2304,7 @@
             }
 
             // lọc data để tạo chart
-            createChartData = function (data, type) {
+            createChartData = function (data, type, typeData) {
                 if (lineBarChart != null) {
                     lineBarChart.destroy();
                 }
@@ -2370,8 +2371,9 @@
                         type: "line", // Chọn kiểu bar cho dataset này
                         label: "Áp suất (hPa)",
                         data: newDataRP,
-                        backgroundColor: "rgb(13,154,154)",
-                        borderColor: "rgb(13,154,154)",
+                        backgroundColor: "rgb(40, 167, 69)",
+                        borderColor: "rgb(40, 167, 69)",
+                        borderDash: [5, 5],
                         borderWidth: 1,
                     }
                 ]
@@ -2392,8 +2394,8 @@
                         type: "line", // Chọn kiểu bar cho dataset này
                         label: "Độ ẩm (%)",
                         data: newDataRH,
-                        backgroundColor: "rgb(40, 167, 69, 0.5)",
-                        borderColor: "rgb(40, 167, 69)",
+                        backgroundColor: "rgb(13,154,154, 0.5)",
+                        borderColor: "rgb(13,154,154)",
                         borderWidth: 1,
                         fill: 'start',
                         tension: 0.4,
@@ -2404,22 +2406,27 @@
                         type: "line", // Chọn kiểu bar cho dataset này
                         label: "Mực nước (cm)",
                         data: newDataRN,
-                        backgroundColor: "rgb(0,95,95)",
-                        borderColor: "rgb(0,95,95)",
+                        backgroundColor: "rgb(0,95,95, 0.5)",
+                        borderColor: "rgb(13,154,154)",
                         borderWidth: 1,
+                        fill: 'start',
+                        tension: 0.4,
                     }
                 ]
-
-                lineBarChart = new Chart(RA, createChart("bar", newlabelRA, [], "", "", dataSetRA));
-                ChartRT = new Chart(RT, createChart("bar", newlabelRT, [], "", "", dataSetRT));
-                ChartRH = new Chart(RH, createChart("bar", newlabelRH, [], "", "", dataSetRH));
-                ChartRP = new Chart(RP, createChart("bar", newlabelRP, [], "", "", dataSetRP));
-                ChartRN = new Chart(RN, createChart("bar", newlabelRN, [], "", "", dataSetRN));
+                var label = '';
+                if(typeData == 'NGAY'){
+                    label = "giờ"
+                }
+                lineBarChart = new Chart(RA, createChart("bar", newlabelRA, [], "mm", "", dataSetRA, label));
+                ChartRT = new Chart(RT, createChart("bar", newlabelRT, [], "°C", "", dataSetRT, label));
+                ChartRH = new Chart(RH, createChart("bar", newlabelRH, [], "%", "", dataSetRH, label));
+                ChartRP = new Chart(RP, createChart("bar", newlabelRP, [], "hPa", "", dataSetRP, label));
+                ChartRN = new Chart(RN, createChart("bar", newlabelRN, [], "cm", "", dataSetRN, label));
                 document.getElementById("loading-spinner").classList.add("d-none");
             }
             
             // hàm để tạo chart
-            createChart = function (type, Label, Data, Unit, LabelData, dataSet) {
+            createChart = function (type, Label, Data, Unit, LabelData, dataSet, labelNgay) {
                 return {
                     type: type, // Loại biểu đồ
                     data: {
@@ -2432,7 +2439,7 @@
                         responsive: true,
                         scales: {
                             y: {  // Sử dụng 'y' thay vì 'yAxes'
-                                beginAtZero: true,
+                                beginAtZero: false,
                                 ticks: {
                                     callback: function (value, index, values) {
                                         return value + ' ' + Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
@@ -2440,15 +2447,21 @@
                                 }
                             }
                         },
-                        tooltips: {
-                            callbacks: {
-                                label: function (tooltipItem, data) {
-                                    let label = data.datasets[tooltipItem.datasetIndex].label || '';
-                                    if (label) {
-                                        label += ': ';
+                        plugins: {
+                            tooltip: { // Sử dụng 'plugins.tooltip' thay vì 'tooltips'
+                                callbacks: {
+                                    title: function (tooltipItems) {
+                                        const index = tooltipItems[0].dataIndex; // Lấy index của điểm dữ liệu
+                                        return label[index] + " " + labelNgay; // Thay "labelNgay" bằng array chứa thời gian
+                                    },
+                                    label: function (tooltipItem) {
+                                        let label = tooltipItem.dataset.label || ''; // Lấy label từ dataset
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += tooltipItem.raw + ' ' + Unit; // Sử dụng tooltipItem.raw để lấy giá trị y
+                                        return label;
                                     }
-                                    label += tooltipItem.yLabel + ' ' + Unit;  // Thêm đơn vị Volts vào tooltip
-                                    return label;
                                 }
                             }
                         }
