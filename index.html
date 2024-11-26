@@ -870,7 +870,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Môi trường</span>
-                                    <span class="app-text">v1.0.8</span>
+                                    <span class="app-text">v1.0.9</span>
                                 </div>
                                 <span class="app-text-number">Khí tượng thuỷ văn</span>
                             </div>
@@ -2081,7 +2081,6 @@
             var checkCam = true;
             // call api getnewdata lấy data mới nhất
             function getNewData(workstation, c, url) {
-
                 return new Promise((resolve, reject) => {
                     $.ajax({
                         url: url+"/GetNewData?w="+workstation,
@@ -2108,7 +2107,7 @@
                             document.getElementById("result-form-stationID").classList.add("d-none");
                             document.getElementById("result-form-stationName").classList.add("d-none");
                             document.getElementById("result-truycap").classList.add("d-none");
-                            toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                            //toastr.error("Vui lòng quét đúng mã QR!");
                         },
                     });
                 });
@@ -2522,6 +2521,11 @@
 
             // Khi nhấn nút mở popup quét QR
             $("#start").click(function() {
+                document.getElementById("result-form-total").classList.add("d-none");
+                document.getElementById("result-form-loading").classList.remove("d-none");
+                document.getElementById("result-form-title").classList.add("d-none");
+                document.getElementById("result-form-stationID").classList.remove("d-none");
+                document.getElementById("result-form-stationName").classList.remove("d-none");
                 $("#qr-popup").modal({
                     fadeDuration: 250,
                     escapeClose: false,
@@ -2627,7 +2631,7 @@
                     document.getElementById("result-form-stationID").classList.add("d-none");
                     document.getElementById("result-form-stationName").classList.add("d-none");
                     document.getElementById("result-truycap").classList.add("d-none");
-                    toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                    toastr.error("Vui lòng quét đúng mã QR!");
                 }
                 console.log(data);
                 
@@ -2648,7 +2652,7 @@
                     document.getElementById("result-form-stationID").classList.add("d-none");
                     document.getElementById("result-form-stationName").classList.add("d-none");
                     document.getElementById("result-truycap").classList.add("d-none");
-                    toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                    toastr.error("Vui lòng quét đúng mã QR!");
                 }
             }
 
@@ -2711,7 +2715,7 @@
                                         } else {
                                             document.getElementById("result-form-total").classList.remove("d-none");
                                             document.getElementById("result-form-loading").classList.add("d-none");
-                                            toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                                            toastr.error("Vui lòng quét đúng mã QR!");
                                         }
                                         console.log(decodedText.length, data);
                                         
@@ -2737,7 +2741,7 @@
                                         document.getElementById("result-form-stationID").classList.add("d-none");
                                         document.getElementById("result-form-stationName").classList.add("d-none");
                                         document.getElementById("result-truycap").classList.add("d-none");
-                                        toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                                        toastr.error("Vui lòng quét đúng mã QR!");
                                     });
                                 };
                                 img.src = e.target.result;
