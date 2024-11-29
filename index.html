@@ -2405,23 +2405,33 @@
                     let itemCategory = {'NameCategory': inputValue, 'itemCategory': item}
                     DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
                     if(DataCategory){
-                        //DataCategory = DataCategory.filter(item => item.CodeWorkStation !== code);
-                        DataCategory.push(itemCategory);
-                        if (DataCategory.length > 20) {
-                            DataCategory.shift();
+                        const checkInput = DataCategory.filter(item => item.NameCategory === inputValue);
+                        console.log(checkInput);
+                        if(checkInput.length > 0){
+                            toastr.error("Danh mục đã tồn tại, vui lòng nhập tên danh mục khác!");
+                        } else if(item.length == 0){
+                            toastr.error("Vui lòng chọn trạm để thêm vào danh mục!");
+                        } else {
+                            if(DataCategory){
+                                DataCategory.push(itemCategory);
+                                if (DataCategory.length > 20) {
+                                    DataCategory.shift();
+                                }
+                            } else {
+                                DataCategory = [];
+                                DataCategory.push(itemCategory);
+                            }
+                            localStorage.setItem('dataCategory', JSON.stringify(DataCategory));
+                            document.getElementById("list-category").classList.remove("d-none");
+                            document.getElementById("save-category").classList.add("d-none");
+                            $('#name-category').val('');
+                            $('#search-category').val('');
+                            localStorage.setItem('listItemCategory', JSON.stringify([]));
+                            historyListCategoryAdd.empty();
+                            showCategory()
                         }
-                    } else {
-                        DataCategory = [];
-                        DataCategory.push(itemCategory);
                     }
-                    localStorage.setItem('dataCategory', JSON.stringify(DataCategory));
-                    document.getElementById("list-category").classList.remove("d-none");
-                    document.getElementById("save-category").classList.add("d-none");
-                    $('#name-category').val('');
-                    $('#search-category').val('');
-                    localStorage.setItem('listItemCategory', JSON.stringify([]));
-                    historyListCategoryAdd.empty();
-                    showCategory()
+                    
                 } else {
                     toastr.error("Vui lòng nhập tên danh mục!");
                 }
