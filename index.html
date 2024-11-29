@@ -1685,6 +1685,7 @@
                 maTram = '';
             }
             function OpenAddCategory() {
+                localStorage.setItem('listItemCategory', JSON.stringify([]));
                 showHistoryCategory();
                 document.getElementById("list-category").classList.add("d-none");
                 document.getElementById("save-category").classList.remove("d-none");
@@ -2432,7 +2433,19 @@
                             historyListCategoryAdd.empty();
                             showCategory()
                         }
+                    } else {
+                        DataCategory = [];
+                        DataCategory.push(itemCategory);
+                        localStorage.setItem('dataCategory', JSON.stringify(DataCategory));
+                        document.getElementById("list-category").classList.remove("d-none");
+                        document.getElementById("save-category").classList.add("d-none");
+                        $('#name-category').val('');
+                        $('#search-category').val('');
+                        localStorage.setItem('listItemCategory', JSON.stringify([]));
+                        historyListCategoryAdd.empty();
+                        showCategory()
                     }
+                    
                     
                 } else {
                     toastr.error("Vui lòng nhập tên danh mục!");
