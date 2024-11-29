@@ -1820,6 +1820,8 @@
                 } else if (type == 'PICK') {
                     document.getElementById("history").classList.remove("hidden");
                     document.getElementById("ScanQR").classList.add("hidden");
+                    document.getElementById("history-setting").classList.add("d-none");
+                    document.getElementById("history-homePage").classList.remove("d-none");
                 } else if (type == 'PRE'){
                     document.getElementById("history").classList.add("hidden");
                     document.getElementById("homePage").classList.add("hidden");
