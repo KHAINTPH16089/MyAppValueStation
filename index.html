@@ -1137,7 +1137,7 @@
                         </div>
                         
 
-                        <div id="history-setting-detail" class="row" style="overflow-y: auto; max-height: 450px; padding: 10px 10px 0 10px;">
+                        <div id="history-setting-detail" class="row" style="overflow-y: auto; max-height: 500px; padding: 10px 10px 0 10px;">
                             <div class="col-12" style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
                                 <button id="addCategory" style="width: 200px; height: 200px; border-radius: 50%; border: 1px dashed #fff; background-color: #1E2833; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; font-size: 14px; text-align: center;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" style="color: #fff; margin-bottom: 8px;" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -1647,6 +1647,8 @@
                 historyDetail.style.height = (viewportHeight - 340) + 'px';
                 const categoryDetail = document.getElementById('list-history-detail');
                 categoryDetail.style.height = (viewportHeight - 530) + 'px';
+                const category = document.getElementById('history-setting-detail');
+                category.style.maxHeight = (viewportHeight - 200) + 'px';
             };
             checkHeight();
             window.addEventListener('resize', function() {
@@ -1655,6 +1657,8 @@
                 historyDetail.style.height = (viewportHeight - 340) + 'px'; // 80% chiều cao của thiết bị
                 const categoryDetail = document.getElementById('list-history-detail');
                 categoryDetail.style.height = (viewportHeight - 530) + 'px'; // 80% chiều cao của thiết bị
+                const category = document.getElementById('history-setting-detail');
+                category.style.maxHeight = (viewportHeight - 200) + 'px';
             });
 
             // Mặc định mở tab đầu tiên
