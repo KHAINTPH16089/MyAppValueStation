@@ -2142,8 +2142,10 @@
             function handleItemCategoryClick(item) {
                 const itemHistory = {'CodeWorkStation': item.CodeWorkStation, 'NameWorkStation': item.NameWorkStation, 'domain': item.domain, 'date': getCurrentTime(), 'workstationType': item.workstationType}
                 CategoryItems = JSON.parse(localStorage.getItem('listItemCategory'));
-                const filterItem = CategoryItems.filter(itemdetail => itemdetail.CodeWorkStation === item.CodeWorkStation);
-                console.log(filterItem);
+                let filterItem = []
+                if(CategoryItems){
+                    filterItem = CategoryItems.filter(itemdetail => itemdetail.CodeWorkStation === item.CodeWorkStation);
+                }
                 if(filterItem.length > 0){
                     CategoryItems = CategoryItems.filter(itemdetail => itemdetail.CodeWorkStation !== item.CodeWorkStation);
                     localStorage.setItem('listItemCategory', JSON.stringify(CategoryItems));
@@ -2265,24 +2267,32 @@
                 historyItems = JSON.parse(localStorage.getItem('dataHistory'));
                 DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
                 let arrayCategory = [];
-                if(DataCategory.length > 0){
-                    for (let i = DataCategory.length - 1; i >= 0; i--) {
-                        if (!arrayCategory.includes(DataCategory[i].NameCategory)) { // Kiểm tra nếu phần tử chưa có trong mảng
-                            arrayCategory.push(DataCategory[i].NameCategory);
+                if(DataCategory){
+                    if(DataCategory.length > 0){
+                        for (let i = DataCategory.length - 1; i >= 0; i--) {
+                            if (!arrayCategory.includes(DataCategory[i].NameCategory)) { // Kiểm tra nếu phần tử chưa có trong mảng
+                                arrayCategory.push(DataCategory[i].NameCategory);
+                            }
                         }
                     }
                 }
                 if(type){
-                    DataCategory = DataCategory.filter(item => item.NameCategory == type);
+                    if(DataCategory){
+                        DataCategory = DataCategory.filter(item => item.NameCategory == type);
+                    } else {
+                        DataCategory = []
+                    }
                     if(type != "ALL" && DataCategory.length == 0){
                         historyItems = historyItems.filter(item => item.workstationType === type);
-                    } else {
-                        let arrayWostation = [];
-                        for (let i = DataCategory[0].itemCategory.length - 1; i >= 0; i--) {
-                            const filterHistoryItems = historyItems.filter(item => item.CodeWorkStation === DataCategory[0].itemCategory[i].CodeWorkStation);
-                            arrayWostation.push(filterHistoryItems[0]);
+                    } else if(DataCategory) {
+                        if(DataCategory.length > 0){
+                            let arrayWostation = [];
+                            for (let i = DataCategory[0].itemCategory.length - 1; i >= 0; i--) {
+                                const filterHistoryItems = historyItems.filter(item => item.CodeWorkStation === DataCategory[0].itemCategory[i].CodeWorkStation);
+                                arrayWostation.push(filterHistoryItems[0]);
+                            }
+                            historyItems = arrayWostation;
                         }
-                        historyItems = arrayWostation;
                     }
                 }
                 if(historyItems && historyItems.length > 0){
@@ -2338,21 +2348,27 @@
                     );
                 }
                 console.log(historyItems);
-                for (let i = 0; i < CategoryItems.length; i++) {
-                    historyItems = historyItems.filter(item => item.CodeWorkStation != CategoryItems[i].CodeWorkStation);
+                if(CategoryItems){
+                    for (let i = 0; i < CategoryItems.length; i++) {
+                        historyItems = historyItems.filter(item => item.CodeWorkStation != CategoryItems[i].CodeWorkStation);
+                    }
                 }
-                historyListCategoryDetail.empty();
-                for (let i = historyItems.length - 1; i >= 0; i--) {
-                    addItemHistory(historyItems[i], 'category');
+                if(historyItems){
+                    historyListCategoryDetail.empty();
+                    for (let i = historyItems.length - 1; i >= 0; i--) {
+                        addItemHistory(historyItems[i], 'category');
+                    }
                 }
             }
 
             function showCategory(type) {
                 DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
-                if(DataCategory.length > 0){
-                    listCategory.empty();
-                    for (let i = DataCategory.length - 1; i >= 0; i--) {
-                        addItemCategory(DataCategory[i], 'category');
+                if(DataCategory){
+                    if(DataCategory.length > 0){
+                        listCategory.empty();
+                        for (let i = DataCategory.length - 1; i >= 0; i--) {
+                            addItemCategory(DataCategory[i], 'category');
+                        }
                     }
                 }
                 
