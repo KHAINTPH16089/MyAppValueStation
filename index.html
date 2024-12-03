@@ -2135,6 +2135,7 @@
                 document.getElementById("history-avt").classList.add("d-none");
                 document.getElementById("category-back").classList.remove("d-none");
                 localStorage.setItem('listItemCategory', JSON.stringify([]));
+                historyListCategoryAdd.empty()
                 showHistoryCategory();
                 document.getElementById("list-category").classList.add("d-none");
                 document.getElementById("save-category").classList.remove("d-none");
@@ -2246,6 +2247,7 @@
                 document.getElementById("list-category").classList.remove("d-none");
                 document.getElementById("save-category").classList.add("d-none");
                 document.getElementById("detail-category").classList.add("d-none");
+                showCategory()
                 historyListCategoryAdd.empty();
             });
             $("#result-truycap").click(function () {
@@ -2809,82 +2811,88 @@
             });
             // hiển thị dữ liệu lịch sử truy cập 
             function showHistory(type) {
-                historyItems = JSON.parse(localStorage.getItem('dataHistory'));
-                DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
-                let arrayCategory = [];
-                arrayCategory.push("ADD");
-                if (DataCategory) {
-                    if (DataCategory.length > 0) {
-                        for (let i = DataCategory.length - 1; i >= 0; i--) {
-                            if (!arrayCategory.includes(DataCategory[i].NameCategory)) { // Kiểm tra nếu phần tử chưa có trong mảng
-                                arrayCategory.push(DataCategory[i].NameCategory);
-                            }
-                        }
-                    }
-                }
-                if (type) {
+                if(type == "ADD"){
+                    document.getElementById("history-setting").classList.remove("d-none");
+                    document.getElementById("history-homePage").classList.add("d-none");
+                    OpenAddCategory()
+                } else {
+                    historyItems = JSON.parse(localStorage.getItem('dataHistory'));
+                    DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
+                    let arrayCategory = [];
+                    arrayCategory.push("ADD");
                     if (DataCategory) {
-                        DataCategory = DataCategory.filter(item => item.NameCategory == type);
-                    } else {
-                        DataCategory = []
-                    }
-                    if (type != "ALL" && DataCategory.length == 0) {
-                        historyItems = historyItems.filter(item => item.workstationType === type);
-                    } else if (DataCategory) {
                         if (DataCategory.length > 0) {
-                            let arrayWostation = [];
-                            for (let i = DataCategory[0].itemCategory.length - 1; i >= 0; i--) {
-                                const filterHistoryItems = historyItems.filter(item => item.CodeWorkStation === DataCategory[0].itemCategory[i].CodeWorkStation);
-                                arrayWostation.push(filterHistoryItems[0]);
+                            for (let i = DataCategory.length - 1; i >= 0; i--) {
+                                if (!arrayCategory.includes(DataCategory[i].NameCategory)) { // Kiểm tra nếu phần tử chưa có trong mảng
+                                    arrayCategory.push(DataCategory[i].NameCategory);
+                                }
                             }
-                            historyItems = arrayWostation;
                         }
                     }
-                }
-                if (historyItems && historyItems.length > 0) {
-                    historyListDetail.empty();
-                    for (let i = historyItems.length - 1; i >= 0; i--) {
-                        addItemHistory(historyItems[i]);
-                        if (!arrayCategory.includes(historyItems[i].workstationType)) { // Kiểm tra nếu phần tử chưa có trong mảng
-                            arrayCategory.push(historyItems[i].workstationType);
+                    if (type) {
+                        if (DataCategory) {
+                            DataCategory = DataCategory.filter(item => item.NameCategory == type);
+                        } else {
+                            DataCategory = []
                         }
-                    }
-                    arrayCategory.push("ALL");
-                    if (!type) {
-                        const selectElement = $('#historySelect');
-                        selectElement.empty();
-                        for (let i = arrayCategory.length - 1; i >= 0; i--) {
-                            console.log(arrayCategory[i]);
-                            const selectElement = document.getElementById("historySelect");
-                            const newOption = document.createElement("option");
-                            let value;
-                            let text;
-                            if (arrayCategory[i] == "NAAM") {
-                                value = arrayCategory[i]
-                                text = "Trạm Mưa, nhiệt, ẩm, áp"
-                            } else if (arrayCategory[i] == "N") {
-                                value = arrayCategory[i]
-                                text = "Trạm mực nước"
-                            } else if (arrayCategory[i] == "M") {
-                                value = arrayCategory[i]
-                                text = "Trạm Mưa"
-                            } else if (arrayCategory[i] == "ALL") {
-                                value = arrayCategory[i]
-                                text = "Tất cả trạm"
-                            } else if (arrayCategory[i] == "ADD") {
-                                value = arrayCategory[i]
-                                text = " + Thêm danh mục mới"
-                                newOption.className = "custom-option";
-                            } else {
-                                value = arrayCategory[i]
-                                text = arrayCategory[i]
+                        if (type != "ALL" && DataCategory.length == 0) {
+                            historyItems = historyItems.filter(item => item.workstationType === type);
+                        } else if (DataCategory) {
+                            if (DataCategory.length > 0) {
+                                let arrayWostation = [];
+                                for (let i = DataCategory[0].itemCategory.length - 1; i >= 0; i--) {
+                                    const filterHistoryItems = historyItems.filter(item => item.CodeWorkStation === DataCategory[0].itemCategory[i].CodeWorkStation);
+                                    arrayWostation.push(filterHistoryItems[0]);
+                                }
+                                historyItems = arrayWostation;
                             }
-                            newOption.value = value; // Giá trị mới
-                            newOption.text = text; // Văn bản mới
-                            selectElement.appendChild(newOption); // Thêm vào danh sách select
                         }
                     }
-                    startInterval();
+                    if (historyItems && historyItems.length > 0) {
+                        historyListDetail.empty();
+                        for (let i = historyItems.length - 1; i >= 0; i--) {
+                            addItemHistory(historyItems[i]);
+                            if (!arrayCategory.includes(historyItems[i].workstationType)) { // Kiểm tra nếu phần tử chưa có trong mảng
+                                arrayCategory.push(historyItems[i].workstationType);
+                            }
+                        }
+                        arrayCategory.push("ALL");
+                        if (!type) {
+                            const selectElement = $('#historySelect');
+                            selectElement.empty();
+                            for (let i = arrayCategory.length - 1; i >= 0; i--) {
+                                console.log(arrayCategory[i]);
+                                const selectElement = document.getElementById("historySelect");
+                                const newOption = document.createElement("option");
+                                let value;
+                                let text;
+                                if (arrayCategory[i] == "NAAM") {
+                                    value = arrayCategory[i]
+                                    text = "Trạm Mưa, nhiệt, ẩm, áp"
+                                } else if (arrayCategory[i] == "N") {
+                                    value = arrayCategory[i]
+                                    text = "Trạm mực nước"
+                                } else if (arrayCategory[i] == "M") {
+                                    value = arrayCategory[i]
+                                    text = "Trạm Mưa"
+                                } else if (arrayCategory[i] == "ALL") {
+                                    value = arrayCategory[i]
+                                    text = "Tất cả trạm"
+                                } else if (arrayCategory[i] == "ADD") {
+                                    value = arrayCategory[i]
+                                    text = " + Thêm danh mục mới"
+                                    newOption.className = "custom-option";
+                                } else {
+                                    value = arrayCategory[i]
+                                    text = arrayCategory[i]
+                                }
+                                newOption.value = value; // Giá trị mới
+                                newOption.text = text; // Văn bản mới
+                                selectElement.appendChild(newOption); // Thêm vào danh sách select
+                            }
+                        }
+                        startInterval();
+                    }
                 }
             }
 
