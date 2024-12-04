@@ -12,6 +12,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -1204,6 +1205,11 @@
             color: #fff;
             background-color: #f39c12;
         }
+        #qrcode canvas {
+            border-radius: 15px; /* Bo góc cho canvas */
+            border: 2px solid #000; /* Thêm viền nếu cần */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+        }
     </style>
 </head>
 
@@ -1659,9 +1665,19 @@
                             style="width: 250px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
                             -</p>
                     </div>
-                    <div style="line-height: 50px;">
+                    <div class="d-flex" style="line-height: 50px;">
+                        <button id="share-qrcode-workstation"
+                            style="height: 40px; border: none; background-color: #282d31; padding: 0;margin-right: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" style="color: #fff;" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                <path d="M2 2h2v2H2z"/>
+                                <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                                <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                                <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                                <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                              </svg>
+                        </button>
                         <button id="homepage-Pre-pickApp"
-                            style="height: 40px; border: none; background-color: #282d31;">
+                            style="height: 40px; border: none; background-color: #282d31; padding: 0;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
                                 fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -2039,6 +2055,34 @@
                 </div>
             </div>
         </div>
+        <div id="share-popup" class="modal">
+            <div class="container" style="width: 100%; height: 100%; background-color: #1E2833;">
+                <div class="d-flex" style="line-height: 50px;">
+                    <button id="BackCodeQR" style="height: 40px; border: none; background-color: #1E2833;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </button>
+                    <p
+                        style="width: 250px;font-size: 20px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                        Chia sẻ trạm</p>
+                </div>
+                <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
+                <div>
+                    <p id="text-content-QRcode" style="color: #fff;"></p>
+                </div>
+                <div id="qrcode"></div>
+                <button id="download-QRcode" class="btn btn-warning" style="margin-top: 20px; background-color: #f39c12;border: solid 1px #f39c12; width: 100%; height: 35px; color: #fff; padding: 3px 10px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+                    </svg> Tải ảnh QR
+                </button> 
+            </div>
+            
+        </div>
     </div>
 
 
@@ -2173,6 +2217,48 @@
             $("#Pre-pickApp").click(function () {
                 stopInterval()
                 pickApp('PRE');
+            });
+            $("#share-qrcode-workstation").click(function () {
+                $("#share-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
+
+                $('#qrcode').empty();
+                // xoá mã cũ nếu có
+                const text = localStorage.getItem("URL")+"$"+ localStorage.getItem("MATRAM");
+                document.getElementById("text-content-QRcode").textContent = localStorage.getItem("MATRAM")+" - "+ JSON.parse(localStorage.getItem('itemHistory')).NameWorkStation ;
+                // Tạo mã QR
+                QRCode.toCanvas(text, { width: 200 }, function (error, canvas) {
+                    if (error) {
+                        console.error(error);
+                        alert('Lỗi khi tạo mã QR!');
+                        return;
+                    }
+                    $('#qrcode').append(canvas);
+                });
+            });
+            $("#BackCodeQR").click(function () {
+                $('#share-popup').modal('hide');
+            });
+            $("#download-QRcode").click(function () {
+                const canvas = $('#qrcode canvas')[0];
+
+                if (!canvas) {
+                    alert('Chưa có mã QR để tải!');
+                    return;
+                }
+
+                // Tạo URL hình ảnh từ canvas
+                const image = canvas.toDataURL('image/png');
+
+                // Tạo thẻ <a> để tải xuống
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'qrcode.png';
+                link.click();
             });
             $("#homepage-Pre-pickApp").click(function () {
                 stopInterval();
@@ -2453,7 +2539,8 @@
                 } else {
                     const element = $(
                         '<div class="iconApp">' +
-                        '<div id="App' + item.CodeWorkStation + '" class="icon" style="background-color: #28a745 !important;">' +
+                        '<div id="App' + item.CodeWorkStation + '" class="icon" style="background-color: #28a745 !important; display: block">' +
+                            '<div id="Value' + item.CodeWorkStation + '" style="background-color: #1052e7; width: 70px; height: 20px;font-size: 12px;color: #fff; border-radius: 4px 4px 0 0;">0 mm</div>'+
                         getIconWorkstation(item.workstationType) +
                         '</div>' +
                         '<div class="info-box-content" style="padding-right: 0">' +
@@ -2724,10 +2811,15 @@
                 showHistoryCategory()
             }
 
+            var ZONE_PROPERTY;
+            var ZONE_UNIT;
             // chạy Interval để check trạng thái hoạt động
             async function startInterval() {
                 // Chạy setInterval nếu chưa chạy
+                
                 if (!intervalId) {
+                    ZONE_PROPERTY = 'RD';
+                    ZONE_UNIT = ' mm';
                     for (let i = historyItems.length - 1; i >= 0; i--) {
                         const data = await getNewData(
                             historyItems[i].CodeWorkStation,
@@ -2737,6 +2829,27 @@
                         let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
 
                         if (filteredItems.length != 0) {
+                            if (historyItems[i].workstationType == "NAAM") {
+                                const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === ZONE_PROPERTY);
+                                if(dataRD.length != 0){
+                                    document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE/10 + ZONE_UNIT
+                                }
+                            } else if (historyItems[i].workstationType == "N") {
+                                const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RN');
+                                if(dataRD.length != 0){
+                                    document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " cm"
+                                }
+                            } else if (historyItems[i].workstationType == "M") {
+                                const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RD');
+                                if(dataRD.length != 0){
+                                    document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " mm"
+                                }
+                            } else if (historyItems[i].workstationType == "MS") {
+                                const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RD');
+                                if(dataRD.length != 0){
+                                    document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " mm"
+                                }
+                            }
                             const now = new Date();
                             const dataRA = filteredItems.filter(item => item.ZONE_PROPERTY === 'RA');
                             const providedTime = new Date(dataRA[0].DATE_CREATE);
@@ -2761,6 +2874,20 @@
                         }
                     }
                     intervalId = setInterval(async () => {
+                        if(ZONE_PROPERTY == 'RD'){
+                            ZONE_PROPERTY = 'RT'
+                            ZONE_UNIT = ' °C'
+                        } else if(ZONE_PROPERTY == 'RT'){
+                            ZONE_PROPERTY = 'RH'
+                            ZONE_UNIT = ' %'
+                        } else if(ZONE_PROPERTY == 'RH'){
+                            ZONE_PROPERTY = 'RP'
+                            ZONE_UNIT = ' hPa'
+                        } else if(ZONE_PROPERTY == 'RP'){
+                            ZONE_PROPERTY = 'RD'
+                            ZONE_UNIT = ' mm'
+                        }
+                        console.log(ZONE_PROPERTY);
                         for (let i = historyItems.length - 1; i >= 0; i--) {
                             const data = await getNewData(
                                 historyItems[i].CodeWorkStation,
@@ -2769,7 +2896,30 @@
                             );
                             let filteredItems = data.D.filter(item => item.ZONE_ADDRESS === historyItems[i].CodeWorkStation);
 
-                            if (filteredItems.length != 0) {
+                                if (filteredItems.length != 0) {
+                                    if (historyItems[i].workstationType == "NAAM") {
+                                    const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === ZONE_PROPERTY);
+                                    if(dataRD.length != 0){
+                                        document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE/10 + ZONE_UNIT
+                                    } else {
+                                        document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = '0 mm';
+                                    }
+                                } else if (historyItems[i].workstationType == "N") {
+                                    const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RN');
+                                    if(dataRD.length != 0){
+                                        document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " cm"
+                                    }
+                                } else if (historyItems[i].workstationType == "M") {
+                                    const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RD');
+                                    if(dataRD.length != 0){
+                                        document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " mm"
+                                    }
+                                } else if (historyItems[i].workstationType == "MS") {
+                                    const dataRD = filteredItems.filter(item => item.ZONE_PROPERTY === 'RD');
+                                    if(dataRD.length != 0){
+                                        document.getElementById('Value' + historyItems[i].CodeWorkStation).textContent = dataRD[0].ZONE_VALUE + " mm"
+                                    }
+                                }
                                 const now = new Date();
                                 const dataRA = filteredItems.filter(item => item.ZONE_PROPERTY === 'RA');
                                 const providedTime = new Date(dataRA[0].DATE_CREATE);
@@ -2875,6 +3025,9 @@
                                 } else if (arrayCategory[i] == "M") {
                                     value = arrayCategory[i]
                                     text = "Trạm Mưa"
+                                } else if (arrayCategory[i] == "MS") {
+                                    value = arrayCategory[i]
+                                    text = "Trạm Mưa, sóng"
                                 } else if (arrayCategory[i] == "ALL") {
                                     value = arrayCategory[i]
                                     text = "Tất cả trạm"
@@ -3023,7 +3176,7 @@
                             const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
                             if (checkTimeOnline < 15) {
                                 document.getElementById("status").style.background = "green";
-                                document.getElementById("text-status").textContent = "Đang hoạt động";
+                                    document.getElementById("text-status").textContent = "Đang hoạt động";
                             } else {
                                 document.getElementById("status").style.background = "red";
                                 document.getElementById("text-status").textContent = "Ngừng hoạt động";
@@ -3033,7 +3186,7 @@
                             document.getElementById("RP").textContent = filteredItems[i].ZONE_VALUE / 10 + " hPa";
                         } else if (filteredItems[i].ZONE_PROPERTY == "RD") {
                             checkRD = true;
-                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE / 10 + " mm";
+                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE + " mm";
                             document.getElementById("glass").style.background = "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/54046/glass_droplets.jpeg) center center / cover no-repeat";
                             // const color = getColor(filteredItems[i].ZONE_VALUE / 10);
                             // changeColorAndText(color, color, filteredItems[i].ZONE_VALUE / 10);
@@ -3118,6 +3271,8 @@
                     case "N":
                         return 'RN---';
                     case "M":
+                        return 'RD---';
+                    case "MS":
                         return 'RD---';
                     default:
                         return "";
@@ -3252,7 +3407,7 @@
                     document.getElementById("chart-RN").classList.remove("d-none");
                     document.getElementById("box-RN").classList.remove("col-6");
                     document.getElementById("box-RN").classList.add("col-12");
-                } else if (item.workstationType == "M") {
+                } else if (item.workstationType == "M" || item.workstationType == "MS") {
                     document.getElementById("box-RD").classList.remove("d-none");
                     document.getElementById("chart-RD").classList.remove("d-none");
                     document.getElementById("box-RD").classList.remove("col-6");
@@ -3311,6 +3466,12 @@
                 });
             }
 
+            function roundToTwoDecimals(num) {
+                if (Number.isInteger(num)) {
+                    return num; // Nếu là số nguyên thì trả về nguyên gốc
+                }
+                return Math.round(num * 100) / 100; // Làm tròn đến 2 chữ số thập phân
+            }
             // lọc data để tạo chart
             createChartData = function (data, type, typeData) {
                 if (lineBarChart != null) {
@@ -3347,23 +3508,23 @@
                     if (item.AverageValue != 0) {
                         if (item.ZONE_PROPERTY == 'RD') {
                             newlabelRA.push(item.Label);
-                            const value = item.AverageValue / 10
-                            newDataRA.push(value.toFixed(2))
+                            const value = roundToTwoDecimals(item.AverageValue)
+                            newDataRA.push(value)
                         } else if (item.ZONE_PROPERTY == 'RT') {
                             newlabelRT.push(item.Label);
-                            const value = item.AverageValue / 10
+                            const value = roundToTwoDecimals(item.AverageValue / 10)
                             newDataRT.push(value.toFixed(2))
                         } else if (item.ZONE_PROPERTY == 'RH') {
                             newlabelRH.push(item.Label);
-                            const value = item.AverageValue / 10
+                            const value = roundToTwoDecimals(item.AverageValue / 10)
                             newDataRH.push(value.toFixed(2))
                         } else if (item.ZONE_PROPERTY == 'RP') {
                             newlabelRP.push(item.Label);
-                            const value = item.AverageValue / 10
+                            const value = roundToTwoDecimals(item.AverageValue / 10)
                             newDataRP.push(value.toFixed(2))
                         } else if (item.ZONE_PROPERTY == 'RN') {
                             newlabelRN.push(item.Label);
-                            const value = item.AverageValue
+                            const value = roundToTwoDecimals(item.AverageValue)
                             newDataRN.push(value.toFixed(2))
                         }
 
@@ -3455,7 +3616,7 @@
                                 beginAtZero: false,
                                 ticks: {
                                     callback: function (value, index, values) {
-                                        return value + ' ' + Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
+                                        return roundToTwoDecimals(value) + ' ' + Unit;  // Thêm đơn vị Volts vào mỗi giá trị trục y
                                     }
                                 }
                             }
