@@ -2252,19 +2252,12 @@
             });
             $("#download-QRcode").click(function () {
                 const img = $('#hidden-image')[0];
-
-                if (!img) {
-                    alert('Chưa có mã QR để tải!');
-                    return;
-                }
-
                 // Tạo thẻ <a> để tải xuống
                 const link = document.createElement('a');
                 link.href = img.src;
                 link.download = 'qrcode.png';
                 document.body.appendChild(link);
                 link.click();
-                document.body.removeChild(link);
             });
             $("#homepage-Pre-pickApp").click(function () {
                 stopInterval();
