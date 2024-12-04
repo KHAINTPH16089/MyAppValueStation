@@ -2094,6 +2094,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script>
         $(document).ready(function () {
             var historyItems = [];
@@ -2244,6 +2245,22 @@
                 $('#share-popup').modal('hide');
             });
             $("#download-QRcode").click(function () {
+                // const canvas = $('#qrcode canvas')[0];
+
+                // if (!canvas) {
+                //     alert('Chưa có mã QR để tải!');
+                //     return;
+                // }
+
+                // // Tạo URL hình ảnh từ canvas
+                // const image = canvas.toDataURL('image/png');
+
+                // // Tạo thẻ <a> để tải xuống
+                // const link = document.createElement('a');
+                // link.href = image;
+                // link.download = 'qrcode.png';
+                // link.click();
+
                 const canvas = $('#qrcode canvas')[0];
 
                 if (!canvas) {
@@ -2251,14 +2268,14 @@
                     return;
                 }
 
-                // Tạo URL hình ảnh từ canvas
-                const image = canvas.toDataURL('image/png');
-
-                // Tạo thẻ <a> để tải xuống
-                const link = document.createElement('a');
-                link.href = image;
-                link.download = 'qrcode.png';
-                link.click();
+                // Tạo Blob từ canvas
+                canvas.toBlob(function (blob) {
+                    if (blob) {
+                        saveAs(blob, 'qrcode.png'); // Dùng FileSaver.js để tải xuống
+                    } else {
+                        alert('Không thể tạo file tải xuống!');
+                    }
+                });
             });
             $("#homepage-Pre-pickApp").click(function () {
                 stopInterval();
