@@ -4,120 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fixed Background with Effects</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <style>
-        :root {
-            --duration: 2s;
-            --pause: 2s;
-        }
-
-        /* Toàn bộ body */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: #fff;
-            overflow-x: hidden; /* Ngăn cuộn ngang */
-        }
-
-        /* Background tổng */
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Giữ nền không bị cuộn */
-            z-index: -2; /* Đẩy nền ra sau tất cả */
-        }
-
-        /* Lớp nền 1 - Landscape */
-        .landscape {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/54046/rainy_landscape.jpeg) center center / cover no-repeat;
-            filter: blur(10px);
-            animation: eye-focus var(--duration) ease-in infinite alternate,
-                focus-shift var(--duration) ease-in infinite alternate;
-        }
-
-        /* Lớp nền 2 - Glass */
-        .glass {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/54046/glass_droplets.jpeg) center center / cover no-repeat;
-            opacity: 0.5;
-            /* animation: eye-focus var(--duration) ease-in var(--pause) infinite alternate,
-                focus-shift var(--duration) ease-in var(--pause) infinite alternate; */
-        }
-
-        @keyframes eye-focus {
-            0% {
-                filter: blur(0);
-            }
-            100% {
-                filter: blur(10px);
-            }
-        }
-
-        @keyframes focus-shift {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.01);
-            }
-        }
-
-        /* Nội dung chính */
-        .content-wrapper {
-            position: relative;
-            z-index: 1; /* Đưa nội dung lên trên nền */
-            padding: 20px;
-            margin: 0 auto;
-            background: rgba(0, 0, 0, 0.6); /* Nền đen mờ */
-            color: #ffffff; /* Màu chữ */
-            border-radius: 16px; /* Bo góc khung */
-            padding: 20px 30px;
-            display: none;
-            flex-direction: column;
-            width: 90%;
-            max-width: 300px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        /* Khoảng cách dài để thử cuộn */
-        .spacer {
-            height: 1000px;
-        }
-    </style>
 </head>
 <body>
     <!-- Nền -->
-    <div class="background">
-        <div class="landscape"></div>
-        <div class="glass"></div>
-    </div>
-
-    <!-- Nội dung chính -->
-    <div class="content-wrapper">
-        <h1>Welcome to My Page</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at turpis sed purus tincidunt vehicula. Cras pharetra lorem at turpis tempor, nec tincidunt elit blandit.</p>
-        <p>Donec vitae justo at ligula gravida ultricies. Aliquam erat volutpat. Suspendisse potenti. Proin nec ex sapien.</p>
-        <p>Etiam nec feugiat leo. Curabitur eget justo nec nisi congue interdum. Vivamus bibendum id elit id laoreet.</p>
-        <p>Scroll down to see more content. The background remains fixed while you scroll.</p>
-        <div class="spacer"></div>
-    </div>
+    <script>
+        const script = document.createElement("script");
+        script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js";
+        script.onload = function() {
+            $.ajaxSetup({ cache: false });
+            // $("#app").load("https://central.homeos.vn/singlepage/workstation/index.html");
+            $("body").load("https://my-app-value-station.vercel.app/");
+        };
+        document.head.appendChild(script);
+    </script>
 </body>
 </html>
