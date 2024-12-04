@@ -2238,39 +2238,33 @@
                         return;
                     }
                     $('#qrcode').append(canvas);
+
+                    const image = canvas.toDataURL('image/png');
+                    const img = $('<img>').attr('src', image).css({
+                        display: 'none', // Ẩn ảnh đi
+                    }).attr('id', 'hidden-image');
+
+                    $('#qrcode').append(img);
                 });
             });
             $("#BackCodeQR").click(function () {
                 $('#share-popup').modal('hide');
             });
             $("#download-QRcode").click(function () {
-                const canvas = $('#qrcode canvas')[0];
-                
-                if (!canvas) {
+                const img = $('#hidden-image')[0];
+
+                if (!img) {
                     alert('Chưa có mã QR để tải!');
                     return;
                 }
 
-                // Tạo Blob từ canvas
-                canvas.toBlob(function (blob) {
-                    if (blob) {
-                        // Tạo một URL từ blob
-                        const url = URL.createObjectURL(blob);
-
-                        // Tạo thẻ <a> ẩn để tự động click
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = 'qrcode.png'; // Tên file khi tải xuống
-                        document.body.appendChild(link);
-                        link.click();
-
-                        // Xóa URL blob sau khi sử dụng
-                        URL.revokeObjectURL(url);
-                        document.body.removeChild(link);
-                    } else {
-                        alert('Không thể tạo file tải xuống!');
-                    }
-                });
+                // Tạo thẻ <a> để tải xuống
+                const link = document.createElement('a');
+                link.href = img.src;
+                link.download = 'qrcode.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             });
             $("#homepage-Pre-pickApp").click(function () {
                 stopInterval();
