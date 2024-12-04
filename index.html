@@ -2244,6 +2244,8 @@
                 $('#share-popup').modal('hide');
             });
             $("#download-QRcode").click(function () {
+                const canvas = $('#qrcode canvas')[0];
+                
                 if (!canvas) {
                     alert('Chưa có mã QR để tải!');
                     return;
