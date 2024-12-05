@@ -3119,7 +3119,25 @@
                         const checkInput = DataCategory.filter(item => item.NameCategory === inputValue);
                         console.log(checkInput);
                         if (checkInput.length > 0) {
-                            toastr.error("Danh mục đã tồn tại, vui lòng nhập tên danh mục khác!");
+                            const confirmEDIT = confirm(`Danh mục "${inputValue}" đã tồn tại, xác nhận có muốn thêm những trạm đã chọn chưa nằm trong danh mục hay không?`);
+                            if(confirmEDIT){
+                                itemCategory.itemCategory.forEach(item2 => {
+                                    const exists = checkInput[0].itemCategory.some(item1 => item1.CodeWorkStation === item2.CodeWorkStation);
+                                    if (!exists) {
+                                        checkInput[0].itemCategory.push(item2);
+                                    }
+                                });
+                                DataCategory = DataCategory.filter(item => item.NameCategory !== inputValue);
+                                DataCategory.push(checkInput[0]);
+                                localStorage.setItem('dataCategory', JSON.stringify(DataCategory));
+                                document.getElementById("list-category").classList.remove("d-none");
+                                document.getElementById("save-category").classList.add("d-none");
+                                $('#name-category').val('');
+                                $('#search-category').val('');
+                                localStorage.setItem('listItemCategory', JSON.stringify([]));
+                                historyListCategoryAdd.empty();
+                                showCategory()
+                            }
                         } else if (item.length == 0) {
                             toastr.error("Vui lòng chọn trạm để thêm vào danh mục!");
                         } else {
@@ -3192,7 +3210,7 @@
                             document.getElementById("RP").textContent = filteredItems[i].ZONE_VALUE / 10 + " hPa";
                         } else if (filteredItems[i].ZONE_PROPERTY == "RD") {
                             checkRD = true;
-                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE + " mm";
+                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE / 10 + " mm";
                             document.getElementById("glass").style.background = "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/54046/glass_droplets.jpeg) center center / cover no-repeat";
                             // const color = getColor(filteredItems[i].ZONE_VALUE / 10);
                             // changeColorAndText(color, color, filteredItems[i].ZONE_VALUE / 10);
@@ -3511,10 +3529,10 @@
                 let newDataRN = [];
                 let newlabelRN = [];
                 $.each(data, function (i, item) {
-                    if (item.AverageValue != 0) {
+                    //if (item.AverageValue != 0) {
                         if (item.ZONE_PROPERTY == 'RD') {
                             newlabelRA.push(item.Label);
-                            const value = roundToTwoDecimals(item.AverageValue)
+                            const value = roundToTwoDecimals(item.AverageValue / 10)
                             newDataRA.push(value)
                         } else if (item.ZONE_PROPERTY == 'RT') {
                             newlabelRT.push(item.Label);
@@ -3534,7 +3552,7 @@
                             newDataRN.push(value.toFixed(2))
                         }
 
-                    }
+                    //}
                 })
                 var dataSetRA = [
                     {
