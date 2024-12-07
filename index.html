@@ -1303,9 +1303,9 @@
                 <div class="history-header">
                     <div id="history-avt">
                         <div class="d-flex">
-                            <img id="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
+                            <img id="userAvt" class="d-none" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
                                 alt="">
-                            <p id="userName">User name</p>
+                            <p id="userName" class="d-none">User name</p>
                         </div>
                     </div>
                     <div id="category-back" class="d-none">
@@ -2093,7 +2093,6 @@
     <script>
         $(document).ready(function () {
             var DataUser = JSON.parse(localStorage.getItem("userInfo"));
-            console.log(DataUser);
             if(DataUser){
                 document.getElementById("userName").textContent = DataUser.name;
                 document.getElementById("userAvt").src = DataUser.avatar;
@@ -2266,7 +2265,6 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                console.log(img, link);
             });
             $("#homepage-Pre-pickApp").click(function () {
                 stopInterval();
@@ -2370,7 +2368,7 @@
                         document.getElementById("history").classList.remove("hidden");
                     }, 2000);
                 } else if (type == 'IOT') {
-                    window.location.href = "http://devices.homeos.vn/";
+                    // window.location.href = "http://devices.homeos.vn/";
                 } else if (type == 'PICK') {
                     document.getElementById("history").classList.remove("hidden");
                     document.getElementById("ScanQR").classList.add("hidden");
@@ -2392,13 +2390,10 @@
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
                     data = await getDataStation(workstationID, listDomain[i]);
-                    console.log(data.length);
 
                     if (data.length == 0 || data.length == undefined || data == null || data == '' || data == []) {
-                        console.log(data);
                         domain = '';
                     } else {
-                        console.log(data);
                         domain = listDomain[i];
                         break;
                     }
@@ -2407,7 +2402,6 @@
                     toastr.error("Mã trạm không tồn tại");
                     $('#loading-popup').modal('hide');
                 } else {
-                    console.log(domain);
                     localStorage.setItem("URL", "https://" + domain + "/Service/Service.svc");
                     //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
                     document.getElementById("footer-stationName").textContent = data[0].WORKSTATION_ID + " - " + data[0].WORKSTATION_NAME;
@@ -2424,13 +2418,10 @@
                     var data;
                     for (let i = 0; i < listDomain.length; i++) {
                         data = await getDataStation(workstationID, listDomain[i]);
-                        console.log(data.length);
 
                         if (data.length == 0 || data.length == undefined || data == null || data == '' || data == []) {
-                            console.log(data);
                             domain = '';
                         } else {
-                            console.log(data);
                             domain = listDomain[i]
                             break;
                         }
@@ -2895,7 +2886,6 @@
                             ZONE_PROPERTY = 'RD'
                             ZONE_UNIT = ' mm'
                         }
-                        console.log(ZONE_PROPERTY);
                         for (let i = historyItems.length - 1; i >= 0; i--) {
                             const data = await getNewData(
                                 historyItems[i].CodeWorkStation,
@@ -3019,7 +3009,6 @@
                             const selectElement = $('#historySelect');
                             selectElement.empty();
                             for (let i = arrayCategory.length - 1; i >= 0; i--) {
-                                console.log(arrayCategory[i]);
                                 const selectElement = document.getElementById("historySelect");
                                 const newOption = document.createElement("option");
                                 let value;
@@ -3066,7 +3055,6 @@
                         item.NameWorkStation.toLowerCase().includes(type)
                     );
                 }
-                console.log(historyItems);
                 if (CategoryItems) {
                     for (let i = 0; i < CategoryItems.length; i++) {
                         historyItems = historyItems.filter(item => item.CodeWorkStation != CategoryItems[i].CodeWorkStation);
@@ -3119,7 +3107,6 @@
                     DataCategory = JSON.parse(localStorage.getItem('dataCategory'));
                     if (DataCategory) {
                         const checkInput = DataCategory.filter(item => item.NameCategory === inputValue);
-                        console.log(checkInput);
                         if (checkInput.length > 0) {
                             const confirmEDIT = confirm(`Danh mục "${inputValue}" đã tồn tại, xác nhận có muốn thêm những trạm đã chọn chưa nằm trong danh mục hay không?`);
                             if(confirmEDIT){
@@ -3184,7 +3171,6 @@
                     let checkRD = false;
                     let checkRT = false;
                     let filteredItems = data.filter(item => item.ZONE_ADDRESS === localStorage.getItem('MATRAM'));
-                    console.log(filteredItems);
                     for (let i = 0; i < filteredItems.length; i++) {
                         if (filteredItems[i].ZONE_PROPERTY == "RT") {
                             checkRT = true;
@@ -3227,7 +3213,6 @@
                         if (checkRD == false) {
                             const now = new Date();
                             const hours = String(now.getHours()).padStart(2, '0');
-                            console.log(hours);
                             if(hours < 18 && hours > 6){
                                 document.getElementById("glass").style.background = "url(https://i.pinimg.com/736x/9d/1e/b3/9d1eb31563d0694c0eccd2724b5410a9.jpg) center center / cover no-repeat";
                             } else {
@@ -3322,7 +3307,6 @@
                 }
                 const item = JSON.parse(localStorage.getItem('itemHistory'));
                 const TypeWorkstation = getDayMessage(item.workstationType);
-                console.log(TypeWorkstation);
 
                 if (type == 'NGAY') {
                     const dataChart = await getDataChart('NGAY', '', '', TypeWorkstation, localStorage.getItem("MATRAM"), localStorage.getItem("URL"));
@@ -3359,7 +3343,6 @@
                         success: function (msg) {
                             try {
                                 let state = JSON.parse(msg);
-                                console.log(state, state.length);
                                 if (state != [] && state != "" && state != null && state.length != 0 && state.length != undefined) {
                                     const item = { 'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime(), 'workstationType': state[0].TEMPLATE_TOOLTIP }
                                     localStorage.setItem('itemHistory', JSON.stringify(item));
@@ -3396,7 +3379,6 @@
                         success: function (msg) {
                             try {
                                 let state = JSON.parse(msg);
-                                console.log(state);
                                 resolve(state); // Trả về dữ liệu khi thành công
                             } catch (error) {
                                 reject(error); // Bắt lỗi nếu JSON parse thất bại
@@ -3734,7 +3716,6 @@
                 // Lấy danh sách camera và bắt đầu quét
                 Html5Qrcode.getCameras().then(_devices => {
                     devices = _devices; // Lưu lại danh sách camera
-                    console.log(devices);
                     if (devices && devices.length) {
                         if (devices.length == 1) {
                             startScan(devices[currentCameraIndex].id, "user");  // Bắt đầu quét với camera đầu tiên
@@ -3789,7 +3770,6 @@
                 }).catch(err => {
                     console.error("Lỗi khi dừng camera sau khi quét thành công: ", err);
                 });
-                console.log(decodedText);
                 let data;
                 let domain;
                 let workstation;
@@ -3829,7 +3809,6 @@
                     document.getElementById("result-truycap").classList.add("d-none");
                     toastr.error("Vui lòng quét đúng mã QR!");
                 }
-                console.log(data);
 
                 if (data.data != []) {
                     document.getElementById("result-truycap").disabled = false;
@@ -3913,7 +3892,6 @@
                                             document.getElementById("result-form-loading").classList.add("d-none");
                                             toastr.error("Vui lòng quét đúng mã QR!");
                                         }
-                                        console.log(decodedText.length, data);
 
 
                                         if (data != []) {
@@ -3989,7 +3967,6 @@
                 const windowHeight = window.innerHeight;
 
                 window.addEventListener('resize', () => {
-                    console.log(window.innerHeight, windowHeight);
                     if (window.innerHeight < windowHeight) {
                         // Keyboard is visible, hide or adjust footer
                         document.getElementById("footer-instruct-text").classList.add("d-none");
@@ -4028,7 +4005,6 @@
 
                     // Detect which menu item was clicked
                     const menuText = item.innerText.trim(); // Get the text of the menu item
-                    console.log(menuText);
 
                     if (menuText == "Giải pháp thông minh") {
                         $("#tab-add-category").click();
@@ -4047,7 +4023,7 @@
                         localStorage.setItem('listItemCategory', JSON.stringify([]));
                         showHistory()
                     } else if (menuText == "Thông tin công ty") {
-                        window.location.href = "https://homeos.com.vn/";
+                        // window.location.href = "https://homeos.com.vn/";
                     }
 
                     // Close the sidebar after selection (optional)
