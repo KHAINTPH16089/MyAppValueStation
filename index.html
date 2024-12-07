@@ -1303,9 +1303,9 @@
                 <div class="history-header">
                     <div id="history-avt">
                         <div class="d-flex">
-                            <img src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
+                            <img id="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
                                 alt="">
-                            <p>User name</p>
+                            <p id="userName">User name</p>
                         </div>
                     </div>
                     <div id="category-back" class="d-none">
@@ -2094,6 +2094,7 @@
         $(document).ready(function () {
             var DataUser = JSON.parse(localStorage.getItem("userInfo"));
             console.log(DataUser);
+            document.getElementById("userName").textContent = DataUser.name;
             var historyItems = [];
             var CategoryItems = [];
             var DataCategory = [];
