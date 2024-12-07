@@ -2094,7 +2094,10 @@
         $(document).ready(function () {
             var DataUser = JSON.parse(localStorage.getItem("userInfo"));
             console.log(DataUser);
-            document.getElementById("userName").textContent = DataUser.name;
+            if(DataUser){
+                document.getElementById("userName").textContent = DataUser.name;
+                document.getElementById("userAvt").src = DataUser.avatar;
+            }
             var historyItems = [];
             var CategoryItems = [];
             var DataCategory = [];
