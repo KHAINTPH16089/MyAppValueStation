@@ -2092,7 +2092,7 @@
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         $(document).ready(function () {
-            var DataUser = localStorage.getItem("userInfo");
+            var DataUser = JSON.parse(localStorage.getItem("userInfo"));
             console.log(DataUser);
             var historyItems = [];
             var CategoryItems = [];
