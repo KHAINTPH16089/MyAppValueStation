@@ -1227,7 +1227,7 @@
         </div>
         <div id="pickApp" class="hidden h-100">
             <div class="container">
-                <div class="row">
+                <div id="QUYEN" class="row">
                     <div class="col-12" style="padding: 10px;">
                         <div id="PickApp-button-login" class="iconApp" >
                             <div class="icon d-none" style="background-color: #b7761b; width: 60px; height: 60px;">
@@ -2110,10 +2110,15 @@
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
             var UserID = localStorage.getItem("userInfo");
-            if(DataUser && DataUser.id == UserID){
-                document.getElementById("userName").textContent = DataUser.name;
-                document.getElementById("PickApp-button-login").classList.add("d-none");
-                document.getElementById("userAvt").src = DataUser.avatar;
+            if(UserID){
+                if(DataUser && DataUser.id == UserID){
+                    document.getElementById("userName").textContent = DataUser.name;
+                    document.getElementById("PickApp-button-login").classList.add("d-none");
+                    document.getElementById("userAvt").src = DataUser.avatar;
+                    document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
+                }
+            } else {
+                document.getElementById("QUYEN").classList.add("d-none");
                 document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
             }
             var historyItems = [];
