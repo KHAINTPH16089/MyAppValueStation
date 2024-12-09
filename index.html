@@ -1303,9 +1303,9 @@
                 <div class="history-header">
                     <div id="history-avt">
                         <div class="d-flex">
-                            <img id="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
+                            <img id="userAvt" class="d-none" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
                                 alt="">
-                            <p id="userName">User name</p>
+                            <p id="userName" class="d-none">User name</p>
                         </div>
                     </div>
                     <div id="category-back" class="d-none">
@@ -2093,6 +2093,11 @@
     <script>
         $(document).ready(function () {
             var DataUser = JSON.parse(localStorage.getItem("userInfo"));
+            // Gọi hàm GetUser từ script chính
+            if (window.GetUser) {
+                window.GetUser();
+            }
+
             if(DataUser){
                 document.getElementById("userName").textContent = DataUser.name;
                 document.getElementById("userAvt").src = DataUser.avatar;
