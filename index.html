@@ -2379,7 +2379,7 @@
                 const selectedText = this.options[this.selectedIndex].text; // Lấy văn bản đã chọn
                 showHistory(selectedValue);
             });
-            function pickApp(type) {
+            async function pickApp(type) {
                 if (type == 'MUA') {
                     document.getElementById("LoadScreen").classList.remove("d-none");
                     document.getElementById("img-station").classList.remove("hidden");
@@ -2406,11 +2406,12 @@
                     document.getElementById("homePage").classList.add("hidden");
                 } else if (type == 'LOGIN'){
                     if (window.GetUser) {
-                        window.GetUser();
+                        await window.GetUser();
                         DataUser = JSON.parse(localStorage.getItem("userInfo"));
                         document.getElementById("userName").textContent = DataUser.name;
                         document.getElementById("PickApp-button-login").classList.add("d-none");
                         document.getElementById("userAvt").src = DataUser.avatar;
+                        document.getElementById("LogoPickScreen").style.paddingTop = '10vh;'
                     }
                 }
             }
