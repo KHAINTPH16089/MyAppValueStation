@@ -2109,8 +2109,8 @@
             var DataUser;
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
-
-            if(DataUser){
+            var UserID = localStorage.getItem("userInfo");
+            if(DataUser && DataUser.id == UserID){
                 document.getElementById("userName").textContent = DataUser.name;
                 document.getElementById("PickApp-button-login").classList.add("d-none");
                 document.getElementById("userAvt").src = DataUser.avatar;
