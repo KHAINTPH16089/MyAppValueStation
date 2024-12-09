@@ -2092,10 +2092,11 @@
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
         $(document).ready(function () {
-            var DataUser = JSON.parse(localStorage.getItem("userInfo"));
+            var DataUser;
             // Gọi hàm GetUser từ script chính
             if (window.GetUser) {
                 window.GetUser();
+                DataUser = JSON.parse(localStorage.getItem("userInfo"));
             }
 
             if(DataUser){
