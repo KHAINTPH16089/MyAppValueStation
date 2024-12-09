@@ -2109,7 +2109,7 @@
             var DataUser;
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
-            var UserID = localStorage.getItem("userInfo");
+            var UserID = localStorage.getItem("userID");
             if(UserID){
                 if(DataUser && DataUser.id == UserID){
                     document.getElementById("userName").textContent = DataUser.name;
