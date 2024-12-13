@@ -2249,12 +2249,8 @@
                         <input id="result-form-stationName" disabled type="text"
                             style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
                         <div class="d-flex justify-content-center pt-2">
-                            <button id="result-scanagain" class="btn mx-2"
-                                style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét
-                                lại</button>
-                            <button id="result-truycap" disabled class="btn mx-2"
-                                style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy
-                                cập</button>
+                            <button id="result-scanagain" class="btn mx-2" style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét lại</button>
+                            <button id="result-truycap" disabled class="btn mx-2" style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy cập</button>
                         </div>
                     </div>
                     <div id="result-product" class="d-none">
@@ -2638,6 +2634,15 @@
                 document.getElementById("result-form-title").classList.add("d-none");
                 document.getElementById("result-form-stationID").classList.remove("d-none");
                 document.getElementById("result-form-stationName").classList.remove("d-none");
+                document.getElementById("result-truycap").classList.remove("d-none");
+                scanAgain()
+            });
+            $("#result-product-scanagain").click(function () {
+                document.getElementById("result-product").classList.add("d-none");
+                document.getElementById("result-form-loading").classList.remove("d-none");
+                document.getElementById("result-product-title").classList.add("d-none");
+                document.getElementById("result-form-productName").classList.remove("d-none");
+                document.getElementById("result-form-productCode").classList.remove("d-none");
                 document.getElementById("result-truycap").classList.remove("d-none");
                 scanAgain()
             });
