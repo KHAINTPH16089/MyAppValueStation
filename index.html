@@ -2500,15 +2500,17 @@
                 document.getElementById("menu-warranty").classList.remove("d-none");
                 $('#loading-popup').modal('hide');
                 console.log('hide');
-                
             }
             function scanAgain() {
                 console.log("scan2");
                 document.getElementById("footer-instruct-scanQR").classList.add("d-none");
                 document.getElementById("result-form").classList.add("d-none");
                 document.getElementById("file-input").value = '';
-                $(".start").click();
+                startQRcode();
             }
+            $(".start").click(function () {
+                startQRcode();
+            })
             $("#PickApp-button-mua").click(function () {
                 showHistory();
                 pickApp('MUA');
@@ -4052,7 +4054,7 @@
             }
 
             // Khi nhấn nút mở popup quét QR
-            $(".start").click(function () {
+            function startQRcode() {
                 console.log("scan1");
                 
                 document.getElementById("result-form-total").classList.add("d-none");
@@ -4082,7 +4084,7 @@
                 }).catch(err => {
                     console.error("Lỗi khi lấy danh sách camera: ", err);
                 });
-            });
+            };
 
             // Chuyển đổi camera
             $("#toggle-camera").click(function () {
