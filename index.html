@@ -2616,8 +2616,9 @@
                 pickApp('HISTORY')
             });
             $(".WarrantyScanNext").click(function () {
-                document.getElementById("ScanQRWarranty").classList.add("hidden");
-                document.getElementById("guarantee").classList.remove("hidden");
+                document.getElementById("ScanQRWarranty").classList.remove("hidden");
+                document.getElementById("guarantee").classList.add("hidden");
+                document.getElementById("menu-warranty").classList.add("d-none");
             });
             $("#button-list-ngay").click(function () {
                 clickGetData('NGAY')
@@ -2708,6 +2709,8 @@
                     document.getElementById("history").classList.add("hidden");
                     document.getElementById("homePage").classList.add("hidden");
                     document.getElementById("pickApp").classList.remove("hidden");
+                    document.getElementById("guarantee").classList.add("hidden");
+                    document.getElementById("menu-warranty").classList.add("d-none");
                 } else if (type == 'HISTORY') {
                     showHistory()
                     document.getElementById("history").classList.remove("hidden");
