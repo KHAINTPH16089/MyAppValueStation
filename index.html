@@ -4157,7 +4157,7 @@
                             USER_ID: UserID,
                             DATASTATE: "ADD",
                         };
-                        add('DM_QRCODE', willInsertData).then(data => {
+                        add('DM_QRCODE', willInsertData).then(async data => {
                             try {
                                 toastr.success("Quét QR và lưu thông tin thành công!");
                                 if(checkTab){
@@ -4171,6 +4171,7 @@
                                     document.getElementById("result-form-productName").value = checkQRcode[1];
                                     console.log(1);
                                     document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                    data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                     changeDataWarranty(data);
                                 }
                                 
@@ -4298,7 +4299,7 @@
                                                     USER_ID: UserID,
                                                     DATASTATE: "ADD",
                                                 };
-                                                add('DM_QRCODE', willInsertData).then(data => {
+                                                add('DM_QRCODE', willInsertData).then(async data => {
                                                     try {
                                                         toastr.success("Quét QR và lưu thông tin thành công!");
                                                         if(checkTab){
@@ -4312,6 +4313,7 @@
                                                             document.getElementById("result-form-productName").value = checkQRcode[1];
                                                             console.log(1);
                                                             document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                                            data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                                             changeDataWarranty(data);
                                                         }
                                                         
