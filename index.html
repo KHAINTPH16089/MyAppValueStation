@@ -4117,7 +4117,7 @@
                 let domain;
                 let workstation;
                 let checkQRcode = decodedText.split(',');
-                if(checkQRcode == "T20"){
+                if(checkQRcode[0].substring(0, 3) == "T20"){
                     data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                     if(data.length > 0){
                         if(checkTab){
