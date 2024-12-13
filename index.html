@@ -2151,9 +2151,6 @@
                                 <div class=" col-6 p-2">
                                     <div class="box-value" style="height: 116px; margin: 0;">
                                         <div class="d-flex justify-content-center">
-                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
-                                                <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a29 29 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a29 29 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001zm0 0-.364-.343zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267" />
-                                            </svg> -->
                                             <p style="padding-left: 5px;">Bảo hành</p>
                                         </div>
                                         <h6 id="warrantyActive">-</h6>
@@ -2170,20 +2167,21 @@
                                         <h6 id="warrantyTime">-</h6>
                                     </div>
                                 </div>
+                                <div class=" col-12 p-2">
+                                    <div class="box-value" style="height: 250px; margin: 0; padding: 0;">
+                                        <img id="deviceImg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;" src="" alt="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div id="tab-2" class="tab-content">
-                            <!-- <img src="./assets/img/Screenshot 2024-10-11 103819.png" alt="Create QR Code" style="width: 80px; margin-bottom: 5px;"> -->
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" style="margin-bottom: 5px; color: #1565c0;" class="bi bi-qr-code" viewBox="0 0 16 16">
-                                <path d="M2 2h2v2H2z"/>
-                                <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
-                                <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
-                                <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
-                                <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
-                              </svg>
-                            <h3>Tạo nhiều QR Code</h3>
-                            <input type="number" class="form-control" id="startValue" placeholder="Nhập số lượng mã QR cần in">
-                            <button class="w-100" id="generateQRCodes">Tạo QR Codes</button> -->
+                            <h3 style="color: #fff; margin-top: 50px;">Tạo nhiều QR Code</h3>
+                            <!-- <input type="number" class="form-control"  id="startValue" placeholder="Nhập số lượng mã QR cần in"> -->
+                            <input id="startValue" type="text" placeholder="Nhập số lượng mã QR cần in"
+                            style="width: 100%; border-radius: 4px; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                            <button id="generateQRCodes" class="btn btn-warning"
+                                            style="background-color: #f39c12;margin-top: 20px; border: solid 1px #f39c12; width: 100%; height: 35px; color: #fff;">Lưu
+                                            danh mục</button>
                         </div>
                     </div>
             
@@ -2352,6 +2350,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         $(document).ready(function () {
             var DataUser;
@@ -4572,14 +4571,6 @@
                 value = $(this).data('tab');
                 $('.tab-content').removeClass('active');
                 $('#tab-' + value).addClass('active');
-                if (value == 1) {
-                    startScanner();
-                } else {
-                    if (scanner) {
-                        scanner.clear();
-                        scanner = null;
-                    }
-                }
             });
 
             function changeDataWarranty(data) {
@@ -4587,7 +4578,7 @@
                 document.getElementById('productName').textContent = "Tên sản phẩm: "+ data[0].PRODUCT_NAME;
                 document.getElementById('productCode').textContent = "Mã định danh: "+ data[0].PRODUCT_CODE;
                 document.getElementById('productSeri').textContent = "Số seri: "+ DataQRcode[2].substring(1);
-                
+                document.getElementById("deviceImg").src = data[0].PRODUCT_IMG;
                 if(data[0].ACTIVATE_WARRANTY == "1999-01-01T00:00:00"){
                     document.getElementById('warrantyActive').textContent = "Chưa kích hoạt";
                     const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
@@ -4635,6 +4626,169 @@
                 }
             }
 
+            $('#generateQRCodes').click(function () {
+                startValue = parseInt($('#startValue').val()) || 1;
+                getTranNo();
+            });
+
+            async function getTranNo() {
+                try {
+                    const data = await getDM('SYS_TRAN_NO', "TABLE_NAME='DM_QRCODE'");
+                    const state = data.data
+                    console.log(state);
+                    let temp = state[0].TRAN_NO || null;
+                    temp = temp.replace(/\[YEAR\]/g, (new Date()).getFullYear());
+                    temp = temp.replace(/\[MONTH\]/g, ((new Date()).getMonth() + 1).toString().padStart(2, '0'));
+                    temp = temp.replace(/\[DAY\]/g, (new Date()).getDate().toString().padStart(2, '0'));
+                    temp = temp.replace(/\[HOUR\]/g, (new Date()).getHours().toString().padStart(2, '0'));
+                    temp = temp.replace(/\[MINUTE\]/g, (new Date()).getMinutes().toString().padStart(2, '0'));
+                    temp = temp.replace(/\[SECOND\]/g, (new Date()).getSeconds().toString().padStart(2, '0'));
+                    const codes = [];
+                    let auto_key = state[0].AUTO_KEY;
+                    for (let i = 1; i <= startValue; i++) {
+                        auto_key += 1;
+                        const code = temp.replace(/\[AUTO_KEY\]/g, (auto_key).toString().padStart(state[0].LENGTH_KEY, '0'));
+                        codes.push(code);
+                    }
+                    generateQRCodes(codes);
+                    console.log(auto_key, state[0].TABLE_NAME, state[0].TRAN_NO, state[0].LENGTH_KEY);
+                    
+                    updateTranNo(auto_key, state[0].TABLE_NAME, state[0].TRAN_NO, state[0].LENGTH_KEY);
+                } catch (error) {
+                    console.error("Lỗi khi lấy dữ liệu:", error);
+                }
+            }
+
+            function getDM(table_name, c) {
+                const d = {
+                    Uid: 'vannt',
+                    Sid: 'b99213e4-a8a5-45f4-bb5c-cf03ae90d8d7',
+                    tablename: table_name,
+                    c: c,
+                    other: '',
+                    cmd: ''
+                };
+                
+                const Url = 'https://DEV.HOMEOS.vn/service/service.svc/';
+                
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: "https://DEV.HOMEOS.vn/service/service.svc/getDm?callback=?",
+                        type: "GET",
+                        dataType: "jsonp",
+                        data: d,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                resolve(state);  // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error);  // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                            // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                        },
+                        error: function (e, t, x) {
+                            HomeOS.Service.SetActionControl(true);
+                            HomeOS.Service.ShowLabel('Lỗi dữ liệu');
+                            reject(e);  // Trả về lỗi nếu thất bại
+                        }
+                    });
+                });
+            }
+
+            async function generateQRCodes(listcode) {
+                const newTab = window.open('', '_blank');
+                if (!newTab || newTab.closed || typeof newTab.closed == 'undefined') {
+                    alert('Tab mới không thể mở. Vui lòng kiểm tra cài đặt popup của trình duyệt.');
+                    return;
+                }
+                let htmlContent = `
+                    <html>
+                    <head>
+                        <style>
+                            body {
+                                text-align: center;
+                                padding: 5px;
+                            }
+                            .qr-grid {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+                                margin-top: 10px;
+                            }
+                            .qr-item {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                            .qr-item img {
+                                width: 57px;
+                            }
+                            .qr-item p {
+                                margin-top: 5px;
+                                margin-bottom: 8px;
+                                font-size: 11px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="qr-grid">
+                `;
+                for (const code of listcode) {
+                    // Tạo một <div> tạm để render mã QR
+                    const tempDiv = document.createElement('div');
+                    const qrCode = new QRCode(tempDiv, {
+                        text: code,           // Mã code muốn tạo
+                        width: 57,           // Chiều rộng mã QR
+                        height: 57           // Chiều cao mã QR
+                        // width: 76,           // Chiều rộng mã QR
+                        // height: 76           // Chiều cao mã QR
+                    });
+
+                    // Chờ QRCode render xong và lấy hình ảnh từ thẻ canvas
+                    const qrDataUrl = await new Promise((resolve) => {
+                        setTimeout(() => {
+                            const canvas = tempDiv.querySelector('canvas');  // Lấy thẻ canvas chứa mã QR
+                            resolve(canvas.toDataURL());                    // Chuyển canvas thành DataURL
+                        }, 500);  // Đợi một thời gian ngắn để chắc chắn mã QR được tạo xong
+                    });
+                    const mang = code.split(',');
+                    
+                    // Thêm nội dung HTML vào chuỗi htmlContent
+                    htmlContent += `
+                        <div class="qr-item">
+                            <img src="${qrDataUrl}" alt="QR Code for ${code}" />
+                            <p>${mang[2].substring(3)}</p>
+                        </div>
+                    `;
+                }
+                
+
+
+                // Chèn nội dung HTML vào tab mới
+                newTab.document.write(htmlContent);
+                newTab.document.close();
+
+                const script = newTab.document.createElement("script");
+                script.textContent = "window.onload = function() { window.print(); }";
+                newTab.document.body.appendChild(script);
+            }
+
+            function updateTranNo(result, tableName, tranNo, lengthKey) {
+                const willInsertData = {
+                    PR_KEY: 15,
+                    TABLE_NAME: tableName,
+                    TRAN_NO: tranNo,
+                    ORGANIZATION_ID: '',
+                    AUTO_KEY: result,
+                    LENGTH_KEY: lengthKey,
+                    DATASTATE: "EDIT",
+                };
+                console.log(willInsertData);
+                
+                add(user_id, session, 'SYS_TRAN_NO', willInsertData)
+            }
             //-----------------------------------------------------------------------------------------------------------
 
             // code gauge nhiệt độ
