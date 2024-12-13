@@ -134,7 +134,7 @@
             border: none;
         }
 
-        #ScanQRNext {
+        .ScanQRNext {
             margin: 0;
             padding: 0;
             width: 35px;
@@ -411,7 +411,16 @@
             border-top: none;
         }
 
+        .tab-content-guarantee {
+            display: none;
+            border-top: none;
+        }
+
         .tab-content.active {
+            display: block;
+        }
+
+        .tab-content-guarantee.active {
             display: block;
         }
 
@@ -1022,7 +1031,6 @@
         }
 
         .content {
-            margin-left: 20px;
             padding: 20px;
             transition: margin-left 0.3s;
         }
@@ -1210,6 +1218,49 @@
             border: 2px solid #000; /* Thêm viền nếu cần */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng */
         }
+
+        .bottom-navigation {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            background-color: #282d31;
+            border-radius: 50px;
+            padding: 10px 0;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            margin: 2.5%;
+        }
+
+        .bottom-navigation button {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottom-navigation button:focus {
+            color: #1976d2;
+        }
+
+        .bottom-navigation button img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -1251,7 +1302,7 @@
                     <h5>Ứng dụng:</h5>
                 </div>
                 <div class="row">
-                    <div class="col-12" style="padding: 10px;">
+                    <div class="col-12" style="padding: 5px 10px;">
                         <div id="PickApp-button-mua" class="iconApp">
                             <div class="icon" style="background-color: #17a2b8;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" style="color: #fff;" class="bi bi-cloud-sun" viewBox="0 0 16 16">
@@ -1268,7 +1319,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-none" style="padding: 10px;">
+                    <div class="col-12" style="padding: 5px 10px;">
                         <div id="PickApp-button-IOT" class="iconApp">
                             <div class="icon" style="background-color: #da4a58!important;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -1286,7 +1337,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-none" style="padding: 10px;">
+                    <div class="col-12" style="padding: 5px 10px;">
                         <div class="iconApp">
                             <div class="icon" style="background-color: #28a745!important;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: white;"
@@ -1304,25 +1355,24 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 d-none" style="padding: 10px;">
-                    <div id="PickApp-button-IOT" class="iconApp">
-                        <div class="icon" style="background-color: #da4a58!important;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                                style="color: #fff;" class="bi bi-pc-display-horizontal" viewBox="0 0 16 16">
-                                <path
-                                    d="M1.5 0A1.5 1.5 0 0 0 0 1.5v7A1.5 1.5 0 0 0 1.5 10H6v1H1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5v-1h4.5A1.5 1.5 0 0 0 16 8.5v-7A1.5 1.5 0 0 0 14.5 0zm0 1h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5M12 12.5a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0m2 0a.5.5 0 1 1 1 0 .5.5 0 0 1-1 0M1.5 12h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M1 14.25a.25.25 0 0 1 .25-.25h5.5a.25.25 0 1 1 0 .5h-5.5a.25.25 0 0 1-.25-.25" />
-                            </svg>
-                        </div>
-                        <div class="info-box-content">
-                            <div class="d-flex justify-content-between">
-                                <span class="app-text">Bảo hành</span>
-                                <span class="app-text">1.0.2</span>
+                    <div class="col-12" style="padding: 5px 10px;">
+                        <div id="PickApp-button-guarantee" class="iconApp">
+                            <div class="icon" style="background-color: #e29038!important;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: #fff;" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                                    <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
+                                </svg>
                             </div>
-                            <span class="app-text-number">Bảo hành thiết bị</span>
+                            <div class="info-box-content">
+                                <div class="d-flex justify-content-between">
+                                    <span class="app-text">Bảo hành</span>
+                                    <span class="app-text">v1.0.2</span>
+                                </div>
+                                <span class="app-text-number">Bảo hành thiết bị</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="footer-instruct">
                     <div class="step">
                         <div class="circle">01</div>
@@ -1642,7 +1692,7 @@
                         </div>
                     </div>
                     <div id="tab1" class="tab-content">
-                        <button id="start" class="clickScanQR">
+                        <button class="clickScanQR start">
                             <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor"
                                 style="color: #000000;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
                                 <path
@@ -1678,6 +1728,59 @@
                 </div>
             </div>
         </div>
+        <div id="ScanQRWarranty" class="hidden h-100">
+            <div class="container" style="padding: 0;">
+                <div class="ScanQR-header">
+                    <div style="line-height: 50px; float: left;">
+                        <button class="homepage-Pre-pickApp" style="height: 40px; border: none; background-color: #1E2833;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div style="padding: 0 20px 0 20px;">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
+                        style="margin-bottom: 30px; margin-top: 20px;">
+                    <div style="padding: 20px 20px 0 20px;">
+                        <div class="tab">
+                            <button id="tab-scan" class="tablinks tablinkGuarantee">Quét QR</button>
+                            <button id="tab-history" class="tablinks tablinkGuarantee">Quét nhiều QR</button>
+                        </div>
+                    </div>
+                    <div id="tab3" class="tab-content-guarantee">
+                        <button class="clickScanQR start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                                <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
+                                <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                                <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                                <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
+                                <path d="M12 9h2V8h-2z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="tab4" class="tab-content-guarantee">
+                        <button class="clickScanQR start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                                <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
+                                <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
+                                <path d="M7 9H2v5h5zm-4 1h3v3H3zm8-6h1v1h-1z" />
+                                <path d="M9 2h5v5H9zm1 1v3h3V3zM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8zm2 2H9V9h1zm4 2h-1v1h-2v1h3zm-4 2v-1H8v1z" />
+                                <path d="M12 9h2V8h-2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="footer-instruct-text" class="footer-instruct">
+                    <div class="step">
+                        <div class="circle">03</div>
+                    </div>
+                    <p>Nhấn nút quét hoặc nhập thông tin</p>
+                </div>
+            </div>
+        </div>
         <div id="homePage" class="hidden">
             <div class="background">
                 <div id="landscape"></div>
@@ -1686,7 +1789,7 @@
             <div class="container-homePage" style="padding: 0; width: 100%;">
                 <div class="homePage-header history-header" style="background-color: #282d31;">
                     <div style="line-height: 50px; justify-content: flex-start;" class="d-flex">
-                        <button id="ScanQRNext" style="height: 40px; border: none; background-color: #282d31;">
+                        <button class="ScanQRNext" style="height: 40px; border: none; background-color: #282d31;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -1708,7 +1811,7 @@
                                 <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
                               </svg>
                         </button>
-                        <button id="homepage-Pre-pickApp"
+                        <button class="homepage-Pre-pickApp"
                             style="height: 40px; border: none; background-color: #282d31; padding: 0;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
                                 fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -1997,6 +2100,126 @@
                 </div>
             </div>
         </div>
+        <div id="guarantee" class="hidden">
+            <div class="container-homePage" style="padding: 0; width: 100%;">
+                <div class="homePage-header history-header" style="background-color: #282d31;">
+                    <div style="line-height: 50px; justify-content: flex-start;" class="d-flex">
+                        <button class="WarrantyScanNext" style="height: 40px; border: none; background-color: #282d31;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                            </svg>
+                        </button>
+                        <p id="header-productName"
+                            style="width: 250px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                            -</p>
+                    </div>
+                    <div class="d-flex" style="line-height: 50px;">
+                        <button class="homepage-Pre-pickApp"
+                            style="height: 40px; border: none; background-color: #282d31; padding: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
+                                fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="warranty-body">
+                    <div class="content">
+                        <!-- Tab Content -->
+                        <div id="tab-0" class="tab-content">
+                            
+                        </div>
+            
+                        <div id="tab-1" class="tab-content active">
+                            <div class="row">
+                                <div class=" col-12 p-2">
+                                    <div class="box-value" style="height: 150px; margin: 0;">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
+                                                <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a29 29 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a29 29 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001zm0 0-.364-.343zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267" />
+                                            </svg> -->
+                                            <p style="padding-left: 5px;">Thông tin sản phẩm</p>
+                                        </div>
+                                        <h6 id="productName">Sản phẩm: -</h6>
+                                        <h6 id="productCode">Mã định danh: -</h6>
+                                        <h6 id="productSeri">Số seri: -</h6>
+                                    </div>
+                                </div>
+                                <div class=" col-6 p-2">
+                                    <div class="box-value" style="height: 116px; margin: 0;">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
+                                                <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a29 29 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a29 29 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001zm0 0-.364-.343zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267" />
+                                            </svg> -->
+                                            <p style="padding-left: 5px;">Bảo hành</p>
+                                        </div>
+                                        <h6 id="warrantyActive">-</h6>
+                                    </div>
+                                </div>
+                                <div class=" col-6 p-2">
+                                    <div class="box-value" style="height: 116px; margin: 0;">
+                                        <div class="d-flex justify-content-center">
+                                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moisture" viewBox="0 0 16 16">
+                                                <path d="M13.5 0a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V7.5h-1.5a.5.5 0 0 0 0 1H15v2.75h-.5a.5.5 0 0 0 0 1h.5V15h-1.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5zM7 1.5l.364-.343a.5.5 0 0 0-.728 0l-.002.002-.006.007-.022.023-.08.088a29 29 0 0 0-1.274 1.517c-.769.983-1.714 2.325-2.385 3.727C2.368 7.564 2 8.682 2 9.733 2 12.614 4.212 15 7 15s5-2.386 5-5.267c0-1.05-.368-2.169-.867-3.212-.671-1.402-1.616-2.744-2.385-3.727a29 29 0 0 0-1.354-1.605l-.022-.023-.006-.007-.002-.001zm0 0-.364-.343zm-.016.766L7 2.247l.016.019c.24.274.572.667.944 1.144.611.781 1.32 1.776 1.901 2.827H4.14c.58-1.051 1.29-2.046 1.9-2.827.373-.477.706-.87.945-1.144zM3 9.733c0-.755.244-1.612.638-2.496h6.724c.395.884.638 1.741.638 2.496C11 12.117 9.182 14 7 14s-4-1.883-4-4.267" />
+                                            </svg> -->
+                                            <p style="padding-left: 5px;">Thời gian Bảo hành</p>
+                                        </div>
+                                        <h6 id="warrantyTime">-</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-content">
+                            <!-- <img src="./assets/img/Screenshot 2024-10-11 103819.png" alt="Create QR Code" style="width: 80px; margin-bottom: 5px;"> -->
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" style="margin-bottom: 5px; color: #1565c0;" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                <path d="M2 2h2v2H2z"/>
+                                <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                                <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                                <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                                <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                              </svg>
+                            <h3>Tạo nhiều QR Code</h3>
+                            <input type="number" class="form-control" id="startValue" placeholder="Nhập số lượng mã QR cần in">
+                            <button class="w-100" id="generateQRCodes">Tạo QR Codes</button> -->
+                        </div>
+                    </div>
+            
+                    <!-- Bottom Navigation -->
+                    <div id="menu-warranty" class="bottom-navigation d-none">
+                        <button data-tab="0">
+                            <!-- <img src="./assets/img/Screenshot 2024-10-11 103819.png" alt="Tạo QR"> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                                <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z"/>
+                                <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
+                                <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
+                              </svg>
+                            Lịch sử
+                        </button>
+                        <button data-tab="1">
+                            <!-- <img src="https://cdn-icons-png.flaticon.com/512/3409/3409588.png" alt="Quét QR"> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                            </svg>
+                            Chi tiết
+                        </button>
+                        <button data-tab="2">
+                            <!-- <img src="./assets/img/Screenshot 2024-10-11 103819.png" alt="Tạo nhiều QR"> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                <path d="M2 2h2v2H2z"/>
+                                <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                                <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                                <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                                <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                            </svg>
+                            Tạo QR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="qr-popup" class="modal">
             <div id="qr-reader"></div>
             <button id="close-scanner">
@@ -2032,6 +2255,21 @@
                             <button id="result-truycap" disabled class="btn mx-2"
                                 style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Truy
                                 cập</button>
+                        </div>
+                    </div>
+                    <div id="result-product" class="d-none">
+                        <div id="result-product-title" class="d-none" style="width: 100%; text-align: center;">
+                            <p style="color: #fff;">Mã sản phẩm lỗi, vui lòng thử lại.</p>
+                        </div>
+                        <p></p>
+                        <input id="result-form-productName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                        <input id="result-form-productCode" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
+                        <div class="d-flex justify-content-center pt-2">
+                            <button id="result-product-scanagain" class="btn mx-2"
+                                style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét
+                                lại</button>
+                            <button id="result-product-truycap" disabled class="btn mx-2"
+                                style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Xem chi tiết</button>
                         </div>
                     </div>
                     <div id="result-form-loading">
@@ -2072,13 +2310,11 @@
             <div class="modal-content" style="width: 80%; margin-top: 50px; margin-left: 10%;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Đang tải dữ liệu...</h5>
-                    <button id="button-modal-close" type="button" class="btn-close d-none" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button id="button-modal-close" type="button" class="btn-close d-none" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%"
-                            aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
@@ -2146,6 +2382,8 @@
             var listCategory = $('#history-setting-detail');
             var NameWorkStation;
             var intervalId; // Lưu ID của setInterval
+            var checkTab = false;
+            var checkAppQR;
             // var user_id = "admin";
             // var session = "7b504acc-988a-437a-890f-389765305b47";
 
@@ -2165,6 +2403,24 @@
 
                 // Xóa class 'active' trên tất cả các nút
                 var tabLinks = document.getElementsByClassName("tablinks");
+                for (var i = 0; i < tabLinks.length; i++) {
+                    tabLinks[i].classList.remove("active");
+                }
+
+                // Hiển thị tab được chọn và thêm class 'active' cho nút đã nhấn
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+            }
+            function openTabGuarantee(evt, tabName) {
+                // Ẩn tất cả nội dung tab
+                
+                var tabContent = document.getElementsByClassName("tab-content-guarantee");
+                for (var i = 0; i < tabContent.length; i++) {
+                    tabContent[i].classList.remove("active");
+                }
+
+                // Xóa class 'active' trên tất cả các nút
+                var tabLinks = document.getElementsByClassName("tablinkGuarantee");
                 for (var i = 0; i < tabLinks.length; i++) {
                     tabLinks[i].classList.remove("active");
                 }
@@ -2199,7 +2455,7 @@
                 document.getElementById("LoadScreen").classList.add("d-none");
                 document.getElementById("LogoLoadScreen").classList.add("hidden");
                 document.getElementById("pickApp").classList.remove("hidden");
-                // document.getElementById("homePageFake").classList.remove("hidden");
+                // document.getElementById("guarantee").classList.remove("hidden");
             }, 2000);
 
             var maTram = '';
@@ -2238,11 +2494,23 @@
                 checkTypeWorkstation()
                 getDataMonitoring();
             }
+            function DetailProduct() {
+                document.getElementById("footer-instruct-scanQR").classList.add("d-none");
+                document.getElementById("result-form").classList.add("d-none");
+                document.getElementById("result-product").classList.add("d-none");
+                $('#qr-popup').modal('hide');
+                document.getElementById("ScanQRWarranty").classList.add("hidden");
+                document.getElementById("guarantee").classList.remove("hidden");
+                document.getElementById("menu-warranty").classList.remove("d-none");
+                $('#loading-popup').modal('hide');
+                console.log('hide');
+                
+            }
             function scanAgain() {
                 document.getElementById("footer-instruct-scanQR").classList.add("d-none");
                 document.getElementById("result-form").classList.add("d-none");
                 document.getElementById("file-input").value = '';
-                $("#start").click();
+                $(".start").click();
             }
             $("#PickApp-button-mua").click(function () {
                 showHistory();
@@ -2257,6 +2525,9 @@
             });
             $("#PickApp-button-login").click(function () {
                 pickApp('LOGIN');
+            });
+            $("#PickApp-button-guarantee").click(function () {
+                pickApp('GUA');
             });
             $("#Pre-pickApp").click(function () {
                 stopInterval()
@@ -2309,7 +2580,7 @@
                 link.click();
                 document.body.removeChild(link);
             });
-            $("#homepage-Pre-pickApp").click(function () {
+            $(".homepage-Pre-pickApp").click(function () {
                 stopInterval();
                 pickApp('PRE');
             });
@@ -2319,11 +2590,13 @@
             $("#tab-text").click(function (event) {
                 openTab(event, 'tab2')
             });
-            $("#tab-scan-qr").click(function (event) {
-                openTab(event, 'tab1')
+            $("#tab-scan").click(function (event) {
+                checkTab = false;
+                openTabGuarantee(event, 'tab3')
             });
-            $("#tab-text").click(function (event) {
-                openTab(event, 'tab2')
+            $("#tab-history").click(function (event) {
+                checkTab = true;
+                openTabGuarantee(event, 'tab4')
             });
             $("#truycap").click(function () {
                 getInputValue()
@@ -2331,7 +2604,7 @@
             $("#saveCategory").click(function () {
                 saveCategory()
             });
-            $("#ScanQRNext").click(function () {
+            $(".ScanQRNext").click(function () {
                 document.getElementById("RT").textContent = '-';
                 document.getElementById("RH").textContent = '-';
                 document.getElementById("energy").textContent = '-';
@@ -2341,6 +2614,10 @@
                 document.getElementById("RD").textContent = '0 mm';
                 document.getElementById("lateDateTime").textContent = "-";
                 pickApp('HISTORY')
+            });
+            $(".WarrantyScanNext").click(function () {
+                document.getElementById("ScanQRWarranty").classList.add("hidden");
+                document.getElementById("guarantee").classList.remove("hidden");
             });
             $("#button-list-ngay").click(function () {
                 clickGetData('NGAY')
@@ -2395,6 +2672,16 @@
                 });
                 truyCap()
             });
+            $("#result-product-truycap").click(function () {
+                document.getElementById("result-product-truycap").disabled = true;
+                $("#loading-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
+                });
+                DetailProduct();
+            });
             document.getElementById("historySelect").addEventListener("change", function () {
                 const selectedValue = this.value; // Lấy giá trị đã chọn
                 const selectedText = this.options[this.selectedIndex].text; // Lấy văn bản đã chọn
@@ -2411,7 +2698,7 @@
                         document.getElementById("history").classList.remove("hidden");
                     }, 2000);
                 } else if (type == 'IOT') {
-                    // window.location.href = "http://devices.homeos.vn/";
+                    window.location.href = "http://devices.homeos.vn/";
                 } else if (type == 'PICK') {
                     document.getElementById("history").classList.remove("hidden");
                     document.getElementById("ScanQR").classList.add("hidden");
@@ -2425,6 +2712,10 @@
                     showHistory()
                     document.getElementById("history").classList.remove("hidden");
                     document.getElementById("homePage").classList.add("hidden");
+                } else if (type == 'GUA') {
+                    document.getElementById("ScanQRWarranty").classList.remove("hidden");
+                    document.getElementById("pickApp").classList.add("hidden");
+                    document.querySelector(".tablinkGuarantee").click();
                 } else if (type == 'LOGIN'){
                     if (window.GetUser) {
                         await window.GetUser();
@@ -3752,7 +4043,7 @@
             }
 
             // Khi nhấn nút mở popup quét QR
-            $("#start").click(function () {
+            $(".start").click(function () {
                 document.getElementById("result-form-total").classList.add("d-none");
                 document.getElementById("result-form-loading").classList.remove("d-none");
                 document.getElementById("result-form-title").classList.add("d-none");
@@ -3825,61 +4116,113 @@
                 let data;
                 let domain;
                 let workstation;
-                if (decodedText.length > 6) {
-                    var resultArray = decodedText.split("$");
-                    data = await getNewData(
-                        localStorage.getItem("MATRAM"),
-                        "WORKSTATION_ID='" + resultArray[1] + "'",
-                        resultArray[0]
-                    );
-                    localStorage.setItem("URL", resultArray[0]);
-                    workstation = resultArray[1];
-                    document.getElementById("result-form-total").classList.remove("d-none");
-                    document.getElementById("result-form-loading").classList.add("d-none");
-                    document.getElementById("result-form").classList.remove("d-none");
-                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                } else if (decodedText.length == 6) {
-                    domain = await getDomain(decodedText, 'domain');
-                    const url = "https://" + domain + "/service/service.svc/"
-                    data = await getNewData(
-                        localStorage.getItem("MATRAM"),
-                        "WORKSTATION_ID='" + decodedText + "'",
-                        url
-                    );
-                    localStorage.setItem("URL", url);
-                    workstation = decodedText;
-                    document.getElementById("result-form-total").classList.remove("d-none");
-                    document.getElementById("result-form-loading").classList.add("d-none");
-                    document.getElementById("result-form").classList.remove("d-none");
-                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                let checkQRcode = decodedText.split(',');
+                if(checkQRcode == "T20"){
+                    data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
+                    if(data.length > 0){
+                        if(checkTab){
+                            toastr.success("Quét QR và lưu thông tin thành công!");
+                            scanAgain()
+                        } else {
+                            document.getElementById("result-product").classList.remove("d-none");
+                            document.getElementById("result-form-loading").classList.add("d-none");
+                            document.getElementById("result-form").classList.remove("d-none");
+                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                            document.getElementById("result-product-truycap").disabled = false;
+                            document.getElementById("result-form-productName").value = checkQRcode[1];
+                            document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                            document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
+                            changeDataWarranty(data);
+                        }
+                        
+                    } else {
+                        const willInsertData = {
+                            QR_CODE: decodedText,
+                            MA_SAN_PHAM: checkQRcode[1],
+                            DATE_CREATE: new Date(),
+                            ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
+                            USER_ID: UserID,
+                            DATASTATE: "ADD",
+                        };
+                        add('DM_QRCODE', willInsertData).then(data => {
+                            try {
+                                toastr.success("Quét QR và lưu thông tin thành công!");
+                                if(checkTab){
+                                    scanAgain();
+                                } else {
+                                    document.getElementById("result-product").classList.remove("d-none");
+                                    document.getElementById("result-form-loading").classList.add("d-none");
+                                    document.getElementById("result-form").classList.remove("d-none");
+                                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                    document.getElementById("result-product-truycap").disabled = false;
+                                    document.getElementById("result-form-productName").value = checkQRcode[1];
+                                    console.log(1);
+                                    document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                    changeDataWarranty(data);
+                                }
+                                
+                            } catch (e) { }
+                        }).catch(err => {
+                            console.error('Error:', err);
+                        });
+                    }
                 } else {
-                    document.getElementById("result-form-total").classList.remove("d-none");
-                    document.getElementById("result-form-loading").classList.add("d-none");
-                    document.getElementById("result-form-title").classList.remove("d-none");
-                    document.getElementById("result-form-stationID").classList.add("d-none");
-                    document.getElementById("result-form-stationName").classList.add("d-none");
-                    document.getElementById("result-truycap").classList.add("d-none");
-                    toastr.error("Vui lòng quét đúng mã QR!");
-                }
+                    if (decodedText.length > 6) {
+                        var resultArray = decodedText.split("$");
+                        data = await getNewData(
+                            localStorage.getItem("MATRAM"),
+                            "WORKSTATION_ID='" + resultArray[1] + "'",
+                            resultArray[0]
+                        );
+                        localStorage.setItem("URL", resultArray[0]);
+                        workstation = resultArray[1];
+                        document.getElementById("result-form-total").classList.remove("d-none");
+                        document.getElementById("result-form-loading").classList.add("d-none");
+                        document.getElementById("result-form").classList.remove("d-none");
+                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                    } else if (decodedText.length == 6) {
+                        domain = await getDomain(decodedText, 'domain');
+                        const url = "https://" + domain + "/service/service.svc/"
+                        data = await getNewData(
+                            localStorage.getItem("MATRAM"),
+                            "WORKSTATION_ID='" + decodedText + "'",
+                            url
+                        );
+                        localStorage.setItem("URL", url);
+                        workstation = decodedText;
+                        document.getElementById("result-form-total").classList.remove("d-none");
+                        document.getElementById("result-form-loading").classList.add("d-none");
+                        document.getElementById("result-form").classList.remove("d-none");
+                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                    } else {
+                        document.getElementById("result-form-total").classList.remove("d-none");
+                        document.getElementById("result-form-loading").classList.add("d-none");
+                        document.getElementById("result-form-title").classList.remove("d-none");
+                        document.getElementById("result-form-stationID").classList.add("d-none");
+                        document.getElementById("result-form-stationName").classList.add("d-none");
+                        document.getElementById("result-truycap").classList.add("d-none");
+                        toastr.error("Vui lòng quét đúng mã QR!");
+                    }
 
-                if (data.data != []) {
-                    document.getElementById("result-truycap").disabled = false;
-                    matram = workstation;
-                    const value = await getDomain(workstation);
-                    document.getElementById("result-form-stationID").value = workstation;
-                    document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                    document.getElementById("footer-stationName").textContent = workstation + " - " + value[0].WORKSTATION_NAME;
-                    checkCam = true;
-                    localStorage.setItem("MATRAM", workstation);
-                    toastr.success("Quét QR thành công");
-                } else {
-                    document.getElementById("result-form-total").classList.remove("d-none");
-                    document.getElementById("result-form-loading").classList.add("d-none");
-                    document.getElementById("result-form-title").classList.remove("d-none");
-                    document.getElementById("result-form-stationID").classList.add("d-none");
-                    document.getElementById("result-form-stationName").classList.add("d-none");
-                    document.getElementById("result-truycap").classList.add("d-none");
-                    toastr.error("Vui lòng quét đúng mã QR!");
+                    if (data.data != []) {
+                        document.getElementById("result-truycap").disabled = false;
+                        matram = workstation;
+                        const value = await getDomain(workstation);
+                        document.getElementById("result-form-stationID").value = workstation;
+                        document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                        document.getElementById("footer-stationName").textContent = workstation + " - " + value[0].WORKSTATION_NAME;
+                        checkCam = true;
+                        localStorage.setItem("MATRAM", workstation);
+                        toastr.success("Quét QR thành công");
+                    } else {
+                        document.getElementById("result-form-total").classList.remove("d-none");
+                        document.getElementById("result-form-loading").classList.add("d-none");
+                        document.getElementById("result-form-title").classList.remove("d-none");
+                        document.getElementById("result-form-stationID").classList.add("d-none");
+                        document.getElementById("result-form-stationName").classList.add("d-none");
+                        document.getElementById("result-truycap").classList.add("d-none");
+                        toastr.error("Vui lòng quét đúng mã QR!");
+                    }
                 }
             }
 
@@ -3912,51 +4255,105 @@
                                         let data;
                                         let domain;
                                         let workstation;
-                                        if (decodedText.length > 6) {
-                                            var resultArray = decodedText.split("$");
-                                            data = await getNewData(
-                                                localStorage.getItem("MATRAM"),
-                                                "WORKSTATION_ID='" + resultArray[1] + "'",
-                                                resultArray[0]
-                                            );
-                                            localStorage.setItem("URL", resultArray[0]);
-                                            workstation = resultArray[1];
-                                            document.getElementById("result-form-total").classList.remove("d-none");
-                                            document.getElementById("result-form-loading").classList.add("d-none");
-                                            document.getElementById("result-form").classList.remove("d-none");
-                                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                        } else if (decodedText.length == 6) {
-                                            domain = await getDomain(decodedText, 'domain');
-                                            const url = "https://" + domain + "/service/service.svc/"
-                                            data = await getNewData(
-                                                localStorage.getItem("MATRAM"),
-                                                "WORKSTATION_ID='" + decodedText + "'",
-                                                url
-                                            );
-                                            localStorage.setItem("URL", url);
-                                            workstation = decodedText;
-                                            document.getElementById("result-form-total").classList.remove("d-none");
-                                            document.getElementById("result-form-loading").classList.add("d-none");
-                                            document.getElementById("result-form").classList.remove("d-none");
-                                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                        let checkQRcode = decodedText.split(',');
+                                        
+                                        if(checkQRcode[0].substring(0, 3) == "T20"){
+                                            data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));
+                                            
+                                            if(data.length > 0){
+                                                if(checkTab){
+                                                    toastr.success("Quét QR và lưu thông tin thành công!");
+                                                    scanAgain()
+                                                } else {
+                                                    document.getElementById("result-product").classList.remove("d-none");
+                                                    document.getElementById("result-form-loading").classList.add("d-none");
+                                                    document.getElementById("result-form").classList.remove("d-none");
+                                                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                                    document.getElementById("result-product-truycap").disabled = false;
+                                                    document.getElementById("result-form-productName").value = checkQRcode[1];
+                                                    document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                                    document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
+                                                    changeDataWarranty(data);
+                                                }
+                                                
+                                            } else {
+                                                const willInsertData = {
+                                                    QR_CODE: decodedText,
+                                                    MA_SAN_PHAM: checkQRcode[1],
+                                                    DATE_CREATE: new Date(),
+                                                    ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
+                                                    USER_ID: UserID,
+                                                    DATASTATE: "ADD",
+                                                };
+                                                add('DM_QRCODE', willInsertData).then(data => {
+                                                    try {
+                                                        toastr.success("Quét QR và lưu thông tin thành công!");
+                                                        if(checkTab){
+                                                            scanAgain();
+                                                        } else {
+                                                            document.getElementById("result-product").classList.remove("d-none");
+                                                            document.getElementById("result-form-loading").classList.add("d-none");
+                                                            document.getElementById("result-form").classList.remove("d-none");
+                                                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                                            document.getElementById("result-product-truycap").disabled = false;
+                                                            document.getElementById("result-form-productName").value = checkQRcode[1];
+                                                            console.log(1);
+                                                            document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                                            changeDataWarranty(data);
+                                                        }
+                                                        
+                                                    } catch (e) { }
+                                                }).catch(err => {
+                                                    console.error('Error:', err);
+                                                });
+                                            }
                                         } else {
-                                            document.getElementById("result-form-total").classList.remove("d-none");
-                                            document.getElementById("result-form-loading").classList.add("d-none");
-                                            toastr.error("Vui lòng quét đúng mã QR!");
-                                        }
+                                            if (decodedText.length > 6) {
+                                                var resultArray = decodedText.split("$");
+                                                data = await getNewData(
+                                                    localStorage.getItem("MATRAM"),
+                                                    "WORKSTATION_ID='" + resultArray[1] + "'",
+                                                    resultArray[0]
+                                                );
+                                                localStorage.setItem("URL", resultArray[0]);
+                                                workstation = resultArray[1];
+                                                document.getElementById("result-form-total").classList.remove("d-none");
+                                                document.getElementById("result-form-loading").classList.add("d-none");
+                                                document.getElementById("result-form").classList.remove("d-none");
+                                                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                            } else if (decodedText.length == 6) {
+                                                domain = await getDomain(decodedText, 'domain');
+                                                const url = "https://" + domain + "/service/service.svc/"
+                                                data = await getNewData(
+                                                    localStorage.getItem("MATRAM"),
+                                                    "WORKSTATION_ID='" + decodedText + "'",
+                                                    url
+                                                );
+                                                localStorage.setItem("URL", url);
+                                                workstation = decodedText;
+                                                document.getElementById("result-form-total").classList.remove("d-none");
+                                                document.getElementById("result-form-loading").classList.add("d-none");
+                                                document.getElementById("result-form").classList.remove("d-none");
+                                                document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                            } else {
+                                                document.getElementById("result-form-total").classList.remove("d-none");
+                                                document.getElementById("result-form-loading").classList.add("d-none");
+                                                toastr.error("Vui lòng quét đúng mã QR!");
+                                            }
 
 
-                                        if (data != []) {
+                                            if (data != []) {
 
-                                            document.getElementById("result-truycap").disabled = false;
-                                            matram = workstation
-                                            const value = await getDomain(workstation);
-                                            document.getElementById("result-form-stationID").value = workstation;
-                                            document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
-                                            document.getElementById("footer-stationName").textContent = workstation + " - " + value[0].WORKSTATION_NAME;
-                                            checkCam = true;
-                                            toastr.success("Quét QR thành công");
-                                            localStorage.setItem("MATRAM", workstation);
+                                                document.getElementById("result-truycap").disabled = false;
+                                                matram = workstation
+                                                const value = await getDomain(workstation);
+                                                document.getElementById("result-form-stationID").value = workstation;
+                                                document.getElementById("result-form-stationName").value = value[0].WORKSTATION_NAME;
+                                                document.getElementById("footer-stationName").textContent = workstation + " - " + value[0].WORKSTATION_NAME;
+                                                checkCam = true;
+                                                toastr.success("Quét QR thành công");
+                                                localStorage.setItem("MATRAM", workstation);
+                                            }
                                         }
                                     }).catch(err => {
                                         document.getElementById("result-form").classList.remove("d-none");
@@ -4075,7 +4472,7 @@
                         localStorage.setItem('listItemCategory', JSON.stringify([]));
                         showHistory()
                     } else if (menuText == "Thông tin công ty") {
-                        // window.location.href = "https://homeos.com.vn/";
+                        window.location.href = "https://homeos.com.vn/";
                     }
 
                     // Close the sidebar after selection (optional)
@@ -4090,6 +4487,139 @@
                     }
                 });
             });
+
+            // Code Bảo hành:
+
+            // Hàm thêm sửa xoá dữ liệu
+            function add(table, data) {
+                // const d = {Uid: "vannt", Sid:'3d798037-9bd9-4195-8673-a4794547d2fd', tablename:table, jd:JSON.stringify(data), ex:''};
+                const d = {Uid: "admin", Sid:'cb880c13-5465-4a1d-a598-28e06be43982', tablename:table, jd:JSON.stringify(data), ex:''};
+                
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        // url: "https://DEV.HOMEOS.vn/service/service.svc/ExecuteData?callback=?",
+                        url: "https://central.homeos.vn/service_XD/service.svc/ExecuteData?callback=?",
+                        type: "GET",
+                        dataType: "jsonp",
+                        data: d,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                resolve(state);  // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error);  // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                        },
+                        error: function (e, t, x) {
+                        }
+                    });
+                });
+            }
+
+            // lấy dữ liệu QR code
+            function getDataMDQRcode(QRcode) {
+
+                // const url = "https://DEV.HOMEOS.vn/service/service.svc/";
+                const url = "https://central.homeos.vn/service_XD/service.svc/";
+
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: url + "ApiServicePublic/" + "GetDataQRcode" + "/" + "QRCODEINPUT=" + QRcode,
+                        type: "GET",
+                        dataType: "jsonp",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (msg) {
+                            try {
+                                let state = JSON.parse(msg);
+                                console.log(state);
+                                resolve(state); // Trả về dữ liệu khi thành công
+                            } catch (error) {
+                                reject(error); // Bắt lỗi nếu JSON parse thất bại
+                            }
+                        },
+                        complete: function (data) {
+                            // Có thể thêm xử lý khi request hoàn thành ở đây nếu cần
+                        },
+                        error: function (e, t, x) {
+                            // document.getElementById("result-form").classList.remove("d-none");
+                            // document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                            // toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                        },
+                    });
+                });
+            } 
+
+            $('.bottom-navigation button').click(function () {
+                value = $(this).data('tab');
+                $('.tab-content').removeClass('active');
+                $('#tab-' + value).addClass('active');
+                if (value == 1) {
+                    startScanner();
+                } else {
+                    if (scanner) {
+                        scanner.clear();
+                        scanner = null;
+                    }
+                }
+            });
+
+            function changeDataWarranty(data) {
+                let DataQRcode = data[0].QR_CODE.split(',');
+                document.getElementById('productName').textContent = "Tên sản phẩm: "+ data[0].PRODUCT_NAME;
+                document.getElementById('productCode').textContent = "Mã định danh: "+ data[0].PRODUCT_CODE;
+                document.getElementById('productSeri').textContent = "Số seri: "+ DataQRcode[2].substring(1);
+                
+                if(data[0].ACTIVATE_WARRANTY == "1999-01-01T00:00:00"){
+                    document.getElementById('warrantyActive').textContent = "Chưa kích hoạt";
+                    const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
+                    const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
+                    document.getElementById('warrantyTime').textContent = time;
+                } else {
+                    document.getElementById('warrantyActive').textContent = "Đã kích hoạt";
+                }
+            }
+
+            function calculateWarrantyRemaining(startDate, timeWarranty) {
+                const warrantyPeriodMonths = timeWarranty; // Thời gian bảo hành là 12 tháng
+
+                // Chuyển ngày bắt đầu bảo hành sang đối tượng Date
+                const startDateObj = new Date(startDate);
+
+                // Ngày kết thúc bảo hành
+                const warrantyEndDate = new Date(startDateObj);
+                warrantyEndDate.setMonth(warrantyEndDate.getMonth() + warrantyPeriodMonths);
+
+                // Ngày hiện tại
+                const currentDate = new Date();
+
+                // Tính thời gian còn lại
+                if (currentDate > warrantyEndDate) {
+                    return "Thời gian bảo hành đã hết.";
+                } else {
+                    // Tính tổng số tháng còn lại
+                    let totalMonthsRemaining =
+                        (warrantyEndDate.getFullYear() - currentDate.getFullYear()) * 12 +
+                        (warrantyEndDate.getMonth() - currentDate.getMonth());
+
+                    // Tính số ngày còn lại
+                    let daysRemaining = warrantyEndDate.getDate() - currentDate.getDate();
+
+                    // Điều chỉnh nếu số ngày âm
+                    if (daysRemaining < 0) {
+                        // Lấy số ngày của tháng trước
+                        const lastMonth = new Date(warrantyEndDate.getFullYear(), warrantyEndDate.getMonth(), 0);
+                        daysRemaining += lastMonth.getDate();
+                        totalMonthsRemaining -= 1;
+                    }
+                    // ${daysRemaining} ngày.
+                    return `Còn lại: ${totalMonthsRemaining} tháng`;
+                }
+            }
+
+            //-----------------------------------------------------------------------------------------------------------
 
             // code gauge nhiệt độ
             var xmlns = "http://www.w3.org/2000/svg",
