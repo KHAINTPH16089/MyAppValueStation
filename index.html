@@ -1390,8 +1390,8 @@
                 <div class="history-header">
                     <div class="history-avt">
                         <div class="d-flex">
-                            <img id="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
-                            <p id="userName">Khách</p>
+                            <img class="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
+                            <p class="userName">Khách</p>
                         </div>
                     </div>
                     <div id="category-back" class="d-none">
@@ -1742,6 +1742,12 @@
         <div id="ScanQRWarranty" class="hidden h-100">
             <div class="container" style="padding: 0;">
                 <div class="ScanQR-header">
+                    <div class="history-avt">
+                        <div class="d-flex">
+                            <img class="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
+                            <p class="userName">Khách</p>
+                        </div>
+                    </div>
                     <div style="line-height: 50px; float: left;">
                         <button class="homepage-Pre-pickApp" style="height: 40px; border: none; background-color: #1E2833;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -2368,9 +2374,9 @@
             var UserID = localStorage.getItem("userID");
             if(UserID){
                 if(DataUser && DataUser.id == UserID){
-                    document.getElementById("userName").textContent = DataUser.name;
+                    document.getElementsByClassName("userName").textContent = DataUser.name;
                     document.getElementById("PickApp-button-login").classList.add("d-none");
-                    document.getElementById("userAvt").src = DataUser.avatar;
+                    document.getElementsByClassName("userAvt").src = DataUser.avatar;
                     document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
                 }
             } else {
@@ -2742,9 +2748,9 @@
                     if (window.GetUser) {
                         await window.GetUser();
                         DataUser = JSON.parse(localStorage.getItem("userInfo"));
-                        document.getElementById("userName").textContent = DataUser.name;
+                        document.getElementsByClassName("userName").textContent = DataUser.name;
                         document.getElementById("PickApp-button-login").classList.add("d-none");
-                        document.getElementById("userAvt").src = DataUser.avatar;
+                        document.getElementsByClassName("userAvt").src = DataUser.avatar;
                         document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
                     }
                 }
