@@ -2374,9 +2374,9 @@
             var UserID = localStorage.getItem("userID");
             if(UserID){
                 if(DataUser && DataUser.id == UserID){
-                    document.getElementsByClassName("userName").textContent = DataUser.name;
+                    $(".userName").text(DataUser.name);
                     document.getElementById("PickApp-button-login").classList.add("d-none");
-                    document.getElementsByClassName("userAvt").src = DataUser.avatar;
+                    $(".userAvt").attr("src", DataUser.avatar);
                     document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
                 }
             } else {
@@ -2748,9 +2748,9 @@
                     if (window.GetUser) {
                         await window.GetUser();
                         DataUser = JSON.parse(localStorage.getItem("userInfo"));
-                        document.getElementsByClassName("userName").textContent = DataUser.name;
+                        $(".userName").text(DataUser.name);
                         document.getElementById("PickApp-button-login").classList.add("d-none");
-                        document.getElementsByClassName("userAvt").src = DataUser.avatar;
+                        $(".userAvt").attr("src", DataUser.avatar);
                         document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
                     }
                 }
