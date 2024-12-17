@@ -894,18 +894,18 @@
             justify-content: space-between;
         }
 
-        #history-avt {
+        .history-avt {
             line-height: 50px;
         }
 
-        #history-avt img {
+        .history-avt img {
             width: 30px;
             height: 30px;
             border-radius: 50%;
             margin-top: 10px;
         }
 
-        #history-avt p {
+        .history-avt p {
             margin-left: 10px;
             color: white;
         }
@@ -1261,6 +1261,10 @@
         .tab-content.active {
             display: block;
         }
+
+        .blinking {
+            animation: blink 0.5s linear infinite;
+        }
     </style>
 </head>
 
@@ -1290,7 +1294,7 @@
                             <div class="info-box-content" style="justify-content: start;">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text-number" style="font-size: 16px; padding: 0;">Liên kết tài khoản</span>
-                                    <span class="app-text d-none" >v1.1.4</span>
+                                    <span class="app-text d-none" >v1.1.5</span>
                                 </div>
                                 <span class="app-text" style="padding: 0; color: #fff; font-size: 14px;">Liên kết tài khoản để có Trải nhiệm tốt nhất</span>
                             </div>
@@ -1384,7 +1388,7 @@
         <div id="history" class="hidden h-100">
             <div class="container" style="padding: 0;">
                 <div class="history-header">
-                    <div id="history-avt">
+                    <div class="history-avt">
                         <div class="d-flex">
                             <img id="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
                             <p id="userName">Khách</p>
@@ -1475,9 +1479,9 @@
                     </aside>
                 </div>
                 <div id="history-homePage">
-                    <div class="history-body" style="padding: 0 10px 0 10px;">
+                    <div class="history-body" style="padding: 20px 10px 0 10px;">
                         <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
-                            style="margin-bottom: 30px; margin-top: 20px;">
+                            style="margin-bottom: 30px; margin-top: 20px; display: none;">
                         <div class="d-flex" style="color: #fff; padding-left: 10px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                 class="bi bi-pc-horizontal" viewBox="0 0 16 16">
@@ -1539,10 +1543,13 @@
                         </div>
                     </div>
                     <div id="footer-instruct" class="footer-instruct">
-                        <div class="step">
+                        <div class="step" style="margin: 0;">
                             <div class="circle">02</div>
                         </div>
+                        <div class="d-flex justify-content-center" style="align-items: center;">
+                            <img src="http://devices.homeos.vn/assets/img/Logo-Home-OS-crop.png" style="width: 30px; height: 30px; margin: 0 5px 20px 0;" alt="">
                         <p>Thêm mới mã trạm hoặc chọn trạm đã lưu</p>
+                        </div>
                     </div>
                 </div>
                 <div id="history-setting" class="history-body d-none" style="padding: 0 10px 0 10px; margin-top: 20px;">
@@ -1721,10 +1728,14 @@
 
 
                 <div id="footer-instruct-text" class="footer-instruct">
-                    <div class="step">
+                    <div class="step" style="margin: 0;">
                         <div class="circle">03</div>
                     </div>
-                    <p>Nhấn nút quét hoặc nhập thông tin</p>
+                    <div class="d-flex justify-content-center" style="align-items: center;">
+                        <img src="http://devices.homeos.vn/assets/img/Logo-Home-OS-crop.png" style="display: none; width: 30px; height: 30px; margin: 0 5px 20px 0;" alt="">
+                        <p>Nhấn nút quét hoặc nhập thông tin</p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -1773,11 +1784,11 @@
                 </div>
 
 
-                <div id="footer-instruct-text" class="footer-instruct">
+                <div id="footer-instruct-warranty" class="footer-instruct">
                     <div class="step">
-                        <div class="circle">03</div>
+                        <div class="circle">02</div>
                     </div>
-                    <p>Nhấn nút quét hoặc nhập thông tin</p>
+                    <p>Nhấn nút để quét sản phẩm cần bảo hành</p>
                 </div>
             </div>
         </div>
@@ -1989,15 +2000,14 @@
                         <div id="box-RD" class="d-none col-6 p-2">
                             <div class="box-value" style="height: 116px; margin: 0;">
                                 <div class="d-flex justify-content-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                        style="color: #d2d6db;" fill="currentColor"
-                                        class="bi bi-cloud-lightning-rain-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M2.658 11.026a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.5 1.5a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.105-1.25A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="color: #d2d6db;" fill="currentColor" class="bi bi-cloud-lightning-rain-fill" viewBox="0 0 16 16">
+                                        <path d="M2.658 11.026a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.5 1.5a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 1 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m9.5 0a.5.5 0 0 1 .316.632l-.5 1.5a.5.5 0 0 1-.948-.316l.5-1.5a.5.5 0 0 1 .632-.316m-7.105-1.25A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973" />
                                     </svg>
                                     <p style="padding-left: 5px;">Lượng mưa</p>
                                 </div>
-                                <h5 id="RD">0 mm</h5>
+                                <div class="d-flex justify-content-center" style="align-items: center;">
+                                    <h5 id="RD">0 mm</h5><p style="font-size: 12px; margin: 0; margin-left: 5px; padding-bottom: 5px;" id="lastTimeRain"></p>
+                                </div>
                                 <p>Trong ngày</p>
                             </div>
                         </div>
@@ -2180,8 +2190,7 @@
                             <input id="startValue" type="text" placeholder="Nhập số lượng mã QR cần in"
                             style="width: 100%; border-radius: 4px; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
                             <button id="generateQRCodes" class="btn btn-warning"
-                                            style="background-color: #f39c12;margin-top: 20px; border: solid 1px #f39c12; width: 100%; height: 35px; color: #fff;">Lưu
-                                            danh mục</button>
+                                            style="background-color: #f39c12;margin-top: 20px; border: solid 1px #f39c12; width: 100%; height: 35px; color: #fff;">Tạo QR</button>
                         </div>
                     </div>
             
@@ -2468,7 +2477,7 @@
                 maTram = '';
             }
             function OpenAddCategory() {
-                document.getElementById("history-avt").classList.add("d-none");
+                document.getElementsByClassName("history-avt").classList.add("d-none");
                 document.getElementById("category-back").classList.remove("d-none");
                 localStorage.setItem('listItemCategory', JSON.stringify([]));
                 historyListCategoryAdd.empty()
@@ -2610,6 +2619,7 @@
                 document.getElementById("text-status").textContent = "Mất kết nối";
                 document.getElementById("RP").textContent = '-';
                 document.getElementById("RD").textContent = '0 mm';
+                document.getElementById("lastTimeRain").textContent = '';
                 document.getElementById("lateDateTime").textContent = "-";
                 pickApp('HISTORY')
             });
@@ -2662,7 +2672,7 @@
                 OpenAddCategory()
             });
             $("#backCategory").click(function () {
-                document.getElementById("history-avt").classList.remove("d-none");
+                document.getElementsByClassName("history-avt").classList.remove("d-none");
                 document.getElementById("category-back").classList.add("d-none");
                 document.getElementById("list-category").classList.remove("d-none");
                 document.getElementById("save-category").classList.add("d-none");
@@ -2718,6 +2728,7 @@
                     document.getElementById("pickApp").classList.remove("hidden");
                     document.getElementById("guarantee").classList.add("hidden");
                     document.getElementById("menu-warranty").classList.add("d-none");
+                    document.getElementById("footer-instruct-warranty").classList.add("d-none");
                 } else if (type == 'HISTORY') {
                     showHistory()
                     document.getElementById("history").classList.remove("hidden");
@@ -2725,6 +2736,7 @@
                 } else if (type == 'GUA') {
                     document.getElementById("ScanQRWarranty").classList.remove("hidden");
                     document.getElementById("pickApp").classList.add("hidden");
+                    document.getElementById("footer-instruct-warranty").classList.remove("d-none");
                     document.querySelector(".tablinkGuarantee").click();
                 } else if (type == 'LOGIN'){
                     if (window.GetUser) {
@@ -3524,6 +3536,8 @@
                     let checkRD = false;
                     let checkRT = false;
                     let filteredItems = data.filter(item => item.ZONE_ADDRESS === localStorage.getItem('MATRAM'));
+                    console.log(filteredItems);
+                    
                     for (let i = 0; i < filteredItems.length; i++) {
                         if (filteredItems[i].ZONE_PROPERTY == "RT") {
                             checkRT = true;
@@ -3541,7 +3555,13 @@
                             const checkTimeOnline = differenceInMilliseconds / (1000 * 60)
                             if (checkTimeOnline < 15) {
                                 document.getElementById("status").style.background = "green";
-                                    document.getElementById("text-status").textContent = "Đang hoạt động";
+                                document.getElementById("text-status").textContent = "Đang hoạt động";
+                                document.getElementById("status").classList.add('blinking'); // Thêm class nhấp nháy
+
+                                // Dừng nhấp nháy sau 3 giây
+                                setTimeout(() => {
+                                    document.getElementById("status").classList.remove('blinking'); // Xóa class nhấp nháy
+                                }, 3000);
                             } else {
                                 document.getElementById("status").style.background = "red";
                                 document.getElementById("text-status").textContent = "Ngừng hoạt động";
@@ -3551,8 +3571,9 @@
                             document.getElementById("RP").textContent = filteredItems[i].ZONE_VALUE / 10 + " hPa";
                         } else if (filteredItems[i].ZONE_PROPERTY == "RD") {
                             checkRD = true;
-                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE / 10 + " mm";
+                            document.getElementById("RD").textContent = filteredItems[i].ZONE_VALUE / 10 + " mm ";
                             document.getElementById("glass").style.background = "url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/54046/glass_droplets.jpeg) center center / cover no-repeat";
+                            document.getElementById("lastTimeRain").textContent = " ("+getCurrentTime(filteredItems[i].DATE_CREATE).substring(11)+")";
                             // const color = getColor(filteredItems[i].ZONE_VALUE / 10);
                             // changeColorAndText(color, color, filteredItems[i].ZONE_VALUE / 10);
                             // updateProgressBar("rain-bar", -500, 500, (filteredItems[i].LAST_VALUE / 10), "mm");
@@ -4477,7 +4498,7 @@
                         document.getElementById("history-homePage").classList.add("d-none");
                         document.getElementById("list-category").classList.remove("d-none");
                         document.getElementById("save-category").classList.add("d-none");
-                        document.getElementById("history-avt").classList.remove("d-none");
+                        document.getElementsByClassName("history-avt").classList.remove("d-none");
                         document.getElementById("category-back").classList.add("d-none");
                         showCategory()
                         // document.querySelector(".tablink-history").click();
@@ -4634,8 +4655,7 @@
             async function getTranNo() {
                 try {
                     const data = await getDM('SYS_TRAN_NO', "TABLE_NAME='DM_QRCODE'");
-                    const state = data.data
-                    console.log(state);
+                    const state = data.data;
                     let temp = state[0].TRAN_NO || null;
                     temp = temp.replace(/\[YEAR\]/g, (new Date()).getFullYear());
                     temp = temp.replace(/\[MONTH\]/g, ((new Date()).getMonth() + 1).toString().padStart(2, '0'));
