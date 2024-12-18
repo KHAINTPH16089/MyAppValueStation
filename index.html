@@ -2722,7 +2722,7 @@
                 maTram = '';
             }
             function OpenAddCategory() {
-                document.getElementsByClassName("history-avt").classList.add("d-none");
+                $(".history-avt").addClass("d-none");
                 document.getElementById("category-back").classList.remove("d-none");
                 localStorage.setItem('listItemCategory', JSON.stringify([]));
                 historyListCategoryAdd.empty()
@@ -2924,7 +2924,7 @@
                 OpenAddCategory()
             });
             $("#backCategory").click(function () {
-                document.getElementsByClassName("history-avt").classList.remove("d-none");
+                $(".history-avt").removeClass("d-none");
                 document.getElementById("category-back").classList.add("d-none");
                 document.getElementById("list-category").classList.remove("d-none");
                 document.getElementById("save-category").classList.add("d-none");
@@ -4771,7 +4771,7 @@
                         document.getElementById("history-homePage").classList.add("d-none");
                         document.getElementById("list-category").classList.remove("d-none");
                         document.getElementById("save-category").classList.add("d-none");
-                        document.getElementsByClassName("history-avt").classList.remove("d-none");
+                        $(".history-avt").removeClass("d-none");
                         document.getElementById("category-back").classList.add("d-none");
                         showCategory()
                         // document.querySelector(".tablink-history").click();
@@ -4907,6 +4907,7 @@
                     add('DM_QRCODE', willInsertData).then(async data => {
                         try {
                             toastr.success("Kích hoạt bảo hành của sản phẩm thành công!");
+
                             data = await getDataMDQRcode(dataWarranty[0].QR_CODE.replaceAll(',', '$'));  
                             changeDataWarranty(data);
                         } catch (e) { }
@@ -4961,8 +4962,8 @@
                 const dataWarranty = JSON.parse(localStorage.getItem("productWarranty"));
                 console.log(dataWarranty);
                 const willInsertData = {
-                    ERROR_TYPE: errorInput,
-                    ERROR_NAME: errorType,
+                    ERROR_TYPE: errorType,
+                    ERROR_NAME: errorInput,
                     DESCRIPTION: errorDesc,
                     DATE_CREATE: new Date(),
                     QRCODE_ID: dataWarranty[0].PR_KEY,
