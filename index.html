@@ -1882,7 +1882,7 @@
                                 <span style="padding-left: 10px; padding-left: 10px;">Thông tin sản phẩm</span>
                             </div>
                         </li>
-                        <li>
+                        <li class="d-none">
                             <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
                                     <path d="M2 2h2v2H2z"/>
@@ -2379,7 +2379,7 @@
                             </svg>
                             Chi tiết
                         </button>
-                        <button data-tab="2">
+                        <button data-tab="2" class="d-none">
                             <!-- <img src="./assets/img/Screenshot 2024-10-11 103819.png" alt="Tạo nhiều QR"> -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
                                 <path d="M2 2h2v2H2z"/>
@@ -2434,13 +2434,15 @@
                         <p></p>
                         <input id="result-form-productName" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
                         <input id="result-form-productCode" disabled type="text" style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;">
-                        <div class="d-flex justify-content-center pt-2">
-                            <button id="result-product-scanagain" class="btn mx-2"
+                        <div class="d-flex justify-content-between pt-2">
+                            <button id="result-product-scanagain" class="btn "
                                 style="background-color: #c44133;border: solid 1px #c44133; width: 47%; color: #fff;">Quét
                                 lại</button>
-                            <button id="result-product-truycap" disabled class="btn mx-2"
+                            <button id="result-product-truycap" disabled class="btn "
                                 style="background-color: #f39c12;border: solid 1px #f39c12; width: 47%; color: #fff;">Xem chi tiết</button>
                         </div>
+                        <button id="result-product-warranty" class="btn mt-2"
+                                style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff;">Kích hoạt bảo hành</button>
                     </div>
                     <div id="result-form-loading">
                         <div style="width: 100%; text-align: center;">
@@ -2578,7 +2580,7 @@
             var UserID = localStorage.getItem("userID");
             async function handleUser() {
                 if (UserID) {
-                    // try {
+                    try {
                         if (DataUser && DataUser.id === UserID) {
                             $(".userName").text(DataUser.name);
                             document.getElementById("PickApp-button-login").classList.add("d-none");
@@ -2610,9 +2612,9 @@
                                 add('WARRANTY_USER', willInsertData);
                             }
                         }
-                    // } catch (error) {
-                    //     console.error("Error fetching user data:", error);
-                    // }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                    }
                 } else {
                     document.getElementById("QUYEN").classList.add("d-none");
                     document.getElementById("LogoPickScreen").style.paddingTop = "10vh";
@@ -3005,7 +3007,18 @@
                         $(".userName").text(DataUser.name);
                         document.getElementById("PickApp-button-login").classList.add("d-none");
                         $(".userAvt").attr("src", DataUser.avatar);
-                        document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
+                        document.getElementById("LogoPickScreen").style.paddingTop = '10vh';
+                        const dataUserResponse = await getDM("WARRANTY_USER", "USER_ID='" + UserID + "'");
+                        if(dataUserResponse.data.length == 0){
+                            const willInsertData = {
+                                USER_ID: DataUser.id,
+                                USER_NAME: DataUser.name,
+                                USER_ROLE: "GUEST",
+                                DATE_CREATE: new Date(),
+                                DATASTATE: "ADD",
+                            };
+                            add('WARRANTY_USER', willInsertData);
+                        }
                     }
                 }
             }
@@ -4870,8 +4883,38 @@
                     document.getElementById('warrantyTime').textContent = time;
                 } else {
                     document.getElementById('warrantyActive').textContent = "Đã kích hoạt";
+                    document.getElementById('result-product-warranty').classList.add("d-none");
+                    const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
+                    const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
+                    document.getElementById('warrantyTime').textContent = time;
                 }
             }
+
+            $('#result-product-warranty').click(function () {
+                const dataWarranty = JSON.parse(localStorage.getItem("productWarranty"));
+                const DataQRcode = dataWarranty[0].QR_CODE.split(',');
+                const confirmActivate = confirm(`Xác nhận kích hoạt bảo hành của sản phẩm "${dataWarranty[0].PRODUCT_NAME}-${DataQRcode[2].substring(1)}" không?`);
+                if (confirmActivate) {
+                    const willInsertData = {
+                        PR_KEY: dataWarranty[0].PR_KEY,
+                        QR_CODE: dataWarranty[0].QR_CODE,
+                        MA_SAN_PHAM: dataWarranty[0].MA_SAN_PHAM,
+                        DATE_CREATE: dataWarranty[0].DATE_CREATE,
+                        ACTIVATE_WARRANTY: new Date(),
+                        USER_ID: dataWarranty[0].USER_ID,
+                        DATASTATE: "EDIT",
+                    };
+                    add('DM_QRCODE', willInsertData).then(async data => {
+                        try {
+                            toastr.success("Kích hoạt bảo hành của sản phẩm thành công!");
+                            data = await getDataMDQRcode(dataWarranty[0].QR_CODE.replaceAll(',', '$'));  
+                            changeDataWarranty(data);
+                        } catch (e) { }
+                    }).catch(err => {
+                        console.error('Error:', err);
+                    });
+                }
+            });
 
             function calculateWarrantyRemaining(startDate, timeWarranty) {
                 const warrantyPeriodMonths = timeWarranty; // Thời gian bảo hành là 12 tháng
