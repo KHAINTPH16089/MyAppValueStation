@@ -2580,9 +2580,9 @@
                 if (UserID) {
                     // try {
                         if (DataUser && DataUser.id === UserID) {
-                            $(".userName").text(dataUser.name);
+                            $(".userName").text(DataUser.name);
                             document.getElementById("PickApp-button-login").classList.add("d-none");
-                            $(".userAvt").attr("src", dataUser.avatar);
+                            $(".userAvt").attr("src", DataUser.avatar);
                             document.getElementById("LogoPickScreen").style.paddingTop = "10vh";
                             const dataUserResponse = await getDM("WARRANTY_USER", "USER_ID='" + UserID + "'");
                             console.log(dataUserResponse.data);
