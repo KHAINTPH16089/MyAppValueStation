@@ -1265,6 +1265,91 @@
         .blinking {
             animation: blink 0.5s linear infinite;
         }
+        .card {
+            background-color: #343a40;
+            color: #fff;
+            box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+            margin-bottom: 1rem;
+        }
+
+        .card-header {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+            padding: .75rem 1.25rem;
+            position: relative;
+            border-top-left-radius: .25rem;
+            border-top-right-radius: .25rem;
+            height: 50px;
+        }
+        .card-header>.card-tools {
+            float: right;
+            margin-right: -.625rem;
+        }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1.25rem;
+        }
+
+        .badge-info {
+            color: #fff;
+            background-color: #17a2b8;
+            font-weight: 200;
+        }
+
+        .products-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .products-list .item {
+            background-color: #343a40;
+            color: #fff;
+            border-bottom-color: #6c757d;
+            border-radius: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
+            padding: 10px 0;
+        }
+
+        .products-list .product-img {
+            float: left;
+        }
+        .products-list .product-info {
+            margin-left: 60px;
+            text-align: start;
+        }
+        .products-list .product-info .span {
+            float: right;
+        }
+        .products-list .product-info a {
+            color: #3395ff;
+            text-decoration: none;
+        }
+        .products-list .product-info a:not(.btn):hover {
+            color: #3395ff;
+        }
+        .products-list .product-img img {
+            height: 50px;
+            width: 50px;
+            margin-top: 0;
+            object-fit: cover;
+        }
+        .products-list .product-description {
+            color: #6c757d;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .card-title {
+            float: left;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -1415,7 +1500,7 @@
                             </button>
                         </div>
                         <div style="line-height: 50px; float: left;">
-                            <button id="menuToggle" style="height: 40px; border: none; background-color: #1E2833;">
+                            <button class="menuToggle" style="height: 40px; border: none; background-color: #1E2833;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
                                     fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -1432,16 +1517,14 @@
                         <ul class="menu">
                             <li>
                                 <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-house-door" viewBox="0 0 16 16">
-                                        <path
-                                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="color: #fff;" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                                     </svg>
-                                    <span id="Pre-pickApp" style="padding-left: 10px; padding-left: 10px;">Giải pháp
+                                    <span class="Pre-pickApp" style="padding-left: 10px; padding-left: 10px;">Giải pháp
                                         thông minh</span>
                                 </div>
                             </li>
-                            <li class="d-none">
+                            <li >
                                 <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                         style="color: #fff; padding-top: 5px;" class="bi bi-question-circle-fill"
@@ -1547,7 +1630,7 @@
                             <div class="circle">02</div>
                         </div>
                         <div class="d-flex justify-content-center" style="align-items: center;">
-                            <img src="http://devices.homeos.vn/assets/img/Logo-Home-OS-crop.png" style="width: 30px; height: 30px; margin: 0 5px 20px 0;" alt="">
+                            <img src="http://devices.homeos.vn/assets/img/Logo-Home-OS-crop.png" style="width: 30px; height: 35px; margin: 0 5px 20px 0;" alt="">
                         <p>Thêm mới mã trạm hoặc chọn trạm đã lưu</p>
                         </div>
                     </div>
@@ -1741,28 +1824,84 @@
         </div>
         <div id="ScanQRWarranty" class="hidden h-100">
             <div class="container" style="padding: 0;">
-                <div class="ScanQR-header">
+                <div class="ScanQR-header d-flex justify-content-between">
                     <div class="history-avt">
                         <div class="d-flex">
                             <img class="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
                             <p class="userName">Khách</p>
                         </div>
                     </div>
-                    <div style="line-height: 50px; float: left;">
+                    <div class="d-none" style="line-height: 50px; float: left;">
                         <button class="homepage-Pre-pickApp" style="height: 40px; border: none; background-color: #1E2833;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                             </svg>
                         </button>
                     </div>
+                    <div style="line-height: 50px; float: left;">
+                        <button class="menuToggle" style="height: 40px; border: none; background-color: #1E2833;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
+                                fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div style="padding: 0 20px 0 20px;">
-                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
-                        style="margin-bottom: 30px; margin-top: 20px;">
+                <aside class="sidebar">
+                    <div class="profile">
+                        <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200"
+                            style="margin-bottom: 30px; margin-top: 20px;">
+                    </div>
+                    <ul class="menu">
+                        <li>
+                            <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="color: #fff;" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                    <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                                </svg>
+                                <span class="Pre-pickApp" style="padding-left: 10px; padding-left: 10px;">Giải pháp
+                                    thông minh</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                    style="color: #fff; padding-top: 5px;" class="bi bi-question-circle-fill"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z" />
+                                </svg>
+                                <span style="padding-left: 10px; padding-left: 10px;">Thông tin công ty</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                </svg>
+                                <span style="padding-left: 10px; padding-left: 10px;">Thông tin sản phẩm</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
+                                    <path d="M2 2h2v2H2z"/>
+                                    <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                                    <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                                    <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                                    <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                                </svg>
+                                <span style="padding-left: 10px; padding-left: 10px;">Quét nhiều sản phẩm</span>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+                <div id="warrantyDetailProduct" style="padding: 0 20px 0 20px;">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
                     <div style="padding: 20px 20px 0 20px;">
                         <div class="tab">
                             <button id="tab-scan" class="tablinks tablinkGuarantee">Quét QR</button>
-                            <button id="tab-history" class="tablinks tablinkGuarantee">Quét nhiều QR</button>
+                            <button id="tab-history" class="tablinks tablinkGuarantee">Lịch sử quét</button>
                         </div>
                     </div>
                     <div id="tab3" class="tab-content-guarantee">
@@ -1777,19 +1916,49 @@
                         </button>
                     </div>
                     <div id="tab4" class="tab-content-guarantee">
-                        <button class="clickScanQR start">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code" viewBox="0 0 16 16">
-                                <path d="M2 2h2v2H2z"/>
-                                <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
-                                <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
-                                <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
-                                <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
-                            </svg>
-                        </button>
+                        <div id="warrantyHistory" style="padding: 20px 0;">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">sản phẩm đã xem</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool p-0" style="color: #fff;" data-card-widget="remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body p-0">
+                                    <ul class="products-list product-list-in-card pl-2 pr-2">
+                                        <li class="item">
+                                            <div class="product-img">
+                                                <img src="https://central.homeos.vn/images/ROLETP.jpg" alt="Product Image" class="img-size-50">
+                                            </div>
+                                            <div class="product-info">
+                                                <a class="product-title">ROLE-TP-1.1
+                                                    <span class="badge badge-info float-right">2024-12-12 09:20:08</span></a>
+                                                <span class="product-description">
+                                                    ROLE Thuận Phong.
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
+                <div id="ScanAllQRcode" class="d-none">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
+                    <button class="clickScanQR start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code" viewBox="0 0 16 16">
+                            <path d="M2 2h2v2H2z"/>
+                            <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+                            <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+                            <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+                            <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+                        </svg>
+                    </button>
+                </div>
                 <div id="footer-instruct-warranty" class="footer-instruct">
                     <div class="step">
                         <div class="circle">02</div>
@@ -1818,8 +1987,7 @@
                             -</p>
                     </div>
                     <div class="d-flex" style="line-height: 50px;">
-                        <button id="share-qrcode-workstation"
-                            style="height: 40px; border: none; background-color: #282d31; padding: 0;margin-right: 10px;">
+                        <button id="share-qrcode-workstation" style="height: 40px; border: none; background-color: #282d31; padding: 0;margin-right: 10px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" style="color: #fff;" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
                                 <path d="M2 2h2v2H2z"/>
                                 <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
@@ -1828,12 +1996,9 @@
                                 <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
                               </svg>
                         </button>
-                        <button class="homepage-Pre-pickApp"
-                            style="height: 40px; border: none; background-color: #282d31; padding: 0;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
-                                fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                        <button class="homepage-Pre-pickApp" style="height: 40px; border: none; background-color: #282d31; padding: 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="color: #fff;" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                             </svg>
                         </button>
                     </div>
@@ -1841,16 +2006,12 @@
                 <div id="homePage-body">
                     <div id="box-status" class="row" style="margin: 15px; margin-bottom: 0;">
                         <div class=" col-5" style="padding-left: 0; padding-right: 0; padding-bottom: 15px;">
-                            <div class="box-value"
-                                style="height: 100%; padding-left: 0; padding-right: 0; margin-right: 0; display: flex; align-items: center; justify-content: center;">
+                            <div class="box-value" style="height: 100%; padding-left: 0; padding-right: 0; margin-right: 0; display: flex; align-items: center; justify-content: center;">
                                 <div>
                                     <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            style="margin-right: 5px;" fill="currentColor" class="bi bi-battery-half"
-                                            viewBox="0 0 16 16">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="margin-right: 5px;" fill="currentColor" class="bi bi-battery-half" viewBox="0 0 16 16">
                                             <path d="M2 6h5v4H2z" />
-                                            <path
-                                                d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8" />
+                                            <path d="M2 4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm10 1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm4 3a1.5 1.5 0 0 1-1.5 1.5v-3A1.5 1.5 0 0 1 16 8" />
                                         </svg>
                                         <p style="margin: 0; font-size: 14px;">Năng lượng</p>
                                     </div>
@@ -1873,10 +2034,8 @@
                             </div>
                             <div class="box-value" style="height: 80px;">
                                 <div class="d-flex" style="line-height: 20px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                        class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
                                     </svg>
                                     <p style="margin: 0; font-size: 14px; margin-left: 10px;">Cập nhật</p>
                                 </div>
@@ -2127,17 +2286,19 @@
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                             </svg>
                         </button>
-                        <p id="header-productName"
-                            style="width: 250px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                            -</p>
+                        <p id="header-productName" style="width: 250px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">-</p>
                     </div>
                     <div class="d-flex" style="line-height: 50px;">
+                        <button id="errorWarranty" style="height: 40px; border: none; background-color: #282d31; padding: 0;margin-right: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="color: #fff;" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                            </svg>
+                        </button>
                         <button class="homepage-Pre-pickApp"
                             style="height: 40px; border: none; background-color: #282d31; padding: 0;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="color: #fff;"
-                                fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style="color: #fff;" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                             </svg>
                         </button>
                     </div>
@@ -2356,6 +2517,49 @@
             </div>
             
         </div>
+        <div id="error-popup" class="modal">
+            <div class="container" style="width: 100%; height: 100%; background-color: #1E2833;">
+                <div class="d-flex" style="line-height: 50px;">
+                    <button id="BackWarranty" style="height: 40px; border: none; background-color: #1E2833;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                            style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                        </svg>
+                    </button>
+                    <p
+                        style="width: 250px;font-size: 20px; color: #fff; text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                        Khai báo lỗi</p>
+                </div>
+                <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="padding-bottom: 3rem;">
+                <div>
+                    <div class="content-form" style="background-color: #1E2833; padding: 0;">
+                        <div class="form-group content-detail">
+                            <label class="form-label content-label" for="errorInput">Lỗi:</label>
+                            <input type="text" id="errorInput" class="form-control content-input" placeholder="Nhập lỗi...">
+                        </div>
+                        <div class="form-group content-detail">
+                            <label class="form-label content-label" for="ap_ssid">Loại lỗi:</label>
+                            <!-- <input type="text" id="ap_ssid" class="form-control content-input" placeholder="Nhập tên điểm truy cập..."> -->
+                            <select name="" id="errorType" class="form-control content-input">
+                                <option value="1">cháy</option>
+                                <option value="2">nổ</option>
+                            </select>
+                        </div>
+                        <div class="form-group content-detail">
+                            <label class="form-label content-label" for="ap_password">mô tả:</label>
+                            <!-- <input type="tex" id="ap_password" class="form-control content-input" placeholder="Nhập mật khẩu điểm truy cập..."> -->
+                            <textarea id="errorDesc" class="form-control content-input" style="height: 120px;" placeholder="Mô tả lỗi"></textarea>
+                        </div>
+                    </div>
+                    <button id="submitError" class="btn btn-warning" style="margin-top: 20px; background-color: #f39c12;border: solid 1px #f39c12; width: 100%; height: 35px; color: #fff; padding: 3px 10px;">
+                        Xác nhận lỗi
+                    </button>
+                </div>
+                
+            </div>
+            
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -2372,17 +2576,45 @@
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
             var UserID = localStorage.getItem("userID");
-            if(UserID){
-                if(DataUser && DataUser.id == UserID){
-                    $(".userName").text(DataUser.name);
-                    document.getElementById("PickApp-button-login").classList.add("d-none");
-                    $(".userAvt").attr("src", DataUser.avatar);
-                    document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
+            async function handleUser() {
+                if (UserID) {
+                    try {
+                        if (DataUser && DataUser.id === UserID) {
+                            $(".userName").text(dataUser.name);
+                            document.getElementById("PickApp-button-login").classList.add("d-none");
+                            $(".userAvt").attr("src", dataUser.avatar);
+                            document.getElementById("LogoPickScreen").style.paddingTop = "10vh";
+                        } else {
+                            const dataUserResponse = await getDM("WARRANTY_USER", "USER_ID='" + UserID + "'");
+                            console.log(dataUserResponse.data);
+                            if(dataUserResponse.data.length == 0){
+                                // const willInsertData = {
+                                //     USER_ID: errorInput,
+                                //     USER_NAME: errorType,
+                                //     USER_ROLE: errorDesc,
+                                //     DATE_CREATE: new Date(),
+                                //     DATASTATE: "ADD",
+                                // };
+                                // add('WARRANTY_ERROR', willInsertData).then(async data => {
+                                //     try {
+                                //         toastr.success("Báo lỗi thành công!");
+                                //         $("#BackWarranty").click();
+                                //     } catch (e) { }
+                                // }).catch(err => {
+                                //     console.error('Error:', err);
+                                // });
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error);
+                    }
+                } else {
+                    document.getElementById("QUYEN").classList.add("d-none");
+                    document.getElementById("LogoPickScreen").style.paddingTop = "10vh";
                 }
-            } else {
-                document.getElementById("QUYEN").classList.add("d-none");
-                document.getElementById("LogoPickScreen").style.paddingTop = '10vh'
             }
+
+            handleUser();
             var historyItems = [];
             var CategoryItems = [];
             var DataCategory = [];
@@ -2542,7 +2774,7 @@
             $("#PickApp-button-guarantee").click(function () {
                 pickApp('GUA');
             });
-            $("#Pre-pickApp").click(function () {
+            $(".Pre-pickApp").click(function () {
                 stopInterval()
                 pickApp('PRE');
             });
@@ -2573,6 +2805,14 @@
                     }).attr('id', 'hidden-image');
 
                     $('#qrcode').append(img);
+                });
+            });
+            $("#errorWarranty").click(function () {
+                $("#error-popup").modal({
+                    fadeDuration: 250,
+                    escapeClose: false,
+                    clickClose: false,
+                    showClose: false
                 });
             });
             $("#BackCodeQR").click(function () {
@@ -2608,7 +2848,6 @@
                 openTabGuarantee(event, 'tab3')
             });
             $("#tab-history").click(function (event) {
-                checkTab = true;
                 openTabGuarantee(event, 'tab4')
             });
             $("#truycap").click(function () {
@@ -2706,6 +2945,12 @@
                 });
                 DetailProduct();
             });
+            $("#BackWarranty").click(function () {
+                $("#error-popup").modal('hide');
+                $("#errorInput").val("");
+                $("#errorType").val("");
+                $("#errorDesc").val("");
+            });
             document.getElementById("historySelect").addEventListener("change", function () {
                 const selectedValue = this.value; // Lấy giá trị đã chọn
                 const selectedText = this.options[this.selectedIndex].text; // Lấy văn bản đã chọn
@@ -2733,6 +2978,7 @@
                     document.getElementById("homePage").classList.add("hidden");
                     document.getElementById("pickApp").classList.remove("hidden");
                     document.getElementById("guarantee").classList.add("hidden");
+                    document.getElementById("ScanQRWarranty").classList.add("hidden");
                     document.getElementById("menu-warranty").classList.add("d-none");
                     document.getElementById("footer-instruct-warranty").classList.add("d-none");
                 } else if (type == 'HISTORY') {
@@ -2744,6 +2990,9 @@
                     document.getElementById("pickApp").classList.add("hidden");
                     document.getElementById("footer-instruct-warranty").classList.remove("d-none");
                     document.querySelector(".tablinkGuarantee").click();
+                    $("#warrantyDetailProduct").removeClass("d-none");
+                    $("#ScanAllQRcode").addClass("d-none");
+                    checkTab = false;
                 } else if (type == 'LOGIN'){
                     if (window.GetUser) {
                         await window.GetUser();
@@ -4081,8 +4330,6 @@
 
             // Khi nhấn nút mở popup quét QR
             function startQRcode() {
-                console.log("scan1");
-                
                 document.getElementById("result-form-total").classList.add("d-none");
                 document.getElementById("result-form-loading").classList.remove("d-none");
                 document.getElementById("result-form-title").classList.add("d-none");
@@ -4472,21 +4719,22 @@
             adjustFooter();
 
             // Sidebar toggle logic
-            const menuToggle = document.getElementById("menuToggle");
-            const sidebar = document.getElementById("sidebar");
+            const menuToggle = $(".menuToggle");
+            const sidebar = $(".sidebar");
 
             // Toggle the sidebar visibility
-            menuToggle.addEventListener("click", (e) => {
-                e.stopPropagation(); // Prevent the click from propagating to the document
-                sidebar.classList.toggle("open");
+            menuToggle.on("click", (e) => {
+                e.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+                sidebar.toggleClass("open");
             });
 
             // Detect clicks outside the sidebar
-            document.addEventListener("click", (e) => {
-                if (sidebar.classList.contains("open") && !sidebar.contains(e.target)) {
-                    sidebar.classList.remove("open");
+            $(document).on("click", (e) => {
+                if (sidebar.hasClass("open") && !$(e.target).closest(".sidebar").length) {
+                    sidebar.removeClass("open");
                 }
             });
+
 
             // Handle menu item clicks
             const menuItems = document.querySelectorAll(".menu-item, .submenu li");
@@ -4498,6 +4746,7 @@
                     const menuText = item.innerText.trim(); // Get the text of the menu item
 
                     if (menuText == "Giải pháp thông minh") {
+                        console.log(menuText);
                         $("#tab-add-category").click();
                     } else if (menuText == "Quản lý danh mục") {
                         document.getElementById("history-setting").classList.remove("d-none");
@@ -4515,18 +4764,17 @@
                         showHistory()
                     } else if (menuText == "Thông tin công ty") {
                         window.location.href = "https://homeos.com.vn/";
+                    } else if (menuText == "Thông tin sản phẩm") {
+                        $("#warrantyDetailProduct").removeClass("d-none");
+                        $("#ScanAllQRcode").addClass("d-none");
+                        checkTab = false;
+                    } else if (menuText == "Quét nhiều sản phẩm") {
+                        $("#warrantyDetailProduct").addClass("d-none");
+                        $("#ScanAllQRcode").removeClass("d-none");
+                        checkTab = true;
                     }
-
                     // Close the sidebar after selection (optional)
-                    sidebar.classList.remove("open");
-
-                    // Add your action logic here based on `menuText`
-                    // Example:
-                    if (menuText === "ChartJS") {
-                        alert("Navigating to ChartJS...");
-                    } else if (menuText === "Widgets") {
-                        alert("Navigating to Widgets...");
-                    }
+                    sidebar.removeClass("open");
                 });
             });
 
@@ -4566,7 +4814,8 @@
 
                 // const url = "https://DEV.HOMEOS.vn/service/service.svc/";
                 const url = "https://central.homeos.vn/service_XD/service.svc/";
-
+                console.log();
+                
                 return new Promise((resolve, reject) => {
                     $.ajax({
                         url: url + "ApiServicePublic/" + "GetDataQRcode" + "/" + "QRCODEINPUT=" + QRcode,
@@ -4602,6 +4851,9 @@
 
             function changeDataWarranty(data) {
                 let DataQRcode = data[0].QR_CODE.split(',');
+                localStorage.setItem("productWarranty", JSON.stringify(data));
+                const dataWarranty = JSON.parse(localStorage.getItem("productWarranty"));
+                console.log(dataWarranty);
                 document.getElementById('productName').textContent = "Tên sản phẩm: "+ data[0].PRODUCT_NAME;
                 document.getElementById('productCode').textContent = "Mã định danh: "+ data[0].PRODUCT_CODE;
                 document.getElementById('productSeri').textContent = "Số seri: "+ DataQRcode[2].substring(1);
@@ -4653,6 +4905,32 @@
                 }
             }
 
+            $("#submitError").click(function () {
+                // Lấy giá trị từ các trường
+                const errorInput = $("#errorInput").val();
+                const errorType = $("#errorType").val();
+                const errorDesc = $("#errorDesc").val();
+                const dataWarranty = JSON.parse(localStorage.getItem("productWarranty"));
+                console.log(dataWarranty);
+                const willInsertData = {
+                    ERROR_TYPE: errorInput,
+                    ERROR_NAME: errorType,
+                    DESCRIPTION: errorDesc,
+                    DATE_CREATE: new Date(),
+                    QRCODE_ID: dataWarranty[0].PR_KEY,
+                    USER_ID: UserID,
+                    DATASTATE: "ADD",
+                };
+                add('WARRANTY_ERROR', willInsertData).then(async data => {
+                    try {
+                        toastr.success("Báo lỗi thành công!");
+                        $("#BackWarranty").click();
+                    } catch (e) { }
+                }).catch(err => {
+                    console.error('Error:', err);
+                });
+            });
+
             $('#generateQRCodes').click(function () {
                 startValue = parseInt($('#startValue').val()) || 1;
                 getTranNo();
@@ -4687,19 +4965,21 @@
 
             function getDM(table_name, c) {
                 const d = {
-                    Uid: 'vannt',
-                    Sid: 'b99213e4-a8a5-45f4-bb5c-cf03ae90d8d7',
+                    // Uid: 'vannt',
+                    // Sid: 'b99213e4-a8a5-45f4-bb5c-cf03ae90d8d7',
+                    Uid: 'admin',
+                    Sid: 'cb880c13-5465-4a1d-a598-28e06be43982',
                     tablename: table_name,
                     c: c,
                     other: '',
                     cmd: ''
                 };
                 
-                const Url = 'https://DEV.HOMEOS.vn/service/service.svc/';
+                // const Url = 'https://DEV.HOMEOS.vn/service/service.svc/';
                 
                 return new Promise((resolve, reject) => {
                     $.ajax({
-                        url: "https://DEV.HOMEOS.vn/service/service.svc/getDm?callback=?",
+                        url: "https://central.homeos.vn/service_XD/service.svc/getDm?callback=?",
                         type: "GET",
                         dataType: "jsonp",
                         data: d,
@@ -4812,7 +5092,6 @@
                     DATASTATE: "EDIT",
                 };
                 console.log(willInsertData);
-                
                 add(user_id, session, 'SYS_TRAN_NO', willInsertData)
             }
             //-----------------------------------------------------------------------------------------------------------
