@@ -5044,7 +5044,7 @@
                     const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
                     document.getElementById('warrantyTime').textContent = time;
                 }
-                addItemHistoryWarranty(data[0].QR_CODE);
+                addItemHistoryWarranty(data[0].PR_KEY);
             }
 
             $('#result-product-warranty').click(function () {
@@ -5316,14 +5316,15 @@
             
             async function addItemHistoryWarranty(QRID) {
                 const data = await getDM('WARRANTY_ERROR', "QRCODE_ID='"+QRID+"'");
-                const dataWarranty = data.data.filter(item => item.GROUP_ID === null);
-                const dataWarrantyGroup = data.data.filter(item => item.GROUP_ID !== null);
+                const dataWarranty = data.data.filter(item => item.GROUP_ID === 0);
+                const dataWarrantyGroup = data.data.filter(item => item.GROUP_ID !== 0);
                 console.log(dataWarranty, dataWarrantyGroup);
                 listWarrantyHistory.empty();
                 for (let i = 0; i < dataWarranty.length; i++) {
                     let element = '';
                     const CheckGroupWarranty = dataWarrantyGroup.filter(item => item.GROUP_ID == dataWarranty[i].PR_KEY);
                     let itemElement = '';
+                    const [dateALL, timeALL] = dataWarranty[i].DATE_CREATE.split('T');
                     if(CheckGroupWarranty.length > 0){
                         for (let i = 0; i < CheckGroupWarranty.length; i++) {
                             const [date, time] = CheckGroupWarranty[i].DATE_CREATE.split('T');
@@ -5362,7 +5363,8 @@
                                                 '</svg>'+
                                                 ' Bảo hành'+
                                             '</h4>'+
-                                            '<p style="margin: 10px 0 0 0; font-size: 14px; font-weight: 300;">'+dataWarranty[i].ERROR_NAME+'</p>'+
+                                            '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dataWarranty[i].ERROR_NAME+'</p>'+
+                                            '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dateALL+' '+timeALL+'</p>'+
                                         '</div>'+
                                         '<span class="arrow-icon expanded" style="transform: rotate(90deg);">▶</span>'+
                                     '</button>'+
@@ -5396,7 +5398,8 @@
                                                 '</svg>'+
                                                 ' '+ dataWarranty[i].ERROR_NAME+
                                             '</h4>'+
-                                            '<p style="margin: 10px 0 0 0; font-size: 14px; font-weight: 300;">'+dataWarranty[i].DESCRIPTION+'</p>'+
+                                            '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dataWarranty[i].DESCRIPTION+'</p>'+
+                                            '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dateALL+' '+timeALL+'</p>'+
                                         '</div>'+
                                     '</button>'+
                                 '</li>'
