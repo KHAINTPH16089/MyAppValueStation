@@ -5144,6 +5144,7 @@
                 add('WARRANTY_ERROR', willInsertData).then(async data => {
                     try {
                         toastr.success("Báo lỗi thành công!");
+                        addItemHistoryWarranty(dataWarranty[0].PR_KEY);
                         $("#BackWarranty").click();
                     } catch (e) { }
                 }).catch(err => {
@@ -5379,8 +5380,8 @@
                                                     '<div class="vertical-timeline-element-content bounce-in">'+
                                                         '<h4 class="timeline-title">Báo lỗi sản phẩm</h4>'+
                                                         '<p>'+dataWarranty[i].DESCRIPTION+'</p>'+
-                                                        '<span class="vertical-timeline-element-date">12/12/2024</span>'+
-                                                        '<span class="vertical-timeline-element-dateTime">6:00 PM</span>'+
+                                                        '<span class="vertical-timeline-element-date">'+dateALL+'</span>'+
+                                                        '<span class="vertical-timeline-element-dateTime">'+timeALL+'</span>'+
                                                     '</div>'+
                                                 '</div>'+
                                             '</div>'+
