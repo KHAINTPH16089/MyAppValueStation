@@ -5037,6 +5037,7 @@
                     const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
                     const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
                     document.getElementById('warrantyTime').textContent = time;
+                    document.getElementById('result-product-warranty').classList.remove("d-none");
                 } else {
                     document.getElementById('warrantyActive').textContent = "Đã kích hoạt";
                     document.getElementById('result-product-warranty').classList.add("d-none");
