@@ -2723,6 +2723,10 @@
                                     DATASTATE: "ADD",
                                 };
                                 add('WARRANTY_USER', willInsertData);
+                                localStorage.setItem('RoleUser', "GUEST");
+                            } else {
+                                console.log(dataUserResponse);
+                                localStorage.setItem('RoleUser', "GUEST");
                             }
                         } else if(DataUser != undefined) {
                             const dataUserResponse = await getDM("WARRANTY_USER", "USER_ID='" + UserID + "'");
@@ -5431,6 +5435,17 @@
                     listWarrantyHistory.append($element);
                 }
                 
+            }
+
+            function WarrantyCheckUser(ROLE) {
+                switch (ROLE) {
+                    case "ADMIN":
+                        
+                        break;
+                
+                    default:
+                        break;
+                }
             }
             //-----------------------------------------------------------------------------------------------------------
 
