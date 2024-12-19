@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -2698,6 +2699,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/Draggable.min.js"></script>
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
         $(document).ready(function () {
             var DataUser;
@@ -2925,6 +2927,7 @@
                 pickApp('PRE');
             });
             $("#share-qrcode-workstation").click(function () {
+                // Hiển thị popup với hiệu ứng modal
                 $("#share-popup").modal({
                     fadeDuration: 250,
                     escapeClose: false,
@@ -2932,27 +2935,34 @@
                     showClose: false
                 });
 
+                // Xóa nội dung mã QR cũ
                 $('#qrcode').empty();
-                // xoá mã cũ nếu có
-                const text = localStorage.getItem("URL")+"$"+ localStorage.getItem("MATRAM");
-                document.getElementById("text-content-QRcode").textContent = localStorage.getItem("MATRAM")+" - "+ JSON.parse(localStorage.getItem('itemHistory')).NameWorkStation ;
+
+                // Dữ liệu để tạo mã QR
+                const text = localStorage.getItem("URL") + "$" + localStorage.getItem("MATRAM");
+                document.getElementById("text-content-QRcode").textContent =
+                    localStorage.getItem("MATRAM") + " - " + JSON.parse(localStorage.getItem('itemHistory')).NameWorkStation;
                 // Tạo mã QR
                 QRCode.toCanvas(text, { width: 200 }, function (error, canvas) {
                     if (error) {
-                        console.error(error);
+                        console.error("Lỗi khi tạo mã QR:", error);
                         alert('Lỗi khi tạo mã QR!');
                         return;
                     }
+
+                    // Thêm canvas QR vào DOM
                     $('#qrcode').append(canvas);
 
+                    // Tạo ảnh ẩn từ canvas (tùy chọn)
                     const image = canvas.toDataURL('image/png');
-                    const img = $('<img>').attr('src', image).css({
-                        display: 'none', // Ẩn ảnh đi
-                    }).attr('id', 'hidden-image');
-
+                    const img = $('<img>')
+                        .attr('src', image)
+                        .css({ display: 'none' }) // Ẩn ảnh đi
+                        .attr('id', 'hidden-image');
                     $('#qrcode').append(img);
                 });
             });
+
             $("#errorWarranty").click(function () {
                 $("#error-popup").modal({
                     fadeDuration: 250,
