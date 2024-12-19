@@ -4597,7 +4597,7 @@
                                     document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
                                     data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                     const willInsertData = {
-                                        ERROR_TYPE: "ADD",
+                                        TYPE: "ADD",
                                         ERROR_NAME: "Hoàn thành sản phẩm",
                                         DESCRIPTION: "",
                                         DATE_CREATE: new Date(),
@@ -4750,7 +4750,7 @@
                                                             document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
                                                             data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                                             const willInsertData = {
-                                                                ERROR_TYPE: "ADD",
+                                                                TYPE: "ADD",
                                                                 ERROR_NAME: "Hoàn thành sản phẩm",
                                                                 DESCRIPTION: "",
                                                                 DATE_CREATE: new Date(),
@@ -5065,7 +5065,7 @@
                         try {
                             toastr.success("Kích hoạt bảo hành của sản phẩm thành công!");
                             const InsertData = {
-                                ERROR_TYPE: "ACTIVATE",
+                                TYPE: "ACTIVATE",
                                 ERROR_NAME: "Đã kích hoạt bảo hành",
                                 DESCRIPTION: "Được kích hoạt khi nhấn nút",
                                 DATE_CREATE: new Date(),
@@ -5130,6 +5130,7 @@
                 const dataWarranty = JSON.parse(localStorage.getItem("productWarranty"));
                 console.log(dataWarranty);
                 const willInsertData = {
+                    TYPE: 'ERROR',
                     ERROR_TYPE: errorType,
                     ERROR_NAME: errorInput,
                     DESCRIPTION: errorDesc,
