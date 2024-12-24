@@ -2941,6 +2941,7 @@
             $(".start").click(function () {
                 const buttonId = $(this).attr("id"); // Lấy id của nút
                 const dataId = $(this).data("id"); // Lấy giá trị data-id
+                $("#result-form").addClass("result-form");
                 console.log(dataId);
                 typeQR = dataId;
                 if(dataId == 3){
@@ -5594,11 +5595,11 @@
                                 <p class="m-0"><b><i>Ngày 24 tháng 12 năm 2024</i></b></p>
                             </div>
 
-                            <p style="font-size: 14px;">- Họ và tên người nhận hàng: CÔNG TY TNHH ĐIỆN CÔNG NGHIỆP KHỞI MINH</p>
-                            <p style="font-size: 14px;">- Lý do xuất kho: Xuất bán</p>
-                            <p style="font-size: 14px;">- Xuất tại địa điểm: J04 - L02, An Phú Shop Villa, Dương Kinh, Hà Đông, Hà Nội.</p>
+                            <p class="m-0" style="font-size: 14px;">- Họ và tên người nhận hàng: CÔNG TY TNHH ĐIỆN CÔNG NGHIỆP KHỞI MINH</p>
+                            <p class="m-0" style="font-size: 14px;">- Lý do xuất kho: Xuất bán</p>
+                            <p class="m-0" style="font-size: 14px;">- Xuất tại địa điểm: J04 - L02, An Phú Shop Villa, Dương Kinh, Hà Đông, Hà Nội.</p>
 
-                            <table class="table table-bordered text-center mt-4">
+                            <table class="table table-bordered text-center mt-2">
                                 <thead>
                                     <tr style="font-size: 14px;">
                                         <th>STT</th>
