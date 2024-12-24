@@ -4671,8 +4671,6 @@
                         }
                         
                     } else {
-                        let willInsertData;
-                        
                         if(typeQR == 3){
                             const dataQRCODE = await getDM("DM_QRCODE", "LOT_ID='"+$('#lot-number').val()+"' AND LOT_CLASS='"+$('#classProduct').val()+"'")
                             if(dataQRCODE.data.length < $('#classProductNumber').val()){
@@ -4704,9 +4702,8 @@
                             } else {
                                 toastr.error("Lớp đã quét đủ vui lòng nhập lớp mới!");
                             }
-                            
                         } else {
-                            willInsertData = {
+                            const willInsertData = {
                                 QR_CODE: decodedText,
                                 MA_SAN_PHAM: checkQRcode[1],
                                 DATE_CREATE: new Date(),
@@ -4714,39 +4711,40 @@
                                 USER_ID: UserID,
                                 DATASTATE: "ADD",
                             };
+                            add('DM_QRCODE', willInsertData).then(async data => {
+                                try {
+                                    toastr.success("Quét QR và lưu thông tin thành công!");
+                                    if(checkTab){
+                                        scanAgain();
+                                    } else {
+                                        document.getElementById("result-product").classList.remove("d-none");
+                                        document.getElementById("result-form-loading").classList.add("d-none");
+                                        document.getElementById("result-form").classList.remove("d-none");
+                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                        document.getElementById("result-product-truycap").disabled = false;
+                                        document.getElementById("result-form-productName").value = checkQRcode[1];
+                                        document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                        document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
+                                        data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
+                                        const willInsertData = {
+                                            TYPE: "ADD",
+                                            ERROR_NAME: "Hoàn thành sản phẩm",
+                                            DESCRIPTION: "Nhập sản phẩm vào hệ thống",
+                                            DATE_CREATE: new Date(),
+                                            ERROR_STATUS: 0,
+                                            QRCODE_ID: data[0].PR_KEY,
+                                            USER_ID: UserID,
+                                            DATASTATE: "ADD",
+                                        };
+                                        await add('WARRANTY_ERROR', willInsertData)
+                                        changeDataWarranty(data);
+                                    }
+                                } catch (e) { }
+                            }).catch(err => {
+                                console.error('Error:', err);
+                            });
                         }
-                        add('DM_QRCODE', willInsertData).then(async data => {
-                            try {
-                                toastr.success("Quét QR và lưu thông tin thành công!");
-                                if(checkTab){
-                                    scanAgain();
-                                } else {
-                                    document.getElementById("result-product").classList.remove("d-none");
-                                    document.getElementById("result-form-loading").classList.add("d-none");
-                                    document.getElementById("result-form").classList.remove("d-none");
-                                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                    document.getElementById("result-product-truycap").disabled = false;
-                                    document.getElementById("result-form-productName").value = checkQRcode[1];
-                                    document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
-                                    document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
-                                    data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
-                                    const willInsertData = {
-                                        TYPE: "ADD",
-                                        ERROR_NAME: "Hoàn thành sản phẩm",
-                                        DESCRIPTION: "Nhập sản phẩm vào hệ thống",
-                                        DATE_CREATE: new Date(),
-                                        ERROR_STATUS: 0,
-                                        QRCODE_ID: data[0].PR_KEY,
-                                        USER_ID: UserID,
-                                        DATASTATE: "ADD",
-                                    };
-                                    await add('WARRANTY_ERROR', willInsertData)
-                                    changeDataWarranty(data);
-                                }
-                            } catch (e) { }
-                        }).catch(err => {
-                            console.error('Error:', err);
-                        });
+                        
                     }
                 } else {
                     if (decodedText.length > 6) {
