@@ -2941,7 +2941,7 @@
             $(".start").click(function () {
                 const buttonId = $(this).attr("id"); // Lấy id của nút
                 const dataId = $(this).data("id"); // Lấy giá trị data-id
-                $("#result-form").addClass("result-form");
+                $("#result-form").addClass("d-none");
                 console.log(dataId);
                 typeQR = dataId;
                 if(dataId == 3){
