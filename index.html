@@ -4684,22 +4684,27 @@
                                     USER_ID: UserID,
                                     DATASTATE: "ADD",
                                 };
-                                await add('DM_QRCODE', willInsertData);
-                                toastr.success("Quét QR và lưu thông tin thành công!");
-                                const dataEdit = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
-                                console.log(dataEdit, decodedText.replaceAll(',', '$'));
-                                const willInsert = {
-                                    TYPE: "ADD",
-                                    ERROR_NAME: "Hoàn thành sản phẩm",
-                                    DESCRIPTION: "Nhập sản phẩm vào hệ thống",
-                                    DATE_CREATE: new Date(),
-                                    ERROR_STATUS: 0,
-                                    QRCODE_ID: dataEdit[0].PR_KEY,
-                                    USER_ID: UserID,
-                                    DATASTATE: "ADD",
-                                };
-                                await add('WARRANTY_ERROR', willInsert)
-                                scanAgain();
+                                await add('DM_QRCODE', willInsertData).then(async data => {
+                                    try {
+                                        toastr.success("Quét QR và lưu thông tin thành công!");
+                                        const dataEdit = await getDataMDQRcode(decodedText.replaceAll(',', '$'));
+                                        const willInsert = {
+                                            TYPE: "ADD",
+                                            ERROR_NAME: "Hoàn thành sản phẩm",
+                                            DESCRIPTION: "Nhập sản phẩm vào hệ thống",
+                                            DATE_CREATE: new Date(),
+                                            ERROR_STATUS: 0,
+                                            QRCODE_ID: dataEdit[0].PR_KEY,
+                                            USER_ID: UserID,
+                                            DATASTATE: "ADD",
+                                        };
+                                        await add('WARRANTY_ERROR', willInsert)
+                                        scanAgain();
+                                    } catch (e) { }
+                                }).catch(err => {
+                                    console.error('Error:', err);
+                                });
+                                
                             } else {
                                 toastr.error("Lớp đã quét đủ vui lòng nhập lớp mới!");
                             }
