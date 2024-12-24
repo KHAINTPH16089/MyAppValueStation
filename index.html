@@ -4687,6 +4687,7 @@
                                 add('DM_QRCODE', willInsertData);
                                 toastr.success("Quét QR và lưu thông tin thành công!");
                                 const dataEdit = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
+                                console.log(dataEdit, decodedText.replaceAll(',', '$'));
                                 const willInsert = {
                                     TYPE: "ADD",
                                     ERROR_NAME: "Hoàn thành sản phẩm",
@@ -5195,7 +5196,6 @@
 
                 // const url = "https://DEV.HOMEOS.vn/service/service.svc/";
                 const url = "https://central.homeos.vn/service_XD/service.svc/";
-                console.log();
                 
                 return new Promise((resolve, reject) => {
                     $.ajax({
@@ -5206,7 +5206,6 @@
                         success: function (msg) {
                             try {
                                 let state = JSON.parse(msg);
-                                console.log(state);
                                 resolve(state); // Trả về dữ liệu khi thành công
                             } catch (error) {
                                 reject(error); // Bắt lỗi nếu JSON parse thất bại
