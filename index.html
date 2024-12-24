@@ -1084,7 +1084,7 @@
         }
 
         /* Item cha */
-        #history-setting-detail .parent-item, #history-warranty-detail .parent-item {
+        #history-setting-detail .parent-item, #history-warranty-detail .parent-item, #lot-warranty-detail .parent-item {
             margin: 10px 0;
             background: #2A3A4A;
             border-radius: 8px;
@@ -1092,13 +1092,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        #history-setting-detail .parent-item:last-child, #history-warranty-detail .parent-item:last-child {
+        #history-setting-detail .parent-item:last-child, #history-warranty-detail .parent-item:last-child, #lot-warranty-detail .parent-item:last-child {
             border-bottom: none;
             /* Loại bỏ viền dưới cho item cuối */
         }
 
         /* Nút mở rộng */
-        #history-setting-detail .toggle-button, #history-warranty-detail .toggle-button {
+        #history-setting-detail .toggle-button, #history-warranty-detail .toggle-button, #lot-warranty-detail .toggle-button {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -1113,17 +1113,17 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        #history-setting-detail .toggle-button:hover, #history-warranty-detail .toggle-button:hover {
+        #history-setting-detail .toggle-button:hover, #history-warranty-detail .toggle-button:hover, #lot-warranty-detail .toggle-button:hover {
             border-radius: 8px;
             color: #fff;
         }
 
-        #history-setting-detail .toggle-button:focus, #history-warranty-detail .toggle-button:focus {
+        #history-setting-detail .toggle-button:focus, #history-warranty-detail .toggle-button:focus, #lot-warranty-detail .toggle-button:focus {
             outline: none;
         }
 
         /* Icon mũi tên */
-        #history-setting-detail .arrow-icon, #history-warranty-detail .arrow-icon {
+        #history-setting-detail .arrow-icon, #history-warranty-detail .arrow-icon, #lot-warranty-detail .arrow-icon {
             font-size: 14px;
             margin-left: 8px;
             transition: transform 0.3s ease, color 0.3s ease;
@@ -1131,13 +1131,13 @@
         }
 
         /* Khi mở rộng */
-        #history-setting-detail .arrow-icon.expanded, #history-warranty-detail .arrow-icon.expanded {
+        #history-setting-detail .arrow-icon.expanded, #history-warranty-detail .arrow-icon.expanded, #lot-warranty-detail .arrow-icon.expanded {
             transform: rotate(90deg);
             color: #fff;
         }
 
         /* Danh sách con */
-        #history-setting-detail .child-list, #history-warranty-detail .child-list {
+        #history-setting-detail .child-list, #history-warranty-detail .child-list, #lot-warranty-detail .child-list {
             border-radius: 0 0 8px 8px;
             list-style: none;
             padding: 0;
@@ -1148,7 +1148,7 @@
             padding: 5px 10px;
         }
 
-        #history-setting-detail .child-list li, #history-warranty-detail .child-list li {
+        #history-setting-detail .child-list li, #history-warranty-detail .child-list li, #lot-warranty-detail .child-list li {
             font-size: 14px;
             background-color: #333b44;
             color: #555;
@@ -1156,7 +1156,7 @@
             margin: 10px 0;
         }
 
-        #history-setting-detail .child-list li:hover, #history-warranty-detail .child-list li:hover {
+        #history-setting-detail .child-list li:hover, #history-warranty-detail .child-list li:hover, #lot-warranty-detail .child-list li:hover {
             cursor: pointer;
         }
 
@@ -1897,7 +1897,7 @@
                         </div>
                     </div>
                     <div id="tab1" class="tab-content">
-                        <button class="clickScanQR start">
+                        <button class="clickScanQR start" data-id="1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor"
                                 style="color: #000000;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
                                 <path
@@ -2013,7 +2013,7 @@
                             <div class="d-flex menu-item" style="color: #fff; padding-left: 10px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
                                     <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
-                                  </svg>
+                                </svg>
                                 <span style="padding-left: 10px; padding-left: 10px;">Quản lý và xuất lô hàng</span>
                             </div>
                         </li>
@@ -2028,7 +2028,7 @@
                         </div>
                     </div>
                     <div id="tab3" class="tab-content-guarantee">
-                        <button class="clickScanQR start">
+                        <button class="clickScanQR start" data-id="2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
                                 <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5M.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5M4 4h1v1H4z" />
                                 <path d="M7 2H2v5h5zM3 3h3v3H3zm2 8H4v1h1z" />
@@ -2071,16 +2071,24 @@
                     </div>
                 </div>
                 <div id="ScanAllQRcode" class="d-none">
-                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 30px; margin-top: 20px;">
+                    <img src="https://central.homeos.vn/images/Logo_HomeOS_White.png" alt="" width="200" style="margin-bottom: 10px; margin-top: 10px;">
                     <div class="content-form" style="background-color: #1E2833; padding: 0 20px;">
-                        <div class="form-group content-detail">
+                        <div class="form-group content-detail mb-1" >
                             <label class="form-label content-label" for="ap_ssid">Lô sản phẩm:</label>
-                            <select name="" id="errorType" class="form-control content-input">
+                            <select name="" id="lot-number" class="form-control content-input">
                                 <option value="0">Chọn lô cần quét</option>
                             </select>
                         </div>
+                        <div class="form-group content-detail mb-1">
+                            <label class="form-label content-label" for="ap_ssid">Lớp sản phẩm:</label>
+                            <input id="classProduct" class="form-control content-input" type="text" placeholder="Nhập lớp cần quét">
+                        </div>
+                        <div class="form-group content-detail mb-1">
+                            <label class="form-label content-label" for="ap_ssid">Số lượng cần quét của 1 lớp:</label>
+                            <input id="classProductNumber" class="form-control content-input" type="text" placeholder="Nhập số lượng cần quét">
+                        </div>
                     </div>
-                    <button class="clickScanQR start" style="margin-top: 4vh;">
+                    <button class="clickScanQR start" data-id="3" style="margin-top: 4vh;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="currentColor" style="color: #000000;" class="bi bi-qr-code" viewBox="0 0 16 16">
                             <path d="M2 2h2v2H2z"/>
                             <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
@@ -2091,7 +2099,16 @@
                     </button>
                 </div>
                 <div id="lotProduct" class="d-none">
-
+                    <div>
+                        <div class="d-flex" style="color: #fff; padding-left: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                            </svg>
+                            <h6 style="padding-left: 10px; padding-left: 10px;">Lô sản phẩm:</h6>
+                        </div>
+                    </div>
+                    <ul id="lot-warranty-detail" style="overflow-y: auto; max-height: 538px; padding: 10px 0 0px;">
+                    </ul>
                 </div>
                 <div id="footer-instruct-warranty" class="footer-instruct">
                     <div class="step">
@@ -2722,6 +2739,7 @@
     <script>
         $(document).ready(function () {
             var DataUser;
+            var typeQR;
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
             var UserID = localStorage.getItem("userID");
@@ -2783,6 +2801,7 @@
             var historyListCategoryAdd = $('#list-history-add');
             var listCategory = $('#history-setting-detail');
             var listWarrantyHistory = $('#history-warranty-detail');
+            var listLotProduct = $('#lot-warranty-detail');
             var NameWorkStation;
             var intervalId; // Lưu ID của setInterval
             var checkTab = false;
@@ -2920,7 +2939,32 @@
                 startQRcode();
             }
             $(".start").click(function () {
-                startQRcode();
+                const buttonId = $(this).attr("id"); // Lấy id của nút
+                const dataId = $(this).data("id"); // Lấy giá trị data-id
+                console.log(dataId);
+                typeQR = dataId;
+                if(dataId == 3){
+                    const lotNumber = $("#lot-number").val(); // Giá trị của select
+                    const classProduct = $("#classProduct").val().trim(); // Giá trị của input lớp sản phẩm
+                    const classProductNumber = $("#classProductNumber").val().trim(); // Giá trị của input số lượng quét
+
+                    let isValid = true;
+                    if (lotNumber === "0") {
+                        toastr.error("vui lòng chọn lô trước khi quét")
+                        isValid = false;
+                    } else if (classProduct === "") {
+                        toastr.error("Vui lòng nhập Lớp sản phẩm!");
+                        isValid = false;
+                    } else if (classProductNumber === "" || isNaN(classProductNumber) || Number(classProductNumber) <= 0) {
+                        toastr.error("Vui lòng nhập số lượng cần quét hợp lệ (lớn hơn 0)!");
+                        isValid = false;
+                    }
+                    if(isValid){
+                        startQRcode();
+                    }
+                } else {
+                    startQRcode();
+                }
             })
             $("#PickApp-button-mua").click(function () {
                 showHistory();
@@ -3165,6 +3209,7 @@
                     document.querySelector(".tablinkGuarantee").click();
                     $("#warrantyDetailProduct").removeClass("d-none");
                     $("#ScanAllQRcode").addClass("d-none");
+                    $("#lotProduct").addClass("d-none");
                     checkTab = false;
                 } else if (type == 'LOGIN'){
                     if (window.GetUser) {
@@ -4594,22 +4639,33 @@
                             console.log(data);
                             
                             if(data[0].LOT_ID == 0){
-                                if($('#errorType').val() != 0){
-                                    const willInsertData = {
+                                let willInsertData;
+                                if($('#lot-number').val() != 0){
+                                    willInsertData = {
                                         PR_KEY: data[0].PR_KEY,
                                         QR_CODE: decodedText,
                                         MA_SAN_PHAM: checkQRcode[1],
-                                        LOT_ID: $('#errorType').val(),
+                                        LOT_ID: $('#lot-number').val(),
+                                        LOT_CLASS: $('#classProduct').val(),
                                         DATE_CREATE: new Date(),
                                         ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
                                         USER_ID: UserID,
                                         DATASTATE: "EDIT",
                                     };
-                                    add('DM_QRCODE', willInsertData);
-                                    toastr.success("Quét QR và lưu thông tin thành công!");
                                 } else {
-                                    toastr.error("Chưa chọn lô sản phẩm, vui lòng chọn rồi tiếp tục quét!");
+                                    willInsertData = {
+                                        PR_KEY: data[0].PR_KEY,
+                                        QR_CODE: decodedText,
+                                        MA_SAN_PHAM: checkQRcode[1],
+                                        DATE_CREATE: new Date(),
+                                        ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
+                                        USER_ID: UserID,
+                                        DATASTATE: "EDIT",
+                                    };
                                 }
+                                add('DM_QRCODE', willInsertData);
+                                toastr.success("Quét QR và lưu thông tin thành công!");
+                                
                             } else {
                                 toastr.error("Sản phẩm đã thuộc 1 lô khác, vui lòng kiểm tra lại!");
                             }
@@ -4627,51 +4683,60 @@
                         }
                         
                     } else {
-                        if($('#errorType').val() != 0){
-                            const willInsertData = {
+                        let willInsertData;
+                        if($('#lot-number').val() != 0){
+                            willInsertData = {
                                 QR_CODE: decodedText,
                                 MA_SAN_PHAM: checkQRcode[1],
-                                LOT_ID: $('#errorType').val(),
+                                LOT_ID: $('#lot-number').val(),
+                                LOT_CLASS: $('#classProduct').val(),
                                 DATE_CREATE: new Date(),
                                 ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
                                 USER_ID: UserID,
                                 DATASTATE: "ADD",
                             };
-                            add('DM_QRCODE', willInsertData).then(async data => {
-                                try {
-                                    toastr.success("Quét QR và lưu thông tin thành công!");
-                                    if(checkTab){
-                                        scanAgain();
-                                    } else {
-                                        document.getElementById("result-product").classList.remove("d-none");
-                                        document.getElementById("result-form-loading").classList.add("d-none");
-                                        document.getElementById("result-form").classList.remove("d-none");
-                                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
-                                        document.getElementById("result-product-truycap").disabled = false;
-                                        document.getElementById("result-form-productName").value = checkQRcode[1];
-                                        document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
-                                        document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
-                                        data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
-                                        const willInsertData = {
-                                            TYPE: "ADD",
-                                            ERROR_NAME: "Hoàn thành sản phẩm",
-                                            DESCRIPTION: "Nhập sản phẩm vào hệ thống",
-                                            DATE_CREATE: new Date(),
-                                            ERROR_STATUS: 0,
-                                            QRCODE_ID: data[0].PR_KEY,
-                                            USER_ID: UserID,
-                                            DATASTATE: "ADD",
-                                        };
-                                        await add('WARRANTY_ERROR', willInsertData)
-                                        changeDataWarranty(data);
-                                    }
-                                } catch (e) { }
-                            }).catch(err => {
-                                console.error('Error:', err);
-                            });
                         } else {
-                            toastr.error("Chưa chọn lô sản phẩm, vui lòng chọn rồi tiếp tục quét!");
+                            willInsertData = {
+                                QR_CODE: decodedText,
+                                MA_SAN_PHAM: checkQRcode[1],
+                                DATE_CREATE: new Date(),
+                                ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
+                                USER_ID: UserID,
+                                DATASTATE: "ADD",
+                            };
                         }
+                        add('DM_QRCODE', willInsertData).then(async data => {
+                            try {
+                                toastr.success("Quét QR và lưu thông tin thành công!");
+                                if(checkTab){
+                                    scanAgain();
+                                } else {
+                                    document.getElementById("result-product").classList.remove("d-none");
+                                    document.getElementById("result-form-loading").classList.add("d-none");
+                                    document.getElementById("result-form").classList.remove("d-none");
+                                    document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                                    document.getElementById("result-product-truycap").disabled = false;
+                                    document.getElementById("result-form-productName").value = checkQRcode[1];
+                                    document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                                    document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
+                                    data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
+                                    const willInsertData = {
+                                        TYPE: "ADD",
+                                        ERROR_NAME: "Hoàn thành sản phẩm",
+                                        DESCRIPTION: "Nhập sản phẩm vào hệ thống",
+                                        DATE_CREATE: new Date(),
+                                        ERROR_STATUS: 0,
+                                        QRCODE_ID: data[0].PR_KEY,
+                                        USER_ID: UserID,
+                                        DATASTATE: "ADD",
+                                    };
+                                    await add('WARRANTY_ERROR', willInsertData)
+                                    changeDataWarranty(data);
+                                }
+                            } catch (e) { }
+                        }).catch(err => {
+                            console.error('Error:', err);
+                        });
                     }
                 } else {
                     if (decodedText.length > 6) {
@@ -4772,12 +4837,13 @@
                                                     console.log(data);
                                                     
                                                     if(data[0].LOT_ID == 0){
-                                                        if($('#errorType').val() != 0){
+                                                        if($('#lot-number').val() != 0){
                                                             const willInsertData = {
                                                                 PR_KEY: data[0].PR_KEY,
                                                                 QR_CODE: decodedText,
                                                                 MA_SAN_PHAM: checkQRcode[1],
-                                                                LOT_ID: $('#errorType').val(),
+                                                                LOT_ID: $('#lot-number').val(),
+                                                                LOT_CLASS: $('#classProduct').val(),
                                                                 DATE_CREATE: new Date(),
                                                                 ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
                                                                 USER_ID: UserID,
@@ -4805,11 +4871,12 @@
                                                 }
                                                 
                                             } else {
-                                                if($('#errorType').val() != 0){
+                                                if($('#lot-number').val() != 0){
                                                     const willInsertData = {
                                                         QR_CODE: decodedText,
                                                         MA_SAN_PHAM: checkQRcode[1],
-                                                        LOT_ID: $('#errorType').val(),
+                                                        LOT_ID: $('#lot-number').val(),
+                                                        LOT_CLASS: $('#classProduct').val(),
                                                         DATE_CREATE: new Date(),
                                                         ACTIVATE_WARRANTY: new Date('1999-01-01 07:00:00.000'),
                                                         USER_ID: UserID,
@@ -5028,14 +5095,14 @@
                         $("#warrantyDetailProduct").addClass("d-none");
                         $("#ScanAllQRcode").removeClass("d-none");
                         $("#lotProduct").addClass("d-none");
-                        $('#errorType').empty();
+                        $('#lot-number').empty();
                         const Data = await getDM('WARRANTY_LOT', "1=1");
                         const newOption = $('<option>', {
                             value: '0', // Giá trị của option
                             text: 'Chọn lô sản phẩm' // Nội dung hiển thị
                         });
                         // Thêm vào select
-                        $('#errorType').append(newOption);
+                        $('#lot-number').append(newOption);
                         Data.data.forEach(item => {
                             console.log(item);
                             const newOption = $('<option>', {
@@ -5043,13 +5110,14 @@
                                 text: item.LOT_NAME // Nội dung hiển thị
                             });
                             // Thêm vào select
-                            $('#errorType').append(newOption);
+                            $('#lot-number').append(newOption);
                         });
                         checkTab = true;
                     } else if (menuText == "Quản lý và xuất lô hàng") {
                         $("#warrantyDetailProduct").addClass("d-none");
                         $("#ScanAllQRcode").addClass("d-none");
                         $("#lotProduct").removeClass("d-none");
+                        addItemLotproduct();
                     }
                     // Close the sidebar after selection (optional)
                     sidebar.removeClass("open");
@@ -5408,6 +5476,91 @@
                 newTab.document.body.appendChild(script);
             }
 
+            function generateVoucher(item) {
+                console.log(item);
+                
+                const newTab = window.open('', '_blank');
+                if (!newTab || newTab.closed || typeof newTab.closed == 'undefined') {
+                    alert('Tab mới không thể mở. Vui lòng kiểm tra cài đặt popup của trình duyệt.');
+                    return;
+                }
+                let htmlContent = `
+                    <html>
+                    <head>
+                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                        <style>
+                            body {
+                                font-family: 'Times New Roman', Times, serif;
+                            }
+                            .header-logo {
+                                width: 80px;
+                            }
+                            .table-bordered td, .table-bordered th {
+                                vertical-align: middle;
+                            }
+                            .text-small {
+                                font-size: 0.85rem;
+                            }
+                            .text-start {
+                                font-size: 13px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="container my-4">
+                            <div class="row">
+                                <div class="col-8 text-center">
+                                    <img src="https://homeos.com.vn/storage/photos/logo_1611367959_1716866836.webp" style="width: 150px;" alt="Logo" class="header-logo">
+                                    <p class="mt-2">
+                                        <strong>CÔNG TY CỔ PHẦN CÔNG NGHỆ HOMEOS VIỆT NAM</strong><br>
+                                        Địa chỉ: Số 24, Ngõ 22, Đường Kim Giang, Q. Thanh Xuân, TP Hà Nội
+                                    </p>
+                                </div>
+                                <div class="col-4 text-center" style="margin-top: 30px;">
+                                    <p class="text-small"><b>Mẫu số 02 - VT</b></p>
+                                    <p class="text-small">(Ban hành theo Thông tư số: 200/2014/TT-BTC ngày 22/12/2014 của Bộ Tài Chính)</p>
+                                </div>
+                            </div>
+
+                            <div class="text-center my-4">
+                                <h4><strong>PHIẾU XUẤT KHO</strong></h4>
+                                <p class="text-small m-0"><b>(Kiêm bảo hành)</b></p>
+                                <p class="m-0"><strong>Số phiếu: L01.2024.T01</strong></p>
+                                <p class="m-0"><b><i>Ngày 26 tháng 09 năm 2024</i></b></p>
+                            </div>
+
+                            <p style="font-size: 14px;">- Họ và tên người nhận hàng: CÔNG TY TNHH ĐIỆN CÔNG NGHIỆP KHỞI MINH</p>
+                            <p style="font-size: 14px;">- Lý do xuất kho: Xuất bán</p>
+                            <p style="font-size: 14px;">- Xuất tại địa điểm: J04 - L02, An Phú Shop Villa, Dương Kinh, Hà Đông, Hà Nội.</p>
+
+                            <table class="table table-bordered text-center mt-4">
+                                <thead>
+                                    <tr style="font-size: 14px;">
+                                        <th>STT</th>
+                                        <th>DANH MỤC HÀNG HÓA</th>
+                                        <th>ĐVT</th>
+                                        <th>SL</th>
+                                        <th style="width: 30px;">GHI CHÚ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" style="text-align: start;"><b>Thiết bị rơ le an toàn phao nước</b></td>
+                                    </tr>
+                `;
+
+
+                // Chèn nội dung HTML vào tab mới
+                newTab.document.write(htmlContent);
+                newTab.document.close();
+
+                const script = newTab.document.createElement("script");
+                script.textContent = "window.onload = function() { window.print(); }";
+                const script1 = newTab.document.createElement("script");
+                script.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
+                newTab.document.body.appendChild(script);
+            }
+
             function updateTranNo(result, tableName, tranNo, lengthKey) {
                 const willInsertData = {
                     PR_KEY: 15,
@@ -5543,11 +5696,47 @@
                 
             }
 
+            async function addItemLotproduct() {
+                const data = await getDM('WARRANTY_LOT', "1=1");
+                listLotProduct.empty();
+                data.data.forEach(item => {
+                    let element = '';
+                    element += '<div class="col-12" style="padding: 5px 10px;">'+
+                        '<div id="PickApp-button-mua" class="iconApp">'+
+                            '<div class="info-box-content">'+
+                                '<div class="d-flex justify-content-between">'+
+                                    '<span class="app-text">'+item.LOT_NAME+'</span>'+
+                                '</div>'+
+                                '<span class="app-text-number">'+item.LOT_NUMBER+'</span>'+
+                            '</div>'+
+                            '<button class="icon print-button" style="background-color: #17a2b8; box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2); border: none; ">'+
+                                '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" style="color: #fff" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">'+
+                                    '<path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/>'+
+                                    '<path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/>'+
+                                '</svg>'+
+                            '</button>'+
+                        '</div>'+
+                    '</div>'
+
+                    const $element = $(element);
+
+                    $element.find('.print-button').on('click', function (e) {
+                        e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
+                        console.log(1);
+                        
+                        generateVoucher(item);
+                        
+                    });
+                    listLotProduct.append($element);
+                });
+            }
+
             function WarrantyCheckUser(ROLE) {
                 switch (ROLE) {
                     case "GUEST":
                         document.getElementById('warranty_scansQRcode').classList.add('d-none');
                         document.getElementById('result-product-warranty').classList.add('hidden');
+                        $("#lotProduct").add("d-none");
                         break;
                     case "DISTRIBUTIVE":
 
