@@ -5533,8 +5533,16 @@
                 newTab.document.body.appendChild(script);
             }
 
-            function generateVoucher(item) {
+            async function generateVoucher(item) {
                 console.log(item);
+                const data = await getDM("DM_QRCODE", "LOT_ID='"+item.PR_KEY+"'")
+                const uniqueClasses = [...new Set(data.data.map(item => item.LOT_CLASS))];
+                const groupedData = uniqueClasses.map(cls => {
+                    return {
+                        LOT_CLASS: cls,
+                        items: data.data.filter(item => item.LOT_CLASS === cls)
+                    };
+                });
                 
                 const newTab = window.open('', '_blank');
                 if (!newTab || newTab.closed || typeof newTab.closed == 'undefined') {
@@ -5583,7 +5591,7 @@
                                 <h4><strong>PHIẾU XUẤT KHO</strong></h4>
                                 <p class="text-small m-0"><b>(Kiêm bảo hành)</b></p>
                                 <p class="m-0"><strong>Số phiếu: L01.2024.T01</strong></p>
-                                <p class="m-0"><b><i>Ngày 26 tháng 09 năm 2024</i></b></p>
+                                <p class="m-0"><b><i>Ngày 24 tháng 12 năm 2024</i></b></p>
                             </div>
 
                             <p style="font-size: 14px;">- Họ và tên người nhận hàng: CÔNG TY TNHH ĐIỆN CÔNG NGHIỆP KHỞI MINH</p>
@@ -5605,7 +5613,33 @@
                                         <td colspan="5" style="text-align: start;"><b>Thiết bị rơ le an toàn phao nước</b></td>
                                     </tr>
                 `;
-
+                for (let i = groupedData.length-1; i >= 0; i--) {
+                    let danhMuc = '';
+                    let number = 0;
+                    groupedData[i].items.forEach(element => {
+                        number++;
+                        const checkQRcode = element.QR_CODE.split(',');
+                        
+                        if(number == groupedData[i].items.length){
+                            danhMuc += checkQRcode[2].substring(3).replace(/\./g, "");
+                        } else {
+                            danhMuc += checkQRcode[2].substring(3).replace(/\./g, "")+ ', ';
+                        }
+                    });
+                    console.log(danhMuc);
+                    htmlContent +=`
+                    <tr>
+                        <td style="font-size: 15px;">`+groupedData[i].LOT_CLASS+`</td>
+                        <td class="text-start">
+                            `+danhMuc+`
+                        </td>
+                        <td style="font-size: 15px;">Bộ</td>
+                        <td style="font-size: 15px;">`+groupedData[i].items.length+`</td>
+                        <td></td>
+                    </tr>
+                    `
+                    
+                }
 
                 // Chèn nội dung HTML vào tab mới
                 newTab.document.write(htmlContent);
@@ -5614,7 +5648,8 @@
                 const script = newTab.document.createElement("script");
                 script.textContent = "window.onload = function() { window.print(); }";
                 const script1 = newTab.document.createElement("script");
-                script.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
+                script1.src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js";
+                newTab.document.body.appendChild(script1);
                 newTab.document.body.appendChild(script);
             }
 
@@ -5778,11 +5813,8 @@
                     const $element = $(element);
 
                     $element.find('.print-button').on('click', function (e) {
-                        e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
-                        console.log(1);
-                        
+                        e.preventDefault();
                         generateVoucher(item);
-                        
                     });
                     listLotProduct.append($element);
                 });
