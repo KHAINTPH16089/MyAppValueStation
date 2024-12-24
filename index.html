@@ -4684,7 +4684,7 @@
                                     USER_ID: UserID,
                                     DATASTATE: "ADD",
                                 };
-                                add('DM_QRCODE', willInsertData);
+                                await add('DM_QRCODE', willInsertData);
                                 toastr.success("Quét QR và lưu thông tin thành công!");
                                 const dataEdit = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                 console.log(dataEdit, decodedText.replaceAll(',', '$'));
