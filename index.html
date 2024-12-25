@@ -4718,7 +4718,7 @@
                             }
                         } else {
                             const dataLot = await getDM("WARRANRY_LOT", "1=1")
-                            const checkValue = dataLot.data.includes(decodedText);
+                            const checkValue = dataLot.data.array.some(item => item.LOT_NUMBER == decodedText);
                             if(checkValue){
                                 console.log(decodedText);
                             } else {
