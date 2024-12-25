@@ -4541,15 +4541,22 @@
                 html5QrCode.start(
                     cameraId,
                     {
-                        fps: 30,    // Số khung hình trên giây
-                        // qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                        qrbox: { width: 200, height: 200 },  // Kích thước khung quét QR
-                        // aspectRatio: 1, // Đặt tỉ lệ khung hình
-                        experimentalFeatures: {
-                            useBarCodeDetectorIfSupported: true,
-                        },
+                        // fps: 30,    // Số khung hình trên giây
+                        // // qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                        // qrbox: { width: 200, height: 200 },  // Kích thước khung quét QR
+                        // // aspectRatio: 1, // Đặt tỉ lệ khung hình
+                        // experimentalFeatures: {
+                        //     useBarCodeDetectorIfSupported: true,
+                        // },
+                        // videoConstraints: {
+                        //     aspectRatio: 2,
+                        //     facingMode: { exact: cam },
+                        // }
+                        fps: 10, // Tốc độ khung hình
+                        qrbox: { width: 150, height: 150 }, // Kích thước khung quét
                         videoConstraints: {
-                            aspectRatio: 2,
+                            width: { ideal: 1920 }, // Độ phân giải video lớn hơn
+                            height: { ideal: 1080 },
                             facingMode: { exact: cam },
                         }
                     },
