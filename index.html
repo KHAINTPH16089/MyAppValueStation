@@ -4633,7 +4633,7 @@
                 let domain;
                 let workstation;
                 let checkQRcode = decodedText.split(',');
-                if(checkQRcode[0].substring(0, 3) == "T20"){
+                if(typeQR == 2 || typeQR == 3){
                     data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                     if(data.length > 0){
                         if(checkTab){
@@ -4857,7 +4857,8 @@
                                         let workstation;
                                         let checkQRcode = decodedText.split(',');
                                         
-                                        if(checkQRcode[0].substring(0, 3) == "T20"){
+                                        // if(checkQRcode[0].substring(0, 3) == "T20"){
+                                        if(typeQR == 2 || typeQR == 3){
                                             data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
                                             if(data.length > 0){
                                                 if(checkTab){
