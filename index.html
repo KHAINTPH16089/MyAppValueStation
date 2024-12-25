@@ -5922,13 +5922,13 @@
                     case "GUEST":
                         document.getElementById('warranty_scansQRcode').classList.add('d-none');
                         document.getElementById('result-product-warranty').classList.add('hidden');
-                        $("#lotProduct").add("d-none");
-                        $("#warranty_lot").add("d-none");
+                        $("#lotProduct").addClass("d-none");
+                        $("#warranty_lot").addClass("d-none");
                         break;
                     case "DISTRIBUTIVE":
                         // $("#lotProduct").add("d-none");
-                        $("#warranty_lot").add("d-none");
-                        $("#warranty_scansQRcode").add("d-none");
+                        $("#warranty_lot").addClass("d-none");
+                        $("#warranty_scansQRcode").addClass("d-none");
                         break;
                     default:
                         break;
