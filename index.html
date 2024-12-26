@@ -4535,39 +4535,62 @@
             var isScannerRunning = false;  // Biến theo dõi trạng thái quét
             var currentCamera;
             // Hàm khởi tạo quét QR
+            // function startScan(cameraId, cam) {
+            //     currentCamera = cam;
+            //     const formatsToSupport = [
+            //         Html5QrcodeSupportedFormats.QR_CODE,
+            //         Html5QrcodeSupportedFormats.UPC_A,
+            //         Html5QrcodeSupportedFormats.UPC_E,
+            //         Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
+            //     ];
+
+            //     const config = {
+            //         fps: 30,
+            //         qrbox: 150,
+            //         rememberLastUsedCamera: true,
+            //         aspectRatio: 2,
+            //         experimentalFeatures: {
+            //             useBarCodeDetectorIfSupported: false
+            //         },
+            //         formatsToSupport: formatsToSupport
+            //     };
+
+            //     const cameraMode = {
+            //         facingMode: { exact: cam }
+            //     };
+
+            //     html5QrCode = new Html5Qrcode("qr-reader");
+            //     html5QrCode.start(
+            //         cameraMode,
+            //         config,
+            //         qrCodeMessage => {
+            //             stockitProcessQrCode(qrCodeMessage);
+            //         },
+            //         errorMessage => {
+            //             // parse error, ignore it.
+            //             // console.log("Error Message:", errorMessage);
+            //         },
+            //         onScanSuccess,
+            //         onScanFailure
+            //     ).then(() => {
+            //         isScannerRunning = true;  // Đánh dấu scanner đang chạy
+            //     }).catch(err => {
+            //         console.error("Lỗi khi khởi động camera: ", err);
+            //     });
+            // }
+
             function startScan(cameraId, cam) {
                 currentCamera = cam;
-                const formatsToSupport = [
-                    Html5QrcodeSupportedFormats.QR_CODE,
-                    Html5QrcodeSupportedFormats.UPC_A,
-                    Html5QrcodeSupportedFormats.UPC_E,
-                    Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
-                ];
-
-                const config = {
-                    fps: 30,
-                    qrbox: 150,
-                    rememberLastUsedCamera: true,
-                    aspectRatio: 2,
-                    experimentalFeatures: {
-                        useBarCodeDetectorIfSupported: false
-                    },
-                    formatsToSupport: formatsToSupport
-                };
-
-                const cameraMode = {
-                    facingMode: { exact: cam }
-                };
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
-                    cameraMode,
-                    config,
-                    qrCodeMessage => {
-                        stockitProcessQrCode(qrCodeMessage);
-                    },
-                    errorMessage => {
-                        // parse error, ignore it.
-                        //console.log("errorMessage="+errorMessage);
+                    cameraId,
+                    {
+                        fps: 10,    // Số khung hình trên giây
+                        qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                        aspectRatio: 1.7, // Đặt tỉ lệ khung hình
+                        videoConstraints: {
+                            facingMode: { exact: cam },
+                        }
                     },
                     onScanSuccess,
                     onScanFailure
@@ -4576,24 +4599,7 @@
                 }).catch(err => {
                     console.error("Lỗi khi khởi động camera: ", err);
                 });
-                setTimeout(function () {
-                    html5QrCode.applyVideoConstraints({
-                        focusMode: "continuous",
-                        advanced: [{ zoom: 2.0 }],
-                    });
-                }, 2000);
             }
-            // fps: 30,    // Số khung hình trên giây
-                        // // qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-                        // qrbox: { width: 200, height: 200 },  // Kích thước khung quét QR
-                        // // aspectRatio: 1, // Đặt tỉ lệ khung hình
-                        // experimentalFeatures: {
-                        //     useBarCodeDetectorIfSupported: true,
-                        // },
-                        // videoConstraints: {
-                        //     aspectRatio: 2,
-                        //     facingMode: { exact: cam },
-                        // }
                         // fps: 10, // Tốc độ khung hình
                         // qrbox: { width: 150, height: 150 }, // Kích thước khung quét
                         // videoConstraints: {
