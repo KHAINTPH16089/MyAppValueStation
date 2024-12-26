@@ -4548,7 +4548,7 @@
                     fps: 30,
                     qrbox: 150,
                     rememberLastUsedCamera: true,
-                    aspectRatio: 1,
+                    aspectRatio: 2,
                     experimentalFeatures: {
                         useBarCodeDetectorIfSupported: false
                     },
@@ -4576,6 +4576,12 @@
                 }).catch(err => {
                     console.error("Lỗi khi khởi động camera: ", err);
                 });
+                setTimeout(function () {
+                    html5QrCode.applyVideoConstraints({
+                        focusMode: "continuous",
+                        advanced: [{ zoom: 2.0 }],
+                    });
+                }, 2000);
             }
             // fps: 30,    // Số khung hình trên giây
                         // // qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
