@@ -2039,7 +2039,16 @@
                         </button>
                     </div>
                     <div id="tab4" class="tab-content-guarantee">
-                        <div id="warrantyHistory" style="padding: 20px 0;">
+                        <div style="color: #fff; font-size: 1.5rem; padding: 50px 0 0 0;">Sản phẩm cần xem</div>
+                        <div style="text-align: start; margin: 15px 0;">
+                            <span style="color: #fff;">Mã QRcode:</span>
+                            <input id="warranty_QR" type="text"
+                                style="width: 100%; height: 50px; color: #fff; padding-left: 20px; margin-top: 10px; background-color: #343a40; border: none; border-bottom: 1px solid #626262;"
+                                placeholder="Nhập mã bên dưới QRcode...">
+                        </div>
+                        <button id="warranty-detail" class="btn btn-warning"
+                            style="background-color: #f39c12;border: solid 1px #f39c12; width: 100%; color: #fff; margin-top: 20px;">Xem thiết bị</button>
+                        <!-- <div id="warrantyHistory" style="padding: 20px 0;">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">sản phẩm đã xem</h3>
@@ -2066,7 +2075,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div id="ScanAllQRcode" class="d-none">
@@ -2779,6 +2788,8 @@
                                 };
                                 add('WARRANTY_USER', willInsertData);
                             }
+                        } else {
+                            localStorage.setItem('RoleUser', 'GUEST');
                         }
                     } catch (error) {
                         console.error("Error fetching user data:", error);
@@ -2854,7 +2865,7 @@
             function checkHeight() {
                 const viewportHeight = window.innerHeight;
                 const historyDetail = document.getElementById('history-detail');
-                historyDetail.style.height = (viewportHeight - 340) + 'px';
+                historyDetail.style.height = (viewportHeight - 240) + 'px';
                 const categoryDetail = document.getElementById('list-history-detail');
                 categoryDetail.style.height = (viewportHeight - 530) + 'px';
                 const category = document.getElementById('history-setting-detail');
@@ -2864,7 +2875,7 @@
             window.addEventListener('resize', function () {
                 const viewportHeight = window.innerHeight;
                 const historyDetail = document.getElementById('history-detail');
-                historyDetail.style.height = (viewportHeight - 340) + 'px'; // 80% chiều cao của thiết bị
+                historyDetail.style.height = (viewportHeight - 240) + 'px'; // 80% chiều cao của thiết bị
                 const categoryDetail = document.getElementById('list-history-detail');
                 categoryDetail.style.height = (viewportHeight - 530) + 'px'; // 80% chiều cao của thiết bị
                 const category = document.getElementById('history-setting-detail');
@@ -6008,6 +6019,44 @@
                 });
             }
 
+            $("#warranty-detail").click( async function () {
+                var inputValue = document.getElementById("warranty_QR").value;
+                if (inputValue == null || inputValue == "") {
+                    toastr.error("Vui lòng nhập mã QRcode!");
+                } else {
+                    
+                    let dataWarranty = [];
+                    const dataQRcode = await getDM("DM_QRCODE", "1=1")
+                    const matchedItem = dataQRcode.data.find(item => 
+                        item.QR_CODE.slice(-9).replace(/\./g, '') === inputValue.replace(/\./g, '')
+                    );
+                    if(matchedItem != undefined){
+                        dataWarranty.push(matchedItem);
+                    }
+                    if(dataWarranty.length == 1){
+                        $("#loading-popup").modal({
+                            fadeDuration: 250,
+                            escapeClose: false,
+                            clickClose: false,
+                            showClose: false
+                        });
+                        let checkQRcode = dataWarranty[0].QR_CODE.split(',');
+                        const dataQRProduct = await getDataMDQRcode(dataWarranty[0].QR_CODE.replaceAll(',', '$'));
+                        document.getElementById("result-product").classList.remove("d-none");
+                        document.getElementById("result-form-loading").classList.add("d-none");
+                        document.getElementById("result-form").classList.remove("d-none");
+                        document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                        document.getElementById("result-product-truycap").disabled = false;
+                        document.getElementById("result-form-productName").value = checkQRcode[1];
+                        document.getElementById("result-form-productCode").value = checkQRcode[2].substring(1);
+                        document.getElementById("header-productName").textContent = checkQRcode[1]+" - "+checkQRcode[2].substring(1);
+                        changeDataWarranty(dataQRProduct);
+                        DetailProduct();
+                    } else {
+                        toastr.error("Sản phẩm không tồn tại hoặc chưa được thêm vào hệ thống")
+                    }
+                }
+            })
             function WarrantyCheckUser(ROLE) {
                 switch (ROLE) {
                     case "GUEST":
