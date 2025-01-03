@@ -879,9 +879,9 @@
             bottom: 0;
         }
 
-        #qr-shaded-region {
+        /* #qr-shaded-region {
             border-width: 40vh 15vh !important;
-        }
+        } */
 
         /* history */
         .history-header {
@@ -2748,6 +2748,7 @@
         $(document).ready(function () {
             var DataUser;
             var typeQR;
+            var listDomain = [];
             // Gọi hàm GetUser từ script chính
             DataUser = JSON.parse(localStorage.getItem("userInfo"));
             var UserID = localStorage.getItem("userID");
@@ -2802,6 +2803,14 @@
                 WarrantyCheckUser(localStorage.getItem("RoleUser"));
             }
 
+            async function getListDomain() {
+                const datatest = await getDM('WARRANTY_SERVICE', "1=1");
+                for (let i = 0; i < datatest.data.length; i++) {
+                    listDomain.push(datatest.data[i].DOMAIN);
+                }
+            }
+
+            getListDomain()
             handleUser();
             var historyItems = [];
             var CategoryItems = [];
@@ -2958,7 +2967,6 @@
                     const lotNumber = $("#lot-number").val(); // Giá trị của select
                     const classProduct = $("#classProduct").val().trim(); // Giá trị của input lớp sản phẩm
                     const classProductNumber = $("#classProductNumber").val().trim(); // Giá trị của input số lượng quét
-
                     let isValid = true;
                     if (lotNumber === "0") {
                         toastr.error("vui lòng chọn lô trước khi quét")
@@ -3245,7 +3253,7 @@
                 }
             }
             async function CheckWorkStation(workstationID) {
-                var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn", "ninhbinh.homeos.vn"]
+                // var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "angiang.homeos.vn", "pctthn.homeos.vn", "thanthongnhat.homeos.vn", "ninhbinh.homeos.vn"]
                 var domain;
                 var data;
                 for (let i = 0; i < listDomain.length; i++) {
@@ -3273,7 +3281,7 @@
             // kiểm tra xem trạm nhập chạy ở service nào
             async function getDomain(workstationID, type) {
                 return new Promise(async (resolve, reject) => {
-                    var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "angiang.homeos.vn", "thanthongnhat.homeos.vn", "ninhbinh.homeos.vn"]
+                    // var listDomain = ["thoitiet.ifee.edu.vn", "namdinh.homeos.vn", "kttvthaibinh.com.vn", "cctl-dongthap.homeos.vn", "angiang.homeos.vn", "pctthn.homeos.vn", "thanthongnhat.homeos.vn", "ninhbinh.homeos.vn"]
                     var domain;
                     var data;
                     for (let i = 0; i < listDomain.length; i++) {
@@ -4098,7 +4106,6 @@
                 $('#loading-popup').modal('hide');
             }
 
-
             if (maTram != "") {
                 getDataMonitoring();
                 document.getElementById("ScanQR").classList.add("hidden");
@@ -4590,7 +4597,7 @@
             //     });
             // }
 
-            function startScan(cameraId, cam) {
+            async function startScan(cameraId, cam) {
                 currentCamera = cam;
                 html5QrCode = new Html5Qrcode("qr-reader");
                 html5QrCode.start(
@@ -4600,11 +4607,11 @@
                         qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
                         aspectRatio: 1.7, // Đặt tỉ lệ khung hình
                         videoConstraints: {
-                            // width: { ideal: 3840 }, // Độ phân giải video lớn hơn
+                            // width: { ideal: 3840 }, // Độ phân giải video 4k
                             // height: { ideal: 2160 },
-                            // width: { ideal: 1920 }, // Độ phân giải video lớn hơn
+                            // width: { ideal: 1920 }, // Độ phân giải video 1080p
                             // height: { ideal: 1080 },
-                            width: { ideal: 2560 }, // Độ phân giải video lớn hơn
+                            width: { ideal: 2560 }, // Độ phân giải video 2k 
                             height: { ideal: 1440 },
                             facingMode: { exact: cam },
                         }
@@ -4613,18 +4620,21 @@
                     onScanFailure
                 ).then(() => {
                     isScannerRunning = true;  // Đánh dấu scanner đang chạy
+                    setTimeout(() => {
+                        if(typeQR == 1){
+                            $('#qr-shaded-region').css('border-width', '35vh 10vh');
+                            // $('#qr-shaded-region').attr('style', 'border-width: 35vh 10vh !important;');
+                        } else {
+                            $('#qr-shaded-region').css('border-width', '40vh 15vh');
+                            // $('#qr-shaded-region').attr('style', 'border-width: 40vh 15vh !important;');
+                        }
+                    }, 100);
                 }).catch(err => {
                     console.error("Lỗi khi khởi động camera: ", err);
                 });
+                
             }
-                        // fps: 10, // Tốc độ khung hình
-                        // qrbox: { width: 150, height: 150 }, // Kích thước khung quét
-                        // videoConstraints: {
-                        //     width: { ideal: 1920 }, // Độ phân giải video lớn hơn
-                        //     height: { ideal: 1080 },
-                        //     facingMode: { exact: cam },
-                        // }
-
+            
             // Khi nhấn nút mở popup quét QR
             function startQRcode() {
                 document.getElementById("result-form-total").classList.add("d-none");
@@ -5203,7 +5213,6 @@
                 });
             }
             adjustFooter();
-
             // Sidebar toggle logic
             const menuToggle = $(".menuToggle");
             const sidebar = $(".sidebar");
@@ -5492,7 +5501,8 @@
                 startValue = parseInt($('#startValue').val()) || 1;
                 getTranNo();
             });
-
+            
+            
             async function getTranNo() {
                 try {
                     const data = await getDM('SYS_TRAN_NO', "TABLE_NAME='DM_QRCODE'");
@@ -5693,7 +5703,6 @@
                 }
             }
 
-
             async function generateVoucher(item) {
                 console.log(item);
                 const data = await getDM("DM_QRCODE", "LOT_ID='"+item.PR_KEY+"'")
@@ -5755,7 +5764,7 @@
                                 <h4><strong>PHIẾU XUẤT KHO</strong></h4>
                                 <p class="text-small m-0"><b>(Kiêm bảo hành)</b></p>
                                 <p class="m-0"><strong>Số phiếu: `+item.LOT_NUMBER+`</strong></p>
-                                <p class="m-0"><b><i>Ngày 25 tháng 12 năm 2024</i></b></p>
+                                <p class="m-0"><b><i>Ngày ... tháng ... năm 2025</i></b></p>
                             </div>
 
                             <p class="m-0" style="font-size: 14px;">- Họ và tên người nhận hàng: CÔNG TY TNHH ĐIỆN CÔNG NGHIỆP KHỞI MINH</p>
@@ -6057,6 +6066,7 @@
                     }
                 }
             })
+            
             function WarrantyCheckUser(ROLE) {
                 switch (ROLE) {
                     case "GUEST":
