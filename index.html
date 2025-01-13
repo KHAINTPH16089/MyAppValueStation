@@ -1569,7 +1569,7 @@
                             <div class="info-box-content">
                                 <div class="d-flex justify-content-between">
                                     <span class="app-text">Bảo hành</span>
-                                    <span class="app-text">v1.0.3</span>
+                                    <span class="app-text">v1.0.4</span>
                                 </div>
                                 <span class="app-text-number">Bảo hành sản phẩm</span>
                             </div>
@@ -2925,7 +2925,7 @@
             function truyCap() {
                 document.getElementById("footer-instruct-scanQR").classList.add("d-none");
                 document.getElementById("result-form").classList.add("d-none");
-                $('#qr-popup').modal('hide');
+                $('#qr-popup').hide();
                 document.getElementById("ScanQR").classList.add("hidden");
                 document.getElementById("history").classList.add("hidden");
                 document.getElementById("homePage").classList.remove("hidden");
@@ -2943,11 +2943,11 @@
                 document.getElementById("tab-0").classList.remove("active");
                 document.getElementById("tab-1").classList.add("active");
                 document.getElementById("btn-tab1").classList.add("menuWarranty");
-                $('#qr-popup').modal('hide');
+                $('#qr-popup').hide()
                 document.getElementById("ScanQRWarranty").classList.add("hidden");
                 document.getElementById("guarantee").classList.remove("hidden");
                 document.getElementById("menu-warranty").classList.remove("d-none");
-                $('#loading-popup').modal('hide');
+                $('#loading-popup').hide()
                 console.log('hide');
 
             }
@@ -3009,12 +3009,7 @@
             });
             $("#share-qrcode-workstation").click(function () {
                 // Hiển thị popup với hiệu ứng modal
-                $("#share-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#share-popup").show()
 
                 // Xóa nội dung mã QR cũ
                 $('#qrcode').empty();
@@ -3045,15 +3040,10 @@
             });
 
             $("#errorWarranty").click(function () {
-                $("#error-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#error-popup").show();
             });
             $("#BackCodeQR").click(function () {
-                $('#share-popup').modal('hide');
+                $('#share-popup').hide();
             });
             $("#download-QRcode").click(function () {
                 const img = $('#hidden-image')[0];
@@ -3164,26 +3154,16 @@
             });
             $("#result-truycap").click(function () {
                 document.getElementById("result-truycap").disabled = true;
-                $("#loading-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#loading-popup").show()
                 truyCap()
             });
             $("#result-product-truycap").click(function () {
                 document.getElementById("result-product-truycap").disabled = true;
-                $("#loading-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#loading-popup").show()
                 DetailProduct();
             });
             $("#BackWarranty").click(function () {
-                $("#error-popup").modal('hide');
+                $("#error-popup").hide();
                 $("#errorInput").val("");
                 $("#errorType").val("");
                 $("#errorDesc").val("");
@@ -3269,7 +3249,7 @@
                 }
                 if (domain == '') {
                     toastr.error("Mã trạm không tồn tại");
-                    $('#loading-popup').modal('hide');
+                    $('#loading-popup').hide()
                 } else {
                     localStorage.setItem("URL", "https://" + domain + "/Service/Service.svc");
                     //$("#result").text("Kết quả quét: " + data[0].WORKSTATION_ID +"- Trạm:"+ data[0].WORKSTATION_NAME);
@@ -3632,12 +3612,7 @@
                 localStorage.setItem("MATRAM", item.CodeWorkStation);
                 const itemHistory = { 'CodeWorkStation': item.CodeWorkStation, 'NameWorkStation': item.NameWorkStation, 'domain': item.domain, 'date': getCurrentTime(), 'workstationType': item.workstationType }
                 localStorage.setItem('itemHistory', JSON.stringify(itemHistory));
-                $("#loading-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#loading-popup").show()
                 truyCap();
             }
 
@@ -4104,7 +4079,7 @@
                     const path = document.querySelector("#mySvg path");
                     path.setAttribute("fill", "#007bff");
                 }
-                $('#loading-popup').modal('hide');
+                $('#loading-popup').hide()
             }
 
             if (maTram != "") {
@@ -4644,12 +4619,7 @@
                 document.getElementById("result-form-title").classList.add("d-none");
                 document.getElementById("result-form-stationID").classList.remove("d-none");
                 document.getElementById("result-form-stationName").classList.remove("d-none");
-                $("#qr-popup").modal({
-                    fadeDuration: 250,
-                    escapeClose: false,
-                    clickClose: false,
-                    showClose: false
-                });
+                $("#qr-popup").show()
 
                 // Lấy danh sách camera và bắt đầu quét
                 Html5Qrcode.getCameras().then(_devices => {
@@ -4687,12 +4657,12 @@
                 if (isScannerRunning) {
                     html5QrCode.stop().then(ignore => {
                         isScannerRunning = false;  // Đánh dấu scanner đã dừng
-                        $('#qr-popup').modal('hide'); // Đóng popup
+                        $('#qr-popup').hide() // Đóng popup
                     }).catch(err => {
                         console.error("Lỗi khi dừng quét QR: ", err);
                     });
                 } else {
-                    $('#qr-popup').modal('hide'); // Nếu không có quét đang chạy, chỉ đóng popup
+                    $('#qr-popup').hide() // Nếu không có quét đang chạy, chỉ đóng popup
                 }
             });
 
@@ -5199,12 +5169,7 @@
                 if (inputValue == null || inputValue == "") {
                     toastr.error("Vui lòng nhập mã trạm!");
                 } else {
-                    $("#loading-popup").modal({
-                        fadeDuration: 250,
-                        escapeClose: false,
-                        clickClose: false,
-                        showClose: false
-                    });
+                    $("#loading-popup").show()
                     CheckWorkStation(inputValue)
                 }
             }
@@ -5412,7 +5377,12 @@
                     document.getElementById('result-product-warranty').classList.remove("d-none");
                 } else {
                     document.getElementById('warrantyActive').textContent = "Đã kích hoạt";
-                    document.getElementById('warrantyTimeActive').textContent = data[0].ACTIVATE_WARRANTY;
+                    const now = new Date(data[0].ACTIVATE_WARRANTY);
+
+                    const year = now.getFullYear();
+                    const month = String(now.getMonth() + 1).padStart(2, '0');
+                    const day = String(now.getDate()).padStart(2, '0');
+                    document.getElementById('warrantyTimeActive').textContent = `${year}-${month}-${day}`;
                     document.getElementById('result-product-warranty').classList.add("d-none");
                     const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
                     const time =  calculateWarrantyRemaining(data[0].DATE_CREATE,  Number(data[0].TIME_WARRANTY));
@@ -6072,12 +6042,7 @@
                         dataWarranty.push(matchedItem);
                     }
                     if(dataWarranty.length == 1){
-                        $("#loading-popup").modal({
-                            fadeDuration: 250,
-                            escapeClose: false,
-                            clickClose: false,
-                            showClose: false
-                        });
+                        $("#loading-popup").show()
                         let checkQRcode = dataWarranty[0].QR_CODE.split(',');
                         const dataQRProduct = await getDataMDQRcode(dataWarranty[0].QR_CODE.replaceAll(',', '$'));
                         document.getElementById("result-product").classList.remove("d-none");
