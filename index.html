@@ -4842,7 +4842,11 @@
                                 }).catch(err => {
                                     console.error('Error:', err);
                                 });
+                                console.log(1);
+                                
                             } else {
+                                console.log(2);
+                                
                                 document.getElementById("result-form").classList.remove("d-none");
                                 document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                                 document.getElementById("result-form-total").classList.remove("d-none");
@@ -4949,7 +4953,10 @@
                                         
                                         // if(checkQRcode[0].substring(0, 3) == "T20"){
                                         if(typeQR == 2 || typeQR == 3){
+                                            console.log(2);
                                             data = await getDataMDQRcode(decodedText.replaceAll(',', '$'));  
+                                            console.log(data);
+                                            
                                             if(data.length > 0){
                                                 if(checkTab){
                                                     if(data[0].LOT_ID == 0){
@@ -4993,6 +5000,8 @@
                                                 
                                             } else {
                                                 if(typeQR == 3 && checkQRcode[0].substring(0, 3) == "T20"){
+                                                    console.log(1);
+                                                    
                                                     const dataQRCODE = await getDM("DM_QRCODE", "LOT_ID='"+$('#lot-number').val()+"' AND LOT_CLASS='"+$('#classProduct').val()+"'")
                                                     if(dataQRCODE.data.length < $('#classProductNumber').val()){
                                                         const willInsertData = {
@@ -5025,6 +5034,7 @@
                                                         }).catch(err => {
                                                             console.error('Error:', err);
                                                         });
+                                                    console.log(2);
                                                         
                                                     } else {
                                                         toastr.error("Lớp đã quét đủ vui lòng nhập lớp mới!");
@@ -5078,6 +5088,8 @@
                                                         }).catch(err => {
                                                             console.error('Error:', err);
                                                         });
+                                                        console.log(2);
+                                                        
                                                     } else {
                                                         document.getElementById("result-form").classList.remove("d-none");
                                                         document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
@@ -5093,6 +5105,8 @@
                                                 
                                             }
                                         } else {
+                                            console.log(3);
+                                            
                                             if (decodedText.length > 6) {
                                                 var resultArray = decodedText.split("$");
                                                 data = await getNewData(
@@ -5357,6 +5371,15 @@
                             // document.getElementById("result-form").classList.remove("d-none");
                             // document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
                             // toastr.error("Vui lòng quét đúng mã QR của trạm mưa");
+                            document.getElementById("result-form").classList.remove("d-none");
+                            document.getElementById("footer-instruct-scanQR").classList.remove("d-none");
+                            document.getElementById("result-form-total").classList.remove("d-none");
+                            document.getElementById("result-form-loading").classList.add("d-none");
+                            document.getElementById("result-form-title").classList.remove("d-none");
+                            document.getElementById("result-form-stationID").classList.add("d-none");
+                            document.getElementById("result-form-stationName").classList.add("d-none");
+                            document.getElementById("result-truycap").classList.add("d-none");
+                            toastr.error("Vui lòng quét đúng mã QR!");
                         },
                     });
                 });
