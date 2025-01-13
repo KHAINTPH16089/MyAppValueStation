@@ -2502,6 +2502,7 @@
                                             <p style="padding-left: 5px;">Bảo hành</p>
                                         </div>
                                         <h6 id="warrantyActive">-</h6>
+                                        <h6 id="warrantyTimeActive"></h6>
                                     </div>
                                 </div>
                                 <div class=" col-6 p-2">
@@ -4609,11 +4610,12 @@
                         videoConstraints: {
                             // width: { ideal: 3840 }, // Độ phân giải video 4k
                             // height: { ideal: 2160 },
-                            // width: { ideal: 1920 }, // Độ phân giải video 1080p
-                            // height: { ideal: 1080 },
-                            width: { ideal: 2560 }, // Độ phân giải video 2k 
-                            height: { ideal: 1440 },
+                            width: { ideal: 1920 }, // Độ phân giải video 1080p
+                            height: { ideal: 1080 },
+                            // width: { ideal: 2560 }, // Độ phân giải video 2k 
+                            // height: { ideal: 1440 },
                             facingMode: { exact: cam },
+                            advanced: [{ zoom: 5 }]
                         }
                     },
                     onScanSuccess,
@@ -5379,15 +5381,18 @@
                 document.getElementById("deviceImg").src = data[0].PRODUCT_IMG;
                 if(data[0].ACTIVATE_WARRANTY == "1999-01-01T00:00:00"){
                     document.getElementById('warrantyActive').textContent = "Chưa kích hoạt";
+                    document.getElementById('warrantyTimeActive').textContent = " ";
                     const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
-                    const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
+                    const time =  calculateWarrantyRemaining(data[0].DATE_CREATE,  Number(data[0].TIME_WARRANTY));
+                    console.log(WarrantyAct, data);
                     document.getElementById('warrantyTime').textContent = time;
                     document.getElementById('result-product-warranty').classList.remove("d-none");
                 } else {
                     document.getElementById('warrantyActive').textContent = "Đã kích hoạt";
+                    document.getElementById('warrantyTimeActive').textContent = data[0].ACTIVATE_WARRANTY;
                     document.getElementById('result-product-warranty').classList.add("d-none");
                     const WarrantyAct = DataQRcode[0].substring(1, 5) +"-"+ DataQRcode[0].substring(5, 7) +"-"+ DataQRcode[0].substring(7, 9);
-                    const time =  calculateWarrantyRemaining(WarrantyAct,  Number(data[0].TIME_WARRANTY));
+                    const time =  calculateWarrantyRemaining(data[0].DATE_CREATE,  Number(data[0].TIME_WARRANTY));
                     document.getElementById('warrantyTime').textContent = time;
                 }
                 addItemHistoryWarranty(data[0].PR_KEY);
@@ -5436,11 +5441,12 @@
 
                 // Chuyển ngày bắt đầu bảo hành sang đối tượng Date
                 const startDateObj = new Date(startDate);
-
                 // Ngày kết thúc bảo hành
                 const warrantyEndDate = new Date(startDateObj);
                 warrantyEndDate.setMonth(warrantyEndDate.getMonth() + warrantyPeriodMonths);
 
+                console.log(warrantyEndDate);
+                
                 // Ngày hiện tại
                 const currentDate = new Date();
 
@@ -6071,7 +6077,7 @@
                 switch (ROLE) {
                     case "GUEST":
                         document.getElementById('warranty_scansQRcode').classList.add('d-none');
-                        document.getElementById('result-product-warranty').classList.add('hidden');
+                        // document.getElementById('result-product-warranty').classList.add('hidden');
                         $("#lotProduct").addClass("d-none");
                         $("#warranty_lot").addClass("d-none");
                         break;
