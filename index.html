@@ -4597,15 +4597,15 @@
                     onScanFailure
                 ).then(() => {
                     isScannerRunning = true;  // Đánh dấu scanner đang chạy
-                    setTimeout(() => {
-                        if(typeQR == 1){
-                            $('#qr-shaded-region').css('border-width', '35vh 10vh');
-                            // $('#qr-shaded-region').attr('style', 'border-width: 35vh 10vh !important;');
-                        } else {
-                            $('#qr-shaded-region').css('border-width', '36vh 13vh');
-                            // $('#qr-shaded-region').attr('style', 'border-width: 40vh 15vh !important;');
-                        }
-                    }, 100);
+                    // setTimeout(() => {
+                    //     if(typeQR == 1){
+                    //         $('#qr-shaded-region').css('border-width', '35vh 10vh');
+                    //         // $('#qr-shaded-region').attr('style', 'border-width: 35vh 10vh !important;');
+                    //     } else {
+                    //         $('#qr-shaded-region').css('border-width', '36vh 13vh');
+                    //         // $('#qr-shaded-region').attr('style', 'border-width: 40vh 15vh !important;');
+                    //     }
+                    // }, 100);
                 }).catch(err => {
                     console.error("Lỗi khi khởi động camera: ", err);
                 });
