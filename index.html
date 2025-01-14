@@ -4529,170 +4529,89 @@
             var isScannerRunning = false;  // Biến theo dõi trạng thái quét
             var currentCamera;
             // Hàm khởi tạo quét QR
-            // function startScan(cameraId, cam) {
-            //     currentCamera = cam;
-            //     const formatsToSupport = [
-            //         Html5QrcodeSupportedFormats.QR_CODE,
-            //         Html5QrcodeSupportedFormats.UPC_A,
-            //         Html5QrcodeSupportedFormats.UPC_E,
-            //         Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
-            //     ];
+            function startScan(cameraId, cam) {
+                currentCamera = cam;
+                const formatsToSupport = [
+                    Html5QrcodeSupportedFormats.QR_CODE,
+                    Html5QrcodeSupportedFormats.UPC_A,
+                    Html5QrcodeSupportedFormats.UPC_E,
+                    Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
+                ];
 
-            //     const config = {
-            //         fps: 30,
-            //         qrbox: 150,
-            //         rememberLastUsedCamera: true,
-            //         aspectRatio: 2,
-            //         experimentalFeatures: {
-            //             useBarCodeDetectorIfSupported: false
-            //         },
-            //         formatsToSupport: formatsToSupport
-            //     };
+                const config = {
+                    fps: 30,
+                    qrbox: 150,
+                    rememberLastUsedCamera: true,
+                    aspectRatio: 2,
+                    experimentalFeatures: {
+                        useBarCodeDetectorIfSupported: false
+                    },
+                    formatsToSupport: formatsToSupport
+                };
 
-            //     const cameraMode = {
-            //         facingMode: { exact: cam }
-            //     };
+                const cameraMode = {
+                    facingMode: { exact: cam }
+                };
 
-            //     html5QrCode = new Html5Qrcode("qr-reader");
-            //     html5QrCode.start(
-            //         cameraMode,
-            //         config,
-            //         qrCodeMessage => {
-            //             stockitProcessQrCode(qrCodeMessage);
-            //         },
-            //         errorMessage => {
-            //             // parse error, ignore it.
-            //             // console.log("Error Message:", errorMessage);
-            //         },
-            //         onScanSuccess,
-            //         onScanFailure
-            //     ).then(() => {
-            //         isScannerRunning = true;  // Đánh dấu scanner đang chạy
-            //     }).catch(err => {
-            //         console.error("Lỗi khi khởi động camera: ", err);
-            //     });
-            // }
-
-            // async function startScan(cameraId, cam) {
-            //     currentCamera = cam;
-            //     html5QrCode = new Html5Qrcode("qr-reader");
-            //     html5QrCode.start(
-            //         cameraId,
-            //         {
-            //             fps: 30,    // Số khung hình trên giây
-            //             qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
-            //             aspectRatio: 1.7, // Đặt tỉ lệ khung hình
-            //             videoConstraints: {
-            //                 // width: { ideal: 3840 }, // Độ phân giải video 4k
-            //                 // height: { ideal: 2160 },
-            //                 width: { ideal: 1920 }, // Độ phân giải video 1080p
-            //                 height: { ideal: 1080 },
-            //                 // width: { ideal: 2560 }, // Độ phân giải video 2k 
-            //                 // height: { ideal: 1440 },
-            //                 facingMode: { exact: cam },
-            //                 advanced: [{ zoom: 2 }]
-            //             }
-            //         },
-            //         onScanSuccess,
-            //         onScanFailure
-            //     ).then(() => {
-            //         isScannerRunning = true;  // Đánh dấu scanner đang chạy
-            //         setTimeout(() => {
-            //             if(typeQR == 1){
-            //                 $('#qr-shaded-region').css('border-width', '35vh 10vh');
-            //                 // $('#qr-shaded-region').attr('style', 'border-width: 35vh 10vh !important;');
-            //             } else {
-            //                 $('#qr-shaded-region').css('border-width', '36vh 13vh');
-            //                 // $('#qr-shaded-region').attr('style', 'border-width: 40vh 15vh !important;');
-            //             }
-            //         }, 100);
-            //     }).catch(err => {
-            //         console.error("Lỗi khi khởi động camera: ", err);
-            //     });
-                
-            // }
+                html5QrCode = new Html5Qrcode("qr-reader");
+                html5QrCode.start(
+                    cameraMode,
+                    config,
+                    qrCodeMessage => {
+                        stockitProcessQrCode(qrCodeMessage);
+                    },
+                    errorMessage => {
+                        // parse error, ignore it.
+                        // console.log("Error Message:", errorMessage);
+                    },
+                    onScanSuccess,
+                    onScanFailure
+                ).then(() => {
+                    isScannerRunning = true;  // Đánh dấu scanner đang chạy
+                }).catch(err => {
+                    console.error("Lỗi khi khởi động camera: ", err);
+                });
+            }
 
             async function startScan(cameraId, cam) {
-    currentCamera = cam;
-    html5QrCode = new Html5Qrcode("qr-reader");
-
-    // Khởi tạo video stream
-    const constraints = {
-        video: {
-            facingMode: { exact: cam }, // Chọn camera trước hoặc sau
-            width: { ideal: 1920 },    // Độ phân giải mong muốn
-            height: { ideal: 1080 }
-        }
-    };
-
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        const videoElement = document.createElement('video'); // Tạo thẻ video
-        videoElement.srcObject = stream; // Gắn stream vào video
-        videoElement.autoplay = true;
-
-        // Thêm video vào DOM và áp dụng zoom kỹ thuật số
-        videoElement.style.position = "absolute";
-        videoElement.style.top = "50%";
-        videoElement.style.left = "50%";
-        videoElement.style.transform = "translate(-50%, -50%) scale(1)"; // Zoom mặc định (1x)
-        videoElement.style.zIndex = "1000";
-        videoElement.style.width = "100%";
-        videoElement.style.height = "auto";
-        document.body.appendChild(videoElement);
-
-        // Tạo thanh trượt (slider) để thay đổi zoom
-        const zoomSlider = document.createElement('input');
-        zoomSlider.type = 'range';
-        zoomSlider.min = 1;    // Giá trị zoom nhỏ nhất (1x)
-        zoomSlider.max = 3;    // Giá trị zoom lớn nhất (3x)
-        zoomSlider.step = 0.1; // Bước zoom
-        zoomSlider.value = 1;  // Giá trị mặc định
-        zoomSlider.style.position = "absolute";
-        zoomSlider.style.bottom = "20px";
-        zoomSlider.style.left = "50%";
-        zoomSlider.style.transform = "translateX(-50%)";
-        zoomSlider.style.zIndex = "1001";
-        document.body.appendChild(zoomSlider);
-
-        // Gắn sự kiện để thay đổi zoom
-        zoomSlider.addEventListener('input', () => {
-            const zoomValue = zoomSlider.value;
-            videoElement.style.transform = `translate(-50%, -50%) scale(${zoomValue})`; // Cập nhật zoom
-            console.log(`Zoom kỹ thuật số: ${zoomValue}x`);
-        });
-
-        // Khởi động quét QR code
-        await html5QrCode.start(
-            cameraId,
-            {
-                fps: 30, // Số khung hình trên giây
-                qrbox: { width: 250, height: 250 }, // Kích thước vùng quét
-                aspectRatio: 1.7, // Tỉ lệ khung hình
-                videoConstraints: constraints.video // Truyền cấu hình video vào đây
-            },
-            onScanSuccess,
-            onScanFailure
-        );
-
-        // Đánh dấu scanner đang chạy
-        isScannerRunning = true;
-
-        // Tùy chỉnh vùng quét QR dựa vào loại QR
-        setTimeout(() => {
-            if (typeQR === 1) {
-                $('#qr-shaded-region').css('border-width', '35vh 10vh');
-            } else {
-                $('#qr-shaded-region').css('border-width', '36vh 13vh');
+                currentCamera = cam;
+                html5QrCode = new Html5Qrcode("qr-reader");
+                html5QrCode.start(
+                    cameraId,
+                    {
+                        fps: 30,    // Số khung hình trên giây
+                        qrbox: { width: 250, height: 250 },  // Kích thước khung quét QR
+                        aspectRatio: 1.7, // Đặt tỉ lệ khung hình
+                        videoConstraints: {
+                            // width: { ideal: 3840 }, // Độ phân giải video 4k
+                            // height: { ideal: 2160 },
+                            width: { ideal: 1920 }, // Độ phân giải video 1080p
+                            height: { ideal: 1080 },
+                            // width: { ideal: 2560 }, // Độ phân giải video 2k 
+                            // height: { ideal: 1440 },
+                            facingMode: { exact: cam },
+                            advanced: [{ zoom: 2 }]
+                        }
+                    },
+                    onScanSuccess,
+                    onScanFailure
+                ).then(() => {
+                    isScannerRunning = true;  // Đánh dấu scanner đang chạy
+                    setTimeout(() => {
+                        if(typeQR == 1){
+                            $('#qr-shaded-region').css('border-width', '35vh 10vh');
+                            // $('#qr-shaded-region').attr('style', 'border-width: 35vh 10vh !important;');
+                        } else {
+                            $('#qr-shaded-region').css('border-width', '36vh 13vh');
+                            // $('#qr-shaded-region').attr('style', 'border-width: 40vh 15vh !important;');
+                        }
+                    }, 100);
+                }).catch(err => {
+                    console.error("Lỗi khi khởi động camera: ", err);
+                });
+                
             }
-        }, 100);
-    } catch (err) {
-        console.error("Lỗi khi khởi động camera:", err);
-    }
-}
 
-
-            
             // Khi nhấn nút mở popup quét QR
             function startQRcode() {
                 document.getElementById("result-form-total").classList.add("d-none");
