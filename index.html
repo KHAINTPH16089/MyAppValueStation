@@ -1467,7 +1467,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="app h-100">
         <div id="LoadScreen">
@@ -1971,10 +1970,8 @@
                     <div class="history-avt">
                         <div class="d-flex">
                             <button id="backHistoryWarranty" style="height: 40px; border: none; background-color: #1E2833;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: #fff; margin-right: 10px;" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                                 </svg>
                             </button>
                             <img class="userAvt" src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg" alt="">
@@ -3233,7 +3230,7 @@
                 document.getElementById("list-category").classList.remove("d-none");
                 document.getElementById("save-category").classList.add("d-none");
                 document.getElementById("detail-category").classList.add("d-none");
-                showCategory()
+                showCategory();
                 historyListCategoryAdd.empty();
             });
             $("#result-truycap").click(function () {
@@ -5522,7 +5519,7 @@
                 // const item = { 'CodeWorkStation': workstationID, 'NameWorkStation': state[0].WORKSTATION_NAME, 'domain': domain, 'date': getCurrentTime(), 'workstationType': state[0].TEMPLATE_TOOLTIP }
                 // localStorage.setItem('itemHistory', JSON.stringify(item));
                 saveWarranty(data);
-                addItemHistoryWarranty(data[0].PR_KEY);
+                addItemHistoryWarranty(data[0].PR_KEY, data);
             }
 
             $('#result-product-warranty').click(function () {
@@ -5622,7 +5619,7 @@
                 add('WARRANTY_ERROR', willInsertData).then(async data => {
                     try {
                         toastr.success("Báo lỗi thành công!");
-                        addItemHistoryWarranty(dataWarranty[0].PR_KEY);
+                        addItemHistoryWarranty(dataWarranty[0].PR_KEY, dataWarranty);
                         $("#BackWarranty").click();
                     } catch (e) { }
                 }).catch(err => {
@@ -5993,8 +5990,9 @@
                 add(user_id, session, 'SYS_TRAN_NO', willInsertData)
             }
             
-            async function addItemHistoryWarranty(QRID) {
+            async function addItemHistoryWarranty(QRID, dataQR) {
                 const data = await getDM('WARRANTY_ERROR', "QRCODE_ID='"+QRID+"'");
+                const data_lot = await getDM('WARRANTY_LOT', "PR_KEY='"+dataQR[0].LOT_ID+"'");
                 let dataWarranty = data.data.filter(item => item.GROUP_ID === 0);
                 let dataWarrantyGroup = data.data.filter(item => item.GROUP_ID !== 0);
                 if(localStorage.getItem('RoleUser') == "GUEST"){
@@ -6080,7 +6078,7 @@
                                                     '</svg>'+
                                                     ' '+ dataWarranty[i].ERROR_NAME+
                                                 '</h4>'+
-                                                '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dataWarranty[i].DESCRIPTION+'</p>'+
+                                                '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">Sản phẩm thuộc: '+data_lot.data[0].LOT_NUMBER+'</p>'+
                                                 '<p style="margin: 1px 0 0 0; font-size: 14px; font-weight: 300;">'+dateALL+' '+timeALL+'</p>'+
                                             '</div>'+
                                         '</button>'+
